@@ -1,0 +1,102 @@
+/* Component-specific reusable styles */
+
+@layer components {
+  /* Card variants */
+  .card-base {
+    @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .card-interactive {
+    @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-blue-300 dark:hover:border-blue-600;
+  }
+
+  .card-highlight {
+    @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-gray-200 dark:border-gray-700 p-6;
+  }
+
+  .card-project {
+    @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200;
+  }
+
+  .btn-download {
+    @apply inline-flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200;
+  }
+
+  /* Text variants */
+  .text-muted {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+
+  .text-primary {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+
+  .text-hero {
+    @apply text-lg text-gray-700 dark:text-gray-300;
+  }
+
+  /* Layout patterns */
+  .container-main {
+    @apply container mx-auto px-4 py-8;
+  }
+
+  .grid-projects {
+    @apply grid gap-6 md:grid-cols-2 list-none;
+  }
+
+  .grid-projects-3 {
+    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 list-none;
+  }
+
+  .grid-highlights {
+    @apply grid grid-cols-1 sm:grid-cols-3 gap-6 text-center;
+  }
+
+  .grid-resume {
+    @apply grid gap-6 md:grid-cols-2 max-w-4xl mx-auto;
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    @apply transition-colors hover:text-gray-900 dark:hover:text-gray-100 text-gray-600 dark:text-gray-400;
+  }
+
+  .social-link {
+    @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply mt-12;
+  }
+
+  .section-spacing-lg {
+    @apply mt-16;
+  }
+
+  /* Utility classes for consistency */
+  .heading-page {
+    @apply text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100;
+  }
+
+  .heading-section {
+    @apply text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100;
+  }
+
+  .heading-card {
+    @apply text-xl font-semibold text-gray-900 dark:text-gray-100;
+  }
+
+  .description-card {
+    @apply text-sm text-gray-600 dark:text-gray-400 mt-1;
+  } 
+} 

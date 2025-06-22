@@ -40,40 +40,31 @@ const resumeData = [
 
 export default function ResumePage() {
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="page-layout">
       {/* Header Section */}
-      <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          Resume Downloads
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+      <header className="page-header">
+        <h1 className="heading-page">Resume Downloads</h1>
+        <p className="text-hero max-w-2xl mx-auto">
           Choose from my specialized resumes tailored for different career paths
         </p>
       </header>
 
       {/* Resume Downloads Section */}
       <section aria-labelledby="downloads-heading">
-        <h2 id="downloads-heading" className="sr-only">
+        <h2 id="downloads-heading" className="sr-only-heading">
           Available Resume Downloads
         </h2>
-        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        <div className="grid-resume">
           {resumeData.map((resume) => (
-            <article
-              key={resume.id}
-              className="group p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-600"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                {resume.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                {resume.description}
-              </p>
+            <article key={resume.id} className="article-card">
+              <h3 className="heading-card mb-2">{resume.title}</h3>
+              <p className="text-muted mb-4">{resume.description}</p>
               <a
                 href={`/${resume.filename}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="inline-flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 group-hover:bg-blue-700"
+                className="btn-download group-hover:bg-blue-700"
                 aria-label={`Download ${resume.title} PDF`}
               >
                 <svg

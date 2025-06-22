@@ -36,13 +36,10 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="page-layout">
       {/* Hero Section */}
-      <section
-        className="flex flex-col items-center text-center"
-        aria-labelledby="hero-heading"
-      >
-        <div className="relative">
+      <section className="hero-section" aria-labelledby="hero-heading">
+        <div className="hero-image">
           <Image
             src="/headshot.webp"
             alt="Aditya Gambhir - Software Engineer"
@@ -56,7 +53,7 @@ export default function HomePage() {
         <h1 id="hero-heading" className="text-3xl font-bold mt-4">
           Hello, I&apos;m Aditya
         </h1>
-        <p className="mt-2 text-gray-700 dark:text-gray-300 max-w-md text-lg">
+        <p className="hero-content text-hero">
           Software engineer with a passion for building scalable web
           applications and data-driven solutions.
         </p>
@@ -88,47 +85,35 @@ export default function HomePage() {
       </section>
 
       {/* Highlights Section */}
-      <section className="mt-12" aria-labelledby="highlights-heading">
-        <h2 id="highlights-heading" className="sr-only">
+      <section className="content-section" aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading" className="sr-only-heading">
           Professional Highlights
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              5+ Years Experience
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Professional Development
-            </p>
+        <div className="grid-highlights">
+          <div className="card-highlight">
+            <h3 className="heading-card">5+ Years Experience</h3>
+            <p className="description-card">Professional Development</p>
           </div>
-          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              10+ Projects
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Successfully Delivered
-            </p>
+          <div className="card-highlight">
+            <h3 className="heading-card">10+ Projects</h3>
+            <p className="description-card">Successfully Delivered</p>
           </div>
-          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              MERN & DS
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Technology Expertise
-            </p>
+          <div className="card-highlight">
+            <h3 className="heading-card">MERN & DS</h3>
+            <p className="description-card">Technology Expertise</p>
           </div>
         </div>
       </section>
 
       {/* Featured Projects Section */}
-      <section className="mt-16" aria-labelledby="projects-heading">
-        <h2
-          id="projects-heading"
-          className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100"
-        >
+      <section
+        className="content-section-lg"
+        aria-labelledby="projects-heading"
+      >
+        <h2 id="projects-heading" className="heading-section">
           Featured Projects
         </h2>
-        <ul className="grid gap-6 md:grid-cols-2 list-none">
+        <ul className="grid-projects">
           <li>
             <ProjectCard
               title="Project Alpha"
@@ -147,21 +132,21 @@ export default function HomePage() {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="mt-16" aria-labelledby="cta-heading">
-        <h2 id="cta-heading" className="sr-only">
+      <section className="content-section-lg" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" className="sr-only-heading">
           Get in Touch
         </h2>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
+        <div className="cta-section">
           <Link
             href="/resume"
-            className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            className="btn-primary"
             aria-label="View my resume"
           >
             View Resume
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            className="btn-secondary"
             aria-label="Contact me"
           >
             Contact Me

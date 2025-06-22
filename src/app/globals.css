@@ -1,5 +1,8 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+
+/* Import modular stylesheets */
+@import '../styles/components.css';
+@import '../styles/layouts.css';
 
 :root {
   --radius: 0.625rem;
