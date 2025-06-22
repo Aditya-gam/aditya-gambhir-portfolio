@@ -1,102 +1,173 @@
+// app/page.tsx
 import Image from 'next/image';
+import Script from 'next/script';
+import Link from 'next/link';
+import { Metadata } from 'next';
+import ProjectCard from '@/components/ProjectCard';
 
-export default function Home() {
+// Modern Next.js 15: Export metadata for better SEO
+export const metadata: Metadata = {
+  title: 'Aditya Gambhir - Software Engineer Portfolio',
+  description:
+    'Software engineer with a passion for building scalable web applications and data-driven solutions. 5+ years experience in MERN stack and Data Science.',
+  keywords: [
+    'Aditya Gambhir',
+    'Software Engineer',
+    'MERN Stack',
+    'Data Science',
+    'Portfolio',
+  ],
+  authors: [{ name: 'Aditya Gambhir' }],
+  openGraph: {
+    title: 'Aditya Gambhir - Software Engineer Portfolio',
+    description:
+      'Software engineer with a passion for building scalable web applications and data-driven solutions.',
+    type: 'website',
+    images: [
+      {
+        url: '/headshot.webp',
+        width: 150,
+        height: 150,
+        alt: 'Aditya Gambhir headshot',
+      },
+    ],
+  },
+};
+
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{' '}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="container mx-auto px-4 py-8">
+      {/* Hero Section */}
+      <section
+        className="flex flex-col items-center text-center"
+        aria-labelledby="hero-heading"
+      >
+        <div className="relative">
+          <Image
+            src="/headshot.webp"
+            alt="Aditya Gambhir - Software Engineer"
+            width={150}
+            height={150}
+            className="rounded-full object-cover"
+            priority
+            sizes="150px"
+          />
+        </div>
+        <h1 id="hero-heading" className="text-3xl font-bold mt-4">
+          Hello, I&apos;m Aditya
+        </h1>
+        <p className="mt-2 text-gray-700 dark:text-gray-300 max-w-md text-lg">
+          Software engineer with a passion for building scalable web
+          applications and data-driven solutions.
+        </p>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        {/* LinkedIn Badge Script */}
+        <Script
+          src="https://platform.linkedin.com/badges/js/profile.js"
+          strategy="afterInteractive"
+        />
+        <div
+          className="badge-base LI-profile-badge mt-4"
+          data-locale="en_US"
+          data-size="medium"
+          data-theme="light"
+          data-type="horizontal"
+          data-vanity="aditya-gambhir"
+          data-version="v1"
+        >
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="badge-base__link LI-simple-link"
+            href="https://www.linkedin.com/in/aditya-gambhir?trk=profile-badge"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View Aditya Gambhir's LinkedIn profile"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Aditya Gambhir
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+
+      {/* Highlights Section */}
+      <section className="mt-12" aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading" className="sr-only">
+          Professional Highlights
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              5+ Years Experience
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Professional Development
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              10+ Projects
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Successfully Delivered
+            </p>
+          </div>
+          <div className="p-6 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              MERN & DS
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              Technology Expertise
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Projects Section */}
+      <section className="mt-16" aria-labelledby="projects-heading">
+        <h2
+          id="projects-heading"
+          className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          Featured Projects
+        </h2>
+        <ul className="grid gap-6 md:grid-cols-2 list-none">
+          <li>
+            <ProjectCard
+              title="Project Alpha"
+              description="A full-stack web app for managing tasks."
+              bullets={['React', 'Node.js', 'MongoDB']}
+            />
+          </li>
+          <li>
+            <ProjectCard
+              title="Project Beta"
+              description="A machine learning pipeline for data analysis."
+              bullets={['Python', 'Pandas', 'TensorFlow']}
+            />
+          </li>
+        </ul>
+      </section>
+
+      {/* Call-to-Action Section */}
+      <section className="mt-16" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" className="sr-only">
+          Get in Touch
+        </h2>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <Link
+            href="/resume"
+            className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            aria-label="View my resume"
+          >
+            View Resume
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            aria-label="Contact me"
+          >
+            Contact Me
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

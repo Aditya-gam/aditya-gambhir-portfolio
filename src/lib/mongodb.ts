@@ -2,7 +2,7 @@ import { MongoClient, MongoClientOptions } from 'mongodb';
 
 declare global {
   // Allow global _mongoClientPromise in development
-  // eslint-disable-next-line no-var
+
   var _mongoClientPromise: Promise<MongoClient>;
 }
 
