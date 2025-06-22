@@ -41,7 +41,7 @@ export default function HomePage() {
       <section className="hero-section" aria-labelledby="hero-heading">
         <div className="hero-image">
           <Image
-            src="/headshot.webp"
+            src="/headshot1.webp"
             alt="Aditya Gambhir - Software Engineer"
             width={150}
             height={150}
