@@ -84,7 +84,23 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm"
+          style={{
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            margin: 0,
+            padding: 0,
+            border: 'none',
+            maxWidth: 'none',
+            maxHeight: 'none',
+            width: '100%',
+            height: '100%',
+          }}
           onClick={handleOverlayClick}
           aria-labelledby="contact-modal-title"
           aria-describedby="contact-modal-description"
@@ -106,6 +122,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
               opacity: isOpen ? 1 : 0,
               transition:
                 'transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease',
+              pointerEvents: 'auto',
             }}
           >
             {/* Modal Header */}
