@@ -32,15 +32,23 @@ src/components/
 A versatile button component built with `class-variance-authority` for type-safe variants.
 
 #### Props Interface
+
 ```typescript
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+  variant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link';
   size?: 'default' | 'sm' | 'lg' | 'icon';
   asChild?: boolean;
 }
 ```
 
 #### Usage Examples
+
 ```tsx
 import { Button } from '@/components/ui/button';
 
@@ -58,6 +66,7 @@ import { Button } from '@/components/ui/button';
 ```
 
 #### Variants
+
 - **default**: Primary blue button
 - **destructive**: Red danger button
 - **outline**: Bordered button
@@ -72,6 +81,7 @@ import { Button } from '@/components/ui/button';
 Container component for content grouping with consistent styling.
 
 #### Sub-components
+
 ```typescript
 const Card = React.forwardRef<HTMLDivElement, CardProps>(...)
 const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(...)
@@ -82,8 +92,15 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(...)
 ```
 
 #### Usage Example
+
 ```tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from '@/components/ui/card';
 
 <Card>
   <CardHeader>
@@ -93,7 +110,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
   <CardContent>
     <p>Card content goes here</p>
   </CardContent>
-</Card>
+</Card>;
 ```
 
 ### Dropdown Menu Component
@@ -103,6 +120,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 Accessible dropdown menu built on Radix UI primitives.
 
 #### Usage Example
+
 ```tsx
 import {
   DropdownMenu,
@@ -119,7 +137,7 @@ import {
     <DropdownMenuItem>Profile</DropdownMenuItem>
     <DropdownMenuItem>Settings</DropdownMenuItem>
   </DropdownMenuContent>
-</DropdownMenu>
+</DropdownMenu>;
 ```
 
 ## 📝 Form Components
@@ -131,6 +149,7 @@ import {
 Reusable form field wrapper with label, input, and error display.
 
 #### Props Interface
+
 ```typescript
 interface FormFieldProps {
   label: string;
@@ -146,6 +165,7 @@ interface FormFieldProps {
 ```
 
 #### Usage Example
+
 ```tsx
 import FormField from '@/components/forms/FormField';
 
@@ -159,10 +179,11 @@ import FormField from '@/components/forms/FormField';
   required
   onChange={handleInputChange}
   onBlur={handleInputBlur}
-/>
+/>;
 ```
 
 #### Features
+
 - Automatic error styling
 - Required field indicators
 - Accessible label association
@@ -175,6 +196,7 @@ import FormField from '@/components/forms/FormField';
 Google reCAPTCHA integration component with error handling.
 
 #### Props Interface
+
 ```typescript
 interface CaptchaFieldProps {
   recaptchaRef: React.RefObject<ReCAPTCHA>;
@@ -185,6 +207,7 @@ interface CaptchaFieldProps {
 ```
 
 #### Usage Example
+
 ```tsx
 import CaptchaField from '@/components/forms/CaptchaField';
 import { useRef } from 'react';
@@ -196,7 +219,7 @@ const recaptchaRef = useRef<ReCAPTCHA>(null);
   onChange={handleCaptchaChange}
   onExpired={handleCaptchaExpired}
   onError={handleCaptchaError}
-/>
+/>;
 ```
 
 ### SubmitButton Component
@@ -206,6 +229,7 @@ const recaptchaRef = useRef<ReCAPTCHA>(null);
 Form submission button with loading state and validation feedback.
 
 #### Props Interface
+
 ```typescript
 interface SubmitButtonProps {
   loading: boolean;
@@ -215,15 +239,17 @@ interface SubmitButtonProps {
 ```
 
 #### Usage Example
+
 ```tsx
 import SubmitButton from '@/components/forms/SubmitButton';
 
 <SubmitButton loading={submitting} disabled={!captchaToken}>
   Send Message
-</SubmitButton>
+</SubmitButton>;
 ```
 
 #### Features
+
 - Loading spinner animation
 - Disabled state styling
 - Accessible loading announcements
@@ -237,6 +263,7 @@ import SubmitButton from '@/components/forms/SubmitButton';
 Main site navigation header with responsive design.
 
 #### Features
+
 - Desktop navigation menu
 - Mobile hamburger menu
 - Logo/brand area
@@ -244,6 +271,7 @@ Main site navigation header with responsive design.
 - Sticky positioning
 
 #### Navigation Items
+
 ```typescript
 const navigationItems = [
   { label: 'Home', href: '/' },
@@ -254,11 +282,12 @@ const navigationItems = [
 ```
 
 #### Usage
+
 ```tsx
 // Automatically included in layout.tsx
 import Header from '@/components/Header';
 
-<Header />
+<Header />;
 ```
 
 ### Footer Component
@@ -268,12 +297,14 @@ import Header from '@/components/Header';
 Site footer with social links and copyright information.
 
 #### Features
+
 - Social media links
 - Copyright notice
 - Responsive layout
 - Lazy loaded for performance
 
 #### Usage
+
 ```tsx
 // Automatically included in layout.tsx via dynamic import
 const Footer = dynamic(() => import('@/components/Footer'));
@@ -286,6 +317,7 @@ const Footer = dynamic(() => import('@/components/Footer'));
 Mobile-specific navigation menu with slide-in animation.
 
 #### Features
+
 - Responsive mobile-only display
 - Smooth slide animations
 - Touch-friendly interface
@@ -300,6 +332,7 @@ Mobile-specific navigation menu with slide-in animation.
 Displays individual project information with consistent styling.
 
 #### Props Interface
+
 ```typescript
 interface ProjectCardProps {
   project: ProjectData;
@@ -320,20 +353,24 @@ interface ProjectData {
 ```
 
 #### Usage Example
+
 ```tsx
 import ProjectCard from '@/components/ProjectCard';
 import { featuredProjects } from '@/data/projects';
 
-{featuredProjects.map((project) => (
-  <ProjectCard
-    key={project.title}
-    project={project}
-    priority={project.priority}
-  />
-))}
+{
+  featuredProjects.map((project) => (
+    <ProjectCard
+      key={project.title}
+      project={project}
+      priority={project.priority}
+    />
+  ));
+}
 ```
 
 #### Features
+
 - Responsive image loading
 - Technology tag display
 - External link handling
@@ -347,6 +384,7 @@ import { featuredProjects } from '@/data/projects';
 Complete contact form with validation and submission handling.
 
 #### Props Interface
+
 ```typescript
 interface ContactFormProps {
   className?: string;
@@ -354,13 +392,15 @@ interface ContactFormProps {
 ```
 
 #### Usage Example
+
 ```tsx
 import ContactForm from '@/components/ContactForm';
 
-<ContactForm className="max-w-2xl mx-auto" />
+<ContactForm className="max-w-2xl mx-auto" />;
 ```
 
 #### Features
+
 - Client-side validation
 - Server-side submission
 - reCAPTCHA integration
@@ -375,6 +415,7 @@ import ContactForm from '@/components/ContactForm';
 All components use standardized CSS classes from the modular stylesheets:
 
 #### Card Variants
+
 ```css
 .card-base        /* Basic card styling */
 .card-interactive /* Hover effects */
@@ -383,6 +424,7 @@ All components use standardized CSS classes from the modular stylesheets:
 ```
 
 #### Button Variants
+
 ```css
 .btn-primary      /* Primary action button */
 .btn-secondary    /* Secondary button */
@@ -390,6 +432,7 @@ All components use standardized CSS classes from the modular stylesheets:
 ```
 
 #### Form Styles
+
 ```css
 .form-field       /* Form field container */
 .form-label       /* Form labels */
@@ -421,6 +464,7 @@ All components follow mobile-first responsive design:
 ### Testing Patterns
 
 #### Basic Component Test
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { Button } from '@/components/ui/button';
@@ -440,6 +484,7 @@ describe('Button', () => {
 ```
 
 #### Form Component Test
+
 ```typescript
 import { render, screen, fireEvent } from '@testing-library/react';
 import FormField from '@/components/forms/FormField';
@@ -480,20 +525,21 @@ describe('FormField', () => {
 ### Component Guidelines
 
 #### Props Interface
+
 ```typescript
 // Always define props interface
 interface ComponentProps {
   // Required props first
   title: string;
   content: string;
-  
+
   // Optional props with defaults
   variant?: 'default' | 'alternative';
   size?: 'sm' | 'md' | 'lg';
-  
+
   // Event handlers
   onClick?: () => void;
-  
+
   // Common props
   className?: string;
   children?: React.ReactNode;
@@ -501,6 +547,7 @@ interface ComponentProps {
 ```
 
 #### Component Structure
+
 ```typescript
 import React from 'react';
 import { cn } from '@/lib/utils'; // Class name utility
@@ -532,4 +579,4 @@ const Component: React.FC<ComponentProps> = ({
 export default Component;
 ```
 
-This component library provides the foundation for consistent, accessible, and maintainable UI development across the portfolio website. 
+This component library provides the foundation for consistent, accessible, and maintainable UI development across the portfolio website.

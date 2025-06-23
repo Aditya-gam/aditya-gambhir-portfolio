@@ -3,6 +3,7 @@
 ## 📋 Prerequisites
 
 ### System Requirements
+
 - **Node.js** 18.17.0 or higher
 - **npm** 9.0.0 or higher (or yarn/pnpm equivalent)
 - **Git** for version control
@@ -11,6 +12,7 @@
 - **Email service** (Gmail recommended for simplicity)
 
 ### Development Tools (Recommended)
+
 - **VS Code** with extensions:
   - TypeScript and JavaScript Language Features
   - Tailwind CSS IntelliSense
@@ -125,7 +127,7 @@ MONGODB_URI=mongodb://localhost:27017/portfolio_messages
 2. **Register New Site**
    - Label: "Aditya Gambhir Portfolio"
    - reCAPTCHA type: reCAPTCHA v2 "I'm not a robot"
-   - Domains: 
+   - Domains:
      - `localhost` (for development)
      - Your production domain
 
@@ -247,6 +249,7 @@ npx tsc --noEmit       # Check TypeScript types
 ### Development Workflow
 
 1. **Start Development Server**
+
    ```bash
    npm run dev
    ```
@@ -261,6 +264,7 @@ npx tsc --noEmit       # Check TypeScript types
    - Verify all pages load correctly
 
 4. **Code Quality Check**
+
    ```bash
    npm run lint
    npm run format:check
@@ -358,6 +362,7 @@ npm run build
    - Follow best practices
 
 3. **Monitor Bundle Size**
+
    ```bash
    npm run build:analyze
    ```
@@ -416,19 +421,22 @@ npm audit fix --force
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs)
 
 ### Tools
+
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 - [Google reCAPTCHA](https://www.google.com/recaptcha)
 - [Vercel Dashboard](https://vercel.com/dashboard)
 
 ### Community
+
 - [Next.js Discord](https://discord.gg/nextjs)
 - [React Discord](https://discord.gg/react)
 - [MongoDB Community](https://community.mongodb.com)
 
-Now you're ready to develop and customize the Aditya Gambhir Portfolio! 🚀 
+Now you're ready to develop and customize the Aditya Gambhir Portfolio! 🚀

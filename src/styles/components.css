@@ -197,7 +197,7 @@
   .github-badge-placeholder a {
     @apply border-border hover:bg-accent hover:text-accent-foreground;
   }
-  
+
   .leetcode-badge-placeholder a {
     @apply border-orange-700 hover:bg-orange-900 hover:text-orange-100;
   }

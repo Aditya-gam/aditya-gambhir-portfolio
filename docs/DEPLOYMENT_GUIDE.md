@@ -11,6 +11,7 @@ This guide covers the complete deployment process for the Aditya Gambhir Portfol
 **Current Setup**: https://aditya-gambhir-portfolio.vercel.app/
 
 #### Why Vercel?
+
 - **Next.js Optimization**: Built specifically for Next.js applications
 - **Automatic CI/CD**: GitHub integration with automatic deployments
 - **Edge Network**: Global CDN with excellent performance
@@ -21,6 +22,7 @@ This guide covers the complete deployment process for the Aditya Gambhir Portfol
 ## 📋 Pre-Deployment Checklist
 
 ### Environment Variables Setup
+
 ```bash
 # Required for production
 MONGODB_URI=mongodb+srv://...
@@ -34,6 +36,7 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
 ### Build Verification
+
 ```bash
 # Test production build locally
 npm run build
@@ -50,6 +53,7 @@ npm run lint
 ```
 
 ### Performance Audit
+
 ```bash
 # Use Lighthouse CLI
 npm install -g lighthouse
@@ -66,10 +70,11 @@ lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report
 ### Initial Setup
 
 1. **Connect GitHub Repository**
+
    ```bash
    # Install Vercel CLI (optional)
    npm install -g vercel
-   
+
    # Login to Vercel
    vercel login
    ```
@@ -82,13 +87,14 @@ lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report
    - Root Directory: `./` (default)
 
 3. **Configure Build Settings**
+
    ```bash
    # Build Command (default)
    npm run build
-   
+
    # Output Directory (default)
    .next
-   
+
    # Install Command (default)
    npm install
    ```
@@ -116,10 +122,11 @@ NEXT_PUBLIC_SITE_URL=https://aditya-gambhir-portfolio.vercel.app
    - Add your domain (e.g., `adityagambhir.com`)
 
 2. **DNS Configuration**
+
    ```bash
    # For root domain
    A Record: @ → 76.76.21.21
-   
+
    # For www subdomain
    CNAME Record: www → cname.vercel-dns.com
    ```
@@ -134,6 +141,7 @@ NEXT_PUBLIC_SITE_URL=https://aditya-gambhir-portfolio.vercel.app
 ### Automatic Deployments
 
 Vercel automatically deploys on:
+
 - **Production**: Pushes to `main` branch
 - **Preview**: Pull requests and feature branches
 - **Development**: Manual deployments
@@ -147,71 +155,71 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Run linting
-      run: npm run lint
-    
-    - name: Run type checking
-      run: npx tsc --noEmit
-    
-    - name: Run tests
-      run: npm test # When tests are added
-    
-    - name: Build application
-      run: npm run build
-    
-    - name: Run bundle analysis
-      run: npm run build:analyze
-      env:
-        ANALYZE: true
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run type checking
+        run: npx tsc --noEmit
+
+      - name: Run tests
+        run: npm test # When tests are added
+
+      - name: Build application
+        run: npm run build
+
+      - name: Run bundle analysis
+        run: npm run build:analyze
+        env:
+          ANALYZE: true
 
   lighthouse:
     runs-on: ubuntu-latest
     needs: test
     if: github.event_name == 'pull_request'
-    
+
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build and start
-      run: |
-        npm run build
-        npm start &
-        sleep 10
-    
-    - name: Run Lighthouse
-      uses: treosh/lighthouse-ci-action@v10
-      with:
-        configPath: '.lighthouserc.json'
-        uploadArtifacts: true
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and start
+        run: |
+          npm run build
+          npm start &
+          sleep 10
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          configPath: '.lighthouserc.json'
+          uploadArtifacts: true
 ```
 
 ### Deployment Hooks
@@ -253,6 +261,7 @@ Set up webhook notifications in Vercel:
 ### Vercel Analytics
 
 Enable in Project Settings:
+
 - **Web Analytics**: User behavior tracking
 - **Speed Insights**: Performance monitoring
 - **Function Logs**: API route monitoring
@@ -260,20 +269,22 @@ Enable in Project Settings:
 ### Google Analytics (Optional)
 
 1. **Create GA4 Property**
+
    ```bash
    # Add to environment variables
    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
    ```
 
 2. **Add Tracking Code**
+
    ```typescript
    // src/lib/gtag.ts
    export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
-   
+
    export const gtag = (...args: any[]) => {
      (window as any).gtag(...args);
    };
-   
+
    export const pageview = (url: string) => {
      gtag('config', GA_TRACKING_ID, {
        page_path: url,
@@ -305,28 +316,28 @@ init({
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',
-    value: 'on'
+    value: 'on',
   },
   {
     key: 'Strict-Transport-Security',
-    value: 'max-age=63072000; includeSubDomains; preload'
+    value: 'max-age=63072000; includeSubDomains; preload',
   },
   {
     key: 'X-XSS-Protection',
-    value: '1; mode=block'
+    value: '1; mode=block',
   },
   {
     key: 'X-Frame-Options',
-    value: 'SAMEORIGIN'
+    value: 'SAMEORIGIN',
   },
   {
     key: 'X-Content-Type-Options',
-    value: 'nosniff'
+    value: 'nosniff',
   },
   {
     key: 'Referrer-Policy',
-    value: 'origin-when-cross-origin'
-  }
+    value: 'origin-when-cross-origin',
+  },
 ];
 
 module.exports = {
@@ -348,14 +359,14 @@ module.exports = {
 module.exports = {
   // Enable compression
   compress: true,
-  
+
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  
+
   // Experimental features
   experimental: {
     optimizeCss: true,
@@ -409,20 +420,22 @@ NODE_ENV=production
    - Click "Promote to Production"
 
 2. **Via CLI**
+
    ```bash
    # List deployments
    vercel ls
-   
+
    # Promote specific deployment
    vercel promote <deployment-url>
    ```
 
 3. **Via Git**
+
    ```bash
    # Revert to previous commit
    git revert HEAD
    git push origin main
-   
+
    # Or reset to specific commit
    git reset --hard <commit-hash>
    git push --force-with-lease origin main
@@ -505,6 +518,7 @@ npm audit fix --force
 ### Common Deployment Issues
 
 #### Build Failures
+
 ```bash
 # Check build logs in Vercel
 vercel logs
@@ -517,6 +531,7 @@ vercel logs
 ```
 
 #### Runtime Errors
+
 ```bash
 # Check function logs
 vercel logs --follow
@@ -529,6 +544,7 @@ vercel logs --follow
 ```
 
 #### Performance Issues
+
 ```bash
 # Bundle analysis
 npm run build:analyze
@@ -540,4 +556,4 @@ npm run build:analyze
 # - Caching strategies
 ```
 
-This deployment guide ensures reliable, secure, and performant delivery of the portfolio website to production environments. 
+This deployment guide ensures reliable, secure, and performant delivery of the portfolio website to production environments.

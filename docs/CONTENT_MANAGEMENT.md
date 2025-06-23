@@ -15,28 +15,30 @@ This guide explains how to manage and update content in the Aditya Gambhir Portf
 export const allProjects: ProjectData[] = [
   // ... existing projects
   {
-    title: "New Project Name",
-    description: "Brief description of the project and its purpose.",
-    bullets: ["Key Feature 1", "Key Feature 2", "Key Feature 3"],
-    imageSrc: "/projects/new-project.svg",
-    imageAlt: "New Project screenshot showing main interface",
+    title: 'New Project Name',
+    description: 'Brief description of the project and its purpose.',
+    bullets: ['Key Feature 1', 'Key Feature 2', 'Key Feature 3'],
+    imageSrc: '/projects/new-project.svg',
+    imageAlt: 'New Project screenshot showing main interface',
     priority: false, // Set to true for featured projects
-    technologies: ["React", "Node.js", "MongoDB", "AWS"],
-    githubUrl: "https://github.com/username/new-project",
-    liveUrl: "https://new-project.vercel.app"
-  }
+    technologies: ['React', 'Node.js', 'MongoDB', 'AWS'],
+    githubUrl: 'https://github.com/username/new-project',
+    liveUrl: 'https://new-project.vercel.app',
+  },
 ];
 ```
 
 ### Project Image Guidelines
 
 **Image Requirements**:
+
 - **Format**: SVG preferred, PNG/WebP acceptable
 - **Size**: 400x300px minimum
 - **Location**: `/public/projects/`
 - **Naming**: `project-name.svg` (kebab-case)
 
 **Adding Project Images**:
+
 1. Optimize image using tools like [SVGOMG](https://jakearchibald.github.io/svgomg/)
 2. Place in `/public/projects/` directory
 3. Update `imageSrc` in project data
@@ -75,10 +77,11 @@ const all = getAllProjects();
 ### Resume Download Links
 
 **Usage in components**:
+
 ```tsx
 // Download links are automatically generated
-<a 
-  href="/Aditya_Gambhir_SDE.pdf" 
+<a
+  href="/Aditya_Gambhir_SDE.pdf"
   download="Aditya_Gambhir_Resume.pdf"
   className="btn-download"
 >
@@ -91,6 +94,7 @@ const all = getAllProjects();
 ### Profile Images
 
 **Current Files**:
+
 - `headshot.webp` - Optimized profile image (primary)
 - `headshot.jpg` - Fallback profile image
 - `headshot1.webp` - Alternative profile image
@@ -121,7 +125,7 @@ import Image from 'next/image';
   height={400}
   priority // For above-the-fold images
   className="rounded-full"
-/>
+/>;
 ```
 
 ## 🔧 Configuration Updates
@@ -133,10 +137,10 @@ import Image from 'next/image';
 ```typescript
 // Update personal details
 export const PERSONAL_INFO = {
-  NAME: "Aditya Gambhir",
-  TITLE: "Software Engineer & Data Scientist",
-  EMAIL: "gambhir.aditya19@gmail.com",
-  LOCATION: "Your Location",
+  NAME: 'Aditya Gambhir',
+  TITLE: 'Software Engineer & Data Scientist',
+  EMAIL: 'gambhir.aditya19@gmail.com',
+  LOCATION: 'Your Location',
 } as const;
 
 // Update social links
@@ -212,13 +216,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   /* Update brand colors */
   --primary: 212 100% 50%; /* Your brand color */
   --primary-foreground: 0 0% 100%;
-  
+
   /* Update accent colors */
   --accent: 210 40% 98%;
   --accent-foreground: 222.2 84% 4.9%;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   /* Dark mode colors */
   --primary: 212 100% 60%;
   --background: 222.2 84% 4.9%;
@@ -246,11 +250,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 ### Google Analytics Setup
 
 1. **Add GA tracking ID** to environment variables:
+
 ```bash
 NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
 ```
 
 2. **Update tracking configuration** in `src/lib/gtag.ts`:
+
 ```typescript
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
@@ -270,18 +276,19 @@ export const event = (action: string, parameters: any) => {
 ### Contact Form Analytics
 
 **Track form submissions**:
+
 ```typescript
 // In contact form component
 import { event } from '@/lib/gtag';
 
 const handleSubmit = async (e: React.FormEvent) => {
   // ... form submission logic
-  
+
   if (response.ok) {
     // Track successful submission
     event('form_submit', {
       form_name: 'contact',
-      success: true
+      success: true,
     });
   }
 };
@@ -292,6 +299,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ### Environment Variables
 
 **Update production environment variables**:
+
 1. **Vercel Dashboard** → Project Settings → Environment Variables
 2. **Update sensitive keys** regularly:
    - `RECAPTCHA_SECRET_KEY`
@@ -301,6 +309,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ### Content Security Policy
 
 **Update CSP headers** in `next.config.ts`:
+
 ```typescript
 const securityHeaders = [
   {
@@ -311,8 +320,10 @@ const securityHeaders = [
       style-src 'self' 'unsafe-inline';
       img-src 'self' data: https:;
       font-src 'self';
-    `.replace(/\s{2,}/g, ' ').trim()
-  }
+    `
+      .replace(/\s{2,}/g, ' ')
+      .trim(),
+  },
 ];
 ```
 
@@ -321,11 +332,13 @@ const securityHeaders = [
 ### Project Descriptions
 
 **Structure**:
+
 1. **What**: Brief description of what the project does
 2. **Why**: Problem it solves or value it provides
 3. **How**: Key technologies and approach used
 
 **Example**:
+
 ```
 A full-stack task management application that helps teams organize and track project progress. Built to solve collaboration challenges in remote work environments using React, Node.js, and MongoDB with real-time updates via WebSocket connections.
 ```
@@ -333,6 +346,7 @@ A full-stack task management application that helps teams organize and track pro
 ### Technical Writing
 
 **Best Practices**:
+
 - Use clear, concise language
 - Avoid jargon unless necessary
 - Include specific technologies and versions
@@ -342,6 +356,7 @@ A full-stack task management application that helps teams organize and track pro
 ### SEO Optimization
 
 **Keywords to include**:
+
 - Your name and professional title
 - Technologies you specialize in
 - Industry-specific terms
@@ -352,6 +367,7 @@ A full-stack task management application that helps teams organize and track pro
 ### Regular Updates
 
 **Monthly Tasks**:
+
 - [ ] Review and update project descriptions
 - [ ] Add new projects to portfolio
 - [ ] Update resume files if needed
@@ -359,6 +375,7 @@ A full-stack task management application that helps teams organize and track pro
 - [ ] Update dependencies and security patches
 
 **Quarterly Tasks**:
+
 - [ ] Review and update personal information
 - [ ] Update professional headshot if needed
 - [ ] Review and optimize site performance
@@ -368,6 +385,7 @@ A full-stack task management application that helps teams organize and track pro
 ### Content Backup
 
 **Important files to backup**:
+
 - `/src/data/projects.ts` - Project information
 - `/src/constants/index.ts` - Site configuration
 - `/public/Aditya_Gambhir_*.pdf` - Resume files
@@ -398,4 +416,4 @@ npm start
 4. **Push to GitHub** - triggers automatic deployment
 5. **Verify live site** after deployment
 
-This content management guide ensures your portfolio stays current, professional, and optimized for your career goals. 
+This content management guide ensures your portfolio stays current, professional, and optimized for your career goals.

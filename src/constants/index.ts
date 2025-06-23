@@ -10,7 +10,7 @@ export const FORM_VALIDATION = {
 export const NAVIGATION_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Resume', href: '/resume' },
+  { label: 'About Me', href: '/about' },
 ] as const;
 
 // Social Links

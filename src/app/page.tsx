@@ -99,11 +99,11 @@ export default function HomePage() {
         </h2>
         <div className="cta-section">
           <Link
-            href="/resume"
+            href="/about"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
-            aria-label="View my resume"
+            aria-label="Learn more about me"
           >
-            View Resume
+            About Me
           </Link>
         </div>
       </section>

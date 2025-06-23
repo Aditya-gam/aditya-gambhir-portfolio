@@ -5,10 +5,12 @@
 The portfolio website includes a RESTful API for handling contact form submissions. The API is built using Next.js App Router API routes and includes comprehensive validation, security measures, and database integration.
 
 ### Base URL
+
 - **Development**: `http://localhost:3000/api`
 - **Production**: `https://aditya-gambhir-portfolio.vercel.app/api`
 
 ### Authentication
+
 Currently, no authentication is required for public endpoints. All security is handled through input validation, CAPTCHA verification, and rate limiting.
 
 ## 📬 Contact API
@@ -18,11 +20,13 @@ Currently, no authentication is required for public endpoints. All security is h
 Submit a contact form message with validation and CAPTCHA verification.
 
 #### Endpoint
+
 ```
 POST /api/contact
 ```
 
 #### Request Headers
+
 ```
 Content-Type: application/json
 ```
@@ -31,10 +35,10 @@ Content-Type: application/json
 
 ```typescript
 interface ContactFormData {
-  name: string;           // Required, min 2 characters
-  email: string;          // Required, valid email format
-  message: string;        // Required, 10-2000 characters
-  captchaToken: string;   // Required, Google reCAPTCHA token
+  name: string; // Required, min 2 characters
+  email: string; // Required, valid email format
+  message: string; // Required, 10-2000 characters
+  captchaToken: string; // Required, Google reCAPTCHA token
 }
 ```
 
@@ -99,6 +103,7 @@ curl -X POST https://aditya-gambhir-portfolio.vercel.app/api/contact \
 ### Validation Rules
 
 #### Name Validation
+
 - **Required**: Yes
 - **Type**: String
 - **Min Length**: 2 characters
@@ -106,12 +111,14 @@ curl -X POST https://aditya-gambhir-portfolio.vercel.app/api/contact \
 - **Validation**: Trimmed, no HTML allowed
 
 #### Email Validation
+
 - **Required**: Yes
 - **Type**: String
 - **Format**: Valid email regex pattern
 - **Validation**: `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`
 
 #### Message Validation
+
 - **Required**: Yes
 - **Type**: String
 - **Min Length**: 10 characters
@@ -119,6 +126,7 @@ curl -X POST https://aditya-gambhir-portfolio.vercel.app/api/contact \
 - **Validation**: Trimmed, HTML sanitized
 
 #### CAPTCHA Validation
+
 - **Required**: Yes
 - **Type**: String
 - **Validation**: Verified against Google reCAPTCHA API
@@ -152,12 +160,15 @@ function sanitizeHtml(input) {
 
 ```javascript
 async function verifyRecaptcha(token) {
-  const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `secret=${RECAPTCHA_SECRET_KEY}&response=${token}`
-  });
-  
+  const response = await fetch(
+    'https://www.google.com/recaptcha/api/siteverify',
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${RECAPTCHA_SECRET_KEY}&response=${token}`,
+    },
+  );
+
   const result = await response.json();
   return result.success === true;
 }
@@ -174,14 +185,14 @@ async function verifyRecaptcha(token) {
 
 ```typescript
 interface ContactMessage {
-  _id: ObjectId;           // MongoDB auto-generated ID
-  name: string;            // Sender name (sanitized)
-  email: string;           // Sender email (lowercase)
-  message: string;         // Message content (sanitized)
-  timestamp: Date;         // Message submission time
-  ipAddress?: string;      // Sender IP (optional, for analytics)
-  status: 'unread' | 'read' | 'archived';  // Message status
-  source: 'contact_form';  // Message source identifier
+  _id: ObjectId; // MongoDB auto-generated ID
+  name: string; // Sender name (sanitized)
+  email: string; // Sender email (lowercase)
+  message: string; // Message content (sanitized)
+  timestamp: Date; // Message submission time
+  ipAddress?: string; // Sender IP (optional, for analytics)
+  status: 'unread' | 'read' | 'archived'; // Message status
+  source: 'contact_form'; // Message source identifier
 }
 ```
 
@@ -204,10 +215,10 @@ interface ContactMessage {
 
 ```javascript
 // Ensure these indexes exist for optimal performance
-db.contacts.createIndex({ "email": 1 });
-db.contacts.createIndex({ "timestamp": -1 });
-db.contacts.createIndex({ "status": 1 });
-db.contacts.createIndex({ "ipAddress": 1, "timestamp": 1 });
+db.contacts.createIndex({ email: 1 });
+db.contacts.createIndex({ timestamp: -1 });
+db.contacts.createIndex({ status: 1 });
+db.contacts.createIndex({ ipAddress: 1, timestamp: 1 });
 ```
 
 ## 📧 Email Integration
@@ -220,11 +231,11 @@ The API sends email notifications for each contact form submission:
 
 ```typescript
 const transporter = nodemailer.createTransporter({
-  service: 'gmail',  // or custom SMTP
+  service: 'gmail', // or custom SMTP
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    pass: process.env.EMAIL_PASS,
+  },
 });
 ```
 
@@ -233,22 +244,31 @@ const transporter = nodemailer.createTransporter({
 **Subject**: `Portfolio Contact: [Sender Name]`
 
 **HTML Template**:
+
 ```html
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-  <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+  <h2
+    style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;"
+  >
     New Contact Form Submission
   </h2>
-  <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+  <div
+    style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;"
+  >
     <p><strong>Name:</strong> {{name}}</p>
     <p><strong>Email:</strong> <a href="mailto:{{email}}">{{email}}</a></p>
   </div>
   <div style="margin: 20px 0;">
     <h3 style="color: #333;">Message:</h3>
-    <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #007bff; border-radius: 3px;">
+    <div
+      style="background-color: #ffffff; padding: 15px; border-left: 4px solid #007bff; border-radius: 3px;"
+    >
       {{message}}
     </div>
   </div>
-  <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #6c757d; font-size: 12px;">
+  <div
+    style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #6c757d; font-size: 12px;"
+  >
     <p>This message was sent from your portfolio contact form.</p>
   </div>
 </div>
@@ -284,18 +304,16 @@ Environment variables are validated on server startup:
 function validateEnvironmentVariables() {
   const requiredVars = [
     'MONGODB_URI',
-    'RECAPTCHA_SECRET_KEY', 
+    'RECAPTCHA_SECRET_KEY',
     'EMAIL_USER',
-    'EMAIL_PASS'
+    'EMAIL_PASS',
   ];
-  
-  const missingVars = requiredVars.filter(
-    varName => !process.env[varName]
-  );
-  
+
+  const missingVars = requiredVars.filter((varName) => !process.env[varName]);
+
   if (missingVars.length > 0) {
     throw new Error(
-      `Missing required environment variables: ${missingVars.join(', ')}`
+      `Missing required environment variables: ${missingVars.join(', ')}`,
     );
   }
 }
@@ -312,7 +330,7 @@ curl -X POST http://localhost:3000/api/contact \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Test User",
-    "email": "test@example.com", 
+    "email": "test@example.com",
     "message": "This is a test message to verify the contact form is working properly.",
     "captchaToken": "test_token_for_development"
   }'
@@ -360,8 +378,8 @@ describe('/api/contact', () => {
         name: '',
         email: 'invalid',
         message: 'short',
-        captchaToken: ''
-      })
+        captchaToken: '',
+      }),
     });
 
     const response = await POST(request);
@@ -381,12 +399,14 @@ describe('/api/contact', () => {
 Track these metrics for API health:
 
 #### Performance Metrics
+
 - **Response Time**: Average API response time
 - **Success Rate**: Percentage of successful requests
 - **Error Rate**: Percentage of failed requests
 - **Throughput**: Requests per minute/hour
 
 #### Business Metrics
+
 - **Contact Submissions**: Total form submissions
 - **Conversion Rate**: Unique visitors to contact submissions
 - **Popular Contact Times**: Peak submission hours
@@ -398,20 +418,23 @@ Track these metrics for API health:
 
 ```javascript
 // Log all API requests
-console.log(`[${new Date().toISOString()}] ${method} ${url} - ${status} - ${responseTime}ms`);
+console.log(
+  `[${new Date().toISOString()}] ${method} ${url} - ${status} - ${responseTime}ms`,
+);
 
 // Log errors with context
 console.error(`[${new Date().toISOString()}] Contact API Error:`, {
   error: error.message,
   stack: error.stack,
   requestData: sanitizedData,
-  userAgent: request.headers.get('user-agent')
+  userAgent: request.headers.get('user-agent'),
 });
 ```
 
 #### MongoDB Logs
 
 Monitor database operations:
+
 - Connection pool usage
 - Query performance
 - Failed operations
@@ -422,6 +445,7 @@ Monitor database operations:
 ### Error Types
 
 #### Validation Errors (400)
+
 ```javascript
 {
   success: false,
@@ -431,6 +455,7 @@ Monitor database operations:
 ```
 
 #### Authentication Errors (401)
+
 ```javascript
 {
   success: false,
@@ -439,6 +464,7 @@ Monitor database operations:
 ```
 
 #### Rate Limiting (429)
+
 ```javascript
 {
   success: false,
@@ -448,6 +474,7 @@ Monitor database operations:
 ```
 
 #### Server Errors (500)
+
 ```javascript
 {
   success: false,
@@ -458,11 +485,13 @@ Monitor database operations:
 ### Error Recovery
 
 #### Automatic Retries
+
 - **Database Operations**: 3 retries with exponential backoff
 - **Email Sending**: 2 retries with 5-second delay
 - **CAPTCHA Verification**: 1 retry
 
 #### Graceful Degradation
+
 - **Database Offline**: Store messages in fallback queue
 - **Email Service Down**: Log messages for manual processing
 - **CAPTCHA Service Down**: Log attempts for review
@@ -472,16 +501,19 @@ Monitor database operations:
 ### Planned Features
 
 #### Authentication System
+
 - Admin dashboard for message management
 - JWT-based authentication
 - Role-based access control
 
 #### Enhanced Analytics
+
 - Real-time dashboard
 - Contact source tracking
 - A/B testing for contact forms
 
 #### Message Management
+
 ```
 GET /api/admin/contacts      # List all messages
 PUT /api/admin/contacts/:id  # Update message status
@@ -489,13 +521,15 @@ DELETE /api/admin/contacts/:id # Delete message
 ```
 
 #### Webhooks
+
 ```
 POST /api/webhooks/contact   # External service integration
 ```
 
 #### File Uploads
+
 ```
 POST /api/upload             # Resume/portfolio uploads
 ```
 
-This API documentation provides complete coverage of the backend functionality, enabling developers to integrate with and extend the portfolio website's contact system effectively. 
+This API documentation provides complete coverage of the backend functionality, enabling developers to integrate with and extend the portfolio website's contact system effectively.

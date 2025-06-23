@@ -11,7 +11,7 @@ interface HeaderProps {
 
 const navLinks = [
   { href: '/projects', label: 'Projects' },
-  { href: '/resume', label: 'Resume' },
+  { href: '/about', label: 'About Me' },
 ];
 
 export default function Header({ onContactClick }: HeaderProps) {

@@ -28,6 +28,7 @@
 ## 🏗️ Tech Stack
 
 ### Frontend
+
 - **Framework**: Next.js 15.3.4 with App Router
 - **UI Library**: React 19.0.0 with TypeScript 5
 - **Styling**: Tailwind CSS 4.1.10 with custom design system
@@ -36,12 +37,14 @@
 - **Fonts**: Geist & Geist Mono (optimized with next/font)
 
 ### Backend & Database
+
 - **API**: Next.js API Routes (serverless)
 - **Database**: MongoDB 6.17.0 with connection pooling
 - **Email**: Nodemailer 7.0.3 with Gmail integration
 - **Security**: Input validation, HTML sanitization, rate limiting
 
 ### Development Tools
+
 - **Language**: TypeScript with strict mode
 - **Linting**: ESLint 9 with Next.js and Prettier configs
 - **Formatting**: Prettier 3.5.3
@@ -60,45 +63,50 @@
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/Aditya-gam/aditya-gambhir-portfolio.git
    cd aditya-gambhir-portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    ```
-   
+
    Configure your `.env.local` file:
+
    ```env
    # Database
    MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio_messages
-   
+
    # reCAPTCHA
    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
    RECAPTCHA_SECRET_KEY=your_secret_key_here
-   
+
    # Email
    EMAIL_USER=your-email@gmail.com
    EMAIL_PASS=your-app-specific-password
-   
+
    # Site Configuration
    NEXT_PUBLIC_SITE_URL=http://localhost:3000
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
 
 5. **Open your browser**
-   
+
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📜 Available Scripts
@@ -145,26 +153,34 @@ aditya-gambhir-portfolio/
 ## 🎯 Core Pages
 
 ### Homepage (`/`)
+
 Professional introduction with featured projects and contact call-to-action
 
 ### Projects (`/projects`)
+
 Comprehensive portfolio showcase with technology filtering and project details
 
 ### Resume (`/resume`)
+
 Professional experience summary with downloadable PDF resumes
 
 ### Contact (`/contact`)
+
 Secure contact form with reCAPTCHA protection and email integration
 
 ## 🔧 Configuration
 
 ### Environment Setup
+
 For detailed environment configuration including MongoDB, reCAPTCHA, and email setup, see:
+
 - [**Setup Guide**](./docs/SETUP_GUIDE.md) - Complete installation instructions
 - [**Deployment Guide**](./docs/DEPLOYMENT_GUIDE.md) - Production deployment procedures
 
 ### Content Management
+
 To update projects, personal information, or site content:
+
 - [**Content Management Guide**](./docs/CONTENT_MANAGEMENT.md) - Managing website content
 
 ## 🚀 Deployment
@@ -192,15 +208,15 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 
 Comprehensive documentation is available in the [`docs/`](./docs/) directory:
 
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| [**Setup Guide**](./docs/SETUP_GUIDE.md) | Installation & environment setup | Developers |
-| [**API Documentation**](./docs/API_DOCUMENTATION.md) | Backend API reference | Backend developers |
-| [**Component Library**](./docs/COMPONENT_LIBRARY.md) | React components & usage | Frontend developers |
-| [**Deployment Guide**](./docs/DEPLOYMENT_GUIDE.md) | Production deployment | DevOps/Deployment |
-| [**Development Workflow**](./docs/DEVELOPMENT_WORKFLOW.md) | Development standards | All developers |
-| [**Content Management**](./docs/CONTENT_MANAGEMENT.md) | Content updates | Content managers |
-| [**CSS Architecture**](./docs/CSS_ARCHITECTURE.md) | Styling system | Frontend developers |
+| Document                                                   | Purpose                          | Audience            |
+| ---------------------------------------------------------- | -------------------------------- | ------------------- |
+| [**Setup Guide**](./docs/SETUP_GUIDE.md)                   | Installation & environment setup | Developers          |
+| [**API Documentation**](./docs/API_DOCUMENTATION.md)       | Backend API reference            | Backend developers  |
+| [**Component Library**](./docs/COMPONENT_LIBRARY.md)       | React components & usage         | Frontend developers |
+| [**Deployment Guide**](./docs/DEPLOYMENT_GUIDE.md)         | Production deployment            | DevOps/Deployment   |
+| [**Development Workflow**](./docs/DEVELOPMENT_WORKFLOW.md) | Development standards            | All developers      |
+| [**Content Management**](./docs/CONTENT_MANAGEMENT.md)     | Content updates                  | Content managers    |
+| [**CSS Architecture**](./docs/CSS_ARCHITECTURE.md)         | Styling system                   | Frontend developers |
 
 ## 🤝 Contributing
 
@@ -225,6 +241,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 **Aditya Gambhir**
+
 - **Email**: gambhir.aditya19@gmail.com
 - **LinkedIn**: [linkedin.com/in/aditya-gambhir](https://www.linkedin.com/in/aditya-gambhir)
 - **GitHub**: [github.com/Aditya-gam](https://github.com/Aditya-gam)

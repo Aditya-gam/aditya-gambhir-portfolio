@@ -1,4 +1,4 @@
- # Development Workflow Guide
+# Development Workflow Guide
 
 ## 🎯 Overview
 
@@ -56,6 +56,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 #### Commit Types
+
 ```bash
 feat:     # New feature
 fix:      # Bug fix
@@ -70,6 +71,7 @@ build:    # Build system changes
 ```
 
 #### Examples
+
 ```bash
 feat(contact): add reCAPTCHA integration
 fix(nav): resolve mobile menu not closing on route change
@@ -84,6 +86,7 @@ chore(deps): update Next.js to version 15.3.4
 ## 📁 Project Structure Standards
 
 ### File Organization
+
 ```
 src/
 ├── app/                    # Next.js App Router (pages & API)
@@ -157,6 +160,7 @@ npx --version     # For running packages
 ### VS Code Configuration
 
 `.vscode/settings.json`:
+
 ```json
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -173,6 +177,7 @@ npx --version     # For running packages
 ```
 
 `.vscode/extensions.json`:
+
 ```json
 {
   "recommendations": [
@@ -191,6 +196,7 @@ npx --version     # For running packages
 ### ESLint Configuration
 
 `eslint.config.mjs`:
+
 ```javascript
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
@@ -222,6 +228,7 @@ export default [
 ### Prettier Configuration
 
 `.prettierrc`:
+
 ```json
 {
   "semi": true,
@@ -240,6 +247,7 @@ export default [
 ### TypeScript Standards
 
 #### Type Definitions
+
 ```typescript
 // Use interfaces for object shapes
 interface User {
@@ -268,6 +276,7 @@ interface ApiResponse<T> {
 ```
 
 #### Component Typing
+
 ```typescript
 // Functional components with props
 const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', onClick }) => {
@@ -309,7 +318,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply font-sans antialiased;
   }
@@ -320,7 +329,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   .btn-primary {
     @apply inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500;
   }
-  
+
   .card-base {
     @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
   }
@@ -340,11 +349,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 // Use className utility for conditional classes
 import { cn } from '@/lib/utils';
 
-const Button: React.FC<ButtonProps> = ({ 
-  variant = 'primary', 
+const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
   size = 'md',
   className,
-  ...props 
+  ...props
 }) => {
   return (
     <button
@@ -353,13 +362,14 @@ const Button: React.FC<ButtonProps> = ({
         'inline-flex items-center justify-center rounded-md font-medium transition-colors',
         // Variant styles
         variant === 'primary' && 'bg-blue-600 text-white hover:bg-blue-700',
-        variant === 'secondary' && 'bg-gray-200 text-gray-900 hover:bg-gray-300',
+        variant === 'secondary' &&
+          'bg-gray-200 text-gray-900 hover:bg-gray-300',
         // Size styles
         size === 'sm' && 'px-3 py-1.5 text-sm',
         size === 'md' && 'px-4 py-2',
         size === 'lg' && 'px-6 py-3 text-lg',
         // Custom className
-        className
+        className,
       )}
       {...props}
     />
@@ -393,7 +403,7 @@ describe('Button', () => {
   it('calls onClick when clicked', () => {
     const handleClick = jest.fn();
     render(<Button onClick={handleClick}>Click me</Button>);
-    
+
     fireEvent.click(screen.getByRole('button'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -421,8 +431,8 @@ describe('/api/contact', () => {
         name: '',
         email: 'invalid-email',
         message: 'short',
-        captchaToken: ''
-      })
+        captchaToken: '',
+      }),
     });
 
     const response = await POST(request);
@@ -440,51 +450,55 @@ describe('/api/contact', () => {
 ### Daily Workflow
 
 1. **Start Development Session**
+
    ```bash
    # Pull latest changes
    git pull origin main
-   
+
    # Create feature branch
    git checkout -b feature/new-feature
-   
+
    # Start development server
    npm run dev
    ```
 
 2. **During Development**
+
    ```bash
    # Run linter regularly
    npm run lint
-   
+
    # Format code
    npm run format
-   
+
    # Check types
    npx tsc --noEmit
-   
+
    # Test changes
    npm test # when tests are added
    ```
 
 3. **Before Commit**
+
    ```bash
    # Stage changes
    git add .
-   
+
    # Run final checks
    npm run lint
    npm run format:check
    npm run build
-   
+
    # Commit with conventional message
    git commit -m "feat(contact): add email validation"
    ```
 
 4. **Push and PR**
+
    ```bash
    # Push feature branch
    git push origin feature/new-feature
-   
+
    # Create pull request via GitHub
    # Include description, screenshots, testing notes
    ```
@@ -495,23 +509,28 @@ describe('/api/contact', () => {
 
 ```markdown
 ## Description
+
 Brief description of changes made.
 
 ## Type of Change
+
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Documentation update
 
 ## How Has This Been Tested?
+
 - [ ] Unit tests
 - [ ] Integration tests
 - [ ] Manual testing
 
 ## Screenshots (if applicable)
+
 Add screenshots to help explain your changes.
 
 ## Checklist
+
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas
@@ -523,6 +542,7 @@ Add screenshots to help explain your changes.
 #### Review Checklist
 
 **Code Quality**
+
 - [ ] Code follows established patterns and conventions
 - [ ] Functions are small and single-purpose
 - [ ] Variable and function names are descriptive
@@ -530,24 +550,28 @@ Add screenshots to help explain your changes.
 - [ ] Error handling is appropriate
 
 **Performance**
+
 - [ ] No unnecessary re-renders or computations
 - [ ] Images are optimized and properly sized
 - [ ] No memory leaks in useEffect hooks
 - [ ] Bundle size impact is minimal
 
 **Security**
+
 - [ ] User inputs are validated and sanitized
 - [ ] No sensitive data in client-side code
 - [ ] API endpoints have proper authentication
 - [ ] Dependencies are up to date and secure
 
 **Accessibility**
+
 - [ ] Proper semantic HTML structure
 - [ ] ARIA labels where necessary
 - [ ] Keyboard navigation works
 - [ ] Color contrast meets WCAG standards
 
 **Testing**
+
 - [ ] New features have corresponding tests
 - [ ] Edge cases are covered
 - [ ] Tests are meaningful and maintainable
@@ -573,28 +597,30 @@ Use [Semantic Versioning](https://semver.org/):
 ### Release Steps
 
 1. **Pre-release Checklist**
+
    ```bash
    # Run full test suite
    npm test
-   
+
    # Build and analyze
    npm run build:analyze
-   
+
    # Security audit
    npm audit
-   
+
    # Update dependencies
    npm update
    ```
 
 2. **Create Release**
+
    ```bash
    # Update version in package.json
    npm version patch|minor|major
-   
+
    # Create release notes
    git tag -a v1.0.1 -m "Release version 1.0.1"
-   
+
    # Push changes and tags
    git push origin main --tags
    ```
