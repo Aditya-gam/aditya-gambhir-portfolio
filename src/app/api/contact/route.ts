@@ -1,0 +1,291 @@
+import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
+import mongoClientPromise from '@/lib/mongodb';
+
+// TypeScript interfaces for better type safety
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+  captchaToken: string;
+}
+
+interface ContactMessage {
+  name: string;
+  email: string;
+  message: string;
+  timestamp: Date;
+  ipAddress?: string;
+}
+
+// Database configuration
+const DB_NAME = 'portfolio_messages';
+const COLLECTION_NAME = 'contacts';
+
+// Validation constants
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_MESSAGE_LENGTH = 10;
+const MAX_MESSAGE_LENGTH = 2000;
+
+/**
+ * Validates environment variables required for the contact API
+ */
+function validateEnvironmentVariables(): void {
+  const requiredVars = [
+    'MONGODB_URI',
+    'RECAPTCHA_SECRET_KEY',
+    'EMAIL_USER',
+    'EMAIL_PASS',
+  ];
+
+  const missingVars = requiredVars.filter((varName) => !process.env[varName]);
+
+  if (missingVars.length > 0) {
+    throw new Error(
+      `Missing required environment variables: ${missingVars.join(', ')}`,
+    );
+  }
+}
+
+/**
+ * Validates the contact form data
+ */
+function validateContactForm(data: Partial<ContactFormData>): {
+  isValid: boolean;
+  errors: string[];
+} {
+  const errors: string[] = [];
+
+  if (!data.name?.trim()) {
+    errors.push('Name is required');
+  } else if (data.name.trim().length < 2) {
+    errors.push('Name must be at least 2 characters long');
+  }
+
+  if (!data.email?.trim()) {
+    errors.push('Email is required');
+  } else if (!EMAIL_REGEX.test(data.email.trim())) {
+    errors.push('Invalid email format');
+  }
+
+  if (!data.message?.trim()) {
+    errors.push('Message is required');
+  } else if (data.message.trim().length < MIN_MESSAGE_LENGTH) {
+    errors.push(
+      `Message must be at least ${MIN_MESSAGE_LENGTH} characters long`,
+    );
+  } else if (data.message.trim().length > MAX_MESSAGE_LENGTH) {
+    errors.push(`Message must not exceed ${MAX_MESSAGE_LENGTH} characters`);
+  }
+
+  if (!data.captchaToken) {
+    errors.push('reCAPTCHA verification is required');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+/**
+ * Verifies reCAPTCHA token with Google's API
+ */
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  try {
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY!;
+    const response = await fetch(
+      'https://www.google.com/recaptcha/api/siteverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`,
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to verify reCAPTCHA');
+    }
+
+    const result = await response.json();
+    return result.success === true;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return false;
+  }
+}
+
+/**
+ * Sanitizes HTML content to prevent XSS attacks
+ */
+function sanitizeHtml(input: string): string {
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
+}
+
+/**
+ * Sends email using nodemailer
+ */
+async function sendEmail(data: ContactFormData): Promise<void> {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER!,
+      pass: process.env.EMAIL_PASS!,
+    },
+  });
+
+  const sanitizedName = sanitizeHtml(data.name.trim());
+  const sanitizedEmail = sanitizeHtml(data.email.trim());
+  const sanitizedMessage = sanitizeHtml(data.message.trim());
+
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER!,
+    to: 'gambhir.aditya19@gmail.com',
+    subject: `Portfolio Contact: ${sanitizedName}`,
+    text: `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\n\nMessage:\n${data.message.trim()}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+          New Contact Form Submission
+        </h2>
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+          <p><strong>Name:</strong> ${sanitizedName}</p>
+          <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></p>
+        </div>
+        <div style="margin: 20px 0;">
+          <h3 style="color: #333;">Message:</h3>
+          <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #007bff; border-radius: 3px;">
+            ${sanitizedMessage.replace(/\n/g, '<br>')}
+          </div>
+        </div>
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #6c757d; font-size: 12px;">
+          <p>This message was sent from your portfolio contact form.</p>
+        </div>
+      </div>
+    `,
+  });
+}
+
+/**
+ * Saves contact message to MongoDB
+ */
+async function saveContactMessage(
+  data: ContactFormData,
+  ipAddress?: string,
+): Promise<void> {
+  const client = await mongoClientPromise;
+  const db = client.db(DB_NAME);
+  const collection = db.collection<ContactMessage>(COLLECTION_NAME);
+
+  const contactMessage: ContactMessage = {
+    name: data.name.trim(),
+    email: data.email.trim().toLowerCase(),
+    message: data.message.trim(),
+    timestamp: new Date(),
+    ...(ipAddress && { ipAddress }),
+  };
+
+  await collection.insertOne(contactMessage);
+}
+
+/**
+ * GET handler - returns method not allowed
+ */
+export async function GET() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+}
+
+/**
+ * POST handler for contact form submissions
+ */
+export async function POST(request: NextRequest) {
+  try {
+    // Validate environment variables
+    validateEnvironmentVariables();
+
+    // Parse request body
+    let body: Partial<ContactFormData>;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { error: 'Invalid JSON in request body' },
+        { status: 400 },
+      );
+    }
+
+    // Validate form data
+    const validation = validateContactForm(body);
+    if (!validation.isValid) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: validation.errors,
+        },
+        { status: 400 },
+      );
+    }
+
+    const formData = body as ContactFormData;
+
+    // Verify reCAPTCHA
+    const isRecaptchaValid = await verifyRecaptcha(formData.captchaToken);
+    if (!isRecaptchaValid) {
+      return NextResponse.json(
+        { error: 'reCAPTCHA verification failed' },
+        { status: 403 },
+      );
+    }
+
+    // Get client IP address for logging
+    const ipAddress =
+      request.headers.get('x-forwarded-for') ??
+      request.headers.get('x-real-ip') ??
+      'unknown';
+
+    // Send email and save to database concurrently
+    await Promise.all([
+      sendEmail(formData),
+      saveContactMessage(formData, ipAddress),
+    ]);
+
+    return NextResponse.json(
+      {
+        message: 'Message sent successfully',
+        timestamp: new Date().toISOString(),
+      },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error('Contact API error:', error);
+
+    // Don't expose internal error details to clients
+    return NextResponse.json(
+      { error: 'Internal server error. Please try again later.' },
+      { status: 500 },
+    );
+  }
+}
+
+/**
+ * Handle other HTTP methods
+ */
+export async function PUT() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+}
+
+export async function DELETE() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+}
+
+export async function PATCH() {
+  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+}

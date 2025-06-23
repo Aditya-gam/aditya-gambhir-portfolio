@@ -5,12 +5,25 @@
   @apply container mx-auto px-4 py-8;
 }
 
+.page-layout-narrow {
+  @apply container mx-auto px-4 py-8 max-w-4xl;
+}
+
 .page-header {
   @apply text-center mb-12;
 }
 
 .page-header-lg {
   @apply text-center mb-16;
+}
+
+.page-description {
+  @apply text-lg max-w-2xl mx-auto;
+}
+
+/* Contact page layouts */
+.contact-container {
+  @apply max-w-2xl mx-auto;
 }
 
 /* Hero section layouts */
