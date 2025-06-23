@@ -134,6 +134,7 @@ export default function HomePage() {
               bullets={['React', 'Node.js', 'MongoDB']}
               imageSrc="/projects/project1.svg"
               imageAlt="Project Alpha task management interface"
+              priority={true}
             />
           </li>
           <li>
@@ -143,6 +144,7 @@ export default function HomePage() {
               bullets={['Python', 'Pandas', 'TensorFlow']}
               imageSrc="/projects/project2.svg"
               imageAlt="Project Beta data analysis dashboard"
+              priority={true}
             />
           </li>
         </ul>

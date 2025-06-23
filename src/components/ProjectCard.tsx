@@ -8,6 +8,7 @@ interface ProjectCardProps {
   readonly imageAlt?: string;
   readonly imageWidth?: number;
   readonly imageHeight?: number;
+  readonly priority?: boolean;
 }
 
 export default function ProjectCard({
@@ -18,6 +19,7 @@ export default function ProjectCard({
   imageAlt,
   imageWidth = 600,
   imageHeight = 400,
+  priority = false,
 }: ProjectCardProps) {
   return (
     <div className="card-project">
@@ -31,6 +33,8 @@ export default function ProjectCard({
             className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority={priority}
           />
         </div>
       )}

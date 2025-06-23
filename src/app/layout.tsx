@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import dynamic from 'next/dynamic';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -12,6 +12,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+});
+
+// Lazy load Footer since it's below the fold (SSR enabled for SEO)
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="h-24" />, // Prevent layout shift
 });
 
 export const metadata: Metadata = {

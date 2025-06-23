@@ -101,7 +101,7 @@ export default function ProjectsPage() {
           Projects List
         </h2>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 list-none">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <li key={project.id}>
               <ProjectCard
                 title={project.title}
@@ -109,6 +109,7 @@ export default function ProjectsPage() {
                 bullets={project.bullets}
                 imageSrc={project.imageSrc}
                 imageAlt={project.imageAlt}
+                priority={index < 2}
               />
             </li>
           ))}
