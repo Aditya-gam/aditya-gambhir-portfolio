@@ -83,7 +83,7 @@ export default function ResumePage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="btn-download group-hover:bg-blue-700"
+                className="inline-flex items-center justify-center w-full px-4 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
                 aria-label={`Download ${resume.title} PDF`}
               >
                 <svg
@@ -110,27 +110,24 @@ export default function ResumePage() {
 
       {/* Additional Information */}
       <section className="mt-12 text-center" aria-labelledby="info-heading">
-        <h2
-          id="info-heading"
-          className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4"
-        >
+        <h2 id="info-heading" className="heading-section">
           Need More Information?
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-xl mx-auto">
+        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
           Feel free to reach out if you have any questions or would like to
           discuss opportunities.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
             aria-label="Go back to homepage"
           >
             ← Back to Home
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200"
+            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
             aria-label="Contact me"
           >
             Contact Me

@@ -163,9 +163,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             onBlur={() => handleInputBlur('name')}
-            className={`form-input ${
-              errors.name ? 'form-input-error' : 'form-input-normal'
-            }`}
+            className={`form-input ${errors.name ? 'form-input-error' : ''}`}
             placeholder="Your full name"
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? 'name-error' : undefined}
@@ -189,9 +187,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
             value={formData.email}
             onChange={(e) => handleInputChange('email', e.target.value)}
             onBlur={() => handleInputBlur('email')}
-            className={`form-input ${
-              errors.email ? 'form-input-error' : 'form-input-normal'
-            }`}
+            className={`form-input ${errors.email ? 'form-input-error' : ''}`}
             placeholder="your.email@example.com"
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? 'email-error' : undefined}
@@ -215,9 +211,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
             onBlur={() => handleInputBlur('message')}
-            className={`form-textarea ${
-              errors.message ? 'form-input-error' : 'form-input-normal'
-            }`}
+            className={`form-textarea ${errors.message ? 'form-input-error' : ''}`}
             placeholder="Tell me about your project, question, or how I can help you..."
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? 'message-error' : undefined}
@@ -249,7 +243,7 @@ export function ContactForm({ className = '' }: ContactFormProps) {
         <button
           type="submit"
           disabled={submitting || !captchaToken}
-          className="btn-primary btn-submit"
+          className="inline-flex items-center justify-center w-full px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? (
             <span className="flex items-center justify-center">

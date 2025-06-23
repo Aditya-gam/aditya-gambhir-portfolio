@@ -32,7 +32,7 @@ export default function Footer() {
     <footer className="border-t py-6 md:py-0">
       <div className="footer-content">
         <div className="footer-copyright">
-          <p className="text-center text-sm leading-loose text-muted md:text-left">
+          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
             © {new Date().getFullYear()} Aditya Gambhir. All rights reserved.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Aditya on LinkedIn"
-            className="social-link hover:text-blue-600"
+            className="social-link hover:text-primary"
           >
             <LinkedInIcon className="w-5 h-5" />
           </a>

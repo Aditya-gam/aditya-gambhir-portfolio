@@ -1,0 +1,218 @@
+/* Base Layout Styles - Organized by Purpose */
+
+/* ================================================
+   LAYOUT CONTAINERS
+   ================================================ */
+
+.container-main {
+  @apply container mx-auto px-4 py-8;
+}
+
+.container-narrow {
+  @apply container mx-auto px-4 py-8 max-w-4xl;
+}
+
+.container-wide {
+  @apply container mx-auto px-4 py-8 max-w-7xl;
+}
+
+/* ================================================
+   PAGE LAYOUTS
+   ================================================ */
+
+.page-layout {
+  @apply container mx-auto px-4 py-8;
+}
+
+.page-layout-narrow {
+  @apply container mx-auto px-4 py-8 max-w-4xl;
+}
+
+.page-header {
+  @apply text-center mb-12;
+}
+
+.page-header-large {
+  @apply text-center mb-16;
+}
+
+.page-description {
+  @apply text-lg text-muted-foreground max-w-2xl mx-auto;
+}
+
+/* ================================================
+   HERO SECTIONS
+   ================================================ */
+
+.hero-section {
+  @apply flex flex-col items-center text-center;
+}
+
+.hero-image {
+  @apply relative;
+}
+
+.hero-content {
+  @apply mt-2 max-w-md;
+}
+
+/* ================================================
+   GRID LAYOUTS
+   ================================================ */
+
+.grid-auto {
+  @apply grid gap-6;
+}
+
+.grid-2 {
+  @apply grid gap-6 md:grid-cols-2;
+}
+
+.grid-3 {
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.grid-4 {
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-4;
+}
+
+.grid-highlights {
+  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 text-center;
+}
+
+.grid-projects {
+  @apply grid gap-6 md:grid-cols-2;
+}
+
+.grid-resume {
+  @apply grid gap-6 md:grid-cols-2 max-w-4xl mx-auto;
+}
+
+/* ================================================
+   CONTENT SECTIONS
+   ================================================ */
+
+.content-section {
+  @apply mt-12;
+}
+
+.content-section-large {
+  @apply mt-16;
+}
+
+.section-spacing {
+  @apply mt-12;
+}
+
+.section-spacing-large {
+  @apply mt-16;
+}
+
+/* ================================================
+   CALL-TO-ACTION LAYOUTS
+   ================================================ */
+
+.cta-section {
+  @apply flex flex-col sm:flex-row justify-center gap-4;
+}
+
+.cta-buttons {
+  @apply flex flex-col sm:flex-row gap-4;
+}
+
+/* ================================================
+   NAVIGATION LAYOUTS
+   ================================================ */
+
+.nav-main {
+  @apply flex items-center space-x-6 text-sm font-medium;
+}
+
+.nav-mobile {
+  @apply flex flex-col space-y-2;
+}
+
+.nav-links {
+  @apply flex items-center gap-6 text-sm lg:gap-8;
+}
+
+/* ================================================
+   FOOTER LAYOUTS
+   ================================================ */
+
+.footer-content {
+  @apply container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row;
+}
+
+.footer-links {
+  @apply flex items-center gap-4;
+}
+
+.footer-copyright {
+  @apply flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0;
+}
+
+/* ================================================
+   FORM LAYOUTS
+   ================================================ */
+
+.form-container {
+  @apply max-w-md mx-auto;
+}
+
+.form-layout {
+  @apply space-y-6;
+}
+
+.form-field {
+  @apply block;
+}
+
+.form-captcha {
+  @apply flex justify-center;
+}
+
+/* ================================================
+   ARTICLE LAYOUTS
+   ================================================ */
+
+.article-grid {
+  @apply grid gap-6 max-w-4xl mx-auto;
+}
+
+/* ================================================
+   RESPONSIVE UTILITIES
+   ================================================ */
+
+.mobile-hidden {
+  @apply hidden md:flex;
+}
+
+.mobile-only {
+  @apply flex md:hidden;
+}
+
+.desktop-hidden {
+  @apply flex md:hidden;
+}
+
+.desktop-only {
+  @apply hidden md:flex;
+}
+
+/* ================================================
+   ACCESSIBILITY UTILITIES
+   ================================================ */
+
+.sr-only-heading {
+  @apply sr-only;
+}
+
+.visually-hidden {
+  @apply sr-only;
+}
+
+/* Focus management for interactive elements */
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+} 

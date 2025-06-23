@@ -1,84 +1,71 @@
-/* Component-specific reusable styles */
+/* Component-Specific Styles - Design System Compliant */
 
-/* Card variants */
+/* ================================================
+   CARD COMPONENTS
+   ================================================ */
+
 .card-base {
-  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
 }
 
 .card-interactive {
-  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-blue-500/50;
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-primary/50;
 }
 
 .card-highlight {
-  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border-gray-200 dark:border-gray-700 p-6;
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6;
 }
 
 .card-project {
-  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4;
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4;
 }
 
-/* Enhanced button variants using design system colors */
-.btn-primary {
-  @apply inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors duration-200;
+.article-card {
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-primary/50 p-6;
 }
 
-.btn-secondary {
-  @apply inline-flex items-center justify-center px-6 py-3 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors duration-200;
+/* ================================================
+   TYPOGRAPHY COMPONENTS
+   ================================================ */
+
+.heading-page {
+  @apply text-4xl font-bold mb-4 text-foreground;
 }
 
-.btn-download {
-  @apply inline-flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-colors duration-200;
+.heading-section {
+  @apply text-2xl font-bold mb-6 text-foreground;
 }
 
-.btn-submit {
-  @apply w-full disabled:opacity-50 disabled:cursor-not-allowed;
+.heading-card {
+  @apply text-xl font-semibold text-foreground;
 }
 
-/* Global focus ring utility for consistent focus styles */
-.focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+.text-hero {
+  @apply text-lg text-muted-foreground;
 }
 
-/* Accessibility-focused button and link styling */
-.btn-primary,
-a,
-button {
-  min-width: 48px;
-  min-height: 48px;
-  padding: 12px;
+.description-card {
+  @apply text-sm text-muted-foreground mt-1;
 }
 
-/* Form components */
-.form-container {
-  @apply max-w-md mx-auto;
-}
-
-.form-layout {
-  @apply space-y-6;
-}
-
-.form-field {
-  @apply block;
-}
+/* ================================================
+   FORM COMPONENTS
+   ================================================ */
 
 .form-label {
   @apply block text-sm font-medium text-foreground mb-1;
 }
 
 .form-input {
-  @apply w-full px-3 py-2 border border-border rounded-lg shadow-sm bg-background text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:border-blue-500;
+  @apply w-full px-3 py-2 border border-input rounded-lg shadow-sm bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-ring;
 }
 
 .form-input-error {
-  @apply border-destructive;
-}
-
-.form-input-normal {
-  @apply border-border;
+  @apply border-destructive focus-visible:ring-destructive;
 }
 
 .form-textarea {
-  @apply w-full px-3 py-2 border border-border rounded-lg shadow-sm resize-y bg-background text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-blue-500 focus-visible:border-blue-500;
+  @apply w-full px-3 py-2 border border-input rounded-lg shadow-sm resize-y bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:border-ring;
 }
 
 .form-error {
@@ -89,79 +76,55 @@ button {
   @apply mt-4 text-sm text-muted-foreground text-center;
 }
 
-.form-captcha {
-  @apply flex justify-center;
+/* ================================================
+   NAVIGATION COMPONENTS
+   ================================================ */
+
+.nav-link {
+  @apply transition-colors hover:text-foreground text-muted-foreground;
 }
 
-.loading-spinner {
-  @apply animate-spin -ml-1 mr-2 h-4 w-4 text-primary-foreground;
-}
-
-/* Text variants using design system */
-.text-muted {
-  @apply text-muted-foreground;
-}
-
-.text-primary {
+.nav-link-active {
   @apply text-foreground;
 }
 
-.text-hero {
-  @apply text-lg text-muted-foreground;
-}
-
-/* Layout patterns */
-.container-main {
-  @apply container mx-auto px-4 py-8;
-}
-
-.grid-projects {
-  @apply grid gap-6 md:grid-cols-2 list-none;
-}
-
-.grid-projects-3 {
-  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 list-none;
-}
-
-.grid-highlights {
-  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 text-center;
-}
-
-.grid-resume {
-  @apply grid gap-6 md:grid-cols-2 max-w-4xl mx-auto;
-}
-
-/* Navigation styles */
-.nav-link {
-  @apply transition-colors hover:text-gray-900 dark:hover:text-gray-100 text-gray-600 dark:text-gray-400;
-}
-
 .social-link {
-  @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors;
+  @apply text-muted-foreground hover:text-foreground transition-colors;
 }
 
-/* Section spacing */
-.section-spacing {
-  @apply mt-12;
+/* ================================================
+   LIST COMPONENTS
+   ================================================ */
+
+.tech-list {
+  @apply list-disc list-inside space-y-1 text-muted-foreground;
 }
 
-.section-spacing-lg {
-  @apply mt-16;
+.icon-list {
+  @apply flex space-x-2;
 }
 
-/* Utility classes for consistency */
-.heading-page {
-  @apply text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100;
+/* ================================================
+   LOADING COMPONENTS
+   ================================================ */
+
+.loading-spinner {
+  @apply animate-spin -ml-1 mr-2 h-4 w-4 text-current;
 }
 
-.heading-section {
-  @apply text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100;
+/* ================================================
+   BADGE COMPONENTS
+   ================================================ */
+
+.badge-container {
+  @apply mt-4;
 }
 
-.heading-card {
-  @apply text-xl font-semibold text-gray-900 dark:text-gray-100;
-}
+/* ================================================
+   COMPONENT UTILITIES
+   ================================================ */
 
-.description-card {
-  @apply text-sm text-gray-600 dark:text-gray-400 mt-1;
+/* Ensure minimum touch target size for accessibility */
+.touch-target {
+  @apply min-w-[44px] min-h-[44px] p-3;
 }

@@ -86,10 +86,8 @@ export default function ProjectsPage() {
     <div className="container mx-auto px-4 py-8">
       {/* Page Header */}
       <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-          My Projects
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <h1 className="heading-page">My Projects</h1>
+        <p className="page-description">
           A collection of my software engineering projects showcasing different
           technologies and problem-solving approaches.
         </p>

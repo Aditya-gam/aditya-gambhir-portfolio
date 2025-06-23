@@ -38,9 +38,9 @@ export default function ProjectCard({
           />
         </div>
       )}
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-muted mb-3">{description}</p>
-      <ul className="tech-list text-muted">
+      <h3 className="heading-card mb-2">{title}</h3>
+      <p className="text-muted-foreground mb-3">{description}</p>
+      <ul className="tech-list">
         {bullets.map((bullet) => (
           <li key={bullet}>{bullet}</li>
         ))}
@@ -48,12 +48,12 @@ export default function ProjectCard({
       <div className="icon-list">
         {/* Placeholder tech icons - these would be replaced with actual icons when implemented */}
         <span
-          className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded"
+          className="w-6 h-6 bg-muted rounded"
           aria-hidden="true"
           title="Technology placeholder icon"
         ></span>
         <span
-          className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded"
+          className="w-6 h-6 bg-muted rounded"
           aria-hidden="true"
           title="Technology placeholder icon"
         ></span>
