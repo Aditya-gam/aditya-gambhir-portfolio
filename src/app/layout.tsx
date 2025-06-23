@@ -16,21 +16,67 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://aditya-gambhir-portfolio.vercel.app/'),
-  title: 'Aditya Gambhir | Software Engineer & Data Scientist',
+  title: {
+    default: 'Aditya Gambhir | Software Engineer & Data Scientist',
+    template: '%s | Aditya Gambhir',
+  },
   description:
-    'Personal portfolio showcasing projects and resume of Aditya Gambhir.',
+    'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning. Specializing in MERN stack and Python-based data solutions.',
+  keywords: [
+    'Aditya Gambhir',
+    'Software Engineer',
+    'Data Scientist',
+    'MERN Stack',
+    'Python',
+    'Machine Learning',
+    'Full Stack Developer',
+    'Portfolio',
+  ],
+  authors: [{ name: 'Aditya Gambhir' }],
+  creator: 'Aditya Gambhir',
   openGraph: {
-    title: 'Aditya Gambhir | Portfolio',
-    description: 'Software Engineer & Data Scientist portfolio website.',
-    url: 'https://aditya-gambhir-portfolio.vercel.app/',
-    images: ['/og-default.png'],
     type: 'website',
+    locale: 'en_US',
+    url: 'https://aditya-gambhir-portfolio.vercel.app/',
+    siteName: 'Aditya Gambhir Portfolio',
+    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
+    description:
+      'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning.',
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aditya Gambhir - Software Engineer & Data Scientist',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aditya Gambhir | Portfolio',
-    description: 'Software Engineer & Data Scientist portfolio website.',
+    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
+    description:
+      'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning.',
     images: ['/og-default.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
+  verification: {
+    // Add Google Search Console verification when available
+    // google: 'your-google-verification-code',
   },
 };
 
@@ -39,11 +85,27 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Aditya Gambhir',
   jobTitle: 'Software Engineer & Data Scientist',
+  headline: 'Software Engineer & Data Scientist',
   url: 'https://aditya-gambhir-portfolio.vercel.app/',
+  image: 'https://aditya-gambhir-portfolio.vercel.app/headshot.webp',
   sameAs: [
     'https://www.linkedin.com/in/aditya-gambhir',
-    'hhttps://github.com/Aditya-gam',
+    'https://github.com/Aditya-gam',
   ],
+  knowsAbout: [
+    'Software Engineering',
+    'Data Science',
+    'Machine Learning',
+    'MERN Stack',
+    'Python',
+    'JavaScript',
+    'React',
+    'Node.js',
+  ],
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Your University', // Update with actual university
+  },
 };
 
 export default function RootLayout({
@@ -54,6 +116,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link
+          rel="canonical"
+          href="https://aditya-gambhir-portfolio.vercel.app/"
+        />
+        <meta name="theme-color" content="#0A66C2" />
+        <meta name="color-scheme" content="light dark" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -4,21 +4,40 @@ import Link from 'next/link';
 
 // Modern Next.js 15: Export metadata for better SEO
 export const metadata: Metadata = {
-  title: 'Resume - Aditya Gambhir',
+  title: 'Resume',
   description:
-    "Download Aditya Gambhir's resume - Software Engineer and Data Science versions available in PDF format.",
+    "Download Aditya Gambhir's professional resume - Software Engineer and Data Science versions available in PDF format. 5+ years of experience in full-stack development and machine learning.",
   keywords: [
     'Aditya Gambhir Resume',
     'Software Engineer Resume',
     'Data Science Resume',
     'CV Download',
+    'PDF Resume',
+    'MERN Stack Developer',
   ],
   authors: [{ name: 'Aditya Gambhir' }],
   openGraph: {
-    title: 'Resume - Aditya Gambhir',
+    title: 'Resume | Aditya Gambhir',
     description:
-      "Download Aditya Gambhir's resume - Software Engineer and Data Science versions available in PDF format.",
+      "Download Aditya Gambhir's professional resume - Software Engineer and Data Science versions available in PDF format.",
+    url: 'https://aditya-gambhir-portfolio.vercel.app/resume',
+    siteName: 'Aditya Gambhir Portfolio',
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aditya Gambhir Resume Download',
+      },
+    ],
+    locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Resume | Aditya Gambhir',
+    description: "Download Aditya Gambhir's professional resume in PDF format.",
+    images: ['/og-default.png'],
   },
 };
 

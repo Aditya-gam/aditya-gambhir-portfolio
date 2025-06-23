@@ -7,7 +7,8 @@ import ProjectCard from '@/components/ProjectCard';
 
 // Modern Next.js 15: Export metadata for better SEO
 export const metadata: Metadata = {
-  title: 'Aditya Gambhir - Software Engineer Portfolio',
+  // Title will be combined with layout template: "Home | Aditya Gambhir"
+  title: 'Home',
   description:
     'Software engineer with a passion for building scalable web applications and data-driven solutions. 5+ years experience in MERN stack and Data Science.',
   keywords: [
@@ -16,21 +17,33 @@ export const metadata: Metadata = {
     'MERN Stack',
     'Data Science',
     'Portfolio',
+    'Full Stack Developer',
+    'Machine Learning',
   ],
   authors: [{ name: 'Aditya Gambhir' }],
   openGraph: {
-    title: 'Aditya Gambhir - Software Engineer Portfolio',
+    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
     description:
-      'Software engineer with a passion for building scalable web applications and data-driven solutions.',
-    type: 'website',
+      'Software engineer with a passion for building scalable web applications and data-driven solutions. 5+ years experience in MERN stack and Data Science.',
+    url: 'https://aditya-gambhir-portfolio.vercel.app/',
+    siteName: 'Aditya Gambhir Portfolio',
     images: [
       {
-        url: '/headshot.webp',
-        width: 150,
-        height: 150,
-        alt: 'Aditya Gambhir headshot',
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aditya Gambhir - Software Engineer & Data Scientist',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
+    description:
+      'Software engineer with expertise in MERN stack and Data Science.',
+    images: ['/og-default.png'],
   },
 };
 

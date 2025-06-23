@@ -4,16 +4,43 @@ import ProjectCard from '@/components/ProjectCard';
 
 // Modern Next.js 15: Export metadata for better SEO
 export const metadata: Metadata = {
-  title: 'Projects - Aditya Gambhir',
+  title: 'Projects',
   description:
-    'Explore my portfolio of software engineering projects including web applications, data science projects, and more.',
+    'Explore my portfolio of software engineering and data science projects including full-stack web applications, machine learning models, and data analysis solutions.',
   keywords: [
     'projects',
     'portfolio',
     'software engineering',
     'web development',
     'data science',
+    'machine learning',
+    'MERN stack',
+    'Python',
   ],
+  openGraph: {
+    title: 'Projects | Aditya Gambhir',
+    description:
+      'Explore my portfolio of software engineering and data science projects including full-stack web applications, machine learning models, and data analysis solutions.',
+    url: 'https://aditya-gambhir-portfolio.vercel.app/projects',
+    siteName: 'Aditya Gambhir Portfolio',
+    images: [
+      {
+        url: '/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Aditya Gambhir Projects Portfolio',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Projects | Aditya Gambhir',
+    description:
+      'Explore my portfolio of software engineering and data science projects.',
+    images: ['/og-default.png'],
+  },
 };
 
 // Define proper TypeScript interface for project data
