@@ -7,8 +7,14 @@ import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+interface NavLink {
+  readonly href: string;
+  readonly label: string;
+  readonly onClick?: () => void;
+}
+
 interface MobileNavProps {
-  links: { href: string; label: string }[];
+  readonly links: NavLink[];
 }
 
 export function MobileNav({ links }: MobileNavProps) {
@@ -52,19 +58,31 @@ export function MobileNav({ links }: MobileNavProps) {
           {/* Navigation Links */}
           <nav className="flex-1 p-6">
             <div className="space-y-2">
-              {links.map(({ href, label }) => (
-                <Dialog.Close asChild key={href}>
-                  <Link
-                    href={href}
-                    className={cn(
-                      'flex h-12 items-center rounded-lg px-4 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
-                      pathname === href
-                        ? 'bg-accent text-accent-foreground'
-                        : 'text-muted-foreground',
-                    )}
-                  >
-                    {label}
-                  </Link>
+              {links.map(({ href, label, onClick }) => (
+                <Dialog.Close asChild key={href + label}>
+                  {onClick ? (
+                    <button
+                      onClick={onClick}
+                      className={cn(
+                        'flex h-12 w-full items-center rounded-lg px-4 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none text-left',
+                        'text-muted-foreground',
+                      )}
+                    >
+                      {label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={href}
+                      className={cn(
+                        'flex h-12 items-center rounded-lg px-4 text-lg font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none',
+                        pathname === href
+                          ? 'bg-accent text-accent-foreground'
+                          : 'text-muted-foreground',
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  )}
                 </Dialog.Close>
               ))}
             </div>

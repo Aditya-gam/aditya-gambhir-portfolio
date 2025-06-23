@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
 import dynamic from 'next/dynamic';
+import { ClientLayout } from '@/app/ClientLayout';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -60,8 +60,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aditya Gambhir | Software Engineer & Data Scientist',
     description:
-      'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning.',
+      'Software Engineer and Data Scientist with expertise in MERN stack and Python.',
     images: ['/og-default.png'],
+    creator: '@adityagambhir',
   },
   robots: {
     index: true,
@@ -74,14 +75,8 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
-  },
   verification: {
-    // Add Google Search Console verification when available
-    // google: 'your-google-verification-code',
+    google: 'your-google-verification-code', // Replace with actual verification code
   },
 };
 
@@ -140,10 +135,11 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <Header />
-        <main id="main-content" className="flex-grow">
-          {children}
-        </main>
+        <ClientLayout>
+          <main id="main-content" className="flex-grow">
+            {children}
+          </main>
+        </ClientLayout>
         <Footer />
       </body>
     </html>

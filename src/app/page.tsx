@@ -1,52 +1,27 @@
 // app/page.tsx
+'use client';
+
 import Image from 'next/image';
 import Script from 'next/script';
 import Link from 'next/link';
-import { Metadata } from 'next';
+import { useContext } from 'react';
 import ProjectCard from '@/components/ProjectCard';
 import { getFeaturedProjects } from '@/data/projects';
+import { ContactModalContext } from '@/app/ContactModalContext';
 
-// Modern Next.js 15: Export metadata for better SEO
-export const metadata: Metadata = {
-  // Title will be combined with layout template: "Home | Aditya Gambhir"
-  title: 'Home',
-  description:
-    'Software engineer with a passion for building scalable web applications and data-driven solutions. 5+ years experience in MERN stack and Data Science.',
-  keywords: [
-    'Aditya Gambhir',
-    'Software Engineer',
-    'MERN Stack',
-    'Data Science',
-    'Portfolio',
-    'Full Stack Developer',
-    'Machine Learning',
-  ],
-  authors: [{ name: 'Aditya Gambhir' }],
-  openGraph: {
-    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
-    description:
-      'Software engineer with a passion for building scalable web applications and data-driven solutions. 5+ years experience in MERN stack and Data Science.',
-    url: 'https://aditya-gambhir-portfolio.vercel.app/',
-    siteName: 'Aditya Gambhir Portfolio',
-    images: [
-      {
-        url: '/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'Aditya Gambhir - Software Engineer & Data Scientist',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
-    description:
-      'Software engineer with expertise in MERN stack and Data Science.',
-    images: ['/og-default.png'],
-  },
-};
+function ContactButton() {
+  const { openContactModal } = useContext(ContactModalContext);
+
+  return (
+    <button
+      onClick={openContactModal}
+      className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
+      aria-label="Open contact form"
+    >
+      Contact Me
+    </button>
+  );
+}
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -158,13 +133,7 @@ export default function HomePage() {
           >
             View Resume
           </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
-            aria-label="Contact me"
-          >
-            Contact Me
-          </Link>
+          <ContactButton />
         </div>
       </section>
     </main>

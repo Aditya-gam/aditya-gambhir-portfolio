@@ -11,7 +11,6 @@ export const NAVIGATION_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Projects', href: '/projects' },
   { label: 'Resume', href: '/resume' },
-  { label: 'Contact', href: '/contact' },
 ] as const;
 
 // Social Links
