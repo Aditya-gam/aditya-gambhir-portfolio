@@ -3,25 +3,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
 import ProjectCard from '@/components/ProjectCard';
 import LinkedInCard from '@/components/LinkedInCard';
 import { getFeaturedProjects } from '@/data/projects';
-import { ContactModalContext } from '@/app/ContactModalContext';
-
-function ContactButton() {
-  const { openContactModal } = useContext(ContactModalContext);
-
-  return (
-    <button
-      onClick={openContactModal}
-      className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
-      aria-label="Open contact form"
-    >
-      Contact Me
-    </button>
-  );
-}
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -111,7 +95,7 @@ export default function HomePage() {
       {/* Call-to-Action Section */}
       <section className="content-section-lg" aria-labelledby="cta-heading">
         <h2 id="cta-heading" className="sr-only-heading">
-          Get in Touch
+          View My Work
         </h2>
         <div className="cta-section">
           <Link
@@ -121,7 +105,6 @@ export default function HomePage() {
           >
             View Resume
           </Link>
-          <ContactButton />
         </div>
       </section>
     </main>

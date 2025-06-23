@@ -83,18 +83,21 @@ const projects: readonly Project[] = [
 
 export default function ProjectsPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <main className="page-layout">
       {/* Page Header */}
-      <header className="text-center mb-12">
+      <header className="page-header">
         <h1 className="heading-page">My Projects</h1>
-        <p className="page-description">
+        <p className="text-hero max-w-2xl mx-auto">
           A collection of my software engineering projects showcasing different
           technologies and problem-solving approaches.
         </p>
       </header>
 
       {/* Projects Grid */}
-      <section aria-labelledby="projects-list-heading">
+      <section
+        aria-labelledby="projects-list-heading"
+        className="content-section"
+      >
         <h2 id="projects-list-heading" className="sr-only">
           Projects List
         </h2>
@@ -113,6 +116,6 @@ export default function ProjectsPage() {
           ))}
         </ul>
       </section>
-    </div>
+    </main>
   );
 }

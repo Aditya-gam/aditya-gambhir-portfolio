@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -135,6 +136,7 @@ export default function RootLayout({
         </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} font-sans flex flex-col min-h-screen bg-background text-foreground antialiased`}
+          suppressHydrationWarning={true}
         >
           <a href="#main-content" className="skip-link">
             Skip to main content
@@ -143,8 +145,8 @@ export default function RootLayout({
             <main id="main-content" className="flex-grow">
               {children}
             </main>
+            <Footer />
           </ClientLayout>
-          <Footer />
         </body>
       </html>
     </>

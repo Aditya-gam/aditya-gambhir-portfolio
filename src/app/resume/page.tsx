@@ -1,6 +1,5 @@
 // app/resume/page.tsx
 import { Metadata } from 'next';
-import Link from 'next/link';
 
 // Modern Next.js 15: Export metadata for better SEO
 export const metadata: Metadata = {
@@ -69,7 +68,7 @@ export default function ResumePage() {
       </header>
 
       {/* Resume Downloads Section */}
-      <section aria-labelledby="downloads-heading">
+      <section aria-labelledby="downloads-heading" className="content-section">
         <h2 id="downloads-heading" className="sr-only-heading">
           Available Resume Downloads
         </h2>
@@ -109,7 +108,10 @@ export default function ResumePage() {
       </section>
 
       {/* Additional Information */}
-      <section className="mt-12 text-center" aria-labelledby="info-heading">
+      <section
+        className="content-section text-center"
+        aria-labelledby="info-heading"
+      >
         <h2 id="info-heading" className="heading-section">
           Need More Information?
         </h2>
@@ -117,22 +119,6 @@ export default function ResumePage() {
           Feel free to reach out if you have any questions or would like to
           discuss opportunities.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
-            aria-label="Go back to homepage"
-          >
-            ← Back to Home
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
-            aria-label="Contact me"
-          >
-            Contact Me
-          </Link>
-        </div>
       </section>
     </main>
   );

@@ -1,5 +1,9 @@
+'use client';
+
 import { Mail } from 'lucide-react';
 import { siGithub } from 'simple-icons';
+import { useContext } from 'react';
+import { ContactModalContext } from '@/app/ContactModalContext';
 
 // Create custom icon components for Simple Icons
 const GitHubIcon = ({ className }: { className?: string }) => (
@@ -28,6 +32,8 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Footer() {
+  const { openContactModal } = useContext(ContactModalContext);
+
   return (
     <footer className="border-t py-6 md:py-0">
       <div className="footer-content">
@@ -62,6 +68,13 @@ export default function Footer() {
           >
             <Mail className="w-5 h-5" />
           </a>
+          <button
+            onClick={openContactModal}
+            aria-label="Open contact form"
+            className="social-link hover:text-primary"
+          >
+            <span className="text-sm font-medium">Contact</span>
+          </button>
         </div>
       </div>
     </footer>
