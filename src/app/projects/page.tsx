@@ -22,6 +22,8 @@ interface Project {
   readonly title: string;
   readonly description: string;
   readonly bullets: readonly string[];
+  readonly imageSrc?: string;
+  readonly imageAlt?: string;
 }
 
 // Move data to a structured format - could be moved to a separate file later
@@ -31,18 +33,24 @@ const projects: readonly Project[] = [
     title: 'Project One',
     description: 'Description for project one.',
     bullets: ['Feature A', 'Feature B'],
+    imageSrc: '/projects/project1.svg',
+    imageAlt: 'Project One screenshot showing the main interface',
   },
   {
     id: 'project-two',
     title: 'Project Two',
     description: 'Description for project two.',
     bullets: ['Feature X', 'Feature Y'],
+    imageSrc: '/projects/project2.svg',
+    imageAlt: 'Project Two screenshot displaying key features',
   },
   {
     id: 'project-three',
     title: 'Project Three',
     description: 'Description for project three.',
     bullets: ['Feature M', 'Feature N'],
+    imageSrc: '/projects/project3.svg',
+    imageAlt: 'Project Three screenshot highlighting functionality',
   },
 ] as const;
 
@@ -72,6 +80,8 @@ export default function ProjectsPage() {
                 title={project.title}
                 description={project.description}
                 bullets={project.bullets}
+                imageSrc={project.imageSrc}
+                imageAlt={project.imageAlt}
               />
             </li>
           ))}

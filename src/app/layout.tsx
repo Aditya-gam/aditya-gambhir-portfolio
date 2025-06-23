@@ -15,11 +15,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
-  ),
-  title: 'Aditya Gambhir Portfolio',
-  description: "Aditya Gambhir's personal website",
+  metadataBase: new URL('https://aditya-gambhir-portfolio.vercel.app/'),
+  title: 'Aditya Gambhir | Software Engineer & Data Scientist',
+  description:
+    'Personal portfolio showcasing projects and resume of Aditya Gambhir.',
+  openGraph: {
+    title: 'Aditya Gambhir | Portfolio',
+    description: 'Software Engineer & Data Scientist portfolio website.',
+    url: 'https://aditya-gambhir-portfolio.vercel.app/',
+    images: ['/og-default.png'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Aditya Gambhir | Portfolio',
+    description: 'Software Engineer & Data Scientist portfolio website.',
+    images: ['/og-default.png'],
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Aditya Gambhir',
+  jobTitle: 'Software Engineer & Data Scientist',
+  url: 'https://aditya-gambhir-portfolio.vercel.app/',
+  sameAs: [
+    'https://www.linkedin.com/in/aditya-gambhir',
+    'hhttps://github.com/Aditya-gam',
+  ],
 };
 
 export default function RootLayout({
@@ -29,11 +53,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans flex flex-col min-h-screen bg-background text-foreground antialiased`}
       >
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-white focus:text-black focus:underline"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main className="flex-grow">{children}</main>
+        <main id="main" className="flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -119,6 +119,8 @@ export default function HomePage() {
               title="Project Alpha"
               description="A full-stack web app for managing tasks."
               bullets={['React', 'Node.js', 'MongoDB']}
+              imageSrc="/projects/project1.svg"
+              imageAlt="Project Alpha task management interface"
             />
           </li>
           <li>
@@ -126,6 +128,8 @@ export default function HomePage() {
               title="Project Beta"
               description="A machine learning pipeline for data analysis."
               bullets={['Python', 'Pandas', 'TensorFlow']}
+              imageSrc="/projects/project2.svg"
+              imageAlt="Project Beta data analysis dashboard"
             />
           </li>
         </ul>

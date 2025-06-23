@@ -9,11 +9,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       colors: {
+        // Accessible color palette
+        primary: '#333333',
+        accent: '#2563EB',
+        ring: '#2563EB',
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
         card: {
@@ -24,10 +35,6 @@ const config: Config = {
           DEFAULT: 'var(--color-popover)',
           foreground: 'var(--color-popover-foreground)',
         },
-        primary: {
-          DEFAULT: 'var(--color-primary)',
-          foreground: 'var(--color-primary-foreground)',
-        },
         secondary: {
           DEFAULT: 'var(--color-secondary)',
           foreground: 'var(--color-secondary-foreground)',
@@ -36,17 +43,12 @@ const config: Config = {
           DEFAULT: 'var(--color-muted)',
           foreground: 'var(--color-muted-foreground)',
         },
-        accent: {
-          DEFAULT: 'var(--color-accent)',
-          foreground: 'var(--color-accent-foreground)',
-        },
         destructive: {
           DEFAULT: 'var(--color-destructive)',
           foreground: 'var(--color-destructive-foreground)',
         },
         border: 'var(--color-border)',
         input: 'var(--color-input)',
-        ring: 'var(--color-ring)',
         chart: {
           '1': 'var(--color-chart-1)',
           '2': 'var(--color-chart-2)',
