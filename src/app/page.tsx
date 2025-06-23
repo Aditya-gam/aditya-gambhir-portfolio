@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from 'react';
 import ProjectCard from '@/components/ProjectCard';
-import ProfileBadge from '@/components/ProfileBadge';
+import LinkedInCard from '@/components/LinkedInCard';
 import { getFeaturedProjects } from '@/data/projects';
 import { ContactModalContext } from '@/app/ContactModalContext';
 
@@ -53,13 +53,13 @@ export default function HomePage() {
           applications and data-driven solutions.
         </p>
 
-        {/* LinkedIn Badge - Now using ProfileBadge component */}
-        <ProfileBadge
-          platform="linkedin"
-          username="aditya-gambhir"
-          size="medium"
-          theme="light"
-          type="horizontal"
+        {/* LinkedIn Card - Beautiful custom card without profile photo */}
+        <LinkedInCard
+          name="Aditya Gambhir"
+          headline="MS Computational Data Science | Full-Stack Developer & AI Enthusiast | Expertise in Machine Learning, Computer Vision, and Real-Time Sensor Fusion | Building Scalable, Data-Driven Solutions"
+          company="Tech Mahindra"
+          university="University of California, Riverside"
+          profileUrl="https://www.linkedin.com/in/aditya-gambhir"
         />
       </section>
 
