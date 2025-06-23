@@ -21,12 +21,25 @@ const config: Config = {
         mono: ['var(--font-geist-mono)', 'monospace'],
       },
       colors: {
-        // Accessible color palette
-        primary: '#333333',
-        accent: '#2563EB',
-        ring: '#2563EB',
+        // Enhanced color system using CSS custom properties
         background: 'var(--color-background)',
         foreground: 'var(--color-foreground)',
+        primary: {
+          DEFAULT: 'var(--color-primary)',
+          foreground: 'var(--color-primary-foreground)',
+        },
+        secondary: {
+          DEFAULT: 'var(--color-secondary)',
+          foreground: 'var(--color-secondary-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--color-accent)',
+          foreground: 'var(--color-accent-foreground)',
+        },
+        muted: {
+          DEFAULT: 'var(--color-muted)',
+          foreground: 'var(--color-muted-foreground)',
+        },
         card: {
           DEFAULT: 'var(--color-card)',
           foreground: 'var(--color-card-foreground)',
@@ -35,20 +48,14 @@ const config: Config = {
           DEFAULT: 'var(--color-popover)',
           foreground: 'var(--color-popover-foreground)',
         },
-        secondary: {
-          DEFAULT: 'var(--color-secondary)',
-          foreground: 'var(--color-secondary-foreground)',
-        },
-        muted: {
-          DEFAULT: 'var(--color-muted)',
-          foreground: 'var(--color-muted-foreground)',
-        },
         destructive: {
           DEFAULT: 'var(--color-destructive)',
           foreground: 'var(--color-destructive-foreground)',
         },
         border: 'var(--color-border)',
         input: 'var(--color-input)',
+        ring: 'var(--color-ring)',
+        focus: 'var(--color-focus)',
         chart: {
           '1': 'var(--color-chart-1)',
           '2': 'var(--color-chart-2)',

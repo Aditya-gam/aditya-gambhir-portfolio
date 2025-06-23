@@ -59,7 +59,7 @@
 }
 
 .article-card {
-  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-blue-300 dark:hover:border-blue-600 p-6;
+  @apply border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 hover:border-primary/50 p-6;
 }
 
 /* Navigation layouts */
@@ -114,5 +114,5 @@
 
 /* Focus and accessibility */
 .focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  @apply focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2;
 }

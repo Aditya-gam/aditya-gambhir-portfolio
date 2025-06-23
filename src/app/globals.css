@@ -43,13 +43,15 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Enhanced color system - WCAG compliant */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.4 0.15 264); /* Professional blue with better contrast */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -60,7 +62,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.4 0.15 264); /* Match primary for consistency */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -74,6 +76,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Semantic focus color for better accessibility */
+  --color-focus: var(--primary);
 }
 
 .dark {
@@ -83,8 +88,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
+  --primary: oklch(0.7 0.15 264); /* Lighter for dark mode */
+  --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -94,7 +99,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.7 0.15 264); /* Match primary for consistency */
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -108,6 +113,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  
+  /* Dark mode focus adjustments */
+  --color-focus: var(--primary);
 }
 
 @layer base {
@@ -120,18 +128,18 @@
     color: var(--color-foreground);
   }
 
-  /* Enhanced focus indicators for accessibility */
+  /* Enhanced focus indicators for maximum accessibility */
   :focus-visible {
     outline: none;
     box-shadow:
-      0 0 0 3px #2563eb,
-      0 0 0 5px white;
+      0 0 0 3px var(--color-focus),
+      0 0 0 5px color-mix(in srgb, var(--color-background) 80%, transparent);
   }
 
-  /* Dark mode focus indicators */
+  /* Ensure focus is always visible regardless of theme */
   .dark :focus-visible {
     box-shadow:
-      0 0 0 3px #2563eb,
-      0 0 0 5px #1f2937;
+      0 0 0 3px var(--color-focus),
+      0 0 0 5px color-mix(in srgb, var(--color-background) 80%, transparent);
   }
 }
