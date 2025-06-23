@@ -4,6 +4,7 @@ import Script from 'next/script';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import ProjectCard from '@/components/ProjectCard';
+import { getFeaturedProjects } from '@/data/projects';
 
 // Modern Next.js 15: Export metadata for better SEO
 export const metadata: Metadata = {
@@ -48,6 +49,8 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const featuredProjects = getFeaturedProjects();
+
   return (
     <main className="page-layout">
       {/* Hero Section */}
@@ -127,26 +130,18 @@ export default function HomePage() {
           Featured Projects
         </h2>
         <ul className="grid-projects">
-          <li>
-            <ProjectCard
-              title="Project Alpha"
-              description="A full-stack web app for managing tasks."
-              bullets={['React', 'Node.js', 'MongoDB']}
-              imageSrc="/projects/project1.svg"
-              imageAlt="Project Alpha task management interface"
-              priority={true}
-            />
-          </li>
-          <li>
-            <ProjectCard
-              title="Project Beta"
-              description="A machine learning pipeline for data analysis."
-              bullets={['Python', 'Pandas', 'TensorFlow']}
-              imageSrc="/projects/project2.svg"
-              imageAlt="Project Beta data analysis dashboard"
-              priority={true}
-            />
-          </li>
+          {featuredProjects.map((project) => (
+            <li key={project.title}>
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                bullets={project.bullets}
+                imageSrc={project.imageSrc}
+                imageAlt={project.imageAlt}
+                priority={project.priority}
+              />
+            </li>
+          ))}
         </ul>
       </section>
 

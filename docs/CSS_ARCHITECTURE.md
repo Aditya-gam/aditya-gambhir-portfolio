@@ -7,16 +7,19 @@ This document outlines the standardized CSS architecture for the Aditya Gambhir 
 ## Architecture Principles
 
 ### 1. **Utility-First Approach**
+
 - Prefer Tailwind CSS utilities over custom CSS classes
 - Use custom CSS classes only when Tailwind cannot achieve the desired design
 - Follow the principle of "composition over configuration"
 
 ### 2. **Design System Compliance**
+
 - All colors use CSS custom properties (design tokens)
 - Consistent spacing, typography, and component patterns
 - WCAG 2.1 AA accessibility compliance
 
 ### 3. **Single Source of Truth**
+
 - One global focus management system
 - Centralized color system using CSS variables
 - Consistent component variants using `cva`
@@ -37,17 +40,20 @@ src/
 ## CSS Layer Organization
 
 ### 1. **globals.css** - Foundation Layer
+
 - **CSS Variables**: Design system tokens for colors, spacing, typography
 - **Base Styles**: Global reset, focus management, accessibility
 - **Utility Classes**: Scrollbar, skip links, global utilities
 
 ### 2. **base.css** - Layout Layer
+
 - **Containers**: Page and section layouts
 - **Grid Systems**: Responsive grid patterns
 - **Navigation**: Header, footer, mobile nav layouts
 - **Forms**: Form structure and spacing
 
 ### 3. **components.css** - Component Layer
+
 - **Cards**: Various card styles with consistent patterns
 - **Typography**: Semantic heading and text styles
 - **Forms**: Input, label, error styling
@@ -74,12 +80,12 @@ src/
 
 ### Color Tokens
 
-| Token | Purpose | Light Mode | Dark Mode |
-|-------|---------|------------|-----------|
-| `--foreground` | Primary text | `oklch(0.145 0 0)` | `oklch(0.985 0 0)` |
-| `--muted-foreground` | Secondary text | `oklch(0.556 0 0)` | `oklch(0.708 0 0)` |
-| `--primary` | Brand color | `oklch(0.4 0.15 264)` | `oklch(0.7 0.15 264)` |
-| `--muted` | Subtle backgrounds | `oklch(0.97 0 0)` | `oklch(0.269 0 0)` |
+| Token                | Purpose            | Light Mode            | Dark Mode             |
+| -------------------- | ------------------ | --------------------- | --------------------- |
+| `--foreground`       | Primary text       | `oklch(0.145 0 0)`    | `oklch(0.985 0 0)`    |
+| `--muted-foreground` | Secondary text     | `oklch(0.556 0 0)`    | `oklch(0.708 0 0)`    |
+| `--primary`          | Brand color        | `oklch(0.4 0.15 264)` | `oklch(0.7 0.15 264)` |
+| `--muted`            | Subtle backgrounds | `oklch(0.97 0 0)`     | `oklch(0.269 0 0)`    |
 
 ## Component Patterns
 
@@ -144,15 +150,18 @@ All interactive elements use consistent focus styling:
 ## Accessibility Standards
 
 ### Color Contrast
+
 - Minimum 4.5:1 ratio for normal text
 - Minimum 3:1 ratio for large text
 - All color combinations tested with WCAG standards
 
 ### Touch Targets
+
 - Minimum 44x44px touch target size
 - Applied via `.touch-target` utility class
 
 ### Semantic HTML
+
 - Use semantic heading hierarchy
 - Proper form labeling and error association
 - Screen reader friendly text and landmarks
@@ -175,20 +184,22 @@ All interactive elements use consistent focus styling:
 
 ```tsx
 // ❌ Old hardcoded colors
-className="text-gray-600 dark:text-gray-400"
+className = 'text-gray-600 dark:text-gray-400';
 
 // ✅ New design system colors
-className="text-muted-foreground"
+className = 'text-muted-foreground';
 ```
 
 ## Performance Optimizations
 
 ### CSS-in-JS Avoidance
+
 - Use CSS classes instead of inline styles
 - Leverage Tailwind's purging for smaller bundle sizes
 - Minimize custom CSS to reduce complexity
 
 ### Bundle Size
+
 - Remove unused CSS classes
 - Use component variants over multiple similar classes
 - Leverage Tailwind's tree-shaking capabilities
@@ -212,6 +223,7 @@ className="text-muted-foreground"
 ## Best Practices Summary
 
 ### ✅ Do's
+
 - Use design system colors consistently
 - Leverage Tailwind utilities for spacing and layout
 - Follow semantic HTML practices
@@ -219,6 +231,7 @@ className="text-muted-foreground"
 - Document custom patterns
 
 ### ❌ Don'ts
+
 - Hardcode colors or spacing values
 - Create duplicate CSS classes
 - Use inline styles for complex styling
@@ -228,15 +241,17 @@ className="text-muted-foreground"
 ## Future Considerations
 
 ### Scalability
+
 - Consider CSS-in-TS solutions for larger applications
 - Implement automated design token generation
 - Add visual regression testing pipeline
 
 ### Maintenance
+
 - Regular audit of unused CSS
 - Update design tokens as brand evolves
 - Keep accessibility standards current
 
 ---
 
-This architecture ensures maintainable, scalable, and accessible CSS that follows modern web development best practices while providing an excellent user experience across all devices and assistive technologies. 
+This architecture ensures maintainable, scalable, and accessible CSS that follows modern web development best practices while providing an excellent user experience across all devices and assistive technologies.
