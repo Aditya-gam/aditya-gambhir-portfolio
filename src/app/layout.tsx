@@ -114,34 +114,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="canonical"
-          href="https://aditya-gambhir-portfolio.vercel.app/"
-        />
-        <meta name="theme-color" content="#0A66C2" />
-        <meta name="color-scheme" content="light dark" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd),
-          }}
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans flex flex-col min-h-screen bg-background text-foreground antialiased`}
-      >
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        <ClientLayout>
-          <main id="main-content" className="flex-grow">
-            {children}
-          </main>
-        </ClientLayout>
-        <Footer />
-      </body>
-    </html>
+    <>
+      {/* Ensure DOCTYPE html is set (Next.js should handle this, but being explicit) */}
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link
+            rel="canonical"
+            href="https://aditya-gambhir-portfolio.vercel.app/"
+          />
+          <meta name="theme-color" content="#0A66C2" />
+          <meta name="color-scheme" content="light dark" />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd),
+            }}
+          />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} font-sans flex flex-col min-h-screen bg-background text-foreground antialiased`}
+        >
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          <ClientLayout>
+            <main id="main-content" className="flex-grow">
+              {children}
+            </main>
+          </ClientLayout>
+          <Footer />
+        </body>
+      </html>
+    </>
   );
 }

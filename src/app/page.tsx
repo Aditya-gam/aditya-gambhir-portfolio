@@ -2,10 +2,10 @@
 'use client';
 
 import Image from 'next/image';
-import Script from 'next/script';
 import Link from 'next/link';
 import { useContext } from 'react';
 import ProjectCard from '@/components/ProjectCard';
+import ProfileBadge from '@/components/ProfileBadge';
 import { getFeaturedProjects } from '@/data/projects';
 import { ContactModalContext } from '@/app/ContactModalContext';
 
@@ -39,6 +39,10 @@ export default function HomePage() {
             className="rounded-full object-cover"
             priority
             sizes="150px"
+            style={{
+              width: 'auto',
+              height: 'auto',
+            }}
           />
         </div>
         <h1 id="hero-heading" className="text-3xl font-bold mt-4">
@@ -49,30 +53,14 @@ export default function HomePage() {
           applications and data-driven solutions.
         </p>
 
-        {/* LinkedIn Badge Script */}
-        <Script
-          src="https://platform.linkedin.com/badges/js/profile.js"
-          strategy="afterInteractive"
+        {/* LinkedIn Badge - Now using ProfileBadge component */}
+        <ProfileBadge
+          platform="linkedin"
+          username="aditya-gambhir"
+          size="medium"
+          theme="light"
+          type="horizontal"
         />
-        <div
-          className="badge-base LI-profile-badge mt-4"
-          data-locale="en_US"
-          data-size="medium"
-          data-theme="light"
-          data-type="horizontal"
-          data-vanity="aditya-gambhir"
-          data-version="v1"
-        >
-          <a
-            className="badge-base__link LI-simple-link"
-            href="https://www.linkedin.com/in/aditya-gambhir?trk=profile-badge"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View Aditya Gambhir's LinkedIn profile"
-          >
-            Aditya Gambhir
-          </a>
-        </div>
       </section>
 
       {/* Highlights Section */}

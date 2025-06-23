@@ -120,6 +120,40 @@
   @apply mt-4;
 }
 
+/* Profile Badge Container */
+.profile-badge-container {
+  @apply flex flex-col items-center;
+}
+
+/* GitHub Badge Placeholder */
+.github-badge-placeholder {
+  @apply transition-all duration-200;
+}
+
+.github-badge-placeholder a {
+  @apply inline-flex items-center px-4 py-2 border border-input rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors;
+}
+
+/* LeetCode Badge Placeholder */
+.leetcode-badge-placeholder {
+  @apply transition-all duration-200;
+}
+
+.leetcode-badge-placeholder a {
+  @apply inline-flex items-center px-4 py-2 border border-orange-300 rounded-lg hover:bg-orange-50 hover:text-orange-800 transition-colors;
+}
+
+/* Dark mode overrides for badge placeholders */
+@media (prefers-color-scheme: dark) {
+  .github-badge-placeholder a {
+    @apply border-border hover:bg-accent hover:text-accent-foreground;
+  }
+  
+  .leetcode-badge-placeholder a {
+    @apply border-orange-700 hover:bg-orange-900 hover:text-orange-100;
+  }
+}
+
 /* ================================================
    COMPONENT UTILITIES
    ================================================ */

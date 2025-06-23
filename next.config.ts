@@ -22,6 +22,28 @@ const nextConfig: NextConfig = {
 
   // Enable compression
   compress: true,
+
+  // Headers for CSP - allow LinkedIn scripts and Google Fonts
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com",
+              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com",
+              "img-src 'self' data: https://media.licdn.com https://cdn.jsdelivr.net",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' data: https://fonts.gstatic.com",
+            ].join('; '),
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);
