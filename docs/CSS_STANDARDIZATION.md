@@ -24,22 +24,26 @@ src/
 Contains reusable component patterns:
 
 #### Card Variants
+
 - `.card-base` - Basic card styling with shadow and transitions
 - `.card-interactive` - Interactive card with hover states
 - `.card-highlight` - Highlighted card for important content
 - `.card-project` - Specific styling for project cards
 
 #### Button Variants
+
 - `.btn-primary` - Primary action button (blue background)
 - `.btn-secondary` - Secondary action button (outlined)
 - `.btn-download` - Download button (full-width)
 
 #### Text Styles
+
 - `.text-muted` - Muted text color (gray)
 - `.text-primary` - Primary text color
 - `.text-hero` - Hero section text styling
 
 #### Layout Grids
+
 - `.grid-projects` - 2-column project grid layout
 - `.grid-projects-3` - 3-column project grid layout
 - `.grid-highlights` - 3-column highlights grid
@@ -50,11 +54,13 @@ Contains reusable component patterns:
 Contains layout patterns and page structures:
 
 #### Page Layouts
+
 - `.page-layout` - Standard page container
 - `.page-header` - Centered page header
 - `.hero-section` - Hero section layout
 
 #### Content Sections
+
 - `.content-section` - Standard section spacing
 - `.content-section-lg` - Large section spacing
 - `.cta-section` - Call-to-action button layout
@@ -62,6 +68,7 @@ Contains layout patterns and page structures:
 ## Migration Examples
 
 ### Before (Original)
+
 ```jsx
 <div className="border rounded-lg p-4 shadow hover:shadow-md transition-shadow">
   <h3 className="text-lg font-semibold mb-2">Title</h3>
@@ -70,6 +77,7 @@ Contains layout patterns and page structures:
 ```
 
 ### After (Standardized)
+
 ```jsx
 <div className="card-project">
   <h3 className="text-lg font-semibold mb-2">Title</h3>
@@ -88,11 +96,13 @@ Contains layout patterns and page structures:
 ## Usage Guidelines
 
 ### Class Naming Convention
+
 - **Component classes**: `.card-*`, `.btn-*`, `.text-*`
 - **Layout classes**: `.page-*`, `.section-*`, `.grid-*`
 - **Utility classes**: `.mobile-*`, `.sr-only-*`
 
 ### Combining Classes
+
 You can still combine standardized classes with additional Tailwind utilities:
 
 ```jsx
@@ -113,6 +123,7 @@ When you identify a new pattern used 3+ times:
 ## Implementation Status
 
 ### ✅ Completed
+
 - Created modular CSS files
 - Updated `ProjectCard` component
 - Updated `Header` component navigation
@@ -121,11 +132,13 @@ When you identify a new pattern used 3+ times:
 - Partially updated resume page
 
 ### 🔄 In Progress
+
 - Complete migration of all pages
 - Update projects page
 - Test responsive behavior
 
 ### 📋 Todo
+
 - Create more specific component variants as needed
 - Add CSS custom properties for theme consistency
 - Consider CSS-in-JS migration if project scales
@@ -167,4 +180,4 @@ grep -r "grid gap-6 md:grid-cols-2" src/
 1. **CSS Custom Properties**: Consider migrating to CSS custom properties for more dynamic theming
 2. **Component Library**: These patterns could evolve into a formal component library
 3. **CSS Modules**: For larger projects, consider CSS modules for better encapsulation
-4. **Design Tokens**: Implement a design token system for more systematic design consistency 
+4. **Design Tokens**: Implement a design token system for more systematic design consistency

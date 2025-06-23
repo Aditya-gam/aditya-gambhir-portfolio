@@ -35,7 +35,9 @@
 }
 
 /* Accessibility-focused button and link styling */
-.btn-primary, a, button {
+.btn-primary,
+a,
+button {
   min-width: 48px;
   min-height: 48px;
   padding: 12px;
@@ -157,4 +159,4 @@
 
 .description-card {
   @apply text-sm text-gray-600 dark:text-gray-400 mt-1;
-} 
+}

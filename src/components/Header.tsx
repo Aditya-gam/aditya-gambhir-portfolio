@@ -1,62 +1,65 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
-import * as Dialog from '@radix-ui/react-dialog';
+import { usePathname } from 'next/navigation';
+import { MobileNav } from '@/components/MobileNav';
+import { cn } from '@/lib/utils';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/contact', label: 'Contact' },
+];
 
 export default function Header() {
-  const links = ['Projects', 'Resume', 'Contact'];
+  const pathname = usePathname();
 
   return (
-    <header className="px-6 py-4 bg-white shadow fixed top-0 left-0 right-0 z-50">
-      <nav className="flex justify-between items-center">
-        <Link href="/" className="text-lg font-semibold">
-          Aditya Gambhir
-        </Link>
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 max-w-screen-xl items-center">
+        {/* Logo/Brand */}
+        <div className="mr-4 hidden md:flex">
+          <Link href="/" className="mr-6 flex items-center space-x-2">
+            <span className="hidden font-bold sm:inline-block">
+              Aditya Gambhir
+            </span>
+          </Link>
+        </div>
 
-        {/* Desktop Nav */}
-        <ul className="hidden md:flex space-x-6">
-          {links.map((link) => (
-            <li key={link}>
+        {/* Desktop Navigation */}
+        <nav className="flex items-center gap-6 text-sm lg:gap-8">
+          <div className="hidden md:flex">
+            {navLinks.slice(1).map(({ href, label }) => (
               <Link
-                href={`/${link.toLowerCase()}`}
-                className="hover:text-gray-600"
+                key={href}
+                href={href}
+                className={cn(
+                  'transition-colors hover:text-foreground/80 px-3 py-2',
+                  pathname === href ? 'text-foreground' : 'text-foreground/60',
+                )}
               >
-                {link}
+                {label}
               </Link>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </nav>
 
-        {/* Mobile Nav Dialog */}
-        <Dialog.Root>
-          <Dialog.Trigger asChild>
-            <button className="md:hidden p-2">
-              <Menu size={28} aria-label="Open navigation" />
-            </button>
-          </Dialog.Trigger>
+        {/* Mobile Logo (centered) */}
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+            <Link
+              href="/"
+              className="flex items-center justify-center font-bold md:hidden"
+            >
+              Aditya Gambhir
+            </Link>
+          </div>
+        </div>
 
-          <Dialog.Content className="fixed top-0 left-0 bottom-0 w-3/4 bg-white shadow-lg">
-            <div className="p-4 flex justify-between items-center">
-              <span className="font-semibold">Menu</span>
-              <Dialog.Close asChild>
-                <button aria-label="Close navigation">
-                  <X size={28} />
-                </button>
-              </Dialog.Close>
-            </div>
-            <nav className="px-4 py-2 space-y-4">
-              {links.map((link) => (
-                <Dialog.Close asChild key={link}>
-                  <Link href={`/${link.toLowerCase()}`} className="block py-2">
-                    {link}
-                  </Link>
-                </Dialog.Close>
-              ))}
-            </nav>
-          </Dialog.Content>
-        </Dialog.Root>
-      </nav>
+        {/* Mobile Navigation */}
+        <MobileNav links={navLinks} />
+      </div>
     </header>
   );
 }

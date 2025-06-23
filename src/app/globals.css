@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Import modular stylesheets */
 @import '../styles/components.css';
@@ -119,15 +119,19 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-  
+
   /* Enhanced focus indicators for accessibility */
   :focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px #2563EB, 0 0 0 5px white;
+    box-shadow:
+      0 0 0 3px #2563eb,
+      0 0 0 5px white;
   }
-  
+
   /* Dark mode focus indicators */
   .dark :focus-visible {
-    box-shadow: 0 0 0 3px #2563EB, 0 0 0 5px #1f2937;
+    box-shadow:
+      0 0 0 3px #2563eb,
+      0 0 0 5px #1f2937;
   }
 }
