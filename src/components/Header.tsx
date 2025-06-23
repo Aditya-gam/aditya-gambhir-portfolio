@@ -29,8 +29,8 @@ export default function Header({ onContactClick }: HeaderProps) {
           Aditya Gambhir
         </Link>
 
-        {/* Desktop Navigation - Right Aligned */}
-        <nav className="hidden md:flex items-center gap-4">
+        {/* Desktop Navigation - Right Aligned - Changed from md:flex to lg:flex */}
+        <nav className="hidden lg:flex items-center gap-4">
           {navLinks.map(({ href, label }) => (
             <Link
               key={href}

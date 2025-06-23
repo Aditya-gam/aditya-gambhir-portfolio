@@ -72,6 +72,16 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
+  
+  /* Ensure no horizontal overflow on mobile */
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Smooth transitions for body overflow changes */
+  body {
+    transition: overflow 0.2s ease;
+  }
 }
 
 @layer base {
@@ -80,6 +90,25 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Mobile Navigation Enhancements */
+@layer utilities {
+  /* Ensure mobile nav portal renders correctly */
+  .mobile-nav-portal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+  }
+  
+  /* Prevent text selection on mobile nav trigger */
+  .mobile-nav-trigger {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

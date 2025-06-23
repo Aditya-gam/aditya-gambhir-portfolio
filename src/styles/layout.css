@@ -81,11 +81,25 @@
    ================================================ */
 
 .nav-desktop {
-  @apply hidden md:flex space-x-8;
+  @apply hidden lg:flex space-x-8;
 }
 
 .nav-mobile {
-  @apply md:hidden;
+  @apply lg:hidden;
+}
+
+/* Mobile Navigation Enhancement */
+.mobile-nav-overlay {
+  @apply fixed inset-0 z-[100] bg-black/60 backdrop-blur-md;
+}
+
+.mobile-nav-content {
+  @apply fixed inset-y-0 left-0 z-[101] h-full w-3/4 max-w-sm bg-background border-r shadow-2xl;
+}
+
+/* Ensure mobile nav appears above all content */
+.mobile-nav-trigger {
+  @apply relative z-[50];
 }
 
 /* ================================================
