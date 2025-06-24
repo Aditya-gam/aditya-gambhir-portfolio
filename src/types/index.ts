@@ -57,3 +57,27 @@ export interface BaseComponentProps {
   className?: string;
   children?: React.ReactNode;
 }
+
+export interface Certificate {
+  readonly title: string;
+  readonly provider: string;
+  readonly year: string;
+  readonly month?: string;
+  readonly filePath?: string;
+  readonly linkedinUrl?: string;
+  readonly description?: string;
+}
+
+export interface CertificateModalProps {
+  readonly isOpen: boolean;
+  readonly onClose: () => void;
+  readonly certificate: Certificate | null;
+  readonly certificates: readonly Certificate[];
+  readonly currentIndex: number;
+  readonly onNavigate: (direction: 'prev' | 'next') => void;
+}
+
+export interface CertificateViewerProps {
+  readonly certificate: Certificate;
+  readonly onLinkedIn?: () => void;
+}

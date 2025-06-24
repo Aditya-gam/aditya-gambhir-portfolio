@@ -136,6 +136,58 @@
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--foreground));
   }
+
+  /* Modern translucent scrollbar for certificates carousel */
+  .certificates-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+  }
+
+  .certificates-scroll::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  .certificates-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .certificates-scroll::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.2);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+  }
+
+  .certificates-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.4);
+    background-clip: content-box;
+  }
+
+  .certificates-scroll::-webkit-scrollbar-thumb:active {
+    background: rgba(99, 102, 241, 0.6);
+    background-clip: content-box;
+  }
+
+  /* Hide scrollbar by default, show on hover */
+  .certificates-scroll::-webkit-scrollbar-thumb {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .certificates-scroll:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+  }
+
+  /* For Firefox - more subtle scrollbar */
+  @supports (scrollbar-width: thin) {
+    .certificates-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+    }
+  }
 }
 
 /* Print styles */

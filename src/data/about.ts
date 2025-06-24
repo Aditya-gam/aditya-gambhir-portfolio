@@ -1,4 +1,6 @@
 // About page data - centralized for easy management and security
+import type { Certificate } from '@/types';
+
 export interface AboutData {
   hero: {
     name: string;
@@ -51,11 +53,7 @@ export interface AboutData {
     gpa: string;
     courses: string[];
   };
-  certifications: {
-    title: string;
-    provider: string;
-    year: string;
-  }[];
+  certifications: readonly Certificate[];
   publications: {
     title: string;
     journal: string;
@@ -183,18 +181,95 @@ export const aboutData: AboutData = {
       title: 'Sensor Fusion Nanodegree',
       provider: 'Udacity',
       year: '2024',
+      month: 'Oct',
+      filePath: '/certificates/Udacity Sensor Fusion Certificate.pdf',
+      description: 'Advanced sensor fusion techniques for autonomous systems',
     },
     {
-      title: 'Microservices w/ Spring Boot',
+      title: 'Microservices with Java Spring Boot and Spring Cloud',
       provider: 'Udemy',
       year: '2022',
+      month: 'Nov',
+      filePath:
+        '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
+      description:
+        'Comprehensive microservices architecture with Spring ecosystem',
     },
-    { title: 'Dell AI Foundations', provider: 'Dell', year: '2022' },
-    { title: 'CCNA v7', provider: 'Cisco', year: '2021' },
+    {
+      title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
+      provider: 'Infosys',
+      year: '2022',
+      month: 'Apr',
+      filePath:
+        '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
+      description: 'Blockchain development and smart contract programming',
+    },
+    {
+      title: 'Dell Artificial Intelligence Foundations',
+      provider: 'Dell Technologies',
+      year: '2022',
+      month: 'Feb',
+      filePath: '/certificates/DELL_Certificate-ML.pdf',
+      description: 'Foundational AI concepts and machine learning principles',
+    },
+    {
+      title: 'Deep Learning and NLP A-Z: How to create a ChatBot',
+      provider: 'Udemy',
+      year: '2021',
+      month: 'Nov',
+      filePath: '/certificates/DNLP A-z How to create a chatbot udemy.pdf',
+      description: 'Natural language processing and chatbot development',
+    },
+    {
+      title: 'Machine Learning A-Z: Hands on Python & R In Data Science',
+      provider: 'Udemy',
+      year: '2021',
+      month: 'Sep',
+      filePath: '/certificates/Machine learning Basics-Udemy.pdf',
+      description: 'Comprehensive machine learning with Python and R',
+    },
     {
       title: 'Fundamentals of Deep Learning',
       provider: 'NVIDIA',
       year: '2021',
+      month: 'Aug',
+      filePath:
+        '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
+      description:
+        'Deep learning fundamentals and neural network architectures',
+    },
+    {
+      title: 'CCNAv7: Introduction to Networks',
+      provider: 'Cisco',
+      year: '2021',
+      month: 'May',
+      filePath: '/certificates/AdityaGambhir-CCNA v7 module 1-certificate.pdf',
+      description: 'Network fundamentals and Cisco networking technologies',
+    },
+    {
+      title: 'Javascript Course 2021: From Zero to Expert',
+      provider: 'Udemy',
+      year: '2021',
+      month: 'Mar',
+      filePath: '/certificates/JavaScriptBasic-Udemy.pdf',
+      description: 'Modern JavaScript development and ES6+ features',
+    },
+    {
+      title: 'Object-Oriented Data Structures in C++',
+      provider: 'Coursera',
+      year: '2020',
+      month: 'Oct',
+      filePath:
+        '/certificates/Object Oriented Data Structures of C++ - Coursera.pdf',
+      description: 'Advanced C++ programming and data structures',
+    },
+    {
+      title: 'Programming for Everybody (Getting Started with Python)',
+      provider: 'Coursera',
+      year: '2020',
+      month: 'Aug',
+      filePath: '/certificates/Python-Coursera.pdf',
+      description: 'Python programming fundamentals and best practices',
     },
   ],
   publications: {
