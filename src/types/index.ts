@@ -30,6 +30,28 @@ export interface ProjectData {
   technologies?: string[];
 }
 
+// Social Profile Types
+export interface SocialProfile {
+  platform: 'linkedin' | 'github' | 'leetcode';
+  name: string;
+  username: string;
+  headline: string;
+  profileUrl: string;
+  details: SocialProfileDetail[];
+  stats?: SocialProfileStat[];
+}
+
+export interface SocialProfileDetail {
+  label: string;
+  value: string;
+}
+
+export interface SocialProfileStat {
+  label: string;
+  value: string | number;
+  icon?: string;
+}
+
 // API Response Types
 export interface ContactAPIResponse {
   success: boolean;

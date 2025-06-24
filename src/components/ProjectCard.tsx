@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProjectData } from '@/types';
-import { ExternalLink, GithubIcon } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { siGithub } from 'simple-icons';
 
 interface ProjectCardProps {
   readonly project: ProjectData;
@@ -52,11 +53,15 @@ export default function ProjectCard({
               className="p-1 hover:bg-muted rounded transition-colors"
               aria-label={`View ${title} source code on GitHub`}
             >
-              {GithubIcon ? (
-                <GithubIcon className="w-4 h-4" />
-              ) : (
-                <ExternalLink className="w-4 h-4" />
-              )}
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-4 h-4"
+              >
+                <path d={siGithub.path} />
+              </svg>
             </Link>
           )}
           {liveUrl && (

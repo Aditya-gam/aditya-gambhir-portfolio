@@ -1,14 +1,11 @@
 'use client';
 
-import { Mail } from 'lucide-react';
+import Link from 'next/link';
 import { siGithub } from 'simple-icons';
-import { useContext } from 'react';
-import { ContactModalContext } from '@/app/ContactModalContext';
 
-// Create custom icon components for Simple Icons
+// GitHub icon from simple-icons
 const GitHubIcon = ({ className }: { className?: string }) => (
   <svg
-    aria-hidden="true"
     viewBox="0 0 24 24"
     className={className}
     fill="currentColor"
@@ -21,7 +18,6 @@ const GitHubIcon = ({ className }: { className?: string }) => (
 // LinkedIn icon from simple SVG path (since not available in simple-icons)
 const LinkedInIcon = ({ className }: { className?: string }) => (
   <svg
-    aria-hidden="true"
     viewBox="0 0 24 24"
     className={className}
     fill="currentColor"
@@ -32,49 +28,36 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Footer() {
-  const { openContactModal } = useContext(ContactModalContext);
-
   return (
-    <footer className="border-t py-6 md:py-0">
-      <div className="footer-content">
-        <div className="footer-copyright">
-          <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+    <footer className="bg-muted/30 py-8 mt-16">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col items-center space-y-4">
+          {/* Social Links */}
+          <div className="flex space-x-6">
+            <Link
+              href="https://github.com/aditya-gambhir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Aditya on GitHub"
+            >
+              <GitHubIcon className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://linkedin.com/in/aditya-gambhir"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Aditya on LinkedIn"
+            >
+              <LinkedInIcon className="w-5 h-5" />
+            </Link>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} Aditya Gambhir. All rights reserved.
           </p>
-        </div>
-        <div className="footer-links">
-          <a
-            href="https://github.com/aditya-gambhir"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Aditya on GitHub"
-            className="social-link"
-          >
-            <GitHubIcon className="w-5 h-5" />
-          </a>
-          <a
-            href="https://linkedin.com/in/aditya-gambhir"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Aditya on LinkedIn"
-            className="social-link hover:text-primary"
-          >
-            <LinkedInIcon className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:aditya.gambhir@example.com"
-            aria-label="Email Aditya"
-            className="social-link"
-          >
-            <Mail className="w-5 h-5" />
-          </a>
-          <button
-            onClick={openContactModal}
-            aria-label="Open contact form"
-            className="social-link hover:text-primary"
-          >
-            <span className="text-sm font-medium">Contact</span>
-          </button>
         </div>
       </div>
     </footer>

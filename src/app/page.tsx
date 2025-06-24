@@ -5,13 +5,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import ProjectCarousel from '@/components/ProjectCarousel';
-import LinkedInCard from '@/components/LinkedInCard';
+import SocialProfiles from '@/components/SocialProfiles';
 import { Publications } from '@/components/about';
 import { getFeaturedProjects } from '@/data/projects';
+import { getFeaturedSocialProfiles } from '@/data/socials';
 import { aboutData } from '@/data/about';
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
+  const socialProfiles = getFeaturedSocialProfiles();
 
   return (
     <main className="page-layout">
@@ -40,14 +42,10 @@ export default function HomePage() {
           applications and data-driven solutions.
         </p>
 
-        {/* LinkedIn Card - Beautiful custom card without profile photo */}
-        <LinkedInCard
-          name="Aditya Gambhir"
-          headline="MS Computational Data Science | Full-Stack Developer & AI Enthusiast | Expertise in Machine Learning, Computer Vision, and Real-Time Sensor Fusion | Building Scalable, Data-Driven Solutions"
-          company="Tech Mahindra"
-          university="University of California, Riverside"
-          profileUrl="https://www.linkedin.com/in/aditya-gambhir"
-        />
+        {/* Social Profiles - LinkedIn, GitHub, and LeetCode */}
+        <div className="mt-6">
+          <SocialProfiles profiles={socialProfiles} title="" />
+        </div>
       </section>
 
       {/* Highlights Section */}

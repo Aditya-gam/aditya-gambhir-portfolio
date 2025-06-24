@@ -203,6 +203,118 @@
   @apply scale-105;
 }
 
+/* ================================================
+   SOCIAL CARD COMPONENTS
+   ================================================ */
+
+.social-card {
+  @apply mt-6 bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 max-w-md mx-auto;
+}
+
+.social-card-header {
+  @apply flex items-start justify-between gap-4 mb-4;
+}
+
+.social-card-info {
+  @apply flex-1;
+}
+
+.social-card-name {
+  @apply text-lg font-semibold text-foreground mb-2;
+}
+
+.social-card-headline {
+  @apply text-sm text-muted-foreground mb-3 leading-relaxed;
+}
+
+.social-card-details {
+  @apply mb-3;
+}
+
+.social-card-detail {
+  @apply text-xs text-muted-foreground mb-1;
+}
+
+.social-card-label {
+  @apply font-medium text-foreground;
+}
+
+.social-card-stats {
+  @apply flex flex-wrap gap-4 mt-3;
+}
+
+.social-card-stat {
+  @apply flex flex-col items-center min-w-0;
+}
+
+.social-card-stat-value {
+  @apply text-sm font-bold text-foreground;
+}
+
+.social-card-stat-label {
+  @apply text-xs text-muted-foreground;
+}
+
+.social-card-logo {
+  @apply flex-shrink-0;
+}
+
+.social-logo {
+  @apply rounded-lg transition-transform duration-200;
+}
+
+.social-card:hover .social-logo {
+  @apply scale-105;
+}
+
+.social-card-footer {
+  @apply pt-4 border-t border-border;
+}
+
+.social-card-link {
+  @apply inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-200;
+}
+
+/* Platform-specific styling */
+.social-card-linkedin .social-logo-linkedin {
+  @apply hover:shadow-lg hover:shadow-blue-500/25;
+}
+
+.social-card-github .social-logo-github {
+  @apply hover:shadow-lg hover:shadow-gray-500/25;
+}
+
+.social-card-leetcode .social-logo-leetcode {
+  @apply hover:shadow-lg hover:shadow-orange-500/25;
+}
+
+/* Social Profiles Section */
+.social-profiles-section {
+  @apply w-full;
+}
+
+.social-profiles-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted)) transparent;
+}
+
+.social-profiles-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.social-profiles-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.social-profiles-scroll::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted));
+  border-radius: 3px;
+}
+
+.social-profiles-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--muted-foreground));
+}
+
 /* GitHub Badge Placeholder */
 .github-badge-placeholder {
   @apply transition-all duration-200;
