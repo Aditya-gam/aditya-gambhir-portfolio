@@ -6,7 +6,9 @@ import Link from 'next/link';
 
 import ProjectCarousel from '@/components/ProjectCarousel';
 import LinkedInCard from '@/components/LinkedInCard';
+import { Publications } from '@/components/about';
 import { getFeaturedProjects } from '@/data/projects';
+import { aboutData } from '@/data/about';
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -82,6 +84,14 @@ export default function HomePage() {
           autoPlay={true}
           autoPlayInterval={6000}
         />
+      </section>
+
+      {/* Publications Section */}
+      <section
+        className="content-section-lg"
+        aria-labelledby="publications-heading"
+      >
+        <Publications publications={aboutData.publications} />
       </section>
 
       {/* Call-to-Action Section */}

@@ -55,11 +55,13 @@ export interface AboutData {
   };
   certifications: readonly Certificate[];
   publications: {
+    id: string;
     title: string;
     journal: string;
     year: string;
-    quote: string;
-  };
+    url: string;
+    abstract: string;
+  }[];
   community: {
     organization: string;
     role: string;
@@ -272,13 +274,17 @@ export const aboutData: AboutData = {
       description: 'Python programming fundamentals and best practices',
     },
   ],
-  publications: {
-    title: 'A Comprehensive Survey of Multiple Object Tracking Techniques.',
-    journal: 'IJISAE',
-    year: '2024',
-    quote:
-      'I actively publish and peer-review research to stay at the forefront of computer-vision innovation.',
-  },
+  publications: [
+    {
+      id: '1',
+      title: 'A Comprehensive Survey of Multiple Object Tracking Techniques.',
+      journal: 'IJISAE',
+      year: '2024',
+      url: 'https://ijisae.org/index.php/IJISAE/article/view/5486',
+      abstract:
+        "Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored.The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions. Future MOT research aims to develop efficient algorithms for dynamic tracking, improve detection accuracy, and reduce real-time processing. The survey's proposed methods offer valuable references for tracking multiple objects in frame sequences.",
+    },
+  ],
   community: {
     organization: 'ML Forum VIIT',
     role: 'Core Committee Member',
