@@ -152,21 +152,21 @@ async function sendEmail(data: ContactFormData): Promise<void> {
     subject: `Portfolio Contact: ${sanitizedName}`,
     text: `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\n\nMessage:\n${data.message.trim()}`,
     html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
+      <div style="font-family: 'Poppins', system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: hsl(var(--foreground, 14% 0 0)); background-color: hsl(var(--background, 100% 0 0));">
+        <h2 style="color: hsl(var(--foreground, 14% 0 0)); border-bottom: 2px solid hsl(var(--primary, 45% 0.18 145)); padding-bottom: 10px;">
           New Contact Form Submission
         </h2>
-        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+        <div style="background-color: hsl(var(--muted, 97% 0 0)); padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid hsl(var(--border, 89% 0 0));">
           <p><strong>Name:</strong> ${sanitizedName}</p>
-          <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}">${sanitizedEmail}</a></p>
+          <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}" style="color: hsl(var(--primary, 45% 0.18 145));">${sanitizedEmail}</a></p>
         </div>
         <div style="margin: 20px 0;">
-          <h3 style="color: #333;">Message:</h3>
-          <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #007bff; border-radius: 3px;">
+          <h3 style="color: hsl(var(--foreground, 14% 0 0));">Message:</h3>
+          <div style="background-color: hsl(var(--card, 100% 0 0)); padding: 15px; border-left: 4px solid hsl(var(--primary, 45% 0.18 145)); border-radius: 6px; border: 1px solid hsl(var(--border, 89% 0 0));">
             ${sanitizedMessage.replace(/\n/g, '<br>')}
           </div>
         </div>
-        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6; color: #6c757d; font-size: 12px;">
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid hsl(var(--border, 89% 0 0)); color: hsl(var(--muted-foreground, 45% 0 0)); font-size: 12px;">
           <p>This message was sent from your portfolio contact form.</p>
         </div>
       </div>

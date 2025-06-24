@@ -33,6 +33,7 @@
 
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
+import { Github, Code } from 'lucide-react';
 
 // Supported profile platforms
 export type ProfilePlatform = 'linkedin' | 'github' | 'leetcode';
@@ -274,9 +275,10 @@ export default function ProfileBadge({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={getAriaLabel()}
-            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center px-4 py-2 border border-input rounded-lg hover:bg-accent transition-colors"
           >
-            GitHub: {username}
+            <Github className="w-4 h-4 mr-2" />
+            GitHub Profile
           </a>
         </div>
       )}
@@ -288,9 +290,10 @@ export default function ProfileBadge({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={getAriaLabel()}
-            className="inline-flex items-center px-4 py-2 border border-orange-300 rounded-lg hover:bg-orange-50 transition-colors"
+            className="inline-flex items-center px-4 py-2 border border-primary/50 text-primary rounded-lg hover:bg-primary/10 transition-colors"
           >
-            LeetCode: {username}
+            <Code className="w-4 h-4 mr-2" />
+            LeetCode Profile
           </a>
         </div>
       )}

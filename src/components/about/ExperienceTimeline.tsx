@@ -63,7 +63,8 @@ export default function ExperienceTimeline({
                       {exp.period}
                     </span>
                   </div>
-                  <p className="text-indigo-400 mb-3">{exp.role}</p>
+                  <p className="text-primary mb-3">{exp.role}</p>
+                  <p className="text-muted-foreground mb-4">{exp.period}</p>
                   <ul className="space-y-1 text-muted-foreground">
                     {exp.bullets.map((bullet) => (
                       <li key={bullet}>• {bullet}</li>

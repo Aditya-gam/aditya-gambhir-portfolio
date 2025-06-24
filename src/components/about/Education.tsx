@@ -30,13 +30,13 @@ export default function Education({ education }: EducationProps) {
         <CardContent className="p-0">
           <div className="text-center">
             <h3 className="text-xl font-semibold mb-2">{education.degree}</h3>
-            <p className="text-indigo-400 mb-2">{education.school}</p>
+            <p className="text-primary mb-2">{education.school}</p>
             <p className="text-muted-foreground mb-4">GPA: {education.gpa}</p>
             <div className="flex flex-wrap gap-2 justify-center">
               {education.courses.map((course) => (
                 <span
                   key={course}
-                  className="px-3 py-1 bg-indigo-500/10 text-indigo-400 text-sm rounded-full border border-indigo-500/20"
+                  className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
                 >
                   {course}
                 </span>

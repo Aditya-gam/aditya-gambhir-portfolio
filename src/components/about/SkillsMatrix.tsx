@@ -34,14 +34,14 @@ export default function SkillsMatrix({ skillsMatrix }: SkillsMatrixProps) {
       <div className="space-y-6">
         {skillsMatrix.map((skillGroup) => (
           <motion.div key={skillGroup.category} variants={fadeInUp}>
-            <h3 className="text-lg font-semibold mb-3 text-indigo-400">
+            <h3 className="text-lg font-semibold mb-3 text-primary">
               {skillGroup.category}
             </h3>
             <div className="flex flex-wrap gap-2">
               {skillGroup.items.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-2 bg-card border border-border rounded-lg text-sm hover:border-indigo-400 hover:shadow-md transition-all duration-200 cursor-default"
+                  className="px-3 py-2 bg-card border border-border rounded-lg text-sm hover:border-primary hover:shadow-md transition-all duration-200 cursor-default"
                 >
                   {skill}
                 </span>

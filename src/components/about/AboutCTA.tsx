@@ -1,77 +1,43 @@
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { FileText, MessageSquare } from 'lucide-react';
 
 interface AboutCTAProps {
-  readonly resumes: {
-    readonly ds: string;
-    readonly sde: string;
-  };
+  onContactClick: () => void;
 }
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: 'easeOut' },
-};
-
-export default function AboutCTA({ resumes }: AboutCTAProps) {
+export default function AboutCTA({ onContactClick }: Readonly<AboutCTAProps>) {
   return (
     <motion.section
-      className="text-center"
-      initial="initial"
-      whileInView="animate"
+      className="card-highlight text-center"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      variants={fadeInUp}
     >
       <h2 className="text-2xl font-bold mb-6">Ready to Collaborate?</h2>
       <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-        Download my resume to learn more about my experience, or get in touch to
-        discuss how we can work together.
+        I&apos;m always interested in discussing new opportunities, innovative
+        projects, and ways to create meaningful impact through technology.
+        Whether you&apos;re looking for technical expertise, collaborative
+        partnership, or just want to connect, I&apos;d love to hear from you.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href={resumes.ds}
-          target="_blank"
-          rel="noopener noreferrer"
-          download
-          className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-medium rounded-lg hover:from-indigo-600 hover:to-violet-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 transition-all duration-200"
+
+      <div className="cta-buttons">
+        <Link
+          href="/resume"
+          className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all duration-200"
         >
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-          Download Data Science Resume
-        </a>
-        <a
-          href={resumes.sde}
-          target="_blank"
-          rel="noopener noreferrer"
-          download
-          className="inline-flex items-center justify-center px-6 py-3 border border-indigo-400 text-indigo-400 font-medium rounded-lg hover:bg-indigo-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 transition-all duration-200"
+          <FileText className="w-4 h-4 mr-2" />
+          Download Resume
+        </Link>
+        <button
+          onClick={onContactClick}
+          className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all duration-200"
         >
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            />
-          </svg>
-          Download Software Engineer Resume
-        </a>
+          <MessageSquare className="w-4 h-4 mr-2" />
+          Start Conversation
+        </button>
       </div>
     </motion.section>
   );

@@ -74,7 +74,7 @@ export default function DualExpertise({ dualExpertise }: DualExpertiseProps) {
                 {dualExpertise.dataScientist.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-blue-500/10 text-blue-400 text-sm rounded-full border border-blue-500/20"
+                    className="px-3 py-1 bg-secondary/10 text-secondary-foreground text-sm rounded-full border border-secondary/20"
                   >
                     {tech}
                   </span>
@@ -119,7 +119,7 @@ export default function DualExpertise({ dualExpertise }: DualExpertiseProps) {
                 {dualExpertise.softwareEngineer.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-green-500/10 text-green-400 text-sm rounded-full border border-green-500/20"
+                    className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
                   >
                     {tech}
                   </span>

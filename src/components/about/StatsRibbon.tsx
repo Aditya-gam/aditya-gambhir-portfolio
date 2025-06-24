@@ -24,10 +24,10 @@ export default function StatsRibbon({ stats }: StatsRibbonProps) {
       viewport={{ once: true }}
       variants={fadeInUp}
     >
-      <div className="bg-gradient-to-r from-indigo-500/10 to-violet-500/10 border border-indigo-500/20 rounded-2xl p-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="text-3xl font-bold text-indigo-400 mb-1">
+            <div className="text-3xl font-bold text-primary mb-1">
               {stats.experience}
             </div>
             <div className="text-sm text-muted-foreground">
@@ -35,7 +35,7 @@ export default function StatsRibbon({ stats }: StatsRibbonProps) {
             </div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-indigo-400 mb-1">
+            <div className="text-3xl font-bold text-primary mb-1">
               {stats.projects}
             </div>
             <div className="text-sm text-muted-foreground">
@@ -43,13 +43,13 @@ export default function StatsRibbon({ stats }: StatsRibbonProps) {
             </div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-indigo-400 mb-1">
+            <div className="text-3xl font-bold text-primary mb-1">
               {stats.gpa}
             </div>
             <div className="text-sm text-muted-foreground">M.S. GPA</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-indigo-400 mb-1">
+            <div className="text-3xl font-bold text-primary mb-1">
               {stats.publications}
             </div>
             <div className="text-sm text-muted-foreground">

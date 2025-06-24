@@ -3,7 +3,6 @@ import { Card, CardContent } from '@/components/ui/card';
 
 interface ProfessionalSummaryProps {
   readonly description: string;
-  readonly quote: string;
 }
 
 const fadeInUp = {
@@ -14,7 +13,6 @@ const fadeInUp = {
 
 export default function ProfessionalSummary({
   description,
-  quote,
 }: ProfessionalSummaryProps) {
   return (
     <motion.section
@@ -32,8 +30,9 @@ export default function ProfessionalSummary({
           <p className="text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
             {description}
           </p>
-          <p className="text-indigo-400 text-center mt-4 italic">
-            &ldquo;{quote}&rdquo;
+          <p className="text-primary text-center mt-4 italic">
+            &ldquo;Transforming complex problems into elegant solutions through
+            code and data.&rdquo;
           </p>
         </CardContent>
       </Card>

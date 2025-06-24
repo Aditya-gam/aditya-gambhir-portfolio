@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import CertificateModal from '@/components/CertificateModal';
 import { useCertificateModal } from '@/hooks/useCertificateModal';
 import type { Certificate } from '@/types';
+import { Calendar, Link } from 'lucide-react';
 
 interface CertificationsProps {
   readonly certifications: readonly Certificate[];
@@ -54,9 +55,32 @@ export default function Certifications({
             >
               <CardContent className="p-0">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-semibold text-gray-900 leading-tight flex-1 pr-2">
-                    {cert.title}
-                  </h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-foreground leading-tight flex-1 pr-2">
+                      {cert.title}
+                    </h3>
+                    <div className="flex items-center mt-1">
+                      <Calendar
+                        className="w-6 h-6 text-primary flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-2 text-sm text-muted-foreground">
+                        {cert.month} {cert.year}
+                      </span>
+                    </div>
+                    <div className="flex items-center mt-1">
+                      <Link
+                        className="w-6 h-6 text-primary flex-shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-2">
+                        <span className="font-medium">{cert.provider}</span>
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground italic line-clamp-2">
+                      {cert.description}
+                    </p>
+                  </div>
                   <div className="flex items-center space-x-2 flex-shrink-0">
                     {cert.filePath && (
                       <div

@@ -1,19 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import dynamic from 'next/dynamic';
 import { ClientLayout } from '@/app/ClientLayout';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
 
 // Lazy load Footer since it's below the fold (SSR enabled for SEO)
 const Footer = dynamic(() => import('@/components/Footer'), {
@@ -135,7 +124,7 @@ export default function RootLayout({
           />
         </head>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} font-sans flex flex-col min-h-screen bg-background text-foreground antialiased`}
+          className="font-sans flex flex-col min-h-screen bg-background text-foreground antialiased"
           suppressHydrationWarning={true}
         >
           <a href="#main-content" className="skip-link">

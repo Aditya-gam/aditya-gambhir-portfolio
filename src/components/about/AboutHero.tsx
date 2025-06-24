@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { FileText, MessageSquare } from 'lucide-react';
 
 interface AboutHeroProps {
   readonly name: string;
@@ -9,10 +11,7 @@ interface AboutHeroProps {
     readonly src: string;
     readonly alt: string;
   };
-  readonly resumes: {
-    readonly ds: string;
-    readonly sde: string;
-  };
+  onContactClick: () => void;
 }
 
 const fadeInUp = {
@@ -26,8 +25,8 @@ export default function AboutHero({
   title,
   description,
   image,
-  resumes,
-}: AboutHeroProps) {
+  onContactClick,
+}: Readonly<AboutHeroProps>) {
   return (
     <motion.section
       className="hero-section mb-16"
@@ -73,25 +72,21 @@ export default function AboutHero({
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <a
-              href={resumes.ds}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-violet-500 text-white font-medium rounded-lg hover:from-indigo-600 hover:to-violet-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 transition-all duration-200"
+          <div className="cta-section">
+            <Link
+              href="/resume"
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all duration-200"
             >
-              View Résumé (DS)
-            </a>
-            <a
-              href={resumes.sde}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="inline-flex items-center justify-center px-6 py-3 border border-indigo-400 text-indigo-400 font-medium rounded-lg hover:bg-indigo-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 transition-all duration-200"
+              <FileText className="w-4 h-4 mr-2" />
+              View Resume
+            </Link>
+            <button
+              onClick={onContactClick}
+              className="inline-flex items-center justify-center px-6 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-all duration-200"
             >
-              View Résumé (SDE)
-            </a>
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Let&apos;s Talk
+            </button>
           </div>
         </motion.div>
       </div>
