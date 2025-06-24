@@ -345,6 +345,61 @@
 }
 
 /* ================================================
+   MOBILE CAROUSEL COMPONENTS
+   ================================================ */
+
+.mobile-social-carousel {
+  @apply w-full;
+}
+
+.mobile-social-scroll {
+  /* Hide scrollbar while maintaining functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-social-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-project-carousel {
+  @apply w-full;
+}
+
+.mobile-project-scroll {
+  /* Hide scrollbar while maintaining functionality */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-project-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Snap scroll behavior */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+.snap-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+/* ================================================
    COMPONENT UTILITIES
    ================================================ */
 

@@ -1,7 +1,9 @@
 'use client';
 
 import ProjectCard from './ProjectCard';
+import MobileProjectCarousel from './MobileProjectCarousel';
 import { ProjectData } from '@/types';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface ProjectCarouselProps {
   projects: ProjectData[];
@@ -10,9 +12,16 @@ interface ProjectCarouselProps {
 }
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
+  const isMobile = useIsMobile();
+
   if (projects.length === 0) return null;
 
-  // Determine layout based on number of projects
+  // Use mobile carousel for screens below lg breakpoint
+  if (isMobile) {
+    return <MobileProjectCarousel projects={projects} />;
+  }
+
+  // Desktop layout - determine layout based on number of projects
   const getLayoutClasses = () => {
     switch (projects.length) {
       case 1:

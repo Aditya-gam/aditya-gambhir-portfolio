@@ -2,13 +2,16 @@
  * SocialProfiles Component
  *
  * Displays a collection of social profile cards in a responsive layout
- * similar to the ProjectCarousel component.
+ * similar to the ProjectCarousel component. Automatically switches to
+ * mobile carousel on smaller screens.
  */
 
 'use client';
 
 import SocialCard from './SocialCard';
+import MobileSocialCarousel from './MobileSocialCarousel';
 import { SocialProfile } from '@/types';
+import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface SocialProfilesProps {
   readonly profiles: SocialProfile[];
@@ -21,9 +24,22 @@ export default function SocialProfiles({
   title = 'Connect With Me',
   className = '',
 }: SocialProfilesProps) {
+  const isMobile = useIsMobile();
+
   if (profiles.length === 0) return null;
 
-  // Determine layout based on number of profiles
+  // Use mobile carousel for screens below lg breakpoint
+  if (isMobile) {
+    return (
+      <MobileSocialCarousel
+        profiles={profiles}
+        title={title}
+        className={className}
+      />
+    );
+  }
+
+  // Desktop layout - determine layout based on number of profiles
   const getLayoutClasses = () => {
     switch (profiles.length) {
       case 1:
