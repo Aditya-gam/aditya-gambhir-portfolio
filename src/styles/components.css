@@ -12,7 +12,9 @@
   backdrop-filter: blur(var(--blur-amount, 0px));
   -webkit-backdrop-filter: blur(var(--blur-amount, 0px));
   background-color: hsl(var(--background) / var(--bg-opacity, 0.95));
-  transition: backdrop-filter 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition:
+    backdrop-filter 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 }
 
 .header-content {
