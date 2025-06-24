@@ -13,7 +13,6 @@ import { SocialProfile } from '@/types';
 interface SocialCardProps {
   readonly profile: SocialProfile;
   readonly className?: string;
-  readonly priority?: boolean;
 }
 
 export default function SocialCard({
@@ -31,8 +30,8 @@ export default function SocialCard({
 
           {details && details.length > 0 && (
             <>
-              {details.map((detail, index) => (
-                <p key={index} className="linkedin-card-detail">
+              {details.map((detail) => (
+                <p key={detail.label} className="linkedin-card-detail">
                   <span className="linkedin-card-label">{detail.label}:</span>{' '}
                   {detail.value}
                 </p>
@@ -42,8 +41,8 @@ export default function SocialCard({
 
           {stats && stats.length > 0 && (
             <>
-              {stats.map((stat, index) => (
-                <p key={`stat-${index}`} className="linkedin-card-detail">
+              {stats.map((stat) => (
+                <p key={stat.label} className="linkedin-card-detail">
                   <span className="linkedin-card-label">{stat.label}:</span>{' '}
                   {stat.value}
                 </p>
@@ -74,7 +73,7 @@ export default function SocialCard({
 }
 
 // Platform-specific logo components
-function SocialLogo({ platform }: { platform: string }) {
+function SocialLogo({ platform }: { readonly platform: string }) {
   switch (platform) {
     case 'linkedin':
       return <LinkedInLogo />;

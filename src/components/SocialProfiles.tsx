@@ -11,9 +11,9 @@ import SocialCard from './SocialCard';
 import { SocialProfile } from '@/types';
 
 interface SocialProfilesProps {
-  profiles: SocialProfile[];
-  title?: string;
-  className?: string;
+  readonly profiles: SocialProfile[];
+  readonly title?: string;
+  readonly className?: string;
 }
 
 export default function SocialProfiles({
@@ -62,15 +62,12 @@ export default function SocialProfiles({
             minWidth: profiles.length > 3 ? 'max-content' : 'auto',
           }}
         >
-          {profiles.map((profile, index) => (
+          {profiles.map((profile) => (
             <div
               key={`${profile.platform}-${profile.username}`}
               className={item}
             >
-              <SocialCard
-                profile={profile}
-                priority={index < 3} // Prioritize first 3 for loading
-              />
+              <SocialCard profile={profile} />
             </div>
           ))}
         </div>
