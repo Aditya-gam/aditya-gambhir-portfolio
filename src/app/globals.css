@@ -158,6 +158,7 @@
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: content-box;
+    opacity: 0;
     transition: all 0.3s ease;
   }
 
@@ -169,12 +170,6 @@
   .certificates-scroll::-webkit-scrollbar-thumb:active {
     background: rgba(99, 102, 241, 0.6);
     background-clip: content-box;
-  }
-
-  /* Hide scrollbar by default, show on hover */
-  .certificates-scroll::-webkit-scrollbar-thumb {
-    opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
   .certificates-scroll:hover::-webkit-scrollbar-thumb {

@@ -7,7 +7,7 @@ import type { CertificateViewerProps } from '@/types';
 export default function CertificateViewer({
   certificate,
   onLinkedIn,
-}: CertificateViewerProps) {
+}: Readonly<CertificateViewerProps>) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 

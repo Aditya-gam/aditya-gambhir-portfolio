@@ -43,7 +43,6 @@ export default function Certifications({
               key={cert.title}
               className="p-4 shadow-sm min-w-80 cursor-pointer hover:shadow-md transition-all duration-200 hover:scale-[1.02] border-l-4 border-l-indigo-500"
               onClick={() => openModal(cert)}
-              role="button"
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
