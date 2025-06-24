@@ -1,6 +1,33 @@
 /* Component-Specific Styles - Design System Compliant */
 
 /* ================================================
+   HEADER COMPONENTS
+   ================================================ */
+
+.header-scrolled {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.header-backdrop {
+  backdrop-filter: blur(var(--blur-amount, 0px));
+  -webkit-backdrop-filter: blur(var(--blur-amount, 0px));
+  background-color: hsl(var(--background) / var(--bg-opacity, 0.95));
+  transition: backdrop-filter 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.header-content {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.header-nav-link {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.header-nav-link-scrolled {
+  @apply text-sm;
+}
+
+/* ================================================
    CARD COMPONENTS
    ================================================ */
 
