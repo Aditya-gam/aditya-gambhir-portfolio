@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 
 interface StatsRibbonProps {
-  stats: {
-    experience: string;
-    projects: string;
-    gpa: string;
-    publications: string;
+  readonly stats: {
+    readonly experience: string;
+    readonly projects: string;
+    readonly gpa: string;
+    readonly publications: string;
   };
 }
 

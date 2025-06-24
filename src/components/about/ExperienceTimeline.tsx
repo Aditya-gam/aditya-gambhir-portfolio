@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ExperienceTimelineProps {
-  experience: {
-    company: string;
-    role: string;
-    period: string;
-    bullets: string[];
+  readonly experience: readonly {
+    readonly company: string;
+    readonly role: string;
+    readonly period: string;
+    readonly bullets: readonly string[];
   }[];
 }
 

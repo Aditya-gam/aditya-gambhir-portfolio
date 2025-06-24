@@ -2,16 +2,16 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface DualExpertiseProps {
-  dualExpertise: {
-    dataScientist: {
-      title: string;
-      achievements: string[];
-      technologies: string[];
+  readonly dualExpertise: {
+    readonly dataScientist: {
+      readonly title: string;
+      readonly achievements: readonly string[];
+      readonly technologies: readonly string[];
     };
-    softwareEngineer: {
-      title: string;
-      achievements: string[];
-      technologies: string[];
+    readonly softwareEngineer: {
+      readonly title: string;
+      readonly achievements: readonly string[];
+      readonly technologies: readonly string[];
     };
   };
 }

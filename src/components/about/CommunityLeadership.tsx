@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface CommunityLeadershipProps {
-  community: {
-    organization: string;
-    role: string;
-    period: string;
-    description: string;
+  readonly community: {
+    readonly organization: string;
+    readonly role: string;
+    readonly period: string;
+    readonly description: string;
   };
 }
 

@@ -91,10 +91,10 @@ export const aboutData: AboutData = {
     },
   },
   stats: {
-    experience: '5+',
+    experience: '2+',
     projects: '10+',
     gpa: '3.67',
-    publications: '2',
+    publications: '1',
   },
   professionalSummary: {
     description:

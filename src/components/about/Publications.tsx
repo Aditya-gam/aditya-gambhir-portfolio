@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface PublicationsProps {
-  publications: {
-    title: string;
-    journal: string;
-    year: string;
-    quote: string;
+  readonly publications: {
+    readonly title: string;
+    readonly journal: string;
+    readonly year: string;
+    readonly quote: string;
   };
 }
 

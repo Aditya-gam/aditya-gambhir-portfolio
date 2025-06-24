@@ -2,16 +2,16 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 interface AboutHeroProps {
-  name: string;
-  title: string;
-  description: string;
-  image: {
-    src: string;
-    alt: string;
+  readonly name: string;
+  readonly title: string;
+  readonly description: string;
+  readonly image: {
+    readonly src: string;
+    readonly alt: string;
   };
-  resumes: {
-    ds: string;
-    sde: string;
+  readonly resumes: {
+    readonly ds: string;
+    readonly sde: string;
   };
 }
 

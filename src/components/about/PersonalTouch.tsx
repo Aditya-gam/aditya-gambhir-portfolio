@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface PersonalTouchProps {
-  personalTouch: {
-    favoriteStack: string;
-    hobbies: string[];
+  readonly personalTouch: {
+    readonly favoriteStack: string;
+    readonly hobbies: readonly string[];
   };
 }
 

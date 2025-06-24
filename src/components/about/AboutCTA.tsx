@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 interface AboutCTAProps {
-  resumes: {
-    ds: string;
-    sde: string;
+  readonly resumes: {
+    readonly ds: string;
+    readonly sde: string;
   };
 }
 

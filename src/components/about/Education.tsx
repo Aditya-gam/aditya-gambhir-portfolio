@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface EducationProps {
-  education: {
-    degree: string;
-    school: string;
-    gpa: string;
-    courses: string[];
+  readonly education: {
+    readonly degree: string;
+    readonly school: string;
+    readonly gpa: string;
+    readonly courses: readonly string[];
   };
 }
 

@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ProfessionalSummaryProps {
-  description: string;
-  quote: string;
+  readonly description: string;
+  readonly quote: string;
 }
 
 const fadeInUp = {

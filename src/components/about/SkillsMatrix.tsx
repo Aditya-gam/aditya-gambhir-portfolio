@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 
 interface SkillsMatrixProps {
-  skillsMatrix: {
-    category: string;
-    items: string[];
+  readonly skillsMatrix: readonly {
+    readonly category: string;
+    readonly items: readonly string[];
   }[];
 }
 
