@@ -1,0 +1,32 @@
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="#f8fafc"/>
+  
+  <!-- Map interface -->
+  <rect x="50" y="50" width="500" height="300" rx="12" fill="url(#mapGradient)" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Map elements -->
+  <circle cx="150" cy="120" r="8" fill="#3b82f6" opacity="0.8"/>
+  <circle cx="250" cy="180" r="6" fill="#10b981" opacity="0.8"/>
+  <circle cx="350" cy="140" r="7" fill="#f59e0b" opacity="0.8"/>
+  <circle cx="450" cy="220" r="5" fill="#ef4444" opacity="0.8"/>
+  
+  <!-- Route lines -->
+  <path d="M150,120 Q200,130 250,180" stroke="#3b82f6" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M250,180 Q300,150 350,140" stroke="#10b981" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M350,140 Q400,180 450,220" stroke="#f59e0b" stroke-width="3" fill="none" opacity="0.6"/>
+  
+  <!-- Interface elements -->
+  <rect x="70" y="70" width="80" height="30" rx="6" fill="white" stroke="#e2e8f0"/>
+  <text x="110" y="88" text-anchor="middle" font-family="system-ui" font-size="12" fill="#64748b">LA Olympics</text>
+  
+  <!-- Title -->
+  <text x="300" y="380" text-anchor="middle" font-family="system-ui" font-size="18" font-weight="600" fill="#1e293b">Navigate LA28</text>
+</svg> 

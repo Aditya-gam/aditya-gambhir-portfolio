@@ -3,7 +3,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import ProjectCard from '@/components/ProjectCard';
+
+import ProjectCarousel from '@/components/ProjectCarousel';
 import LinkedInCard from '@/components/LinkedInCard';
 import { getFeaturedProjects } from '@/data/projects';
 
@@ -54,7 +55,7 @@ export default function HomePage() {
         </h2>
         <div className="grid-highlights">
           <div className="card-highlight">
-            <h3 className="heading-card">5+ Years Experience</h3>
+            <h3 className="heading-card">2+ Years Experience</h3>
             <p className="description-card">Professional Development</p>
           </div>
           <div className="card-highlight">
@@ -73,23 +74,14 @@ export default function HomePage() {
         className="content-section-lg"
         aria-labelledby="projects-heading"
       >
-        <h2 id="projects-heading" className="heading-section">
+        <h2 id="projects-heading" className="heading-section text-center mb-8">
           Featured Projects
         </h2>
-        <ul className="grid-projects">
-          {featuredProjects.map((project) => (
-            <li key={project.title}>
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                bullets={project.bullets}
-                imageSrc={project.imageSrc}
-                imageAlt={project.imageAlt}
-                priority={project.priority}
-              />
-            </li>
-          ))}
-        </ul>
+        <ProjectCarousel
+          projects={featuredProjects}
+          autoPlay={true}
+          autoPlayInterval={6000}
+        />
       </section>
 
       {/* Call-to-Action Section */}
