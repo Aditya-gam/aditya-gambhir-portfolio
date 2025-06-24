@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useContext } from 'react';
+import { MessageCircle } from 'lucide-react';
 import { siGithub } from 'simple-icons';
+import { ContactModalContext } from '@/app/ContactModalContext';
 
 // GitHub icon from simple-icons
 const GitHubIcon = ({ className }: { className?: string }) => (
@@ -27,18 +30,25 @@ const LinkedInIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+// Contact icon component
+const ContactIcon = ({ className }: { className?: string }) => (
+  <MessageCircle className={className} />
+);
+
 export default function Footer() {
+  const { openContactModal } = useContext(ContactModalContext);
+
   return (
     <footer className="bg-muted/30 py-8 mt-16">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center space-y-4">
           {/* Social Links */}
-          <div className="flex space-x-6">
+          <div className="flex items-center space-x-6">
             <Link
               href="https://github.com/aditya-gambhir"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Aditya on GitHub"
             >
               <GitHubIcon className="w-5 h-5" />
@@ -47,11 +57,19 @@ export default function Footer() {
               href="https://linkedin.com/in/aditya-gambhir"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Aditya on LinkedIn"
             >
               <LinkedInIcon className="w-5 h-5" />
             </Link>
+            {/* Contact button - only visible on mobile screens where MobileNav is active */}
+            <button
+              onClick={openContactModal}
+              className="lg:hidden inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Contact Aditya"
+            >
+              <ContactIcon className="w-5 h-5" />
+            </button>
           </div>
 
           {/* Copyright */}
