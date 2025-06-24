@@ -66,11 +66,9 @@ export default function Publications({ publications }: PublicationsProps) {
               whileHover="hover"
               transition={{ delay: index * 0.1, duration: 0.3 }}
             >
-              <Card
-                className="p-6 shadow-sm cursor-pointer transition-all duration-200 hover:shadow-md hover:border-indigo-200 dark:hover:border-indigo-800"
+              <button
+                className="w-full text-left"
                 onClick={() => handlePublicationClick(publication)}
-                role="button"
-                tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -79,21 +77,23 @@ export default function Publications({ publications }: PublicationsProps) {
                 }}
                 aria-label={`View details for ${publication.title}`}
               >
-                <CardContent className="p-0">
-                  <div className="mb-4">
-                    <h3 className="font-semibold mb-2 flex items-center group">
-                      &ldquo;{publication.title}&rdquo;
-                      <ExternalLink className="w-4 h-4 ml-2 text-muted-foreground group-hover:text-indigo-500 transition-colors" />
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {publication.journal} • {publication.year}
+                <Card className="p-6 shadow-sm cursor-pointer transition-all duration-200 hover:shadow-md hover:border-indigo-200 dark:hover:border-indigo-800">
+                  <CardContent className="p-0">
+                    <div className="mb-4">
+                      <h3 className="font-semibold mb-2 flex items-center group">
+                        &ldquo;{publication.title}&rdquo;
+                        <ExternalLink className="w-4 h-4 ml-2 text-muted-foreground group-hover:text-indigo-500 transition-colors" />
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {publication.journal} • {publication.year}
+                      </p>
+                    </div>
+                    <p className="text-indigo-400 text-sm italic">
+                      Click to view abstract and read full paper
                     </p>
-                  </div>
-                  <p className="text-indigo-400 text-sm italic">
-                    Click to view abstract and read full paper
-                  </p>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </button>
             </motion.div>
           ))}
         </div>
