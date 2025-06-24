@@ -153,9 +153,9 @@ export default function MobileSocialCarousel({
         {/* Dot Indicators */}
         {profiles.length > 1 && (
           <div className="flex justify-center gap-2 mt-4">
-            {profiles.map((_, index) => (
+            {profiles.map((profile, index) => (
               <button
-                key={index}
+                key={`${profile.platform}-${profile.username}-dot`}
                 className={`w-2 h-2 rounded-full transition-all duration-200 ${
                   index === currentIndex
                     ? 'bg-primary scale-125'

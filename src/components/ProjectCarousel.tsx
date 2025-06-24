@@ -6,9 +6,7 @@ import { ProjectData } from '@/types';
 import { useIsMobile } from '@/hooks/useMediaQuery';
 
 interface ProjectCarouselProps {
-  projects: ProjectData[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
+  readonly projects: ProjectData[];
 }
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
