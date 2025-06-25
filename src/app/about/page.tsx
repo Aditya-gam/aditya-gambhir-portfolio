@@ -1,5 +1,6 @@
 'use client';
 
+import { useContext } from 'react';
 import {
   AboutHero,
   StatsRibbon,
@@ -15,8 +16,11 @@ import {
   AboutCTA,
 } from '@/components/about';
 import { aboutData } from '@/data/about';
+import { ContactModalContext } from '@/app/ContactModalContext';
 
 export default function AboutPage() {
+  const { openContactModal } = useContext(ContactModalContext);
+
   return (
     <main className="page-layout">
       {/* Breadcrumb */}
@@ -35,14 +39,13 @@ export default function AboutPage() {
         title={aboutData.hero.title}
         description={aboutData.hero.description}
         image={aboutData.hero.image}
-        resumes={aboutData.hero.resumes}
+        onContactClick={openContactModal}
       />
 
       <StatsRibbon stats={aboutData.stats} />
 
       <ProfessionalSummary
         description={aboutData.professionalSummary.description}
-        quote={aboutData.professionalSummary.quote}
       />
 
       <DualExpertise dualExpertise={aboutData.dualExpertise} />
@@ -61,7 +64,7 @@ export default function AboutPage() {
 
       <PersonalTouch personalTouch={aboutData.personalTouch} />
 
-      <AboutCTA resumes={aboutData.hero.resumes} />
+      <AboutCTA onContactClick={openContactModal} />
     </main>
   );
 }

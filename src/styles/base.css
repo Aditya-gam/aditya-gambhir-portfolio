@@ -21,7 +21,7 @@
    ================================================ */
 
 .page-layout {
-  @apply container mx-auto px-4 py-8;
+  @apply container mx-auto px-4 py-8 max-w-4xl pt-20;
 }
 
 .page-layout-narrow {
@@ -41,19 +41,43 @@
 }
 
 /* ================================================
+   CONTENT SECTIONS
+   ================================================ */
+
+.content-section {
+  @apply mb-12;
+}
+
+.content-section-large {
+  @apply mb-16;
+}
+
+.content-section-lg {
+  @apply mb-16;
+}
+
+.section-spacing {
+  @apply mt-12;
+}
+
+.section-spacing-large {
+  @apply mt-16;
+}
+
+/* ================================================
    HERO SECTIONS
    ================================================ */
 
 .hero-section {
-  @apply flex flex-col items-center text-center;
+  @apply text-center mb-16;
 }
 
 .hero-image {
-  @apply relative;
+  @apply flex justify-center mb-6;
 }
 
 .hero-content {
-  @apply mt-2 max-w-md;
+  @apply max-w-2xl mx-auto mb-8;
 }
 
 /* ================================================
@@ -77,11 +101,15 @@
 }
 
 .grid-highlights {
-  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 text-center;
+  @apply grid grid-cols-1 md:grid-cols-3 gap-6;
 }
 
 .grid-projects {
-  @apply grid gap-6 md:grid-cols-2;
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6 list-none p-0;
+}
+
+.grid-skills {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4;
 }
 
 .grid-resume {
@@ -89,31 +117,11 @@
 }
 
 /* ================================================
-   CONTENT SECTIONS
-   ================================================ */
-
-.content-section {
-  @apply mt-12;
-}
-
-.content-section-large {
-  @apply mt-16;
-}
-
-.section-spacing {
-  @apply mt-12;
-}
-
-.section-spacing-large {
-  @apply mt-16;
-}
-
-/* ================================================
    CALL-TO-ACTION LAYOUTS
    ================================================ */
 
 .cta-section {
-  @apply flex flex-col sm:flex-row justify-center gap-4;
+  @apply flex flex-col sm:flex-row gap-4 justify-center items-center;
 }
 
 .cta-buttons {
@@ -128,24 +136,45 @@
   @apply flex items-center space-x-6 text-sm font-medium;
 }
 
+.nav-desktop {
+  @apply hidden lg:flex space-x-8;
+}
+
 .nav-mobile {
-  @apply flex flex-col space-y-2;
+  @apply lg:hidden;
 }
 
 .nav-links {
   @apply flex items-center gap-6 text-sm lg:gap-8;
 }
 
+/* Mobile Navigation Enhancements */
+.mobile-nav-overlay {
+  @apply fixed inset-0 z-[100] bg-black/60 backdrop-blur-md;
+}
+
+.mobile-nav-content {
+  @apply fixed inset-y-0 left-0 z-[101] h-full w-3/4 max-w-sm bg-background border-r shadow-2xl;
+}
+
+.mobile-nav-trigger {
+  @apply relative z-[50];
+}
+
 /* ================================================
    FOOTER LAYOUTS
    ================================================ */
 
+.footer-layout {
+  @apply border-t mt-16 pt-8;
+}
+
 .footer-content {
-  @apply container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row;
+  @apply container mx-auto px-4 text-center;
 }
 
 .footer-links {
-  @apply flex items-center gap-4;
+  @apply flex justify-center space-x-6 mb-4;
 }
 
 .footer-copyright {
@@ -165,7 +194,7 @@
 }
 
 .form-field {
-  @apply block;
+  @apply space-y-2;
 }
 
 .form-captcha {
@@ -209,10 +238,13 @@
 }
 
 .visually-hidden {
-  @apply sr-only;
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
 }
 
-/* Focus management for interactive elements */
 .focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+}
+
+.skip-link {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-primary text-primary-foreground px-4 py-2 z-50;
 }
