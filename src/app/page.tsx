@@ -77,11 +77,7 @@ export default function HomePage() {
         <h2 id="projects-heading" className="heading-section text-center mb-8">
           Featured Projects
         </h2>
-        <ProjectCarousel
-          projects={featuredProjects}
-          autoPlay={true}
-          autoPlayInterval={6000}
-        />
+        <ProjectCarousel projects={featuredProjects} />
       </section>
 
       {/* Publications Section */}
@@ -104,6 +100,13 @@ export default function HomePage() {
             aria-label="Learn more about me"
           >
             About Me
+          </Link>
+          <Link
+            href="/resume"
+            className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-secondary-foreground font-medium rounded-lg hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 transition-colors duration-200"
+            aria-label="View my resume"
+          >
+            View Resume
           </Link>
         </div>
       </section>
