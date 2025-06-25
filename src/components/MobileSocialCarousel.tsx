@@ -30,7 +30,7 @@ export default function MobileSocialCarousel({
       title={title}
       className={`mobile-social-carousel ${className}`}
       showIndicators={true}
-      showCounter={true}
+      showCounter={false}
       showNavigation={true}
     />
   );

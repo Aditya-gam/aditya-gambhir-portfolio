@@ -32,7 +32,7 @@ export default function MobileProjectCarousel({
       getItemKey={(project) => project.title}
       className={`mobile-project-carousel ${className}`}
       showIndicators={true}
-      showCounter={true}
+      showCounter={false}
       showNavigation={true}
     />
   );
