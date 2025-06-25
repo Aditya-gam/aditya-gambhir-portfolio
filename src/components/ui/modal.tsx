@@ -36,7 +36,7 @@ export function Modal({
   closeOnOverlayClick = true,
   closeOnEscape = true,
 }: ModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDialogElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
   // Handle keyboard events
@@ -66,11 +66,9 @@ export function Modal({
             lastElement?.focus();
             event.preventDefault();
           }
-        } else {
-          if (document.activeElement === lastElement) {
-            firstElement?.focus();
-            event.preventDefault();
-          }
+        } else if (document.activeElement === lastElement) {
+          firstElement?.focus();
+          event.preventDefault();
         }
       }
     };
@@ -79,33 +77,37 @@ export function Modal({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose, closeOnEscape]);
 
-  // Focus management
+  // Focus management on open
   useEffect(() => {
-    if (isOpen) {
-      // Store current focus
-      previousFocusRef.current = document.activeElement as HTMLElement;
+    if (!isOpen) return;
 
-      // Focus modal when opened
-      setTimeout(() => {
-        const modal = modalRef.current;
-        if (!modal) return;
+    // Store current focus
+    previousFocusRef.current = document.activeElement as HTMLElement;
 
-        const firstFocusable = modal.querySelector(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        ) as HTMLElement;
+    // Focus modal when opened
+    const timer = setTimeout(() => {
+      const modal = modalRef.current;
+      if (!modal) return;
 
-        if (firstFocusable) {
-          firstFocusable.focus();
-        } else {
-          modal.focus();
-        }
-      }, 100);
-    } else {
-      // Restore focus when closed
-      if (previousFocusRef.current) {
-        previousFocusRef.current.focus();
+      const firstFocusable = modal.querySelector(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      ) as HTMLElement;
+
+      if (firstFocusable) {
+        firstFocusable.focus();
+      } else {
+        modal.focus();
       }
-    }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
+  // Focus management on close
+  useEffect(() => {
+    if (isOpen || !previousFocusRef.current) return;
+
+    previousFocusRef.current.focus();
   }, [isOpen]);
 
   // Handle overlay click
@@ -132,8 +134,6 @@ export function Modal({
     }
   };
 
-  if (!isOpen) return null;
-
   const maxWidthClasses = {
     sm: 'max-w-sm',
     md: 'max-w-md',
@@ -150,14 +150,13 @@ export function Modal({
       onKeyDown={handleOverlayInteraction}
       aria-label="Close modal overlay"
     >
-      <div
+      <dialog
         ref={modalRef}
         className={`bg-background border rounded-lg shadow-lg ${maxWidthClasses[maxWidth]} w-full ${className}`}
-        role="dialog"
-        aria-modal="true"
         aria-labelledby={title ? 'modal-title' : undefined}
         aria-describedby={description ? 'modal-description' : undefined}
         tabIndex={-1}
+        open
       >
         {/* Header */}
         {(title || showCloseButton) && (
@@ -194,7 +193,7 @@ export function Modal({
         <div className={`${title || showCloseButton ? 'p-6' : 'p-0'}`}>
           {children}
         </div>
-      </div>
+      </dialog>
     </button>
   );
 }

@@ -29,7 +29,7 @@ export default function MobileProjectCarousel({
           priority={index < 3} // Prioritize first 3 images for loading
         />
       )}
-      getItemKey={(project, index) => project.title || `project-${index}`}
+      getItemKey={(project) => project.title}
       className={`mobile-project-carousel ${className}`}
       showIndicators={true}
       showCounter={true}

@@ -175,9 +175,9 @@ export default function ResumePreviewCard({
             Key Highlights
           </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {resume.highlights.map((highlight, index) => (
+            {resume.highlights.map((highlight) => (
               <div
-                key={index}
+                key={highlight}
                 className="flex items-center gap-2 text-sm bg-accent/50 rounded-md px-3 py-2"
               >
                 <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />

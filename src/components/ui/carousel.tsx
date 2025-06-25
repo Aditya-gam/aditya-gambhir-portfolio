@@ -160,9 +160,9 @@ export function Carousel<T>({
         {/* Dot Indicators */}
         {showIndicators && items.length > 1 && (
           <div className="flex justify-center gap-2 mt-4">
-            {items.map((_, index) => (
+            {items.map((item, index) => (
               <button
-                key={index}
+                key={getItemKey(item, index)}
                 className={`w-2 h-2 rounded-full transition-all duration-200 ${
                   index === currentIndex
                     ? 'bg-primary scale-125'
