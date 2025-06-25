@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
   // Enable compression
   compress: true,
 
-  // Headers for CSP - allow LinkedIn scripts and Google Fonts
+  // Headers for CSP - allow LinkedIn scripts, Google Fonts, and Google reCAPTCHA
   async headers() {
     return [
       {
@@ -33,10 +33,12 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com",
-              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com https://www.google.com",
-              "img-src 'self' data: https://media.licdn.com https://cdn.jsdelivr.net",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com https://www.googletagmanager.com",
+              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com https://www.googletagmanager.com",
+              "frame-src 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com",
+              "child-src 'self' https://www.google.com https://www.recaptcha.net https://recaptcha.google.com",
+              "img-src 'self' data: https://media.licdn.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com",
               "font-src 'self' data: https://fonts.gstatic.com",
             ].join('; '),
           },
@@ -46,7 +48,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-XSS-Protection',

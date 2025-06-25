@@ -21,11 +21,19 @@ export function CaptchaField({
     return (
       <div className="form-captcha">
         <p className="text-sm text-destructive">
-          reCAPTCHA configuration error
+          reCAPTCHA configuration error: Site key not found
         </p>
       </div>
     );
   }
+
+  // Enhanced error handler for debugging
+  const handleError = () => {
+    console.error('reCAPTCHA error occurred');
+    console.error('Current site key:', siteKey);
+    console.error('Current hostname:', window.location.hostname);
+    onError();
+  };
 
   return (
     <div className="form-captcha">
@@ -34,9 +42,16 @@ export function CaptchaField({
         ref={recaptchaRef}
         onChange={onChange}
         onExpired={onExpired}
-        onError={onError}
+        onError={handleError}
         theme="light"
+        size="normal"
       />
+      {/* Debug info - remove in production */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="text-xs text-muted-foreground mt-2">
+          Debug: Site key configured ({siteKey.substring(0, 10)}...)
+        </div>
+      )}
     </div>
   );
 }
