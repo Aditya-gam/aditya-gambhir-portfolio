@@ -120,6 +120,5 @@ export interface ResumeData {
 
 export interface ResumePreviewCardProps {
   readonly resume: ResumeData;
-  readonly priority?: boolean;
   readonly className?: string;
 }

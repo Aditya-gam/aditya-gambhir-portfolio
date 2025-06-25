@@ -106,11 +106,10 @@ export default function ResumePage() {
           Resume Previews
         </h2>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 max-w-7xl mx-auto">
-          {resumes.map((resume, index) => (
+          {resumes.map((resume) => (
             <ResumePreviewCard
               key={resume.id}
               resume={resume}
-              priority={index === 0}
               className="h-full"
             />
           ))}

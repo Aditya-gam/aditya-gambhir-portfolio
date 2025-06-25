@@ -1,6 +1,4 @@
 'use client';
-
-import { useState, useRef } from 'react';
 import {
   Download,
   ExternalLink,
@@ -23,29 +21,13 @@ import { cn } from '@/lib/utils';
 
 interface ResumePreviewCardProps {
   readonly resume: ResumeData;
-  readonly priority?: boolean;
   readonly className?: string;
 }
 
 export default function ResumePreviewCard({
   resume,
-  priority = false,
   className = '',
 }: ResumePreviewCardProps) {
-  const [isPreviewLoaded, setIsPreviewLoaded] = useState(false);
-  const [previewError, setPreviewError] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const handlePreviewLoad = () => {
-    setIsPreviewLoaded(true);
-    setPreviewError(false);
-  };
-
-  const handlePreviewError = () => {
-    setPreviewError(true);
-    setIsPreviewLoaded(false);
-  };
-
   const handleDownload = () => {
     // Track download analytics
     if (typeof window !== 'undefined' && 'gtag' in window) {
@@ -101,71 +83,81 @@ export default function ResumePreviewCard({
       </CardHeader>
 
       <CardContent className="space-y-6">
-        {/* PDF Preview */}
+        {/* PDF Preview Card */}
         <div className="pdf-preview-container">
-          <div className="relative bg-gray-50 dark:bg-gray-900 rounded-lg overflow-hidden border-2 border-dashed border-gray-200 dark:border-gray-700">
-            {!previewError ? (
-              <>
-                {!isPreviewLoaded && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
-                    <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                      <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                      <span className="text-sm">Loading preview...</span>
-                    </div>
+          <button
+            type="button"
+            className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer group transition-all duration-300 hover:shadow-lg hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            onClick={handleViewFullscreen}
+            aria-label={`Open ${resume.title} in new tab`}
+          >
+            <div className="h-[400px] md:h-[500px] lg:h-[600px] flex flex-col items-center justify-center text-center p-8">
+              {/* PDF Icon and Visual */}
+              <div className="relative mb-6">
+                <div className="w-24 h-32 bg-white dark:bg-gray-100 rounded-lg shadow-lg border-2 border-gray-200 dark:border-gray-300 flex flex-col items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
+                  <FileText className="w-12 h-12 text-red-600 mb-2" />
+                  <div className="text-xs font-medium text-gray-700 dark:text-gray-800">
+                    PDF
                   </div>
-                )}
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+                </div>
+                {/* Paper stack effect */}
+                <div className="absolute -bottom-1 -right-1 w-24 h-32 bg-gray-200 dark:bg-gray-300 rounded-lg -z-10 transform rotate-2" />
+                <div className="absolute -bottom-2 -right-2 w-24 h-32 bg-gray-300 dark:bg-gray-400 rounded-lg -z-20 transform rotate-4" />
+              </div>
 
-                <iframe
-                  ref={iframeRef}
-                  src={`/${resume.filename}#view=FitH&toolbar=0&navpanes=0&scrollbar=0`}
-                  title={`${resume.title} Preview`}
-                  className={cn(
-                    'w-full border-0 transition-opacity duration-300',
-                    'h-[400px] md:h-[500px] lg:h-[600px]',
-                    isPreviewLoaded ? 'opacity-100' : 'opacity-0',
-                  )}
-                  onLoad={handlePreviewLoad}
-                  onError={handlePreviewError}
-                  loading={priority ? 'eager' : 'lazy'}
-                  sandbox="allow-same-origin"
-                />
-              </>
-            ) : (
-              <div className="h-[400px] md:h-[500px] lg:h-[600px] flex flex-col items-center justify-center text-center p-8">
-                <FileText className="w-16 h-16 text-muted-foreground mb-4" />
-                <h3 className="text-lg font-semibold mb-2">
-                  Preview Not Available
-                </h3>
-                <p className="text-muted-foreground text-sm mb-4 max-w-md">
-                  PDF preview couldn&apos;t be loaded. You can still download
-                  the full resume to view it.
-                </p>
+              <h3 className="text-lg font-semibold mb-2 text-foreground">
+                {resume.title}
+              </h3>
+              <p className="text-muted-foreground text-sm mb-6 max-w-md">
+                Click to open the full resume in a new tab for the best viewing
+                experience.
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
                 <Button
-                  variant="outline"
-                  onClick={handleViewFullscreen}
-                  className="gap-2"
+                  variant="default"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleViewFullscreen();
+                  }}
+                  className="flex-1 gap-2 font-medium"
+                  size="lg"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  Open in New Tab
+                  View Resume
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDownload();
+                  }}
+                  className="flex-1 gap-2"
+                  size="lg"
+                >
+                  <Download className="w-4 h-4" />
+                  Download
                 </Button>
               </div>
-            )}
-          </div>
 
-          {!previewError && (
-            <div className="flex items-center justify-between mt-2 text-xs text-muted-foreground">
-              <span>PDF Preview</span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleViewFullscreen}
-                className="h-auto p-1 gap-1 text-xs hover:text-primary"
-              >
-                <ExternalLink className="w-3 h-3" />
-                Full Screen
-              </Button>
+              {/* File Info */}
+              <div className="mt-6 flex items-center gap-4 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <HardDrive className="w-3 h-3" />
+                  {resume.fileSize}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3 h-3" />
+                  Updated {new Date(resume.lastUpdated).toLocaleDateString()}
+                </span>
+              </div>
             </div>
-          )}
+
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </button>
         </div>
 
         {/* Resume Highlights */}
