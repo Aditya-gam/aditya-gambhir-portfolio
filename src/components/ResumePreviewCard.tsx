@@ -85,11 +85,9 @@ export default function ResumePreviewCard({
       <CardContent className="space-y-6">
         {/* PDF Preview Card */}
         <div className="pdf-preview-container">
-          <button
-            type="button"
-            className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer group transition-all duration-300 hover:shadow-lg hover:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            onClick={handleViewFullscreen}
-            aria-label={`Open ${resume.title} in new tab`}
+          <section
+            className="relative w-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 cursor-pointer group transition-all duration-300 hover:shadow-lg hover:border-primary/50 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
+            aria-label={`${resume.title} preview and actions`}
           >
             <div className="h-[400px] md:h-[500px] lg:h-[600px] flex flex-col items-center justify-center text-center p-8">
               {/* PDF Icon and Visual */}
@@ -110,18 +108,14 @@ export default function ResumePreviewCard({
                 {resume.title}
               </h3>
               <p className="text-muted-foreground text-sm mb-6 max-w-md">
-                Click to open the full resume in a new tab for the best viewing
-                experience.
+                Choose an action below to view or download the resume.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
                 <Button
                   variant="default"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleViewFullscreen();
-                  }}
+                  onClick={handleViewFullscreen}
                   className="flex-1 gap-2 font-medium"
                   size="lg"
                 >
@@ -130,10 +124,7 @@ export default function ResumePreviewCard({
                 </Button>
                 <Button
                   variant="outline"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDownload();
-                  }}
+                  onClick={handleDownload}
                   className="flex-1 gap-2"
                   size="lg"
                 >
@@ -157,7 +148,7 @@ export default function ResumePreviewCard({
 
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-          </button>
+          </section>
         </div>
 
         {/* Resume Highlights */}
