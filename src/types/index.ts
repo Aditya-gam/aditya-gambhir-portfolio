@@ -103,3 +103,23 @@ export interface CertificateViewerProps {
   readonly certificate: Certificate;
   readonly onLinkedIn?: () => void;
 }
+
+// Resume Types
+export interface ResumeData {
+  readonly id: string;
+  readonly title: string;
+  readonly filename: string;
+  readonly downloadName: string;
+  readonly description: string;
+  readonly highlights: readonly string[];
+  readonly targetAudience: string;
+  readonly lastUpdated: string;
+  readonly fileSize: string;
+  readonly type: 'sde' | 'ds';
+}
+
+export interface ResumePreviewCardProps {
+  readonly resume: ResumeData;
+  readonly priority?: boolean;
+  readonly className?: string;
+}

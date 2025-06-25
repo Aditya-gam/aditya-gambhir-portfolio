@@ -407,3 +407,88 @@
 .touch-target {
   @apply min-w-[44px] min-h-[44px] p-3;
 }
+
+/* ================================================
+   RESUME PREVIEW COMPONENTS
+   ================================================ */
+
+/* Resume Preview Card Styles */
+.resume-preview-card {
+  @apply transition-all duration-300 border border-border;
+}
+
+.resume-preview-card:hover {
+  @apply -translate-y-0.5 border-primary/30;
+  box-shadow: 0 8px 25px -8px hsl(var(--foreground) / 0.1);
+}
+
+.pdf-preview-container iframe {
+  @apply transition-all duration-300;
+}
+
+.pdf-preview-container:hover iframe {
+  @apply scale-[1.01];
+}
+
+.resume-highlights {
+  @apply bg-gradient-to-br from-accent/30 to-accent/10 rounded-xl p-4;
+}
+
+.resume-metadata {
+  @apply bg-muted/30 rounded-xl p-4;
+}
+
+/* Loading animation for PDF preview */
+@keyframes pdf-shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.pdf-loading {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 0px,
+    hsl(var(--accent)) 40px,
+    hsl(var(--muted)) 80px
+  );
+  background-size: 200px 100%;
+  animation: pdf-shimmer 1.5s infinite;
+}
+
+/* Resume type badges */
+.resume-type-sde {
+  @apply bg-gradient-to-r from-blue-500 to-blue-700 text-white;
+}
+
+.resume-type-ds {
+  @apply bg-gradient-to-r from-purple-500 to-purple-700 text-white;
+}
+
+/* Responsive adjustments for resume cards */
+@media (max-width: 768px) {
+  .resume-preview-card {
+    @apply mb-8;
+  }
+
+  .pdf-preview-container iframe {
+    height: 350px !important;
+  }
+
+  .resume-highlights .grid {
+    @apply grid-cols-1;
+  }
+
+  .resume-metadata .grid {
+    @apply grid-cols-1;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-preview-container iframe {
+    height: 300px !important;
+  }
+}
