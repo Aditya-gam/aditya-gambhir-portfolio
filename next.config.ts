@@ -33,14 +33,40 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com",
-              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com",
+              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com https://www.google.com",
               "img-src 'self' data: https://media.licdn.com https://cdn.jsdelivr.net",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' data: https://fonts.gstatic.com",
             ].join('; '),
           },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
         ],
+      },
+    ];
+  },
+
+  // Rewrites for better SEO and well-known URI handling
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/security.txt',
+        destination: '/api/well-known/security',
       },
     ];
   },
