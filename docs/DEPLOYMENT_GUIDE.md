@@ -2,7 +2,7 @@
 
 ## 🚀 Overview
 
-This guide covers the complete deployment process for the Aditya Gambhir Portfolio, from development to production on Vercel platform, including CI/CD setup, environment configuration, and maintenance procedures.
+This comprehensive guide covers the complete deployment process for the Aditya Gambhir Portfolio, optimized for **Next.js 15**, **React 19**, and **Tailwind CSS 4.0**. Includes Vercel deployment, CI/CD setup, environment configuration, performance optimizations, and maintenance procedures.
 
 ## 🌐 Deployment Platforms
 

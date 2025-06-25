@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-This guide establishes standardized development practices for the Aditya Gambhir Portfolio project, ensuring consistent code quality, efficient collaboration, and maintainable codebase.
+This comprehensive guide establishes modern development practices for the Aditya Gambhir Portfolio project using **React 19**, **Next.js 15**, **TypeScript 5**, and **Tailwind CSS 4.0**. Ensures consistent code quality, efficient collaboration, and maintainable codebase with the latest tooling and standards.
 
 ## 🌿 Git Workflow
 

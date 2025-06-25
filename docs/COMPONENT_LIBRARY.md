@@ -2,26 +2,210 @@
 
 ## 🎯 Overview
 
-The Aditya Gambhir Portfolio uses a modular component architecture with reusable UI components, form components, and layout components. This document provides comprehensive documentation for all components in the system.
+The Aditya Gambhir Portfolio uses a modern modular component architecture built on **React 19**, **Next.js 15**, and **Tailwind CSS 4.0**. This document provides comprehensive documentation for all components in the system, including the extensive About page component library and design system components.
 
 ## 📁 Component Organization
 
 ```
 src/components/
-├── ui/                    # Base UI primitives
-│   ├── button.tsx         # Button component with variants
-│   ├── card.tsx          # Card container component
+├── about/                 # About page components (12+ components)
+│   ├── AboutHero.tsx      # Hero section with animations
+│   ├── StatsRibbon.tsx    # Statistics display ribbon
+│   ├── ProfessionalSummary.tsx # Professional summary section
+│   ├── DualExpertise.tsx  # SDE/DS expertise cards
+│   ├── SkillsMatrix.tsx   # Skills organized by category
+│   ├── ExperienceTimeline.tsx # Work experience timeline
+│   ├── Education.tsx      # Education details
+│   ├── Certifications.tsx # Interactive certification viewer
+│   ├── Publications.tsx   # Research publications with modals
+│   ├── CommunityLeadership.tsx # Community involvement
+│   ├── PersonalTouch.tsx  # Personal interests and hobbies
+│   ├── AboutCTA.tsx       # Call-to-action section
+│   └── index.ts          # Centralized exports
+├── ui/                    # Design system primitives
+│   ├── button.tsx         # CVA-powered button variants
+│   ├── card.tsx          # Consistent card components
+│   ├── modal.tsx         # Accessible modal system
+│   ├── carousel.tsx      # Touch-enabled carousels
 │   └── dropdown-menu.tsx  # Dropdown menu primitive
 ├── forms/                 # Form-specific components
+│   ├── ContactForm.tsx    # Secure contact form with validation
 │   ├── FormField.tsx     # Reusable form field wrapper
-│   ├── CaptchaField.tsx  # reCAPTCHA integration
+│   ├── CaptchaField.tsx  # reCAPTCHA v2 integration
 │   └── SubmitButton.tsx  # Form submit button with loading
-├── ContactForm.tsx        # Contact form container
+├── CertificateModal.tsx   # Certificate viewer with navigation
+├── ResumePreviewCard.tsx  # Resume preview with PDF viewer
+├── PublicationModal.tsx   # Publication details modal
+├── ProjectCard.tsx        # Project display cards
 ├── Header.tsx            # Site navigation header
 ├── Footer.tsx            # Site footer
 ├── MobileNav.tsx         # Mobile navigation menu
-└── ProjectCard.tsx       # Project display card
+└── SocialCard.tsx        # Social profile cards
 ```
+
+## 📋 About Page Components
+
+The About page features 12+ specialized components that create a comprehensive professional profile. Each component is built with **Framer Motion** animations, **TypeScript** interfaces, and responsive design.
+
+### AboutHero Component
+
+**Location**: `src/components/about/AboutHero.tsx`
+
+Professional hero section with animated profile image and call-to-action buttons.
+
+#### Props Interface
+
+```typescript
+interface AboutHeroProps {
+  readonly name: string;
+  readonly title: string;
+  readonly description: string;
+  readonly image: {
+    readonly src: string;
+    readonly alt: string;
+  };
+  onContactClick: () => void;
+}
+```
+
+#### Usage Example
+
+```tsx
+import { AboutHero } from '@/components/about';
+
+<AboutHero
+  name="Aditya Gambhir"
+  title="Software Engineer & Data Scientist"
+  description="Master's student in Computational Data Science with 2+ years of experience..."
+  image={{
+    src: "/headshot.webp",
+    alt: "Aditya Gambhir professional headshot"
+  }}
+  onContactClick={openContactModal}
+/>
+```
+
+#### Features
+
+- **Framer Motion animations** with staggered children
+- **Responsive grid layout** (35% image, 65% content)
+- **Gradient text effects** for name display
+- **Accessible buttons** with proper focus management
+- **Next.js Image optimization** with priority loading
+
+### Certifications Component
+
+**Location**: `src/components/about/Certifications.tsx`
+
+Interactive certification viewer with horizontal scrolling and modal functionality.
+
+#### Props Interface
+
+```typescript
+interface CertificationsProps {
+  readonly certifications: readonly Certificate[];
+}
+
+interface Certificate {
+  title: string;
+  provider: string;
+  month: string;
+  year: string;
+  description?: string;
+  filePath?: string;
+  linkedinUrl?: string;
+}
+```
+
+#### Usage Example
+
+```tsx
+import { Certifications } from '@/components/about';
+
+<Certifications certifications={aboutData.certifications} />
+```
+
+#### Features
+
+- **Horizontal scrolling** with custom scrollbar styling
+- **Certificate modal viewer** with keyboard navigation
+- **PDF integration** for viewing certificates
+- **LinkedIn verification** indicators
+- **Touch-friendly** interface for mobile
+- **Focus management** for accessibility
+
+### Publications Component
+
+**Location**: `src/components/about/Publications.tsx`
+
+Research publications display with expandable abstracts and external links.
+
+#### Props Interface
+
+```typescript
+interface PublicationsProps {
+  readonly publications: readonly Publication[];
+}
+
+interface Publication {
+  readonly id: string;
+  readonly title: string;
+  readonly journal: string;
+  readonly year: string;
+  readonly url: string;
+  readonly abstract: string;
+}
+```
+
+#### Features
+
+- **Publication modal** with full abstract viewing
+- **External link integration** to research papers
+- **Citation formatting** with proper academic style
+- **Responsive card layout** with hover effects
+
+### DualExpertise Component
+
+**Location**: `src/components/about/DualExpertise.tsx`
+
+Showcases both Software Engineering and Data Science expertise in card format.
+
+#### Props Interface
+
+```typescript
+interface DualExpertiseProps {
+  readonly dualExpertise: {
+    readonly dataScientist: ExpertiseData;
+    readonly softwareEngineer: ExpertiseData;
+  };
+}
+
+interface ExpertiseData {
+  readonly title: string;
+  readonly achievements: readonly string[];
+  readonly technologies: readonly string[];
+}
+```
+
+#### Features
+
+- **Gradient icon backgrounds** (blue for DS, green for SDE)
+- **Technology badges** with consistent styling
+- **Achievement lists** with bullet points
+- **Responsive grid layout** for mobile/desktop
+
+### SkillsMatrix Component
+
+**Location**: `src/components/about/SkillsMatrix.tsx`
+
+Organized display of technical skills by category with proficiency indicators.
+
+#### Features
+
+- **Category organization** (Languages, Frameworks, Tools, etc.)
+- **Skill badges** with consistent design system colors
+- **Responsive grid** adapting to screen size
+- **Animated reveals** with Framer Motion
 
 ## 🎨 UI Components
 
@@ -253,6 +437,114 @@ import SubmitButton from '@/components/forms/SubmitButton';
 - Loading spinner animation
 - Disabled state styling
 - Accessible loading announcements
+
+## 🏆 Interactive Components
+
+### CertificateModal Component
+
+**Location**: `src/components/CertificateModal.tsx`
+
+Advanced modal system for viewing certificates with navigation and keyboard support.
+
+#### Props Interface
+
+```typescript
+interface CertificateModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  certificates: readonly Certificate[];
+  currentIndex: number;
+  onNavigate: (direction: 'prev' | 'next') => void;
+}
+```
+
+#### Features
+
+- **Portal-based rendering** to document.body
+- **Keyboard navigation** (Arrow keys, Escape)
+- **Progress indicator** showing current position
+- **Body scroll lock** when modal is open
+- **Focus management** with automatic focus restoration
+- **Responsive design** adapting to mobile/desktop
+
+#### Usage Example
+
+```tsx
+import CertificateModal from '@/components/CertificateModal';
+import { useCertificateModal } from '@/hooks/useCertificateModal';
+
+const { isOpen, currentIndex, onClose, onNavigate } = useCertificateModal(certificates);
+
+<CertificateModal
+  isOpen={isOpen}
+  onClose={onClose}
+  certificates={certificates}
+  currentIndex={currentIndex}
+  onNavigate={onNavigate}
+/>
+```
+
+### ResumePreviewCard Component
+
+**Location**: `src/components/ResumePreviewCard.tsx`
+
+Interactive resume preview with inline PDF viewing and download analytics.
+
+#### Props Interface
+
+```typescript
+interface ResumePreviewCardProps {
+  readonly resume: ResumeData;
+  readonly className?: string;
+}
+
+interface ResumeData {
+  readonly id: string;
+  readonly title: string;
+  readonly filename: string;
+  readonly downloadName: string;
+  readonly description: string;
+  readonly highlights: readonly string[];
+  readonly targetAudience: string;
+  readonly lastUpdated: string;
+  readonly fileSize: string;
+  readonly type: 'sde' | 'ds';
+}
+```
+
+#### Features
+
+- **PDF preview interface** with visual file representation
+- **Download analytics** integration with Google Analytics
+- **File metadata display** (size, last updated, etc.)
+- **Resume highlights** with structured data
+- **Dual action buttons** (View/Download)
+- **Responsive card layout** with hover effects
+
+#### Usage Example
+
+```tsx
+import ResumePreviewCard from '@/components/ResumePreviewCard';
+
+<ResumePreviewCard
+  resume={resumeData.sde}
+  className="h-full"
+/>
+```
+
+### PublicationModal Component
+
+**Location**: `src/components/PublicationModal.tsx`
+
+Modal for displaying research publication details with abstracts and external links.
+
+#### Features
+
+- **Full abstract viewing** with proper formatting
+- **External link integration** to research papers
+- **Citation information** display
+- **Accessible modal structure** with proper ARIA labels
+- **Smooth open/close animations**
 
 ## 🏗️ Layout Components
 

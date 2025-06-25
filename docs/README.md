@@ -2,7 +2,7 @@
 
 ## 📚 Overview
 
-This directory contains essential documentation for the Aditya Gambhir Portfolio website. Each document serves a specific purpose and provides detailed information for developers, content managers, and maintainers.
+This directory contains comprehensive documentation for the **modern Aditya Gambhir Portfolio** built with **Next.js 15**, **React 19**, and **Tailwind CSS 4.0**. Each document serves a specific purpose and provides detailed information for developers, content managers, and maintainers working with the latest web technologies.
 
 ## 📋 Documentation Index
 

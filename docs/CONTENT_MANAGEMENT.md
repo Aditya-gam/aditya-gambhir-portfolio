@@ -2,7 +2,139 @@
 
 ## 📝 Overview
 
-This guide explains how to manage and update content in the Aditya Gambhir Portfolio website, including projects, personal information, resume files, and static assets.
+This comprehensive guide explains how to manage and update all content in the Aditya Gambhir Portfolio website, including the extensive About page data, projects portfolio, resume files, certifications, publications, and static assets. The content is structured using TypeScript interfaces for type safety and maintainability.
+
+## 📋 About Page Content Management
+
+The About page contains extensive professional profile data structured in `/src/data/about.ts` (303+ lines). This section covers managing all About page components and their data.
+
+### About Page Data Structure
+
+**Location**: `src/data/about.ts`
+
+The about data includes:
+- **Hero information** (name, title, description, image)
+- **Statistics ribbon** (experience, projects, GPA, technologies)
+- **Professional summary** with career highlights
+- **Dual expertise** (Software Engineering & Data Science)
+- **Skills matrix** organized by categories
+- **Experience timeline** with work history
+- **Education details** with degree information
+- **Certifications** (12+ professional certificates)
+- **Publications** with research papers
+- **Community leadership** activities
+- **Personal interests** and favorite technologies
+
+### Managing Hero Section
+
+```typescript
+// Update hero information
+hero: {
+  name: 'Your Name',
+  title: 'Your Professional Title',
+  description: 'Your professional summary...',
+  image: {
+    src: '/headshot.webp',
+    alt: 'Your Name professional headshot'
+  }
+}
+```
+
+### Managing Statistics
+
+```typescript
+// Update your professional stats
+stats: [
+  { label: 'Years Experience', value: '2+' },
+  { label: 'Projects Completed', value: '10+' },
+  { label: 'GPA', value: '3.67' },
+  { label: 'Technologies', value: '15+' }
+]
+```
+
+### Managing Certifications
+
+**Adding New Certifications**:
+
+```typescript
+// Add to certifications array in about.ts
+{
+  title: 'New Certification Name',
+  provider: 'Certification Provider',
+  month: 'December',
+  year: '2024',
+  description: 'Brief description of the certification',
+  filePath: '/certificates/new-cert.pdf', // Optional
+  linkedinUrl: 'https://linkedin.com/...', // Optional
+}
+```
+
+**Certificate File Management**:
+1. **Add PDF files** to `/public/certificates/`
+2. **Optimize file size** (keep under 5MB)
+3. **Use descriptive filenames** with no spaces
+4. **Update filePath** in certification data
+
+### Managing Publications
+
+**Adding Research Publications**:
+
+```typescript
+// Add to publications array in about.ts
+{
+  id: 'unique-publication-id',
+  title: 'Research Paper Title',
+  journal: 'Journal or Conference Name',
+  year: '2024',
+  url: 'https://link-to-paper.com',
+  abstract: 'Full abstract text with detailed description...'
+}
+```
+
+### Managing Skills and Technologies
+
+**Skills Matrix Structure**:
+
+```typescript
+skillsMatrix: {
+  'Programming Languages': ['Python', 'JavaScript', 'TypeScript', '...'],
+  'Frontend Frameworks': ['React', 'Next.js', 'Vue.js', '...'],
+  'Backend Technologies': ['Node.js', 'Express', 'FastAPI', '...'],
+  'Databases': ['MongoDB', 'PostgreSQL', 'Redis', '...'],
+  'AI/ML Tools': ['TensorFlow', 'PyTorch', 'Scikit-learn', '...'],
+  'Cloud Platforms': ['AWS', 'Vercel', 'Google Cloud', '...'],
+  'Development Tools': ['Git', 'Docker', 'VS Code', '...']
+}
+```
+
+**Adding New Skills**:
+1. **Choose appropriate category** or create new one
+2. **Add skill name** to the array
+3. **Maintain alphabetical order** within categories
+4. **Keep skill names consistent** with industry standards
+
+### Managing Work Experience
+
+**Experience Timeline Structure**:
+
+```typescript
+experience: [
+  {
+    title: 'Your Job Title',
+    company: 'Company Name',
+    location: 'City, State',
+    duration: 'Start Date - End Date',
+    type: 'Full-time' | 'Part-time' | 'Internship' | 'Contract',
+    description: 'Detailed job description...',
+    achievements: [
+      'Specific achievement with quantifiable results',
+      'Another major accomplishment',
+      // ... more achievements
+    ],
+    technologies: ['React', 'Node.js', 'MongoDB', '...']
+  }
+]
+```
 
 ## 🎯 Project Management
 

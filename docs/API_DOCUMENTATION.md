@@ -2,7 +2,7 @@
 
 ## 🔗 API Overview
 
-The portfolio website includes a RESTful API for handling contact form submissions. The API is built using Next.js App Router API routes and includes comprehensive validation, security measures, and database integration.
+The portfolio website features a robust RESTful API built on **Next.js 15 App Router** with serverless functions. The API handles secure contact form submissions with comprehensive validation, advanced security measures, and MongoDB integration. Enhanced with Google reCAPTCHA v2, rate limiting, and HTML email templates.
 
 ### Base URL
 

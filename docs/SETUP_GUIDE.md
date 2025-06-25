@@ -4,22 +4,23 @@
 
 ### System Requirements
 
-- **Node.js** 18.17.0 or higher
+- **Node.js** 18.17.0 or higher (required for React 19 and Next.js 15)
 - **npm** 9.0.0 or higher (or yarn/pnpm equivalent)
 - **Git** for version control
 - **MongoDB** account (MongoDB Atlas recommended)
-- **Google reCAPTCHA** account
+- **Google reCAPTCHA v2** account ("I'm not a robot" checkbox)
 - **Email service** (Gmail recommended for simplicity)
 
 ### Development Tools (Recommended)
 
 - **VS Code** with extensions:
   - TypeScript and JavaScript Language Features
-  - Tailwind CSS IntelliSense
-  - ESLint
-  - Prettier
+  - Tailwind CSS IntelliSense (supports CSS 4.0)
+  - ESLint (flat config support)
+  - Prettier - Code formatter
   - Auto Rename Tag
-  - Bracket Pair Colorizer
+  - Path Intellisense
+  - Error Lens (for better TypeScript experience)
 
 ## 🚀 Quick Start
 
@@ -54,22 +55,31 @@ Add the following to `.env.local`:
 # Database Configuration
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio_messages?retryWrites=true&w=majority
 
-# reCAPTCHA Configuration
+# Google reCAPTCHA v2 Configuration
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key_here
 RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key_here
 
-# Email Configuration
+# Email Configuration (Gmail recommended)
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-specific-password
 
 # Site Configuration
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+
+# Optional: Analytics
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
 ```
+
+> **Need help with reCAPTCHA?** Check [RECAPTCHA_TROUBLESHOOTING.md](../RECAPTCHA_TROUBLESHOOTING.md) for common issues and solutions.
 
 ### 5. Start Development Server
 
 ```bash
+# Start with Turbopack (fastest)
 npm run dev
+
+# Or start with legacy bundler if issues
+npm run dev:legacy
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -228,22 +238,26 @@ aditya-gambhir-portfolio/
 
 ```bash
 # Development
-npm run dev              # Start development server with Turbopack
+npm run dev              # Start development server with Turbopack (Next.js 15)
 npm run dev:legacy       # Start without Turbopack (if issues)
 
 # Building
-npm run build           # Build for production
-npm run build:analyze   # Build with bundle analysis
+npm run build           # Build for production (optimized for Vercel)
+npm run build:analyze   # Build with bundle analysis and performance insights
 npm start              # Start production server locally
 
 # Code Quality
-npm run lint           # Run ESLint
+npm run lint           # Run ESLint with flat config (ESLint 9)
 npm run lint:fix       # Fix ESLint issues automatically
-npm run format         # Format code with Prettier
+npm run format         # Format code with Prettier 3.x
 npm run format:check   # Check formatting without changes
 
 # Type Checking
-npx tsc --noEmit       # Check TypeScript types
+npx tsc --noEmit       # Check TypeScript types (strict mode)
+
+# Testing & Debugging
+npm run test           # Run tests (when implemented)
+npm run test:watch     # Watch mode for tests
 ```
 
 ### Development Workflow
