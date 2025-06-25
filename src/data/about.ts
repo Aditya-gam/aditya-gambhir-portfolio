@@ -91,23 +91,23 @@ export const aboutData: AboutData = {
     },
   },
   stats: {
-    experience: '2+',
+    experience: '1.5+',
     projects: '10+',
     gpa: '3.67',
     publications: '1',
   },
   professionalSummary: {
     description:
-      'Experienced software engineer and data scientist with a proven track record of delivering scalable solutions that bridge the gap between cutting-edge research and practical applications. Specialized in machine learning, computer vision, and real-time sensor fusion technologies, with extensive experience in full-stack development and cloud architecture. Passionate about transforming complex algorithms into user-friendly, production-ready systems that drive business value and innovation.',
-    quote: "Let's push the boundaries of autonomous systems together.",
+      'Software engineer and data scientist with experience in machine learning, computer vision, and full-stack development. Specialized in transforming research concepts into practical applications through modern development practices. Passionate about building scalable solutions that bridge academic research with real-world implementation.',
+    quote: "Let's build the future of technology together.",
   },
   dualExpertise: {
     dataScientist: {
       title: 'Data Scientist / ML Engineer',
       achievements: [
-        'Achieved RMSE < 0.5m on sensor fusion projects',
-        'Improved BLEU scores by +35% in NLP tasks',
-        'Led computer vision research with measurable impact',
+        'Implemented sensor fusion algorithms for autonomous vehicle applications',
+        'Developed NLP chatbot models with improved performance metrics',
+        'Conducted computer vision research with practical applications',
       ],
       technologies: [
         'PyTorch',
@@ -119,9 +119,9 @@ export const aboutData: AboutData = {
     softwareEngineer: {
       title: 'Software Engineer (Backend & Full-Stack)',
       achievements: [
-        'Built logistics mock-server for 500+ developers',
-        'Reduced development cycle time by 35%',
-        'Decreased contract-related bugs by 40%',
+        'Built scalable mock-server platform serving development teams',
+        'Contributed to development process optimization and quality improvements',
+        'Gained experience in full-stack development and API design',
       ],
       technologies: ['Node.js', 'Spring Boot', 'AWS', 'CI/CD'],
     },
@@ -158,17 +158,19 @@ export const aboutData: AboutData = {
       role: 'Software Development Intern',
       period: 'Jun 2022 → May 2023',
       bullets: [
-        'Built MERN mock-server with 15+ endpoints for 500+ developers',
-        'Reduced contract-related bugs by 40% and delivery time by 25%',
+        'Built comprehensive MERN stack mock-server platform with multiple API endpoints',
+        'Contributed to development workflow improvements and quality assurance processes',
+        'Collaborated with cross-functional teams to deliver reliable testing infrastructure',
       ],
     },
     {
       company: 'C-DAC',
       role: 'R&D Intern',
-      period: 'Jan 2022 → Jun 2022',
+      period: 'Jan 2022 → May 2022',
       bullets: [
-        'Developed real-time brainwave web service for 500+ users',
-        'Achieved 99.9% uptime through rigorous testing protocols',
+        'Developed real-time brainwave processing web service using modern technologies',
+        'Implemented comprehensive testing protocols to ensure system reliability',
+        'Gained experience in research and development methodologies',
       ],
     },
   ],

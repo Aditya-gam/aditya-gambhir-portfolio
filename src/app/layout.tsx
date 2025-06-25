@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Aditya Gambhir',
   },
   description:
-    'Software Engineer and Data Scientist with 2+ years of experience in full-stack development and machine learning. Specializing in MERN stack and Python-based data solutions.',
+    'Software Engineer and Data Scientist with 1.5+ years experience in full-stack development and machine learning. M.S. Computational Data Science from UC Riverside.',
   keywords: [
     'Aditya Gambhir',
     'Software Engineer',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     siteName: 'Aditya Gambhir Portfolio',
     title: 'Aditya Gambhir | Software Engineer & Data Scientist',
     description:
-      'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning.',
+      'Software Engineer and Data Scientist with 1.5+ years experience in full-stack development and machine learning.',
     images: [
       {
         url: '/og-default.png',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aditya Gambhir | Software Engineer & Data Scientist',
     description:
-      'Software Engineer and Data Scientist with expertise in MERN stack and Python.',
+      'Software Engineer and Data Scientist with 1.5+ years experience in MERN stack and Python.',
     images: ['/og-default.png'],
     creator: '@adityagambhir',
   },
@@ -94,7 +94,7 @@ const jsonLd = {
   ],
   alumniOf: {
     '@type': 'Organization',
-    name: 'Your University', // Update with actual university
+    name: 'University of California, Riverside',
   },
 };
 

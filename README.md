@@ -22,7 +22,7 @@
 🎨 **Beautiful Design** - Purple-themed design system with dark/light mode support  
 📱 **Mobile-First** - Fully responsive with smooth animations and touch gestures  
 🏆 **Interactive Features** - Certificate viewer, publication modals, resume previews  
-🔒 **Enterprise Security** - Comprehensive CSP headers and form validation  
+🔒 **Secure Contact** - reCAPTCHA v2 integration and form validation  
 ⚡ **Performance Optimized** - Image optimization, lazy loading, and code splitting  
 
 ---
@@ -38,7 +38,7 @@
 ### 📋 **Comprehensive About Page**
 - **Interactive Profile** with animated hero section
 - **Dual Expertise Cards** highlighting Software Engineering and Data Science skills
-- **Professional Timeline** with work experience and achievements
+- **Professional Timeline** with verified work experience and achievements
 - **Skills Matrix** organized by technology categories
 - **Education Details** with GPA and relevant coursework
 
@@ -273,7 +273,7 @@ Modern landing page with hero section, featured projects carousel, publications 
 ### **📋 About Page (`/about`)**
 Comprehensive professional profile with 12+ interactive components:
 - **Hero Section** with animated profile image and contact CTAs
-- **Stats Ribbon** showcasing 2+ years experience, 10+ projects, 3.67 GPA
+- **Stats Ribbon** showcasing 1.5+ years experience, 10+ projects, 3.67 GPA
 - **Professional Summary** with career highlights and achievements
 - **Dual Expertise** cards for Software Engineering and Data Science
 - **Skills Matrix** organized by programming languages, frameworks, and tools
@@ -286,11 +286,11 @@ Comprehensive professional profile with 12+ interactive components:
 
 ### **🎯 Projects Page (`/projects`)**
 Portfolio showcase featuring 10+ projects across web development and machine learning:
-- Navigate LA28: Real-time geospatial platform for Olympics routing
-- Dockership: Freight ship management with container optimization
-- Sensor Fusion: Self-driving vehicle data processing with Kalman filters
-- Transformer Models: Crowd localization using computer vision
-- Image Deblurring: U-Net autoencoder for image restoration
+- Navigate LA28: Geospatial platform for LA 2028 Olympics routing and analytics
+- Dockership: Freight ship management system with container optimization algorithms
+- Sensor Fusion: Autonomous vehicle data processing using Kalman filters
+- Transformer Models: Crowd localization research using computer vision techniques
+- Image Deblurring: Autoencoder implementation for image restoration
 - And more...
 
 ### **📄 Resume Page (`/resume`)**
@@ -318,7 +318,7 @@ Professional resume showcase with dual specializations:
 - **Input Validation** and HTML sanitization for all user inputs
 - **Rate Limiting** for API endpoints to prevent abuse
 
-### **Performance Optimizations**
+### **Performance Features**
 - **Image Optimization** with Next.js Image component and WebP/AVIF formats
 - **Code Splitting** with dynamic imports for better load times
 - **Bundle Analysis** tools for monitoring bundle size
@@ -382,7 +382,7 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 - **First Input Delay (FID)**: < 100ms
 
 ### **Optimization Features**
-- ⚡ **Turbopack** for 5x faster development builds
+- ⚡ **Turbopack** for faster development builds
 - 🖼️ **Image Optimization** with WebP/AVIF formats and responsive sizing
 - 📦 **Code Splitting** with dynamic imports for non-critical components
 - 🎨 **CSS-in-CSS** with Tailwind CSS 4.0 for minimal runtime overhead
@@ -434,8 +434,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - 🏆 **Interactive Certifications** with modal viewer and navigation
 - 📄 **Resume Preview Cards** with inline PDF viewing
 - 📚 **Publications Gallery** with expandable abstracts
-- ⚡ **Performance Improvements** with React 19 and Next.js 15
-- 🔒 **Enhanced Security** with comprehensive CSP headers
+- ⚡ **Modern Framework Stack** with React 19 and Next.js 15
+- 🔒 **Security Features** with CSP headers and form protection
 - 📱 **Mobile Optimizations** with touch gestures and carousels
 
 ### **v1.0.0** - *Initial Release*

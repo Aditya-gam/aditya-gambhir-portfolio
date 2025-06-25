@@ -89,8 +89,12 @@ export const allProjects: ProjectData[] = [
   {
     title: 'Chatbot Using Transformer Models',
     description:
-      'Comparative study of LSTM vs. Transformer chatbots on the Cornell Movie Corpus, with BLEU score evaluation.',
-    bullets: ['Transformer encoder-decoder', 'BLEU 25.67', 'Cornell corpus'],
+      'Comparative study of LSTM vs. Transformer chatbots on the Cornell Movie Corpus, with performance evaluation.',
+    bullets: [
+      'Transformer encoder-decoder',
+      'Performance analysis',
+      'Cornell corpus',
+    ],
     imageSrc: '/projects/chatbot-transformer.svg',
     imageAlt: 'Chatbot conversation interface',
     priority: false,
@@ -100,8 +104,8 @@ export const allProjects: ProjectData[] = [
   {
     title: 'Tech Mock API',
     description:
-      'MERN-stack mock-server platform allowing users to spin up custom API endpoints for testing in seconds.',
-    bullets: ['MERN stack', 'Dynamic endpoint generation', '<100 ms latency'],
+      'MERN-stack mock-server platform allowing users to spin up custom API endpoints for testing workflows.',
+    bullets: ['MERN stack', 'Dynamic endpoint generation', 'Developer tooling'],
     imageSrc: '/projects/tech-mock-api.svg',
     imageAlt: 'Tech Mock API dashboard',
     priority: false,

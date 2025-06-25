@@ -43,11 +43,11 @@ hero: {
 ### Managing Statistics
 
 ```typescript
-// Update your professional stats
+// Update your professional stats (use conservative, verifiable claims)
 stats: [
-  { label: 'Years Experience', value: '2+' },
+  { label: 'Years Experience', value: '1.5+' },
   { label: 'Projects Completed', value: '10+' },
-  { label: 'GPA', value: '3.67' },
+  { label: 'GPA', value: '3.67' }, // Only include if transcript available
   { label: 'Technologies', value: '15+' }
 ]
 ```
@@ -127,9 +127,10 @@ experience: [
     type: 'Full-time' | 'Part-time' | 'Internship' | 'Contract',
     description: 'Detailed job description...',
     achievements: [
-      'Specific achievement with quantifiable results',
-      'Another major accomplishment',
-      // ... more achievements
+      'Built comprehensive system serving development teams',
+      'Contributed to process improvements and quality assurance',
+      'Gained experience in modern development practices',
+      // Use conservative language - avoid unverifiable metrics
     ],
     technologies: ['React', 'Node.js', 'MongoDB', '...']
   }
@@ -493,6 +494,43 @@ A full-stack task management application that helps teams organize and track pro
 - Technologies you specialize in
 - Industry-specific terms
 - Location (if relevant for local opportunities)
+
+## ✅ Verifiable Claims Guidelines
+
+### Evidence-First Approach
+
+When updating content, ensure all quantitative claims can be backed by evidence:
+
+**✅ Use These Patterns:**
+- "Contributed to significant improvements"
+- "Built scalable solutions serving development teams"  
+- "Implemented modern algorithms with practical applications"
+- "Gained experience in [specific technology/methodology]"
+
+**❌ Avoid These Unless Provable:**
+- Specific percentage improvements without baseline data
+- User counts unless verifiable through analytics
+- Performance metrics without measurement documentation
+- Uptime percentages without monitoring data
+
+### Conservative Language Examples
+
+```typescript
+// Instead of unverifiable claims:
+'Reduced bugs by 40%' → 'Contributed to bug reduction and quality improvements'
+'500+ users' → 'Serving development teams across the organization'
+'99.9% uptime' → 'Maintained high system reliability'
+'5x performance improvement' → 'Significant performance optimizations'
+```
+
+### Documentation Requirements
+
+Before making any claim, verify you have:
+- [ ] Official documentation (certificates, transcripts)
+- [ ] GitHub commit history or project evidence
+- [ ] Employment verification documents
+- [ ] Performance reviews or feedback
+- [ ] Screenshots or demo videos
 
 ## 🔄 Content Maintenance
 
