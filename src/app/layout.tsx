@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s | Aditya Gambhir',
   },
   description:
-    'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning. Specializing in MERN stack and Python-based data solutions.',
+    'Software Engineer and Data Scientist with 2+ years of experience in full-stack development and machine learning. Specializing in MERN stack and Python-based data solutions.',
   keywords: [
     'Aditya Gambhir',
     'Software Engineer',

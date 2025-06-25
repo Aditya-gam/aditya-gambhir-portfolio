@@ -43,7 +43,7 @@ export const SUCCESS_MESSAGES = {
 export const APP_METADATA = {
   TITLE: 'Aditya Gambhir | Software Engineer & Data Scientist',
   DESCRIPTION:
-    'Software Engineer and Data Scientist with 5+ years of experience in full-stack development and machine learning.',
+    'Software Engineer and Data Scientist with 2+ years of experience in full-stack development and machine learning.',
   KEYWORDS: [
     'Aditya Gambhir',
     'Software Engineer',
