@@ -13,6 +13,7 @@ The About page contains extensive professional profile data structured in `/src/
 **Location**: `src/data/about.ts`
 
 The about data includes:
+
 - **Hero information** (name, title, description, image)
 - **Statistics ribbon** (experience, projects, GPA, technologies)
 - **Professional summary** with career highlights
@@ -48,8 +49,8 @@ stats: [
   { label: 'Years Experience', value: '1.5+' },
   { label: 'Projects Completed', value: '10+' },
   { label: 'GPA', value: '3.67' }, // Only include if transcript available
-  { label: 'Technologies', value: '15+' }
-]
+  { label: 'Technologies', value: '15+' },
+];
 ```
 
 ### Managing Certifications
@@ -70,6 +71,7 @@ stats: [
 ```
 
 **Certificate File Management**:
+
 1. **Add PDF files** to `/public/certificates/`
 2. **Optimize file size** (keep under 5MB)
 3. **Use descriptive filenames** with no spaces
@@ -108,6 +110,7 @@ skillsMatrix: {
 ```
 
 **Adding New Skills**:
+
 1. **Choose appropriate category** or create new one
 2. **Add skill name** to the array
 3. **Maintain alphabetical order** within categories
@@ -132,9 +135,9 @@ experience: [
       'Gained experience in modern development practices',
       // Use conservative language - avoid unverifiable metrics
     ],
-    technologies: ['React', 'Node.js', 'MongoDB', '...']
-  }
-]
+    technologies: ['React', 'Node.js', 'MongoDB', '...'],
+  },
+];
 ```
 
 ## 🎯 Project Management
@@ -502,12 +505,14 @@ A full-stack task management application that helps teams organize and track pro
 When updating content, ensure all quantitative claims can be backed by evidence:
 
 **✅ Use These Patterns:**
+
 - "Contributed to significant improvements"
-- "Built scalable solutions serving development teams"  
+- "Built scalable solutions serving development teams"
 - "Implemented modern algorithms with practical applications"
 - "Gained experience in [specific technology/methodology]"
 
 **❌ Avoid These Unless Provable:**
+
 - Specific percentage improvements without baseline data
 - User counts unless verifiable through analytics
 - Performance metrics without measurement documentation
@@ -526,6 +531,7 @@ When updating content, ensure all quantitative claims can be backed by evidence:
 ### Documentation Requirements
 
 Before making any claim, verify you have:
+
 - [ ] Official documentation (certificates, transcripts)
 - [ ] GitHub commit history or project evidence
 - [ ] Employment verification documents

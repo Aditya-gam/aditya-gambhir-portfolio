@@ -1,186 +1,74 @@
-# Documentation Directory
+# 📚 Documentation
 
-## 📚 Overview
+Welcome to the comprehensive documentation for the **Aditya Gambhir Portfolio** - a modern, professional portfolio built with Next.js 15, React 19, and Tailwind CSS 4.0.
 
-This directory contains comprehensive documentation for the **modern Aditya Gambhir Portfolio** built with **Next.js 15**, **React 19**, and **Tailwind CSS 4.0**. Each document serves a specific purpose and provides detailed information for developers, content managers, and maintainers working with the latest web technologies.
+## 🗂️ Documentation Structure
 
-## 📋 Documentation Index
+### 🚀 **Getting Started**
 
-### 🚀 **SETUP_GUIDE.md**
+Essential guides for new developers and contributors:
 
-**Purpose**: Complete installation and development environment setup  
-**Audience**: Developers setting up the project locally  
-**Contains**:
+- **[Setup Guide](./getting-started/setup.md)** - Complete installation and environment setup
+- **[Development Workflow](./getting-started/development.md)** - Standards, practices, and workflows
+- **[Deployment Guide](./getting-started/deployment.md)** - Production deployment and CI/CD
 
-- System requirements and prerequisites
-- Step-by-step installation instructions
-- Environment configuration (MongoDB, reCAPTCHA, email)
-- Development tools and VS Code setup
-- Troubleshooting common setup issues
-- Dependency management and updates
+### 🔧 **Technical Documentation**
 
-### 🔗 **API_DOCUMENTATION.md**
+In-depth technical guides and references:
 
-**Purpose**: Complete backend API reference and integration guide  
-**Audience**: Backend developers, integrators, API consumers  
-**Contains**:
+- **[API Documentation](./technical/api.md)** - Backend API reference and integration
+- **[Component Library](./technical/components.md)** - React components and UI patterns
+- **[CSS Architecture](./technical/css-architecture.md)** - Design system and styling standards
 
-- Complete API endpoint documentation
-- Request/response schemas and examples
-- Authentication and security measures
-- Database schema and data models
-- Email integration and templates
-- Testing procedures and examples
-- Monitoring and error handling
+### 📝 **Content Management**
 
-### 🎨 **COMPONENT_LIBRARY.md**
+Guides for content updates and maintenance:
 
-**Purpose**: React component documentation and usage guidelines  
-**Audience**: Frontend developers, UI/UX designers  
-**Contains**:
+- **[Content Management](./content/management.md)** - Updating portfolio content and assets
 
-- Complete component catalog with props interfaces
-- Usage examples and best practices
-- Styling patterns and CSS architecture
-- Form components and validation patterns
-- Layout components and responsive design
-- Component testing examples
-
-### 🚢 **DEPLOYMENT_GUIDE.md**
-
-**Purpose**: Production deployment procedures and CI/CD setup  
-**Audience**: DevOps engineers, deployment managers  
-**Contains**:
-
-- Vercel deployment configuration
-- Environment variables and security setup
-- CI/CD pipeline configuration
-- Domain and SSL certificate management
-- Performance optimization settings
-- Monitoring and analytics setup
-- Rollback procedures and troubleshooting
-
-### 🔄 **DEVELOPMENT_WORKFLOW.md**
-
-**Purpose**: Standardized development practices and code quality guidelines  
-**Audience**: All developers working on the project  
-**Contains**:
-
-- Git workflow and branching strategy
-- Code quality standards (ESLint, Prettier, TypeScript)
-- Testing strategies and examples
-- Pull request process and review guidelines
-- Release management procedures
-- Development environment best practices
-
-### 📝 **CONTENT_MANAGEMENT.md**
-
-**Purpose**: Guide for updating and managing website content  
-**Audience**: Content managers, portfolio owner, marketing team  
-**Contains**:
-
-- Project portfolio management
-- Resume and asset management
-- Personal information updates
-- Navigation and site structure changes
-- SEO and analytics configuration
-- Content maintenance schedules
-
-### 🏗️ **CSS_ARCHITECTURE.md**
-
-**Purpose**: CSS design system and styling standards  
-**Audience**: Frontend developers, designers  
-**Contains**:
-
-- Design system color tokens and variables
-- Component styling patterns
-- Responsive design guidelines
-- Accessibility standards
-- Performance optimization
-- CSS standardization and migration guidelines
-
-## 🗺️ Documentation Navigation
+## 🎯 Quick Start
 
 ### For New Developers
 
-1. Start with the main [**README.md**](../README.md) for project overview
-2. Follow [**SETUP_GUIDE.md**](./SETUP_GUIDE.md) for environment setup
-3. Review [**DEVELOPMENT_WORKFLOW.md**](./DEVELOPMENT_WORKFLOW.md) for standards
-4. Reference [**COMPONENT_LIBRARY.md**](./COMPONENT_LIBRARY.md) for UI development
+1. **Start Here** → [Setup Guide](./getting-started/setup.md)
+2. **Learn Standards** → [Development Workflow](./getting-started/development.md)
+3. **Build UI** → [Component Library](./technical/components.md)
 
 ### For Content Updates
 
-1. Refer to [**CONTENT_MANAGEMENT.md**](./CONTENT_MANAGEMENT.md) for all content changes
-2. Check [**CSS_ARCHITECTURE.md**](./CSS_ARCHITECTURE.md) for styling updates
-3. Use the main README for quick reference
+1. **Update Content** → [Content Management](./content/management.md)
+2. **Style Changes** → [CSS Architecture](./technical/css-architecture.md)
 
 ### For Deployment
 
-1. Follow [**DEPLOYMENT_GUIDE.md**](./DEPLOYMENT_GUIDE.md) for production releases
-2. Reference [**API_DOCUMENTATION.md**](./API_DOCUMENTATION.md) for backend concerns
-3. Use [**DEVELOPMENT_WORKFLOW.md**](./DEVELOPMENT_WORKFLOW.md) for release procedures
+1. **Deploy to Production** → [Deployment Guide](./getting-started/deployment.md)
+2. **API Integration** → [API Documentation](./technical/api.md)
 
-### For Troubleshooting
+## 🛠️ Technology Stack
 
-1. Check [**SETUP_GUIDE.md**](./SETUP_GUIDE.md) for environment issues
-2. Reference [**DEPLOYMENT_GUIDE.md**](./DEPLOYMENT_GUIDE.md) for production problems
-3. Review the main README for quick solutions
+- **Frontend**: Next.js 15, React 19, TypeScript 5
+- **Styling**: Tailwind CSS 4.0, CSS Custom Properties
+- **UI Components**: Radix UI, shadcn/ui
+- **Backend**: Next.js API Routes, MongoDB
+- **Deployment**: Vercel
+- **Security**: Google reCAPTCHA v2
 
 ## 📖 Documentation Standards
 
-### Writing Guidelines
+- **Clear and Concise**: Simple, direct language
+- **Practical Examples**: Code snippets and real use cases
+- **Step-by-Step**: Breaking complex procedures into manageable steps
+- **Cross-References**: Linking to related documentation
+- **Up-to-Date**: Synchronized with code changes
 
-- **Clear and Concise**: Use simple, direct language
-- **Practical Examples**: Include code snippets and real examples
-- **Step-by-Step**: Break complex procedures into manageable steps
-- **Cross-References**: Link to related documentation when relevant
-- **Up-to-Date**: Keep documentation synchronized with code changes
+## 🤝 Contributing
 
-### Document Structure
+Found an issue or want to improve the documentation?
 
-Each document follows a consistent structure:
-
-- **Overview**: Purpose and scope
-- **Detailed Sections**: Main content with clear headings
-- **Examples**: Practical code examples and use cases
-- **Troubleshooting**: Common issues and solutions
-- **References**: Links to external resources
-
-### Maintenance
-
-- **Regular Review**: Update documentation with code changes
-- **Version Control**: Track documentation changes in Git
-- **Community Input**: Accept feedback and improvements
-- **Accessibility**: Ensure documentation is accessible to all team members
-
-## 🎯 Getting Started
-
-**New to the project?** Start here:
-
-1. Read the main [**README.md**](../README.md) to understand the system
-2. Follow [**SETUP_GUIDE.md**](./SETUP_GUIDE.md) to get running locally
-3. Review [**DEVELOPMENT_WORKFLOW.md**](./DEVELOPMENT_WORKFLOW.md) for team standards
-
-**Need to make changes?**
-
-1. Check [**CONTENT_MANAGEMENT.md**](./CONTENT_MANAGEMENT.md) for content updates
-2. Reference [**COMPONENT_LIBRARY.md**](./COMPONENT_LIBRARY.md) for UI changes
-3. Follow [**DEPLOYMENT_GUIDE.md**](./DEPLOYMENT_GUIDE.md) for going live
-
-**Having issues?**
-
-1. Check the main README troubleshooting section
-2. Review [**SETUP_GUIDE.md**](./SETUP_GUIDE.md) for environment issues
-3. Reference specific guides for detailed help
-
-## 📞 Support
-
-If you can't find what you need in these docs, consider:
-
-- Creating an issue in the GitHub repository
-- Updating the relevant documentation with your findings
-- Contributing improvements to help future developers
+1. Create an issue in the GitHub repository
+2. Update the relevant documentation with your findings
+3. Submit a pull request with improvements
 
 ---
 
-_This documentation is maintained by the development team and updated regularly to reflect the current state of the project._
+_This documentation is maintained by the development team and updated regularly._

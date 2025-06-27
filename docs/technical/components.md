@@ -78,11 +78,11 @@ import { AboutHero } from '@/components/about';
   title="Software Engineer & Data Scientist"
   description="Master's student in Computational Data Science with 2+ years of experience..."
   image={{
-    src: "/headshot.webp",
-    alt: "Aditya Gambhir professional headshot"
+    src: '/headshot.webp',
+    alt: 'Aditya Gambhir professional headshot',
   }}
   onContactClick={openContactModal}
-/>
+/>;
 ```
 
 #### Features
@@ -122,7 +122,7 @@ interface Certificate {
 ```tsx
 import { Certifications } from '@/components/about';
 
-<Certifications certifications={aboutData.certifications} />
+<Certifications certifications={aboutData.certifications} />;
 ```
 
 #### Features
@@ -473,7 +473,8 @@ interface CertificateModalProps {
 import CertificateModal from '@/components/CertificateModal';
 import { useCertificateModal } from '@/hooks/useCertificateModal';
 
-const { isOpen, currentIndex, onClose, onNavigate } = useCertificateModal(certificates);
+const { isOpen, currentIndex, onClose, onNavigate } =
+  useCertificateModal(certificates);
 
 <CertificateModal
   isOpen={isOpen}
@@ -481,7 +482,7 @@ const { isOpen, currentIndex, onClose, onNavigate } = useCertificateModal(certif
   certificates={certificates}
   currentIndex={currentIndex}
   onNavigate={onNavigate}
-/>
+/>;
 ```
 
 ### ResumePreviewCard Component
@@ -526,10 +527,7 @@ interface ResumeData {
 ```tsx
 import ResumePreviewCard from '@/components/ResumePreviewCard';
 
-<ResumePreviewCard
-  resume={resumeData.sde}
-  className="h-full"
-/>
+<ResumePreviewCard resume={resumeData.sde} className="h-full" />;
 ```
 
 ### PublicationModal Component

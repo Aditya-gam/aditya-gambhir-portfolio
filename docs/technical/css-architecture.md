@@ -7,18 +7,21 @@ This document outlines the comprehensive CSS architecture for the Aditya Gambhir
 ## 🌟 Architecture Principles
 
 ### 1. **Modern Design System**
+
 - **Tailwind CSS 4.0** with `@theme` syntax for design tokens
 - **OKLCH Color Space** for perceptually uniform colors and better dark mode
 - **Component Variants** using `class-variance-authority` for type-safe styling
 - **CSS Custom Properties** for runtime theming and design token management
 
 ### 2. **Performance-First Approach**
+
 - **CSS-in-CSS** approach with minimal runtime overhead
 - **Automatic color space conversion** for better browser support
 - **Optimized bundle sizes** with Tailwind's built-in purging
 - **Critical CSS inlining** for above-the-fold content
 
 ### 3. **Accessibility & Standards**
+
 - **WCAG 2.1 AA compliance** with proper contrast ratios
 - **Touch-friendly interfaces** with minimum 44px touch targets
 - **Semantic color naming** for better maintainability
@@ -106,14 +109,18 @@ src/
 
 ```typescript
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-w-[44px] min-h-[44px]",
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 min-w-[44px] min-h-[44px]',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
-        outline: 'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
+        default:
+          'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90',
+        destructive:
+          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
+        outline:
+          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
       },
@@ -125,7 +132,7 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: { variant: 'default', size: 'default' },
-  }
+  },
 );
 ```
 
@@ -269,7 +276,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 .header-backdrop {
   backdrop-filter: blur(var(--blur-amount, 0px));
   background-color: hsl(var(--background) / var(--bg-opacity, 0.95));
-  transition: backdrop-filter 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition:
+    backdrop-filter 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
 }
 ```
 
@@ -311,15 +320,15 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
 ### **Color Token Reference**
 
-| Token | Purpose | Light Mode | Dark Mode |
-|-------|---------|------------|-----------|
-| `background` | Page background | Light cream | Dark charcoal |
-| `foreground` | Primary text | Dark purple | Light cream |
-| `primary` | Brand color | Purple | Lighter purple |
-| `muted` | Subtle backgrounds | Light gray | Dark gray |
-| `accent` | Interactive elements | Light purple | Dark purple |
-| `border` | Element borders | Medium gray | Dark gray |
-| `destructive` | Error states | Red | Dark red |
+| Token         | Purpose              | Light Mode   | Dark Mode      |
+| ------------- | -------------------- | ------------ | -------------- |
+| `background`  | Page background      | Light cream  | Dark charcoal  |
+| `foreground`  | Primary text         | Dark purple  | Light cream    |
+| `primary`     | Brand color          | Purple       | Lighter purple |
+| `muted`       | Subtle backgrounds   | Light gray   | Dark gray      |
+| `accent`      | Interactive elements | Light purple | Dark purple    |
+| `border`      | Element borders      | Medium gray  | Dark gray      |
+| `destructive` | Error states         | Red          | Dark red       |
 
 ## 🎭 Animation & Transitions
 
@@ -500,6 +509,7 @@ const staggerContainer = {
 ### **Tailwind CSS 3.x to 4.0**
 
 #### **Before (3.x)**
+
 ```css
 :root {
   --primary: 212 100% 50%;
@@ -511,6 +521,7 @@ const staggerContainer = {
 ```
 
 #### **After (4.0)**
+
 ```css
 @theme {
   --color-primary: oklch(58% 0.17 290);
@@ -524,17 +535,27 @@ const staggerContainer = {
 ### **Color System Migration**
 
 #### **Old Approach**
+
 ```css
 /* Hardcoded HSL values */
-.text-gray-600 { color: hsl(220, 9%, 46%); }
-.bg-blue-500 { background: hsl(217, 91%, 60%); }
+.text-gray-600 {
+  color: hsl(220, 9%, 46%);
+}
+.bg-blue-500 {
+  background: hsl(217, 91%, 60%);
+}
 ```
 
 #### **New Approach**
+
 ```css
 /* Design system tokens */
-.text-muted-foreground { color: var(--color-muted-foreground); }
-.bg-primary { background: var(--color-primary); }
+.text-muted-foreground {
+  color: var(--color-muted-foreground);
+}
+.bg-primary {
+  background: var(--color-primary);
+}
 ```
 
 ## 🛠️ Development Workflow
@@ -552,23 +573,23 @@ const staggerContainer = {
 ```typescript
 // Component with CVA variants
 const componentVariants = cva(
-  "base-classes", // Base styles always applied
+  'base-classes', // Base styles always applied
   {
     variants: {
       variant: {
-        default: "default-variant-classes",
-        secondary: "secondary-variant-classes",
+        default: 'default-variant-classes',
+        secondary: 'secondary-variant-classes',
       },
       size: {
-        sm: "small-size-classes",
-        lg: "large-size-classes",
+        sm: 'small-size-classes',
+        lg: 'large-size-classes',
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "sm",
+      variant: 'default',
+      size: 'sm',
     },
-  }
+  },
 );
 ```
 
