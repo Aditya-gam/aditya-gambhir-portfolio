@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 interface NavLink {
@@ -58,16 +59,23 @@ export function MobileNav({ links }: MobileNavProps) {
               <Dialog.Title className="text-lg font-semibold text-foreground">
                 Navigation
               </Dialog.Title>
-              <Dialog.Close asChild>
-                <Button
+              <div className="flex items-center gap-2">
+                <ThemeToggle
                   variant="ghost"
                   size="icon"
-                  className="h-10 w-10 hover:bg-accent hover:text-accent-foreground"
-                  aria-label="Close navigation menu"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </Dialog.Close>
+                  className="lg:hidden"
+                />
+                <Dialog.Close asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-10 w-10 hover:bg-accent hover:text-accent-foreground"
+                    aria-label="Close navigation menu"
+                  >
+                    <X className="h-5 w-5" />
+                  </Button>
+                </Dialog.Close>
+              </div>
             </div>
 
             {/* Navigation Links */}
