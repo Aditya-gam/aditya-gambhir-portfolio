@@ -25,7 +25,7 @@ export default function Header({ onContactClick }: HeaderProps) {
   const { scrollY } = useScroll();
 
   // Use section highlight hook for homepage
-  const { activeSection, scrollToSection } = useSectionHighlight({
+  useSectionHighlight({
     sectionIds: HOMEPAGE_SECTIONS,
     threshold: 0.6,
     rootMargin: '-20% 0px -20% 0px',

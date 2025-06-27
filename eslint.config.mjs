@@ -17,6 +17,7 @@ const eslintConfig = [
     'prettier',
   ),
   {
+    ignores: ['**/*.cjs', 'jest.config.cjs', 'jest.setup.cjs'],
     plugins: {
       'jsx-a11y': (await import('eslint-plugin-jsx-a11y')).default,
       prettier: (await import('eslint-plugin-prettier')).default,

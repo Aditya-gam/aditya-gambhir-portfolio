@@ -16,7 +16,7 @@ export function ThemeToggle({
   variant = 'ghost',
   size = 'icon',
 }: ThemeToggleProps) {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
     const themes: Array<'light' | 'dark' | 'system'> = [

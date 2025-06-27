@@ -54,8 +54,8 @@ describe('useSectionHighlight', () => {
       disconnect: mockDisconnect,
     });
 
-    const mockElements = mockSectionIds.map((id) => ({ id }));
-    const mockGetElementById = jest.fn((id: string) => {
+    const mockElements = mockSectionIds.map((id) => ({ id }) as HTMLElement);
+    const mockGetElementById = jest.fn((id: string): HTMLElement | null => {
       return mockElements.find((el) => el.id === id) || null;
     });
     document.getElementById = mockGetElementById;
@@ -69,7 +69,7 @@ describe('useSectionHighlight', () => {
   });
 
   it('should update active section when intersection occurs', () => {
-    let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
+    let intersectionCallback: (_entries: IntersectionObserverEntry[]) => void;
     mockIntersectionObserver.mockImplementation((callback) => {
       intersectionCallback = callback;
       return {
@@ -95,7 +95,7 @@ describe('useSectionHighlight', () => {
   });
 
   it('should not update active section when intersection is false', () => {
-    let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
+    let intersectionCallback: (_entries: IntersectionObserverEntry[]) => void;
     mockIntersectionObserver.mockImplementation((callback) => {
       intersectionCallback = callback;
       return {
