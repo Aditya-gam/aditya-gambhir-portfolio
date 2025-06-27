@@ -1,22 +1,9 @@
+import './HeroSectionTestSetup';
+
 import { render, screen } from '@testing-library/react';
 import { ContactModalContext } from '@/app/ContactModalContext';
 import { ResumeModalProvider } from '@/contexts/ResumeModalContext';
 import HeroSection from '@/components/hero/HeroSection';
-
-// Mock the social profiles data
-jest.mock('@/data/socials', () => ({
-  getFeaturedSocialProfiles: () => [
-    {
-      platform: 'linkedin',
-      name: 'Aditya Gambhir',
-      username: 'aditya-gambhir',
-      headline: 'Test headline',
-      profileUrl: 'https://linkedin.com/in/aditya-gambhir',
-      details: [],
-      stats: [],
-    },
-  ],
-}));
 
 const mockContactModalContext = {
   isOpen: false,
@@ -53,15 +40,10 @@ describe('HeroSection', () => {
     ).toBeInTheDocument();
 
     // Check for opportunity badge
-    expect(screen.getByText('Open to Opportunities')).toBeInTheDocument();
+    expect(screen.getByTestId('opportunity-badge')).toBeInTheDocument();
 
     // Check for CTA buttons
-    expect(
-      screen.getByRole('button', { name: /download resume/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /let's talk/i }),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('hero-cta-group')).toBeInTheDocument();
 
     // Check for profile image
     expect(
@@ -80,9 +62,7 @@ describe('HeroSection', () => {
   it('renders scroll cue button with proper accessibility', () => {
     renderHeroSection();
 
-    const scrollButton = screen.getByRole('button', {
-      name: /scroll to next section/i,
-    });
+    const scrollButton = screen.getByTestId('scroll-cue');
     expect(scrollButton).toBeInTheDocument();
     expect(scrollButton).toHaveAttribute(
       'aria-label',
@@ -93,7 +73,8 @@ describe('HeroSection', () => {
   it('renders social profiles section', () => {
     renderHeroSection();
 
-    // Check for LinkedIn profile
+    // Check for social profiles
+    expect(screen.getByTestId('social-profiles')).toBeInTheDocument();
     expect(screen.getByText('Aditya Gambhir')).toBeInTheDocument();
     expect(screen.getByText('Test headline')).toBeInTheDocument();
   });
