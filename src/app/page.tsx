@@ -18,7 +18,11 @@ export default function HomePage() {
   return (
     <main className="page-layout">
       {/* Hero Section */}
-      <section className="hero-section" aria-labelledby="hero-heading">
+      <section
+        id="hero"
+        className="hero-section"
+        aria-labelledby="hero-heading"
+      >
         <div className="hero-image">
           <Image
             src="/headshot1.webp"
@@ -49,7 +53,11 @@ export default function HomePage() {
       </section>
 
       {/* Highlights Section */}
-      <section className="content-section" aria-labelledby="highlights-heading">
+      <section
+        id="highlights"
+        className="content-section"
+        aria-labelledby="highlights-heading"
+      >
         <h2 id="highlights-heading" className="sr-only-heading">
           Professional Highlights
         </h2>
@@ -71,6 +79,7 @@ export default function HomePage() {
 
       {/* Featured Projects Section */}
       <section
+        id="projects"
         className="content-section-lg"
         aria-labelledby="projects-heading"
       >
@@ -82,6 +91,7 @@ export default function HomePage() {
 
       {/* Publications Section */}
       <section
+        id="publications"
         className="content-section-lg"
         aria-labelledby="publications-heading"
       >
@@ -89,7 +99,11 @@ export default function HomePage() {
       </section>
 
       {/* Call-to-Action Section */}
-      <section className="content-section-lg" aria-labelledby="cta-heading">
+      <section
+        id="cta"
+        className="content-section-lg"
+        aria-labelledby="cta-heading"
+      >
         <h2 id="cta-heading" className="sr-only-heading">
           View My Work
         </h2>
