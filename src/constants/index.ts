@@ -13,6 +13,15 @@ export const NAVIGATION_ITEMS = [
   { label: 'About Me', href: '/about' },
 ] as const;
 
+// Homepage Section IDs for smooth scrolling
+export const HOMEPAGE_SECTIONS = [
+  'hero',
+  'highlights',
+  'projects',
+  'publications',
+  'cta',
+] as const;
+
 // Social Links
 export const SOCIAL_LINKS = {
   LINKEDIN: 'https://www.linkedin.com/in/aditya-gambhir',
