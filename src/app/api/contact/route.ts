@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import mongoClientPromise from '@/lib/mongodb';
+import { logger } from '@/lib/logger';
 
 // TypeScript interfaces for better type safety
 interface ContactFormData {
@@ -112,7 +113,9 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
     const result = await response.json();
     return result.success === true;
   } catch (error) {
-    console.error('reCAPTCHA verification error:', error);
+    logger.error('reCAPTCHA verification failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
     return false;
   }
 }
@@ -265,7 +268,9 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     );
   } catch (error) {
-    console.error('Contact API error:', error);
+    logger.error('Contact API request failed', {
+      error: error instanceof Error ? error.message : String(error),
+    });
 
     // Don't expose internal error details to clients
     return NextResponse.json(

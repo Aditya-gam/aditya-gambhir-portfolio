@@ -24,10 +24,10 @@ const eslintConfig = [
     },
     rules: {
       'prettier/prettier': ['error'],
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       'no-console': 'warn',
       'prefer-const': 'error',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',

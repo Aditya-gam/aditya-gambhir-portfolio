@@ -1,6 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -13,9 +19,9 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
+  readonly children: React.ReactNode;
+  readonly defaultTheme?: Theme;
+  readonly storageKey?: string;
 }
 
 export function ThemeProvider({
@@ -55,11 +61,14 @@ export function ThemeProvider({
     localStorage.setItem(storageKey, theme);
   }, [theme, storageKey]);
 
-  const value = {
-    theme,
-    setTheme,
-    resolvedTheme,
-  };
+  const value = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      resolvedTheme,
+    }),
+    [theme, setTheme, resolvedTheme],
+  );
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -1,9 +1,11 @@
 import React, { RefObject } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { logger } from '@/lib/logger';
 
 interface CaptchaFieldProps {
   readonly recaptchaRef: RefObject<ReCAPTCHA | null>;
-  readonly onChange: (token: string | null) => void;
+
+  readonly onChange: (_token: string | null) => void;
   readonly onExpired: () => void;
   readonly onError: () => void;
 }
@@ -16,8 +18,11 @@ export function CaptchaField({
 }: CaptchaFieldProps) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
+  if (process.env.NODE_ENV !== 'production') {
+    logger.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not configured');
+  }
+
   if (!siteKey) {
-    console.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not configured');
     return (
       <div className="form-captcha">
         <p className="text-sm text-destructive">
@@ -29,9 +34,12 @@ export function CaptchaField({
 
   // Enhanced error handler for debugging
   const handleError = () => {
-    console.error('reCAPTCHA error occurred');
-    console.error('Current site key:', siteKey);
-    console.error('Current hostname:', window.location.hostname);
+    if (process.env.NODE_ENV !== 'production') {
+      logger.error('reCAPTCHA error occurred', {
+        siteKey: siteKey?.substring(0, 10) + '...',
+        hostname: window.location.hostname,
+      });
+    }
     onError();
   };
 

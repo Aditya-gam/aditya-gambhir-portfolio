@@ -69,7 +69,7 @@ describe('useSectionHighlight', () => {
   });
 
   it('should update active section when intersection occurs', () => {
-    let intersectionCallback: (_entries: IntersectionObserverEntry[]) => void;
+    let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
     mockIntersectionObserver.mockImplementation((callback) => {
       intersectionCallback = callback;
       return {
@@ -95,7 +95,7 @@ describe('useSectionHighlight', () => {
   });
 
   it('should not update active section when intersection is false', () => {
-    let intersectionCallback: (_entries: IntersectionObserverEntry[]) => void;
+    let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
     mockIntersectionObserver.mockImplementation((callback) => {
       intersectionCallback = callback;
       return {

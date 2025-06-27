@@ -4,6 +4,7 @@ interface FormFieldProps {
   readonly id: string;
   readonly label: string;
   readonly type?: 'text' | 'email' | 'textarea';
+
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly onBlur: () => void;

@@ -96,7 +96,8 @@ export interface CertificateModalProps {
   readonly certificate: Certificate | null;
   readonly certificates: readonly Certificate[];
   readonly currentIndex: number;
-  readonly onNavigate: (direction: 'prev' | 'next') => void;
+
+  readonly onNavigate: (_direction: 'prev' | 'next') => void;
 }
 
 export interface CertificateViewerProps {

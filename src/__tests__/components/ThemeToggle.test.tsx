@@ -3,6 +3,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 
+// Mock localStorage at the top to ensure it is a jest.fn()
+global.localStorage = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+  length: 0,
+  key: jest.fn(),
+};
+
 // Mock the Button component
 jest.mock('@/components/ui/button', () => ({
   Button: ({
@@ -54,6 +64,13 @@ describe('ThemeToggle', () => {
   beforeEach(() => {
     // Clear localStorage before each test
     localStorage.clear();
+    // Reset all mocks
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    // Clean up after each test
+    jest.clearAllMocks();
   });
 
   it('should render with default props', () => {
@@ -130,14 +147,13 @@ describe('ThemeToggle', () => {
   });
 
   it('should persist theme in localStorage', () => {
+    const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
     renderThemeToggle();
 
     const button = screen.getByRole('button');
     fireEvent.click(button);
 
-    expect(localStorage.setItem).toHaveBeenCalledWith(
-      'aditya-portfolio-theme',
-      'light',
-    );
+    expect(setItemSpy).toHaveBeenCalledWith('aditya-portfolio-theme', 'light');
+    setItemSpy.mockRestore();
   });
 });

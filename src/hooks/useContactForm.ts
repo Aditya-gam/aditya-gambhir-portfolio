@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import { FormData, ContactAPIResponse } from '@/types';
 import { useFormValidation } from './useFormValidation';
 import { API_ROUTES, ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/constants';
+import { logger } from '@/lib/logger';
 
 export function useContactForm() {
   const [formData, setFormData] = useState<FormData>({
@@ -76,7 +77,9 @@ export function useContactForm() {
         toast.error(result.error ?? ERROR_MESSAGES.NETWORK_ERROR);
       }
     } catch (error) {
-      console.error('Contact form error:', error);
+      logger.error('Contact form submission failed', {
+        error: error instanceof Error ? error.message : String(error),
+      });
       toast.error(ERROR_MESSAGES.GENERIC_ERROR);
     } finally {
       setSubmitting(false);

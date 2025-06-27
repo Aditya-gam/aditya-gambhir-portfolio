@@ -1,4 +1,4 @@
-require('@testing-library/jest-dom');
+import '@testing-library/jest-dom';
 
 // Mock next/router
 jest.mock('next/router', () => ({
@@ -48,12 +48,16 @@ jest.mock('next/navigation', () => ({
 jest.mock('framer-motion', () => ({
   motion: {
     header: ({ children, ...props }) => {
-      const React = require('react');
-      return React.createElement('header', props, children);
+      return (async () => {
+        const React = await import('react');
+        return React.createElement('header', props, children);
+      })();
     },
     div: ({ children, ...props }) => {
-      const React = require('react');
-      return React.createElement('div', props, children);
+      return (async () => {
+        const React = await import('react');
+        return React.createElement('div', props, children);
+      })();
     },
   },
   useScroll: () => ({
@@ -79,12 +83,3 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
-
-// Mock localStorage
-const localStorageMock = {
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
-  clear: jest.fn(),
-};
-global.localStorage = localStorageMock;
