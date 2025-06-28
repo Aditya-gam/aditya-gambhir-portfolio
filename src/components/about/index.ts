@@ -12,3 +12,4 @@ export { default as ProfessionalSummary } from './ProfessionalSummary';
 export { default as Publications } from './Publications';
 export { default as SkillsMatrix } from './SkillsMatrix';
 export { default as StatsRibbon } from './StatsRibbon';
+export { default as StatsCounter } from './StatsCounter';
