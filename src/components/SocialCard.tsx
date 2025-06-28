@@ -22,41 +22,44 @@ export default function SocialCard({
   const { platform, name, headline, profileUrl, details, stats } = profile;
 
   return (
-    <div className={`linkedin-card ${className}`}>
-      <div className="linkedin-card-header">
-        <div className="linkedin-card-info">
-          <h3 className="linkedin-card-name">{name}</h3>
-          <p className="linkedin-card-headline">{headline}</p>
+    <div
+      className={`linkedin-card flex flex-col justify-between min-h-[340px] h-full ${className}`}
+      style={{ boxSizing: 'border-box' }}
+    >
+      <div className="flex-1 flex flex-col">
+        <div className="linkedin-card-header flex items-start justify-between gap-4 mb-4">
+          <div className="linkedin-card-info flex-1">
+            <h3 className="linkedin-card-name">{name}</h3>
+            <p className="linkedin-card-headline">{headline}</p>
 
-          {details && details.length > 0 && (
-            <>
-              {details.map((detail) => (
-                <p key={detail.label} className="linkedin-card-detail">
-                  <span className="linkedin-card-label">{detail.label}:</span>{' '}
-                  {detail.value}
-                </p>
-              ))}
-            </>
-          )}
+            {details && details.length > 0 && (
+              <div className="flex flex-col gap-2 mb-2">
+                {details.map((detail) => (
+                  <p key={detail.label} className="linkedin-card-detail">
+                    <span className="linkedin-card-label">{detail.label}:</span>{' '}
+                    {detail.value}
+                  </p>
+                ))}
+              </div>
+            )}
 
-          {stats && stats.length > 0 && (
-            <>
-              {stats.map((stat) => (
-                <p key={stat.label} className="linkedin-card-detail">
-                  <span className="linkedin-card-label">{stat.label}:</span>{' '}
-                  {stat.value}
-                </p>
-              ))}
-            </>
-          )}
-        </div>
-
-        <div className="linkedin-card-logo">
-          <SocialLogo platform={platform} />
+            {stats && stats.length > 0 && (
+              <div className="flex flex-col gap-2">
+                {stats.map((stat) => (
+                  <p key={stat.label} className="linkedin-card-detail">
+                    <span className="linkedin-card-label">{stat.label}:</span>{' '}
+                    {stat.value}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="linkedin-card-logo flex-shrink-0 self-start ml-2">
+            <SocialLogo platform={platform} />
+          </div>
         </div>
       </div>
-
-      <div className="linkedin-card-footer">
+      <div className="linkedin-card-footer mt-auto">
         <Link
           href={profileUrl}
           target="_blank"
