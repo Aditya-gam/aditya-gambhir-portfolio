@@ -75,12 +75,37 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     transition: overflow 0.2s ease;
+    /* Add top padding to account for fixed header */
+    padding-top: 4rem;
   }
 
   /* Ensure no horizontal overflow on mobile */
   html,
   body {
     overflow-x: hidden;
+  }
+
+  /* Enhanced fixed header behavior - ensures header always stays at top */
+  header[class*='fixed'] {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    will-change: transform;
+    /* Ensure it stays at the top on all devices */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  /* Ensure smooth scrolling works with fixed header */
+  :target {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Prevent content from hiding behind fixed header */
+  main {
+    margin-top: 0;
   }
 }
 

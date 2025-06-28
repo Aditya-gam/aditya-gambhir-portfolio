@@ -18,11 +18,10 @@ export function CaptchaField({
 }: CaptchaFieldProps) {
   const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
-  if (process.env.NODE_ENV !== 'production') {
-    logger.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not configured');
-  }
-
   if (!siteKey) {
+    if (process.env.NODE_ENV !== 'production') {
+      logger.error('NEXT_PUBLIC_RECAPTCHA_SITE_KEY is not configured');
+    }
     return (
       <div className="form-captcha">
         <p className="text-sm text-destructive">
