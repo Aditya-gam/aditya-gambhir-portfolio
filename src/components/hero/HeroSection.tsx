@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { OpportunityBadge, HeroCTAGroup, ScrollCue } from '@/components/hero';
 import SocialProfiles from '@/components/SocialProfiles';
-import { getFeaturedSocialProfiles } from '@/data/socials';
+import { getAllSocialProfiles } from '@/data/socials';
 import { useResumeModal } from '@/contexts/ResumeModalContext';
 import { useContext } from 'react';
 import { ContactModalContext } from '@/app/ContactModalContext';
@@ -16,7 +15,7 @@ interface HeroSectionProps {
  * @param className - Additional CSS classes
  */
 export default function HeroSection({ className = '' }: HeroSectionProps) {
-  const socialProfiles = getFeaturedSocialProfiles();
+  const socialProfiles = getAllSocialProfiles(); // Changed to get all profiles including LeetCode
   const { openModal } = useResumeModal();
   const { openContactModal } = useContext(ContactModalContext);
 
@@ -39,31 +38,9 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-6"
+          className="mb-3"
         >
           <OpportunityBadge />
-        </motion.div>
-
-        {/* Profile Image */}
-        <motion.div
-          className="hero-image mb-6"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Image
-            src="/headshot1.webp"
-            alt="Aditya Gambhir - Software Engineer"
-            width={180}
-            height={180}
-            className="rounded-full object-cover shadow-lg shadow-primary/20"
-            priority
-            sizes="180px"
-            style={{
-              width: 'auto',
-              height: 'auto',
-            }}
-          />
         </motion.div>
 
         {/* Gradient Headline */}
@@ -72,7 +49,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-purple-600 to-primary bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           Hello, I&apos;m Aditya
         </motion.h1>
@@ -82,7 +59,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           className="text-xl md:text-2xl text-muted-foreground mb-6 font-medium"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
           Software Engineer & Data Scientist
         </motion.h2>
@@ -92,7 +69,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           className="hero-content text-hero max-w-2xl mx-auto mb-8 leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
           M.S. Computational Data Science graduate transforming cutting-edge ML,
           computer vision and real-time sensor fusion into scalable,
@@ -103,7 +80,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           className="mb-8"
         >
           <HeroCTAGroup
@@ -116,7 +93,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-8"
         >
           <SocialProfiles profiles={socialProfiles} title="" />
