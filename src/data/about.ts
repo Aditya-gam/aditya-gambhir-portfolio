@@ -52,7 +52,7 @@ export interface AboutData {
     school: string;
     gpa: string;
     courses: string[];
-  };
+  }[];
   certifications: readonly Certificate[];
   publications: {
     id: string;
@@ -174,12 +174,14 @@ export const aboutData: AboutData = {
       ],
     },
   ],
-  education: {
-    degree: 'M.S. Computational Data Science',
-    school: 'University of California, Riverside',
-    gpa: '3.67',
-    courses: ['Big Data', 'AI', 'Spatial Computing', 'ML'],
-  },
+  education: [
+    {
+      degree: 'M.S. Computational Data Science',
+      school: 'University of California, Riverside',
+      gpa: '3.67',
+      courses: ['Big Data', 'AI', 'Spatial Computing', 'ML'],
+    },
+  ],
   certifications: [
     {
       title: 'Sensor Fusion Nanodegree',

@@ -6,20 +6,29 @@ export const FORM_VALIDATION = {
   EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
 } as const;
 
-// Navigation Constants
+// Navigation Constants - Smooth scroll navigation for single-page homepage
 export const NAVIGATION_ITEMS = [
-  { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'About Me', href: '/about' },
+  { label: 'Home', href: '#hero' },
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
+] as const;
+
+// External navigation items (pages)
+export const EXTERNAL_NAVIGATION = [
+  { label: 'All Projects', href: '/projects' },
 ] as const;
 
 // Homepage Section IDs for smooth scrolling
 export const HOMEPAGE_SECTIONS = [
   'hero',
-  'highlights',
+  'about',
+  'skills',
   'projects',
+  'experience',
+  'contact',
   'publications',
-  'cta',
 ] as const;
 
 // Social Links

@@ -23,8 +23,9 @@ export interface ProjectData {
   description: string;
   bullets: string[];
   imageSrc: string;
-  imageAlt: string;
+  imageAlt?: string;
   priority?: boolean;
+  featured?: boolean;
   githubUrl?: string;
   liveUrl?: string;
   technologies?: string[];

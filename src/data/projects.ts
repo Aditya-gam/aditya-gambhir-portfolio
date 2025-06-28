@@ -13,6 +13,7 @@ export const featuredProjects: ProjectData[] = [
     imageSrc: '/projects/navigate-la28.svg',
     imageAlt: 'Navigate LA28 interactive map UI',
     priority: true,
+    featured: true,
     technologies: [
       'React',
       'Leaflet.js',
@@ -37,6 +38,7 @@ export const featuredProjects: ProjectData[] = [
     imageSrc: '/projects/dockership.svg',
     imageAlt: 'Dockership freight-ship management UI',
     priority: true,
+    featured: true,
     technologies: ['Python', 'Streamlit', 'Docker', 'MongoDB Atlas', 'Pytest'],
     githubUrl: 'https://github.com/Aditya-gam/Dockership',
   },
@@ -60,6 +62,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/sensor-fusion.svg',
     imageAlt: 'Sensor fusion visualization',
     priority: false,
+    featured: false,
     technologies: ['C++', 'Python', 'OpenCV', 'PCL', 'NumPy', 'Matplotlib'],
     githubUrl: 'https://github.com/Aditya-gam/SelfDriving-SensorFusion',
   },
@@ -71,6 +74,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/crowd-transformer.svg',
     imageAlt: 'Crowd localisation heat-map',
     priority: false,
+    featured: false,
     technologies: ['PyTorch', 'Transformers', 'CLIP', 'Python'],
     githubUrl:
       'https://github.com/Aditya-gam/Transformer-Model-for-Crowd-Localization',
@@ -83,6 +87,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/image-deblurring.svg',
     imageAlt: 'Image deblurring before-after',
     priority: false,
+    featured: false,
     technologies: ['TensorFlow', 'Keras', 'Python', 'OpenCV', 'NumPy'],
     githubUrl: 'https://github.com/Aditya-gam/Deblurring-Autoencoders',
   },
@@ -98,6 +103,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/chatbot-transformer.svg',
     imageAlt: 'Chatbot conversation interface',
     priority: false,
+    featured: false,
     technologies: ['PyTorch', 'Transformers', 'Python'],
     githubUrl: 'https://github.com/Aditya-gam/DNLP-Chatbot',
   },
@@ -109,6 +115,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/tech-mock-api.svg',
     imageAlt: 'Tech Mock API dashboard',
     priority: false,
+    featured: false,
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
     githubUrl: 'https://github.com/Aditya-gam/Tech-Mock-API',
   },
@@ -120,6 +127,7 @@ export const allProjects: ProjectData[] = [
     imageSrc: '/projects/admin-dashboard.svg',
     imageAlt: 'Admin dashboard KPI charts',
     priority: false,
+    featured: false,
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Redux'],
     githubUrl: 'https://github.com/Aditya-gam/Tech-Mock-API',
   },
@@ -136,6 +144,7 @@ export const getProjectsByTechnology = (tech: string): ProjectData[] =>
     ),
   );
 
-export const getFeaturedProjects = (): ProjectData[] => featuredProjects;
+export const getFeaturedProjects = (): ProjectData[] =>
+  allProjects.filter((project) => project.featured === true);
 
 export const getAllProjects = (): ProjectData[] => allProjects;
