@@ -203,9 +203,9 @@ export default function ExperienceTimeline({
       </ul>
 
       <div className="text-center mt-6">
-        <p className="text-sm text-muted-foreground">
+        {/* <p className="text-sm text-muted-foreground">
           Use arrow keys to navigate through experience items
-        </p>
+        </p> */}
       </div>
     </motion.section>
   );
