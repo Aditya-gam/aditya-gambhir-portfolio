@@ -31,10 +31,22 @@ export function FormField({
   const baseInputClass = `form-input ${error ? 'form-input-error' : ''}`;
   const textareaClass = `form-textarea ${error ? 'form-input-error' : ''}`;
 
+  // Enhanced ARIA attributes for better accessibility
+  const inputAriaProps = {
+    'aria-invalid': !!error,
+    'aria-describedby': error ? `${id}-error` : undefined,
+    'aria-required': required,
+  };
+
   return (
     <div className="form-field">
       <label htmlFor={id} className="form-label">
-        {label} {required && '*'}
+        {label}
+        {required && (
+          <span className="text-destructive ml-1" aria-label="required field">
+            *
+          </span>
+        )}
       </label>
       {type === 'textarea' ? (
         <textarea
@@ -45,9 +57,9 @@ export function FormField({
           onBlur={onBlur}
           className={textareaClass}
           placeholder={placeholder}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
           disabled={disabled}
+          autoComplete={id === 'contact-message' ? 'off' : undefined}
+          {...inputAriaProps}
         />
       ) : (
         <input
@@ -58,13 +70,24 @@ export function FormField({
           onBlur={onBlur}
           className={baseInputClass}
           placeholder={placeholder}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${id}-error` : undefined}
           disabled={disabled}
+          autoComplete={
+            id === 'contact-name'
+              ? 'name'
+              : id === 'contact-email'
+                ? 'email'
+                : undefined
+          }
+          {...inputAriaProps}
         />
       )}
       {error && (
-        <p id={`${id}-error`} role="alert" className="form-error">
+        <p
+          id={`${id}-error`}
+          role="alert"
+          className="form-error"
+          aria-live="polite"
+        >
           {error}
         </p>
       )}

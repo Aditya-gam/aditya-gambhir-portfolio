@@ -71,4 +71,12 @@ export const getSocialProfileByPlatform = (
 export const getAllSocialProfiles = (): SocialProfile[] => socialProfiles;
 
 export const getFeaturedSocialProfiles = (): SocialProfile[] =>
-  socialProfiles.slice(0, 3);
+  socialProfiles.filter((profile) =>
+    ['github', 'linkedin'].includes(profile.platform),
+  );
+
+/**
+ * Get LeetCode profile separately as it should be placed outside main social section
+ */
+export const getLeetCodeProfile = (): SocialProfile | undefined =>
+  socialProfiles.find((profile) => profile.platform === 'leetcode');

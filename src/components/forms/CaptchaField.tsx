@@ -1,11 +1,11 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import { env } from '@/config/env';
 import { logger } from '@/lib/logger';
 
 interface CaptchaFieldProps {
-  readonly recaptchaRef: RefObject<ReCAPTCHA | null>;
-
-  readonly onChange: (_token: string | null) => void;
+  readonly recaptchaRef: React.RefObject<ReCAPTCHA | null>;
+  readonly onChange: (token: string | null) => void;
   readonly onExpired: () => void;
   readonly onError: () => void;
 }
@@ -43,22 +43,24 @@ export function CaptchaField({
   };
 
   return (
-    <div className="form-captcha">
-      <ReCAPTCHA
-        sitekey={siteKey}
-        ref={recaptchaRef}
-        onChange={onChange}
-        onExpired={onExpired}
-        onError={handleError}
-        theme="light"
-        size="normal"
-      />
-      {/* Debug info - remove in production */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="text-xs text-muted-foreground mt-2">
-          Debug: Site key configured ({siteKey.substring(0, 10)}...)
-        </div>
-      )}
+    <div className="form-captcha" role="group" aria-labelledby="captcha-label">
+      <div id="captcha-label" className="sr-only">
+        Security verification required to submit form
+      </div>
+      <div className="flex justify-center">
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey={env.RECAPTCHA_SITE_KEY!}
+          onChange={onChange}
+          onExpired={onExpired}
+          onError={handleError}
+          theme="light"
+          aria-label="Complete the reCAPTCHA to verify you are human"
+        />
+      </div>
+      <p className="form-helper">
+        Complete the verification above to send your message
+      </p>
     </div>
   );
 }
