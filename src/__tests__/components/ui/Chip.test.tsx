@@ -41,28 +41,28 @@ describe('Chip Component', () => {
   it('applies skill category variant classes', () => {
     const { rerender } = render(<Chip {...defaultProps} variant="languages" />);
     const chip = screen.getByText('Test Chip').closest('div');
-    expect(chip).toHaveClass('bg-blue-50');
-    expect(chip).toHaveClass('text-blue-700');
+    expect(chip).toHaveClass('bg-blue-100');
+    expect(chip).toHaveClass('text-black');
 
     rerender(<Chip {...defaultProps} variant="frameworks" />);
-    expect(chip).toHaveClass('bg-purple-50');
-    expect(chip).toHaveClass('text-purple-700');
+    expect(chip).toHaveClass('bg-purple-100');
+    expect(chip).toHaveClass('text-black');
 
     rerender(<Chip {...defaultProps} variant="dataAi" />);
-    expect(chip).toHaveClass('bg-emerald-50');
-    expect(chip).toHaveClass('text-emerald-700');
+    expect(chip).toHaveClass('bg-emerald-100');
+    expect(chip).toHaveClass('text-black');
 
     rerender(<Chip {...defaultProps} variant="cloudDevops" />);
-    expect(chip).toHaveClass('bg-orange-50');
-    expect(chip).toHaveClass('text-orange-700');
+    expect(chip).toHaveClass('bg-orange-100');
+    expect(chip).toHaveClass('text-black');
 
     rerender(<Chip {...defaultProps} variant="databases" />);
-    expect(chip).toHaveClass('bg-indigo-50');
-    expect(chip).toHaveClass('text-indigo-700');
+    expect(chip).toHaveClass('bg-indigo-100');
+    expect(chip).toHaveClass('text-black');
 
     rerender(<Chip {...defaultProps} variant="tooling" />);
-    expect(chip).toHaveClass('bg-slate-50');
-    expect(chip).toHaveClass('text-slate-700');
+    expect(chip).toHaveClass('bg-slate-100');
+    expect(chip).toHaveClass('text-black');
   });
 
   it('applies correct size classes', () => {
