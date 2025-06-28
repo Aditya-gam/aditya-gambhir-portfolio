@@ -31,7 +31,7 @@ export const socialProfiles: SocialProfile[] = [
     profileUrl: 'https://github.com/Aditya-gam/',
     details: [
       { label: 'University', value: 'University of California, Riverside' },
-      { label: 'Location', value: 'Riverside, California' },
+      // { label: 'Location', value: 'Riverside, California' },
       //   { label: 'Timezone', value: 'UTC -07:00' },
     ],
     stats: [
@@ -45,12 +45,12 @@ export const socialProfiles: SocialProfile[] = [
     name: 'Aditya Gambhir',
     username: 'ByteAditya19',
     headline:
-      'Passionate Problem Solver | Data Structures & Algorithms Enthusiast | Competitive Programming',
+      'Passionate Problem Solver | Data Structures & Algorithms Enthusiast',
     profileUrl: 'https://leetcode.com/u/ByteAditya19/',
     details: [
       { label: 'Focus', value: 'Data Structures & Algorithms' },
       { label: 'Languages', value: 'Python, C++, Java' },
-      { label: 'Specialty', value: 'Dynamic Programming, Graph Theory' },
+      // { label: 'Specialty', value: 'Dynamic Programming, Graph Theory' },
     ],
     stats: [
       { label: 'Problems Solved', value: '450+' },
