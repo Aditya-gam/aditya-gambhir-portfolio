@@ -32,14 +32,42 @@ export default function HomePage() {
     { value: '1', label: 'Peer-reviewed Publications' },
   ];
 
-  // Macro-skills data according to plan
+  // Macro-skills data for card grid
   const macroSkills = [
-    { icon: '💻', label: 'Full-Stack Dev' },
-    { icon: '🤖', label: 'ML & GenAI' },
-    { icon: '⚡', label: 'Perf & Docs' },
-    { icon: '🧩', label: 'Problem-Solving' },
-    { icon: '🤝', label: 'Collaboration' },
-    { icon: '☁️', label: 'Cloud Architecture' },
+    {
+      icon: '💻',
+      title: 'Full Stack Development',
+      description:
+        'Building scalable applications with modern technologies across the stack.',
+    },
+    {
+      icon: '🤖',
+      title: 'AI/ML Engineering',
+      description:
+        'Developing intelligent systems and fine-tuning large language models.',
+    },
+    {
+      icon: '☁️',
+      title: 'Cloud Architecture',
+      description:
+        'Designing and implementing scalable cloud solutions on AWS.',
+    },
+    {
+      icon: '⚡',
+      title: 'Performance',
+      description: 'Optimizing systems for high performance and efficiency.',
+    },
+    {
+      icon: '🤝',
+      title: 'Collaboration',
+      description:
+        'Thriving in fast-paced environments and cross-functional teams.',
+    },
+    {
+      icon: '🎯',
+      title: 'Problem Solving',
+      description: 'Bridging real-world problems with cutting-edge technology.',
+    },
   ];
 
   return (
@@ -69,25 +97,32 @@ export default function HomePage() {
           className="mb-12"
         />
 
-        {/* Macro-skills chips - row of icon-label chips */}
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
+        {/* Macro-skills cards - grid layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
           {macroSkills.map((skill) => (
             <div
-              key={skill.label}
-              className="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full border border-primary/20 hover:bg-primary/20 transition-colors"
+              key={skill.title}
+              className="card-base flex flex-col items-start h-full p-6 border-l-4 border-primary/60 bg-card/80 hover:shadow-md hover:border-primary/80 transition-all duration-200"
             >
-              <span className="text-lg">{skill.icon}</span>
-              <span className="text-sm font-medium">{skill.label}</span>
+              <div className="text-3xl mb-3" aria-hidden="true">
+                {skill.icon}
+              </div>
+              <div className="font-semibold text-lg mb-1 text-foreground">
+                {skill.title}
+              </div>
+              <div className="text-sm text-muted-foreground leading-relaxed">
+                {skill.description}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Stats Counter Cards */}
-        <StatsCounter stats={stats} />
-
         {/* Dual Expertise */}
         <DualExpertise dualExpertise={aboutData.dualExpertise} />
       </section>
+
+      {/* Stats Counter Cards */}
+      <StatsCounter stats={stats} />
 
       {/* Skills Matrix */}
       <section
