@@ -3,30 +3,33 @@ import '@testing-library/jest-dom';
 declare global {
   namespace jest {
     interface Matchers<R> {
+      // Testing Library DOM matchers
       toBeInTheDocument(): R;
-
-      toHaveAttribute(_attr: string, _value?: string): R;
-
-      toHaveClass(_className: string): R;
-
-      toHaveTextContent(_text: string): R;
+      toHaveAttribute(attr: string, value?: string): R;
+      toHaveClass(className: string): R;
+      toHaveTextContent(text: string): R;
       toBeVisible(): R;
       toBeDisabled(): R;
       toBeEnabled(): R;
-
-      toHaveValue(_value: string | number | string[]): R;
-
-      toHaveDisplayValue(_value: string | RegExp | (string | RegExp)[]): R;
+      toHaveValue(value: string | number | string[]): R;
+      toHaveDisplayValue(value: string | RegExp | (string | RegExp)[]): R;
       toBeChecked(): R;
       toHaveFocus(): R;
+      toHaveFormValues(expectedValues: Record<string, unknown>): R;
+      toHaveStyle(css: string | Record<string, string | number>): R;
+      toHaveAccessibleName(name: string | RegExp): R;
+      toHaveAccessibleDescription(description: string | RegExp): R;
 
-      toHaveFormValues(_expectedValues: Record<string, unknown>): R;
+      // Jest core matchers
+      toBe(value: unknown): R;
+      toEqual(value: unknown): R;
+      toBeGreaterThan(value: number): R;
+      toHaveLength(length: number): R;
 
-      toHaveStyle(_css: string | Record<string, string | number>): R;
-
-      toHaveAccessibleName(_name: string | RegExp): R;
-
-      toHaveAccessibleDescription(_description: string | RegExp): R;
+      // Jest mock matchers
+      toHaveBeenCalled(): R;
+      toHaveBeenCalledTimes(times: number): R;
+      toHaveBeenCalledWith(...args: unknown[]): R;
     }
   }
 }
