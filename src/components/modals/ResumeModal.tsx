@@ -1,9 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Download, ExternalLink } from 'lucide-react';
+import {
+  X,
+  Download,
+  ExternalLink,
+  MapPin,
+  Mail,
+  Globe,
+  User,
+  Award,
+  Briefcase,
+  GraduationCap,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Chip } from '@/components/ui/chip';
 import { getAllResumes } from '@/data/resume';
+import { aboutData } from '@/data/about';
 import type { ResumeData } from '@/data/resume';
 
 interface ResumeModalProps {
@@ -13,7 +26,8 @@ interface ResumeModalProps {
 }
 
 /**
- * ResumeModal component provides a modal interface for viewing and downloading resumes
+ * Enhanced ResumeModal component with condensed resume content sections
+ * Maps JSON data to header, skills, experience, and education sections
  * @param isOpen - Whether the modal is open
  * @param onClose - Function to close the modal
  * @param selectedResume - Optional specific resume to display
@@ -24,10 +38,13 @@ export default function ResumeModal({
   selectedResume,
 }: ResumeModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [activeView, setActiveView] = useState<'content' | 'preview'>(
+    'content',
+  );
   const resumes = getAllResumes();
   const displayResume = selectedResume || resumes[0];
 
-  // Handle escape key
+  // Handle escape key and focus management
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -37,7 +54,6 @@ export default function ResumeModal({
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
-      // Prevent body scroll
       document.body.style.overflow = 'hidden';
     }
 
@@ -79,7 +95,7 @@ export default function ResumeModal({
         document.removeEventListener('keydown', handleTabKey);
       };
     }
-  }, [isOpen]);
+  }, [isOpen, activeView]);
 
   const handleDownload = (resume: ResumeData) => {
     const link = document.createElement('a');
@@ -92,29 +108,89 @@ export default function ResumeModal({
     window.open(`/${resume.filename}`, '_blank', 'noopener,noreferrer');
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
+  // Filter experience to top 3 as per requirements
+  const topExperience = aboutData.experience.slice(0, 3);
+
+  // Get skills relevant to selected resume type
+  const getRelevantSkills = () => {
+    if (displayResume.type === 'ds') {
+      return aboutData.skillsMatrix.filter((category) =>
+        ['Languages', 'Data / AI', 'Tooling'].includes(category.category),
+      );
+    } else {
+      return aboutData.skillsMatrix.filter((category) =>
+        ['Languages', 'Frameworks', 'Cloud & DevOps', 'Databases'].includes(
+          category.category,
+        ),
+      );
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  };
+
+  if (!isOpen) return null;
+
   return (
     <AnimatePresence>
-      {isOpen && (
+      <motion.div
+        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
+          ref={modalRef}
+          className="w-full max-w-5xl max-h-[90vh] overflow-hidden bg-background rounded-lg shadow-2xl resume-modal-content"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          onClick={(e) => e.stopPropagation()}
         >
-          <motion.div
-            ref={modalRef}
-            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-lg shadow-2xl"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+          {/* Modal Header */}
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b no-print">
+            <div className="flex items-center gap-4">
               <CardTitle className="text-2xl font-bold">
                 Resume Portfolio
               </CardTitle>
+              <div className="flex gap-2">
+                <Button
+                  variant={activeView === 'content' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveView('content')}
+                >
+                  Content
+                </Button>
+                <Button
+                  variant={activeView === 'preview' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveView('preview')}
+                >
+                  PDF Preview
+                </Button>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handlePrint}
+                className="gap-2"
+              >
+                <Award className="h-4 w-4" />
+                Print
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"
@@ -124,105 +200,282 @@ export default function ResumeModal({
               >
                 <X className="h-4 w-4" />
               </Button>
-            </CardHeader>
+            </div>
+          </CardHeader>
 
-            <CardContent className="space-y-6">
-              {/* Resume Preview */}
-              <div className="space-y-4">
-                <div className="aspect-[3/4] bg-muted rounded-lg overflow-hidden">
-                  <iframe
-                    src={`/${displayResume.filename}#toolbar=0&navpanes=0&scrollbar=0`}
-                    className="w-full h-full"
-                    title={`Preview of ${displayResume.title}`}
-                  />
-                </div>
-              </div>
+          {/* Scrollable Content */}
+          <div className="overflow-y-auto max-h-[calc(90vh-140px)] scrollbar-thin">
+            <CardContent className="p-6">
+              {activeView === 'content' ? (
+                <div className="space-y-8 resume-content">
+                  {/* Header Section */}
+                  <section className="text-center border-b pb-6">
+                    <h1 className="text-3xl font-bold text-primary mb-2">
+                      {aboutData.hero.name}
+                    </h1>
+                    <h2 className="text-xl text-muted-foreground mb-4">
+                      {displayResume.type === 'ds'
+                        ? aboutData.dualExpertise.dataScientist.title
+                        : aboutData.dualExpertise.softwareEngineer.title}
+                    </h2>
+                    <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        Riverside, CA
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Mail className="h-4 w-4" />
+                        gambhir.aditya19@gmail.com
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Globe className="h-4 w-4" />
+                        Portfolio Website
+                      </div>
+                    </div>
+                  </section>
 
-              {/* Resume Actions */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  onClick={() => handleViewFullscreen(displayResume)}
-                  className="flex-1 gap-2"
-                  size="lg"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  View Fullscreen
-                </Button>
-                <Button
-                  onClick={() => handleDownload(displayResume)}
-                  variant="outline"
-                  className="flex-1 gap-2"
-                  size="lg"
-                >
-                  <Download className="w-4 h-4" />
-                  Download
-                </Button>
-              </div>
+                  {/* Professional Summary */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <User className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">
+                        Professional Summary
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {aboutData.professionalSummary.description}
+                    </p>
+                  </section>
 
-              {/* Resume Selection */}
-              {resumes.length > 1 && (
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold">Choose Resume Type</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {resumes.map((resume) => (
-                      <Card
-                        key={resume.id}
-                        className={`cursor-pointer transition-all duration-200 hover:border-primary ${
-                          displayResume.id === resume.id
-                            ? 'border-primary bg-primary/5'
-                            : ''
-                        }`}
-                        onClick={() => {
-                          // This would need to be handled by parent component
-                          // For now, we'll just close and reopen with new resume
-                          onClose();
-                        }}
-                      >
-                        <CardContent className="p-4">
-                          <div className="flex items-center justify-between">
+                  {/* Skills Matrix */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Award className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">Core Skills</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {getRelevantSkills().map((skillCategory) => (
+                        <Card key={skillCategory.category} className="p-4">
+                          <h4 className="font-medium mb-3">
+                            {skillCategory.category}
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {skillCategory.items.map((skill) => (
+                              <Chip
+                                key={skill}
+                                label={skill}
+                                variant="secondary"
+                                size="sm"
+                              />
+                            ))}
+                          </div>
+                        </Card>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Experience */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Briefcase className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">
+                        Professional Experience
+                      </h3>
+                    </div>
+                    <div className="space-y-6">
+                      {topExperience.map((exp) => (
+                        <Card
+                          key={`${exp.company}-${exp.role}-${exp.period}`}
+                          className="p-4 border-l-4 border-l-primary"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
                             <div>
-                              <h4 className="font-semibold">{resume.title}</h4>
-                              <p className="text-sm text-muted-foreground">
-                                {resume.targetAudience}
+                              <h4 className="font-semibold">{exp.role}</h4>
+                              <p className="text-primary font-medium">
+                                {exp.company}
                               </p>
                             </div>
-                            <div className="text-xs text-muted-foreground">
-                              {resume.fileSize}
+                            <time className="text-sm text-muted-foreground">
+                              {exp.period}
+                            </time>
+                          </div>
+                          <ul className="space-y-2">
+                            {exp.bullets.map((bullet) => (
+                              <li
+                                key={`${exp.company}-${bullet.substring(0, 50)}`}
+                                className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                              >
+                                <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                                {bullet}
+                              </li>
+                            ))}
+                          </ul>
+                        </Card>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Education */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <GraduationCap className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">Education</h3>
+                    </div>
+                    <div className="space-y-4">
+                      {aboutData.education.map((edu) => (
+                        <Card
+                          key={`${edu.degree}-${edu.school}`}
+                          className="p-4 border-l-4 border-l-primary"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div>
+                              <h4 className="font-semibold">{edu.degree}</h4>
+                              <p className="text-primary font-medium">
+                                {edu.school}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
+                                GPA: {edu.gpa}
+                              </div>
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                    ))}
+                          <div>
+                            <h5 className="text-sm font-medium mb-2">
+                              Relevant Coursework
+                            </h5>
+                            <div className="flex flex-wrap gap-2">
+                              {edu.courses.map((course) => (
+                                <Chip
+                                  key={course}
+                                  label={course}
+                                  variant="outline"
+                                  size="sm"
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </Card>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Key Achievements */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Award className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">
+                        Key Achievements
+                      </h3>
+                    </div>
+                    <Card className="p-4">
+                      <ul className="space-y-2">
+                        {(displayResume.type === 'ds'
+                          ? aboutData.dualExpertise.dataScientist.achievements
+                          : aboutData.dualExpertise.softwareEngineer
+                              .achievements
+                        ).map((achievement) => (
+                          <li
+                            key={achievement.substring(0, 100)}
+                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                          >
+                            <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            {achievement}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card>
+                  </section>
+                </div>
+              ) : (
+                /* PDF Preview */
+                <div className="space-y-4">
+                  <div className="aspect-[3/4] bg-muted rounded-lg overflow-hidden">
+                    <iframe
+                      src={`/${displayResume.filename}#toolbar=0&navpanes=0&scrollbar=0`}
+                      className="w-full h-full"
+                      title={`Preview of ${displayResume.title}`}
+                    />
                   </div>
                 </div>
               )}
+            </CardContent>
+          </div>
 
-              {/* Resume Metadata */}
-              <div className="bg-muted/30 rounded-lg p-4 space-y-2">
-                <h4 className="font-semibold">Resume Details</h4>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Type:</span>{' '}
-                    {displayResume.title}
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Target:</span>{' '}
-                    {displayResume.targetAudience}
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Size:</span>{' '}
-                    {displayResume.fileSize}
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Updated:</span>{' '}
-                    {new Date(displayResume.lastUpdated).toLocaleDateString()}
-                  </div>
+          {/* Modal Footer */}
+          <div className="border-t p-4 no-print">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Button
+                onClick={() => handleDownload(displayResume)}
+                className="flex-1 gap-2"
+                size="lg"
+                data-testid="download-resume-btn"
+              >
+                <Download className="w-4 h-4" />
+                Download {displayResume.title}
+              </Button>
+              <Button
+                onClick={() => handleViewFullscreen(displayResume)}
+                variant="outline"
+                className="flex-1 gap-2"
+                size="lg"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Fullscreen
+              </Button>
+            </div>
+
+            {/* Resume Metadata */}
+            <div className="mt-4 text-center text-sm text-muted-foreground">
+              <p>
+                {displayResume.targetAudience} • {displayResume.fileSize} • Last
+                updated: {formatDate(displayResume.lastUpdated)}
+              </p>
+            </div>
+
+            {/* Resume Type Selection */}
+            {resumes.length > 1 && (
+              <div className="mt-4 space-y-3">
+                <h4 className="text-sm font-medium">Choose Resume Type</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {resumes.map((resume) => (
+                    <Card
+                      key={resume.id}
+                      className={`cursor-pointer transition-all duration-200 hover:border-primary ${
+                        displayResume.id === resume.id
+                          ? 'border-primary bg-primary/5'
+                          : ''
+                      }`}
+                      onClick={() => {
+                        // This would be handled by parent component to switch resume
+                        // For now, just show feedback
+                      }}
+                    >
+                      <CardContent className="p-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h5 className="font-medium text-sm">
+                              {resume.title}
+                            </h5>
+                            <p className="text-xs text-muted-foreground">
+                              {resume.type === 'ds'
+                                ? 'Data Science Focus'
+                                : 'Software Engineering Focus'}
+                            </p>
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {resume.fileSize}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </div>
-            </CardContent>
-          </motion.div>
+            )}
+          </div>
         </motion.div>
-      )}
+      </motion.div>
     </AnimatePresence>
   );
 }
