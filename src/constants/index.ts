@@ -17,7 +17,7 @@ export const NAVIGATION_ITEMS = [
 
 // External navigation items (pages)
 export const EXTERNAL_NAVIGATION = [
-  { label: 'All Projects', href: '/projects' },
+  // Removed 'All Projects' button from header navigation
 ] as const;
 
 // Homepage Section IDs for smooth scrolling

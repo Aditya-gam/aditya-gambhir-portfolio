@@ -16,13 +16,13 @@ export function ThemeToggle({
   variant = 'ghost',
   size = 'icon',
 }: ThemeToggleProps) {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   const toggleTheme = () => {
     const themes: Array<'light' | 'dark' | 'system'> = [
+      'system',
       'light',
       'dark',
-      'system',
     ];
     const currentIndex = themes.indexOf(theme);
     const nextIndex = (currentIndex + 1) % themes.length;
@@ -38,7 +38,7 @@ export function ThemeToggle({
       case 'system':
         return <Monitor className="h-5 w-5" />;
       default:
-        return <Sun className="h-5 w-5" />;
+        return <Monitor className="h-5 w-5" />;
     }
   };
 
@@ -65,10 +65,16 @@ export function ThemeToggle({
         className,
       )}
       aria-label={getAriaLabel()}
-      title={getAriaLabel()}
+      title={`${getAriaLabel()} (Current: ${theme}, Resolved: ${resolvedTheme})`}
     >
       {getIcon()}
       <span className="sr-only">{getAriaLabel()}</span>
+      {/* Debug info in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <span className="sr-only">
+          Theme: {theme}, Resolved: {resolvedTheme}
+        </span>
+      )}
     </Button>
   );
 }

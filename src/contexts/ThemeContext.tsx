@@ -32,31 +32,49 @@ export function ThemeProvider({
   const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
 
+  // Initialize theme from localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem(storageKey) as Theme | null;
-    if (savedTheme) {
+    if (savedTheme && ['light', 'dark', 'system'].includes(savedTheme)) {
       setTheme(savedTheme);
     }
   }, [storageKey]);
 
+  // Apply theme to document and handle system preference changes
   useEffect(() => {
     const root = window.document.documentElement;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-    root.classList.remove('light', 'dark');
+    const applyTheme = () => {
+      root.classList.remove('light', 'dark');
 
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-        .matches
-        ? 'dark'
-        : 'light';
-      root.classList.add(systemTheme);
-      setResolvedTheme(systemTheme);
-    } else {
-      root.classList.add(theme);
-      setResolvedTheme(theme);
-    }
+      if (theme === 'system') {
+        const systemTheme = mediaQuery.matches ? 'dark' : 'light';
+        // Don't add class for system theme, let CSS handle it
+        setResolvedTheme(systemTheme);
+      } else {
+        root.classList.add(theme);
+        setResolvedTheme(theme);
+      }
+    };
+
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      if (theme === 'system') {
+        setResolvedTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    applyTheme();
+
+    // Listen for system theme changes
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange);
+    };
   }, [theme]);
 
+  // Persist theme to localStorage
   useEffect(() => {
     localStorage.setItem(storageKey, theme);
   }, [theme, storageKey]);

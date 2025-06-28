@@ -35,9 +35,32 @@
   --font-sans: 'DM Sans', system-ui, sans-serif;
 }
 
-/* Dark mode theme */
+/* Dark mode theme - Class-based switching */
+.dark {
+  --color-background: oklch(6% 0.03 300);
+  --color-foreground: oklch(97% 0.004 280);
+  --color-card: oklch(6% 0.03 300);
+  --color-card-foreground: oklch(97% 0.004 280);
+  --color-popover: oklch(6% 0.03 300);
+  --color-popover-foreground: oklch(97% 0.004 280);
+  --color-primary: oklch(64% 0.17 290);
+  --color-primary-foreground: oklch(6% 0.03 300);
+  --color-secondary: oklch(20% 0.03 300);
+  --color-secondary-foreground: oklch(97% 0.004 280);
+  --color-muted: oklch(20% 0.03 300);
+  --color-muted-foreground: oklch(68% 0.02 300);
+  --color-accent: oklch(26% 0.05 250);
+  --color-accent-foreground: oklch(97% 0.004 280);
+  --color-destructive: oklch(30.6% 0.15 12);
+  --color-destructive-foreground: oklch(97% 0.004 280);
+  --color-border: oklch(20% 0.03 300);
+  --color-input: oklch(20% 0.03 300);
+  --color-ring: oklch(64% 0.17 290);
+}
+
+/* System theme preference fallback */
 @media (prefers-color-scheme: dark) {
-  @theme {
+  :root:not(.light):not(.dark) {
     --color-background: oklch(6% 0.03 300);
     --color-foreground: oklch(97% 0.004 280);
     --color-card: oklch(6% 0.03 300);

@@ -23,19 +23,23 @@ export default function Header({ onContactClick }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const { scrollY } = useScroll();
+  const isHomepage = pathname === '/';
 
   // Use section highlight hook for homepage
   const { activeSection: currentActiveSection } = useSectionHighlight({
     sectionIds: HOMEPAGE_SECTIONS,
-    threshold: 0.6,
-    rootMargin: '-20% 0px -20% 0px',
+    threshold: 0.3,
+    rootMargin: '-10% 0px -10% 0px',
   });
 
   useEffect(() => {
-    if (currentActiveSection) {
+    if (isHomepage && currentActiveSection) {
       setActiveSection(currentActiveSection);
+    } else if (!isHomepage) {
+      // Reset to hero when not on homepage
+      setActiveSection('hero');
     }
-  }, [currentActiveSection]);
+  }, [currentActiveSection, isHomepage]);
 
   // Transform scroll position to dynamic values for enhanced sticky behavior
   const blurAmount = useTransform(scrollY, [0, 50], ['blur(0px)', 'blur(8px)']);
@@ -83,8 +87,6 @@ export default function Header({ onContactClick }: HeaderProps) {
     }
     // For external links (/projects), let default navigation work
   };
-
-  const isHomepage = pathname === '/';
 
   return (
     <motion.header
