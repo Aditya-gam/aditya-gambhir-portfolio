@@ -156,11 +156,13 @@
 
 /* LinkedIn Card Styles */
 .linkedin-card {
-  @apply mt-6 bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 max-w-md mx-auto;
+  @apply bg-card border border-border rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 max-w-md mx-auto;
+  margin-top: 1.5rem;
 }
 
 .linkedin-card-header {
-  @apply flex items-start justify-between gap-4 mb-4;
+  @apply flex items-start justify-between gap-4;
+  margin-bottom: 0.5rem;
 }
 
 .linkedin-card-info {
@@ -192,7 +194,8 @@
 }
 
 .linkedin-card-footer {
-  @apply pt-4 border-t border-border;
+  @apply border-t border-border;
+  padding-top: 0.25rem;
 }
 
 .linkedin-card-link {
