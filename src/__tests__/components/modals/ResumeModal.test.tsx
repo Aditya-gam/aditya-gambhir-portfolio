@@ -7,14 +7,36 @@ jest.mock('next/image', () => {
     src,
     alt,
     className,
+    width,
+    height,
+    // Filter out Next.js specific props
+    priority: _priority,
+    placeholder: _placeholder,
+    blurDataURL: _blurDataURL,
+    sizes: _sizes,
     ...props
   }: {
     src: string;
     alt: string;
     className?: string;
+    width?: number | string;
+    height?: number | string;
+    priority?: boolean;
+    placeholder?: string;
+    blurDataURL?: string;
+    sizes?: string;
     [key: string]: unknown;
   }) {
-    return <img src={src} alt={alt} className={className} {...props} />;
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        width={width}
+        height={height}
+        {...props}
+      />
+    );
   };
 });
 

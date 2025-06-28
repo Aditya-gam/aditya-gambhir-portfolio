@@ -42,10 +42,21 @@ jest.mock('framer-motion', () => ({
     section: ({
       children,
       className,
+      // Filter out framer-motion specific props
+      initial: _initial,
+      animate: _animate,
+      whileInView: _whileInView,
+      viewport: _viewport,
+      transition: _transition,
       ...props
     }: {
       children: React.ReactNode;
       className?: string;
+      initial?: unknown;
+      animate?: unknown;
+      whileInView?: unknown;
+      viewport?: unknown;
+      transition?: unknown;
       [key: string]: unknown;
     }) => (
       <section className={className} data-framer-motion {...props}>
@@ -55,10 +66,21 @@ jest.mock('framer-motion', () => ({
     div: ({
       children,
       className,
+      // Filter out framer-motion specific props
+      initial: _initial,
+      animate: _animate,
+      whileInView: _whileInView,
+      viewport: _viewport,
+      transition: _transition,
       ...props
     }: {
       children: React.ReactNode;
       className?: string;
+      initial?: unknown;
+      animate?: unknown;
+      whileInView?: unknown;
+      viewport?: unknown;
+      transition?: unknown;
       [key: string]: unknown;
     }) => (
       <div className={className} {...props}>
