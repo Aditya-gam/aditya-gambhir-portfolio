@@ -6,7 +6,7 @@ import { FormField } from './forms/FormField';
 import { CaptchaField } from './forms/CaptchaField';
 import { SubmitButton } from './forms/SubmitButton';
 
-export function ContactForm({ className = '' }: ContactFormProps) {
+export function ContactForm({ className = '' }: Readonly<ContactFormProps>) {
   const {
     formData,
     errors,
