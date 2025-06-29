@@ -192,7 +192,15 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-primary" aria-hidden="true" />
-                  <span>Los Angeles, CA</span>
+                  <a
+                    href={`https://www.google.com/maps/search/${encodeURIComponent(aboutData.location)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                    aria-label={`Open ${aboutData.location} on Google Maps`}
+                  >
+                    {aboutData.location}
+                  </a>
                 </div>
               </div>
             </div>
@@ -200,7 +208,7 @@ export default function HomePage() {
             {/* Social Profiles - GitHub and LinkedIn only */}
             <div>
               <h3 className="text-lg font-semibold mb-4">Find me on</h3>
-              <SocialProfiles profiles={socialProfiles} title="" />
+              <SocialProfiles profiles={socialProfiles} title="" iconOnly />
             </div>
           </div>
 

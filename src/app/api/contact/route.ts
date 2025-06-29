@@ -7,6 +7,7 @@ import { logger } from '@/lib/logger';
 interface ContactFormData {
   name: string;
   email: string;
+  subject: string;
   message: string;
   captchaToken: string;
 }
@@ -14,6 +15,7 @@ interface ContactFormData {
 interface ContactMessage {
   name: string;
   email: string;
+  subject: string;
   message: string;
   timestamp: Date;
   ipAddress?: string;
@@ -25,6 +27,7 @@ const COLLECTION_NAME = 'contacts';
 
 // Validation constants
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_SUBJECT_LENGTH = 3;
 const MIN_MESSAGE_LENGTH = 10;
 const MAX_MESSAGE_LENGTH = 2000;
 
@@ -67,6 +70,12 @@ function validateContactForm(data: Partial<ContactFormData>): {
     errors.push('Email is required');
   } else if (!EMAIL_REGEX.test(data.email.trim())) {
     errors.push('Invalid email format');
+  }
+
+  if (!data.subject?.trim()) {
+    errors.push('Subject is required');
+  } else if (data.subject.trim().length < MIN_SUBJECT_LENGTH) {
+    errors.push('Subject must be at least 3 characters long');
   }
 
   if (!data.message?.trim()) {
@@ -147,13 +156,21 @@ async function sendEmail(data: ContactFormData): Promise<void> {
 
   const sanitizedName = sanitizeHtml(data.name.trim());
   const sanitizedEmail = sanitizeHtml(data.email.trim());
+  const sanitizedSubject = sanitizeHtml(data.subject.trim());
   const sanitizedMessage = sanitizeHtml(data.message.trim());
 
+  const recipient = 'gambhir.aditya19@gmail.com';
+  const senderAddress =
+    process.env.EMAIL_USER === recipient
+      ? 'adityajune196@gmail.com'
+      : process.env.EMAIL_USER!;
+
   await transporter.sendMail({
-    from: process.env.EMAIL_USER!,
-    to: 'gambhir.aditya19@gmail.com',
-    subject: `Portfolio Contact: ${sanitizedName}`,
-    text: `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\n\nMessage:\n${data.message.trim()}`,
+    from: senderAddress,
+    to: recipient,
+    subject: sanitizedSubject,
+    replyTo: sanitizedEmail,
+    text: `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\nSubject: ${data.subject.trim()}\n\nMessage:\n${data.message.trim()}`,
     html: `
       <div style="font-family: 'Poppins', system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: hsl(var(--foreground, 14% 0 0)); background-color: hsl(var(--background, 100% 0 0));">
         <h2 style="color: hsl(var(--foreground, 14% 0 0)); border-bottom: 2px solid hsl(var(--primary, 45% 0.18 145)); padding-bottom: 10px;">
@@ -162,6 +179,7 @@ async function sendEmail(data: ContactFormData): Promise<void> {
         <div style="background-color: hsl(var(--muted, 97% 0 0)); padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid hsl(var(--border, 89% 0 0));">
           <p><strong>Name:</strong> ${sanitizedName}</p>
           <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}" style="color: hsl(var(--primary, 45% 0.18 145));">${sanitizedEmail}</a></p>
+          <p><strong>Subject:</strong> ${sanitizedSubject}</p>
         </div>
         <div style="margin: 20px 0;">
           <h3 style="color: hsl(var(--foreground, 14% 0 0));">Message:</h3>
@@ -191,6 +209,7 @@ async function saveContactMessage(
   const contactMessage: ContactMessage = {
     name: data.name.trim(),
     email: data.email.trim().toLowerCase(),
+    subject: data.subject.trim(),
     message: data.message.trim(),
     timestamp: new Date(),
     ...(ipAddress && { ipAddress }),

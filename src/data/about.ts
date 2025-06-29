@@ -72,6 +72,8 @@ export interface AboutData {
     favoriteStack: string;
     hobbies: string[];
   };
+  /** Current city / location string, e.g. "Los Angeles, CA" */
+  location: string;
 }
 
 export const aboutData: AboutData = {
@@ -321,4 +323,6 @@ export const aboutData: AboutData = {
       '🎸 Strumming in spare time',
     ],
   },
+  // Contact location (used across site)
+  location: 'Los Angeles, CA',
 };

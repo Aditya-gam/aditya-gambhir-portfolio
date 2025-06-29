@@ -10,6 +10,7 @@ export function useContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
@@ -40,7 +41,7 @@ export function useContactForm() {
   };
 
   const resetForm = () => {
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', subject: '', message: '' });
     setCaptchaToken(null);
     recaptchaRef.current?.reset();
     clearAllErrors();

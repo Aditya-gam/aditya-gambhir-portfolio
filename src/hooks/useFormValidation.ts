@@ -6,6 +6,7 @@ export function useFormValidation() {
   const [errors, setErrors] = useState<FormErrors>({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
@@ -20,6 +21,13 @@ export function useFormValidation() {
           }
           return !FORM_VALIDATION.EMAIL_REGEX.test(value)
             ? ERROR_MESSAGES.INVALID_EMAIL
+            : '';
+        case 'subject':
+          if (!value.trim()) {
+            return ERROR_MESSAGES.REQUIRED_FIELD;
+          }
+          return value.trim().length < FORM_VALIDATION.MIN_SUBJECT_LENGTH
+            ? ERROR_MESSAGES.SUBJECT_TOO_SHORT
             : '';
         case 'message':
           if (!value.trim()) {
@@ -40,11 +48,17 @@ export function useFormValidation() {
       const newErrors: FormErrors = {
         name: validateField('name', formData.name),
         email: validateField('email', formData.email),
+        subject: validateField('subject', formData.subject),
         message: validateField('message', formData.message),
       };
 
       setErrors(newErrors);
-      return !newErrors.name && !newErrors.email && !newErrors.message;
+      return (
+        !newErrors.name &&
+        !newErrors.email &&
+        !newErrors.subject &&
+        !newErrors.message
+      );
     },
     [validateField],
   );
@@ -62,7 +76,7 @@ export function useFormValidation() {
   );
 
   const clearAllErrors = useCallback(() => {
-    setErrors({ name: '', email: '', message: '' });
+    setErrors({ name: '', email: '', subject: '', message: '' });
   }, []);
 
   return {

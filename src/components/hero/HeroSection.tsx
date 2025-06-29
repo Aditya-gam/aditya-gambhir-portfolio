@@ -15,7 +15,7 @@ interface HeroSectionProps {
  * @param className - Additional CSS classes
  */
 export default function HeroSection({ className = '' }: HeroSectionProps) {
-  const socialProfiles = getAllSocialProfiles(); // Changed to get all profiles including LeetCode
+  const socialProfiles = getAllSocialProfiles();
   const { openModal } = useResumeModal();
   const { openContactModal } = useContext(ContactModalContext);
 

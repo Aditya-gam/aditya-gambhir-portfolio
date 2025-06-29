@@ -19,6 +19,8 @@ export function validateField(field: keyof FormData, value: string): string {
       return validateName(value);
     case 'email':
       return validateEmail(value);
+    case 'subject':
+      return validateSubject(value);
     case 'message':
       return validateMessage(value);
     default:
@@ -65,6 +67,23 @@ export function validateEmail(email: string): string {
 }
 
 /**
+ * Validates subject field
+ */
+export function validateSubject(subject: string): string {
+  const trimmed = subject.trim();
+  if (!trimmed) {
+    return 'Subject is required';
+  }
+  if (trimmed.length < 3) {
+    return 'Subject must be at least 3 characters long';
+  }
+  if (trimmed.length > 150) {
+    return 'Subject must be less than 150 characters';
+  }
+  return '';
+}
+
+/**
  * Validates message field
  */
 export function validateMessage(message: string): string {
@@ -92,6 +111,7 @@ export function validateFormData(data: FormData): FormErrors {
   return {
     name: validateName(data.name),
     email: validateEmail(data.email),
+    subject: validateSubject(data.subject),
     message: validateMessage(data.message),
   };
 }
@@ -127,6 +147,7 @@ export interface ContactFormValidation {
 export function validateContactFormSubmission(data: {
   name?: string;
   email?: string;
+  subject?: string;
   message?: string;
   captchaToken?: string;
 }): ContactFormValidation {
@@ -139,6 +160,10 @@ export function validateContactFormSubmission(data: {
 
   if (!data.email?.trim()) {
     errors.push('Email is required');
+  }
+
+  if (!data.subject?.trim()) {
+    errors.push('Subject is required');
   }
 
   if (!data.message?.trim()) {
@@ -158,6 +183,11 @@ export function validateContactFormSubmission(data: {
   if (data.email?.trim()) {
     const emailError = validateEmail(data.email);
     if (emailError) errors.push(emailError);
+  }
+
+  if (data.subject?.trim()) {
+    const subjectError = validateSubject(data.subject);
+    if (subjectError) errors.push(subjectError);
   }
 
   if (data.message?.trim()) {

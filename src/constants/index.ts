@@ -4,6 +4,7 @@
 export const FORM_VALIDATION = {
   MIN_MESSAGE_LENGTH: 10,
   EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  MIN_SUBJECT_LENGTH: 3,
 } as const;
 
 // Navigation Constants - Smooth scroll navigation for single-page homepage
@@ -47,6 +48,7 @@ export const ERROR_MESSAGES = {
   REQUIRED_FIELD: 'This field is required.',
   INVALID_EMAIL: 'Please enter a valid email address.',
   MESSAGE_TOO_SHORT: `Message must be at least ${FORM_VALIDATION.MIN_MESSAGE_LENGTH} characters long.`,
+  SUBJECT_TOO_SHORT: `Subject must be at least ${FORM_VALIDATION.MIN_SUBJECT_LENGTH} characters long.`,
   CAPTCHA_REQUIRED: 'Please complete the reCAPTCHA verification.',
   GENERIC_ERROR: 'An unexpected error occurred. Please try again.',
   NETWORK_ERROR: 'Failed to send message. Please try again.',
