@@ -56,6 +56,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
         }}
       >
         {projects.map((project, index) => (
+          // <div key={project.title || index} className={`${item} h-full`}>
           <div key={project.title || index} className={item}>
             <ProjectCard
               project={project}

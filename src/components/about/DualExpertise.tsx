@@ -43,8 +43,8 @@ export default function DualExpertise({ dualExpertise }: DualExpertiseProps) {
       <div className="grid md:grid-cols-2 gap-8">
         {/* Data Scientist Card */}
         <motion.div variants={fadeInUp}>
-          <Card className="p-6 shadow-sm">
-            <CardContent className="p-0">
+          <Card className="p-6 shadow-sm h-full flex flex-col">
+            <CardContent className="p-0 flex flex-col flex-1">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
                   <svg
@@ -86,8 +86,8 @@ export default function DualExpertise({ dualExpertise }: DualExpertiseProps) {
 
         {/* Software Engineer Card */}
         <motion.div variants={fadeInUp}>
-          <Card className="p-6 shadow-sm">
-            <CardContent className="p-0">
+          <Card className="p-6 shadow-sm h-full flex flex-col">
+            <CardContent className="p-0 flex flex-col flex-1">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mr-4">
                   <svg

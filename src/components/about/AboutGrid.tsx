@@ -59,10 +59,10 @@ export default function AboutGrid({
             <Image
               src={image.src}
               alt={image.alt}
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               className={cn(
-                'object-cover shadow-lg shadow-indigo-500/20',
+                'object-cover w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 shadow-lg shadow-indigo-500/20',
                 imageVariant === 'rounded' ? 'rounded-full' : 'rounded-2xl',
               )}
               priority

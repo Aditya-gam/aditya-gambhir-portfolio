@@ -34,7 +34,9 @@
    ================================================ */
 
 .card-base {
-  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
+  /* Base card styling with flex column to allow inner content to stretch and ensure
+     consistent heights across sibling cards inside grid/flex layouts. */
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col h-full;
 }
 
 .card-interactive {
@@ -46,7 +48,8 @@
 }
 
 .card-project {
-  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4;
+  /* Project cards inherit base styles and ensure equal height */
+  @apply bg-card text-card-foreground border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4 flex flex-col h-full;
 }
 
 .article-card {

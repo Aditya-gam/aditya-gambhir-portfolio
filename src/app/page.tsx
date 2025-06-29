@@ -92,7 +92,7 @@ export default function HomePage() {
           title="AI/ML Engineer"
           description={aboutData.hero.description}
           image={aboutData.hero.image}
-          imageVariant="rounded" // Default circular crop as specified
+          imageVariant="rounded-square" // Use rounded-square crop for headshot
           className="mb-12"
         />
 
