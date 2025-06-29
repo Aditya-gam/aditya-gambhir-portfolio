@@ -8,8 +8,6 @@ import {
   AboutGrid,
   DualExpertise,
   SkillsMatrix,
-  ExperienceTimeline,
-  Publications,
   StatsCounter,
 } from '@/components/about';
 import { getFeaturedProjects } from '@/data/projects';
@@ -18,6 +16,7 @@ import Link from 'next/link';
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { getFeaturedSocialProfiles } from '@/data/socials';
 import SocialProfiles from '@/components/SocialProfiles';
+import ExperienceSection from '@/components/about/ExperienceSection';
 
 export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
@@ -155,14 +154,8 @@ export default function HomePage() {
         <ProjectCarousel projects={featuredProjects} />
       </section>
 
-      {/* Experience Timeline */}
-      <section
-        id="experience"
-        className="content-section-lg"
-        aria-labelledby="experience-heading"
-      >
-        <ExperienceTimeline experience={aboutData.experience} />
-      </section>
+      {/* Experience & Credentials */}
+      <ExperienceSection />
 
       {/* Contact Section - two-column layout as specified */}
       <section
@@ -216,15 +209,6 @@ export default function HomePage() {
             <ContactForm />
           </div>
         </div>
-      </section>
-
-      {/* Publications Section */}
-      <section
-        id="publications"
-        className="content-section-lg"
-        aria-labelledby="publications-heading"
-      >
-        <Publications publications={aboutData.publications} />
       </section>
     </main>
   );

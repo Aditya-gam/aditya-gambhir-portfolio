@@ -46,6 +46,11 @@ const ExperienceCard = ({
   onFocus,
 }: ExperienceCardProps) => {
   const cardRef = useRef<HTMLLIElement>(null);
+  const [showAllBullets, setShowAllBullets] = useState(false);
+
+  const bulletsToDisplay = showAllBullets
+    ? exp.bullets
+    : exp.bullets.slice(0, 5);
 
   useEffect(() => {
     if (isActive && cardRef.current) {
@@ -118,7 +123,7 @@ const ExperienceCard = ({
               className={`space-y-2 text-muted-foreground ${isAlternate ? 'text-right' : ''}`}
               aria-label={`Responsibilities at ${exp.company}`}
             >
-              {exp.bullets.map((bullet, bulletIndex) => (
+              {bulletsToDisplay.map((bullet, bulletIndex) => (
                 <li
                   key={`${exp.company}-bullet-${bulletIndex}-${bullet.slice(0, 20)}`}
                   className={`flex items-start gap-2 ${isAlternate ? 'flex-row-reverse' : ''}`}
@@ -133,6 +138,18 @@ const ExperienceCard = ({
                 </li>
               ))}
             </ul>
+            {exp.bullets.length > 5 && (
+              <button
+                type="button"
+                onClick={() => setShowAllBullets(!showAllBullets)}
+                className={`mt-3 text-primary text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${isAlternate ? '' : ''}`}
+                aria-expanded={showAllBullets}
+              >
+                {showAllBullets
+                  ? 'Show less'
+                  : `Show ${exp.bullets.length - 5} more`}
+              </button>
+            )}
           </CardContent>
         </Card>
       </div>

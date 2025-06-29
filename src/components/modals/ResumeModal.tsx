@@ -115,6 +115,9 @@ export default function ResumeModal({
   // Filter experience to top 3 as per requirements
   const topExperience = aboutData.experience.slice(0, 3);
 
+  // Show only the first 2 education records to keep resume concise
+  const topEducation = aboutData.education.slice(0, 2);
+
   // Get skills relevant to selected resume type
   const getRelevantSkills = () => {
     if (displayResume.type === 'ds') {
@@ -322,7 +325,7 @@ export default function ResumeModal({
                       <h3 className="text-lg font-semibold">Education</h3>
                     </div>
                     <div className="space-y-4">
-                      {aboutData.education.map((edu) => (
+                      {topEducation.map((edu) => (
                         <Card
                           key={`${edu.degree}-${edu.school}`}
                           className="p-4 border-l-4 border-l-primary"

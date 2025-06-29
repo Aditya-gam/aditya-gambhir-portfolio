@@ -233,14 +233,6 @@ export default function Certifications({
         </ul>
       </section>
 
-      {isAutoplayEnabled && (
-        <div className="text-center mt-4">
-          <p className="text-xs text-muted-foreground">
-            Auto-scrolling is enabled • Hover to pause
-          </p>
-        </div>
-      )}
-
       {/* Certificate Modal */}
       <CertificateModal
         isOpen={isOpen}

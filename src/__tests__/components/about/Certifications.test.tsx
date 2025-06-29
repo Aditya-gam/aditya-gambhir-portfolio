@@ -236,8 +236,8 @@ describe('Certifications Component', () => {
       render(<Certifications certifications={mockCertifications} />);
 
       expect(
-        screen.getByText('Auto-scrolling is enabled • Hover to pause'),
-      ).toBeInTheDocument();
+        screen.queryByText('Auto-scrolling is enabled • Hover to pause'),
+      ).not.toBeInTheDocument();
     });
 
     it('disables autoplay when reduced motion is preferred', () => {
@@ -270,10 +270,10 @@ describe('Certifications Component', () => {
       // Hover over the container
       await user.hover(scrollContainer);
 
-      // Auto-scroll should be paused
+      // Banner was removed; ensure it is not present
       expect(
-        screen.getByText('Auto-scrolling is enabled • Hover to pause'),
-      ).toBeInTheDocument();
+        screen.queryByText('Auto-scrolling is enabled • Hover to pause'),
+      ).not.toBeInTheDocument();
     });
 
     it('resumes autoplay when hover ends', async () => {
@@ -294,8 +294,8 @@ describe('Certifications Component', () => {
       await user.unhover(scrollContainer);
 
       expect(
-        screen.getByText('Auto-scrolling is enabled • Hover to pause'),
-      ).toBeInTheDocument();
+        screen.queryByText('Auto-scrolling is enabled • Hover to pause'),
+      ).not.toBeInTheDocument();
     });
   });
 
@@ -367,10 +367,10 @@ describe('Certifications Component', () => {
 
       render(<Certifications certifications={mockCertifications} />);
 
-      // Check that autoplay text is shown initially
+      // Ensure banner remains absent
       expect(
-        screen.getByText('Auto-scrolling is enabled • Hover to pause'),
-      ).toBeInTheDocument();
+        screen.queryByText('Auto-scrolling is enabled • Hover to pause'),
+      ).not.toBeInTheDocument();
 
       const firstButton = screen.getByLabelText(
         'View Sensor Fusion Nanodegree certificate',
@@ -379,10 +379,10 @@ describe('Certifications Component', () => {
       // Focus on a certificate button
       firstButton.focus();
 
-      // The autoplay text should still be there but behavior should be paused
+      // Ensure banner remains absent
       expect(
-        screen.getByText('Auto-scrolling is enabled • Hover to pause'),
-      ).toBeInTheDocument();
+        screen.queryByText('Auto-scrolling is enabled • Hover to pause'),
+      ).not.toBeInTheDocument();
     });
   });
 
