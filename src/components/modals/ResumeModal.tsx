@@ -42,7 +42,25 @@ export default function ResumeModal({
     'content',
   );
   const resumes = getAllResumes();
-  const displayResume = selectedResume || resumes[0];
+
+  // Debug: Log state
+  console.log('Modal opened with:');
+  console.log('- selectedResume:', selectedResume);
+  console.log('- resumes.length:', resumes.length);
+  console.log('- Will show switching UI:', resumes.length > 1);
+
+  // Internal state to allow switching between different resumes while the modal is open
+  const [displayResume, setDisplayResume] = useState<ResumeData>(
+    selectedResume || resumes[0],
+  );
+
+  // Sync internal state when parent selectedResume prop changes (e.g., when opening modal with a specific resume)
+  useEffect(() => {
+    if (selectedResume && selectedResume.id !== displayResume.id) {
+      setDisplayResume(selectedResume);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedResume]);
 
   // Handle escape key and focus management
   useEffect(() => {
@@ -112,9 +130,6 @@ export default function ResumeModal({
     window.print();
   };
 
-  // Filter experience to top 3 as per requirements
-  const topExperience = aboutData.experience.slice(0, 3);
-
   // Show only the first 2 education records to keep resume concise
   const topEducation = aboutData.education.slice(0, 2);
 
@@ -164,9 +179,19 @@ export default function ResumeModal({
           {/* Modal Header */}
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b no-print">
             <div className="flex items-center gap-4">
-              <CardTitle className="text-2xl font-bold">
-                Resume Portfolio
-              </CardTitle>
+              <div>
+                <CardTitle className="text-2xl font-bold">
+                  Resume Portfolio
+                </CardTitle>
+                {resumes.length > 1 && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Currently viewing:{' '}
+                    <span className="font-medium text-primary">
+                      {displayResume.title}
+                    </span>
+                  </p>
+                )}
+              </div>
               <div className="flex gap-2">
                 <Button
                   variant={activeView === 'content' ? 'default' : 'outline'}
@@ -277,45 +302,27 @@ export default function ResumeModal({
                     </div>
                   </section>
 
-                  {/* Experience */}
+                  {/* Experience Highlights sourced from the selected resume */}
                   <section>
                     <div className="flex items-center gap-2 mb-4">
                       <Briefcase className="h-5 w-5 text-primary" />
                       <h3 className="text-lg font-semibold">
-                        Professional Experience
+                        Experience Highlights
                       </h3>
                     </div>
-                    <div className="space-y-6">
-                      {topExperience.map((exp) => (
-                        <Card
-                          key={`${exp.company}-${exp.role}-${exp.period}`}
-                          className="p-4 border-l-4 border-l-primary"
-                        >
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                            <div>
-                              <h4 className="font-semibold">{exp.role}</h4>
-                              <p className="text-primary font-medium">
-                                {exp.company}
-                              </p>
-                            </div>
-                            <time className="text-sm text-muted-foreground">
-                              {exp.period}
-                            </time>
-                          </div>
-                          <ul className="space-y-2">
-                            {exp.bullets.map((bullet) => (
-                              <li
-                                key={`${exp.company}-${bullet.substring(0, 50)}`}
-                                className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
-                              >
-                                <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                                {bullet}
-                              </li>
-                            ))}
-                          </ul>
-                        </Card>
-                      ))}
-                    </div>
+                    <Card className="p-4">
+                      <ul className="space-y-2">
+                        {displayResume.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                          >
+                            <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card>
                   </section>
 
                   {/* Education */}
@@ -389,6 +396,50 @@ export default function ResumeModal({
                       </ul>
                     </Card>
                   </section>
+
+                  {/* Resume Type Selection */}
+                  {resumes.length > 1 && (
+                    <div className="mt-8 space-y-3">
+                      <h4 className="text-sm font-medium">
+                        Switch Resume Type
+                      </h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {resumes.map((resume) => (
+                          <Card
+                            key={resume.id}
+                            className={`cursor-pointer transition-all duration-200 border ${displayResume.id === resume.id ? 'border-primary bg-primary/5 shadow-md' : 'border-transparent'} hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
+                            onClick={() => setDisplayResume(resume)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                setDisplayResume(resume);
+                              }
+                            }}
+                            tabIndex={0}
+                            aria-label={`Switch to ${resume.title}`}
+                          >
+                            <CardContent className="p-3">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <h5 className="font-medium text-sm">
+                                    {resume.title}
+                                  </h5>
+                                  <p className="text-xs text-muted-foreground">
+                                    {resume.type === 'ds'
+                                      ? 'Data Science Focus'
+                                      : 'Software Engineering Focus'}
+                                  </p>
+                                </div>
+                                <div className="text-xs text-muted-foreground">
+                                  {resume.fileSize}
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ) : (
                 /* PDF Preview */
@@ -435,47 +486,6 @@ export default function ResumeModal({
                 updated: {formatDate(displayResume.lastUpdated)}
               </p>
             </div>
-
-            {/* Resume Type Selection */}
-            {resumes.length > 1 && (
-              <div className="mt-4 space-y-3">
-                <h4 className="text-sm font-medium">Choose Resume Type</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {resumes.map((resume) => (
-                    <Card
-                      key={resume.id}
-                      className={`cursor-pointer transition-all duration-200 hover:border-primary ${
-                        displayResume.id === resume.id
-                          ? 'border-primary bg-primary/5'
-                          : ''
-                      }`}
-                      onClick={() => {
-                        // This would be handled by parent component to switch resume
-                        // For now, just show feedback
-                      }}
-                    >
-                      <CardContent className="p-3">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h5 className="font-medium text-sm">
-                              {resume.title}
-                            </h5>
-                            <p className="text-xs text-muted-foreground">
-                              {resume.type === 'ds'
-                                ? 'Data Science Focus'
-                                : 'Software Engineering Focus'}
-                            </p>
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {resume.fileSize}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </motion.div>
       </motion.div>

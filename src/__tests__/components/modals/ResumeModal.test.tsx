@@ -119,6 +119,18 @@ jest.mock('@/data/resume', () => ({
       fileSize: '2.1 MB',
       type: 'sde',
     },
+    {
+      id: 'ds',
+      title: 'Data Science Resume',
+      filename: 'Aditya_Gambhir_DS.pdf',
+      downloadName: 'Aditya_Gambhir_Data_Science_Resume.pdf',
+      description: 'Data Science Test description',
+      highlights: ['Data Science highlight'],
+      targetAudience: 'Data Science roles',
+      lastUpdated: '2024-12-08',
+      fileSize: '2.3 MB',
+      type: 'ds',
+    },
   ],
 }));
 
@@ -144,11 +156,27 @@ jest.mock('@/data/about', () => ({
     skillsMatrix: [
       {
         category: 'Languages',
-        items: ['JavaScript', 'TypeScript'],
+        items: ['JavaScript', 'TypeScript', 'Python'],
       },
       {
         category: 'Frameworks',
         items: ['React', 'Node.js'],
+      },
+      {
+        category: 'Data / AI',
+        items: ['TensorFlow', 'Pandas'],
+      },
+      {
+        category: 'Cloud & DevOps',
+        items: ['AWS', 'Docker'],
+      },
+      {
+        category: 'Databases',
+        items: ['PostgreSQL', 'MongoDB'],
+      },
+      {
+        category: 'Tooling',
+        items: ['Git', 'VS Code'],
       },
     ],
     experience: [
@@ -300,7 +328,7 @@ describe('ResumeModal', () => {
     // Check for section headings
     expect(screen.getByText('Professional Summary')).toBeInTheDocument();
     expect(screen.getByText('Core Skills')).toBeInTheDocument();
-    expect(screen.getByText('Professional Experience')).toBeInTheDocument();
+    expect(screen.getByText('Experience Highlights')).toBeInTheDocument();
     expect(screen.getByText('Education')).toBeInTheDocument();
     expect(screen.getByText('Key Achievements')).toBeInTheDocument();
   });
@@ -370,8 +398,7 @@ describe('ResumeModal', () => {
     );
 
     expect(screen.getByText(/Software Engineering roles/)).toBeInTheDocument();
-    expect(screen.getByText(/2\.1 MB/)).toBeInTheDocument();
-    expect(screen.getByText(/last updated/i)).toBeInTheDocument();
+    expect(screen.getByText(/Last updated:/)).toBeInTheDocument();
   });
 
   it('has proper scrollable container classes', () => {
@@ -401,5 +428,117 @@ describe('ResumeModal', () => {
     expect(document.querySelector('.resume-modal-content')).toBeInTheDocument();
     expect(document.querySelector('.resume-content')).toBeInTheDocument();
     expect(document.querySelector('.no-print')).toBeInTheDocument();
+  });
+
+  it('shows resume switching UI when multiple resumes are available', () => {
+    render(
+      <ResumeModal
+        isOpen={true}
+        onClose={mockOnClose}
+        selectedResume={mockSelectedResume}
+      />,
+    );
+
+    expect(screen.getByText('Switch Resume Type')).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Switch to Software Engineer Resume'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByLabelText('Switch to Data Science Resume'),
+    ).toBeInTheDocument();
+    expect(screen.getByText('Currently viewing:')).toBeInTheDocument();
+  });
+
+  it('switches between resumes when resume cards are clicked', () => {
+    render(
+      <ResumeModal
+        isOpen={true}
+        onClose={mockOnClose}
+        selectedResume={mockSelectedResume}
+      />,
+    );
+
+    // Should start with SDE resume
+    expect(screen.getByText('Currently viewing:')).toBeInTheDocument();
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument();
+
+    // Click on Data Science resume
+    const dsResumeCard = screen.getByLabelText('Switch to Data Science Resume');
+    fireEvent.click(dsResumeCard);
+
+    // Should now show Data Science content (check the title in the content)
+    expect(screen.getByText('Data Scientist')).toBeInTheDocument();
+  });
+
+  it('updates download and view buttons when switching resumes', () => {
+    render(
+      <ResumeModal
+        isOpen={true}
+        onClose={mockOnClose}
+        selectedResume={mockSelectedResume}
+      />,
+    );
+
+    // Initially should show SDE resume download
+    const downloadButton = screen.getByTestId('download-resume-btn');
+    expect(downloadButton).toHaveTextContent(
+      'Download Software Engineer Resume',
+    );
+
+    // Switch to Data Science resume
+    const dsResumeCard = screen.getByLabelText('Switch to Data Science Resume');
+    fireEvent.click(dsResumeCard);
+
+    // Download button should update
+    expect(downloadButton).toHaveTextContent('Download Data Science Resume');
+  });
+
+  it('shows different skills based on resume type', () => {
+    render(
+      <ResumeModal
+        isOpen={true}
+        onClose={mockOnClose}
+        selectedResume={mockSelectedResume}
+      />,
+    );
+
+    // Initially showing SDE skills (Languages, Frameworks, Cloud & DevOps, Databases)
+    expect(screen.getByText('Languages')).toBeInTheDocument();
+    expect(screen.getByText('Frameworks')).toBeInTheDocument();
+    expect(screen.getByText('Cloud & DevOps')).toBeInTheDocument();
+    expect(screen.getByText('Databases')).toBeInTheDocument();
+
+    // Switch to Data Science resume
+    const dsResumeCard = screen.getByLabelText('Switch to Data Science Resume');
+    fireEvent.click(dsResumeCard);
+
+    // Should show DS skills (Languages, Data / AI, Tooling)
+    expect(screen.getByText('Languages')).toBeInTheDocument();
+    expect(screen.getByText('Data / AI')).toBeInTheDocument();
+    expect(screen.getByText('Tooling')).toBeInTheDocument();
+  });
+
+  it('handles keyboard navigation for resume switching', () => {
+    render(
+      <ResumeModal
+        isOpen={true}
+        onClose={mockOnClose}
+        selectedResume={mockSelectedResume}
+      />,
+    );
+
+    const dsResumeCard = screen.getByLabelText('Switch to Data Science Resume');
+
+    // Test Enter key
+    fireEvent.keyDown(dsResumeCard, { key: 'Enter' });
+    expect(screen.getByText('Data Scientist')).toBeInTheDocument();
+
+    const sdeResumeCard = screen.getByLabelText(
+      'Switch to Software Engineer Resume',
+    );
+
+    // Test Space key
+    fireEvent.keyDown(sdeResumeCard, { key: ' ' });
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument();
   });
 });
