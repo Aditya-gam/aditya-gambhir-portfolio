@@ -7,8 +7,24 @@
 
 import { FormData, FormErrors } from '@/types';
 
-// Email validation regex
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// === Validation Constants (centralized for easy auditing & updates) ===
+export const NAME_MIN_LENGTH = 2;
+export const NAME_MAX_LENGTH = 100;
+export const SUBJECT_MIN_LENGTH = 3;
+export const SUBJECT_MAX_LENGTH = 150;
+export const MESSAGE_MIN_LENGTH = 10;
+export const MESSAGE_MAX_LENGTH = 2000;
+
+// Email validation with low regex-complexity (<20) — leverages two simpler patterns
+const LOCAL_PART_REGEX = /^[^\s@]{1,64}$/; // no spaces/@, max 64 chars
+const DOMAIN_REGEX = /^[^\s@]+\.[^\s@]{2,}$/; // must contain a dot & TLD ≥2 chars
+
+const EMAIL_REGEX = new RegExp(
+  `${LOCAL_PART_REGEX.source.slice(1, -1)}@${DOMAIN_REGEX.source.slice(1, -1)}`,
+);
+
+// Name should only contain letters, spaces, apostrophes & dashes (Unicode safe)
+const NAME_REGEX = /^[\p{L}\p{M}'\- ]+$/u;
 
 /**
  * Validates a single form field
@@ -38,12 +54,16 @@ export function validateName(name: string): string {
     return 'Name is required';
   }
 
-  if (trimmedName.length < 2) {
-    return 'Name must be at least 2 characters long';
+  if (trimmedName.length < NAME_MIN_LENGTH) {
+    return `Name must be at least ${NAME_MIN_LENGTH} characters long`;
   }
 
-  if (trimmedName.length > 100) {
-    return 'Name must be less than 100 characters';
+  if (trimmedName.length > NAME_MAX_LENGTH) {
+    return `Name must be less than ${NAME_MAX_LENGTH} characters`;
+  }
+
+  if (!NAME_REGEX.test(trimmedName)) {
+    return 'Name contains invalid characters';
   }
 
   return '';
@@ -74,11 +94,11 @@ export function validateSubject(subject: string): string {
   if (!trimmed) {
     return 'Subject is required';
   }
-  if (trimmed.length < 3) {
-    return 'Subject must be at least 3 characters long';
+  if (trimmed.length < SUBJECT_MIN_LENGTH) {
+    return `Subject must be at least ${SUBJECT_MIN_LENGTH} characters long`;
   }
-  if (trimmed.length > 150) {
-    return 'Subject must be less than 150 characters';
+  if (trimmed.length > SUBJECT_MAX_LENGTH) {
+    return `Subject must be less than ${SUBJECT_MAX_LENGTH} characters`;
   }
   return '';
 }
@@ -93,12 +113,12 @@ export function validateMessage(message: string): string {
     return 'Message is required';
   }
 
-  if (trimmedMessage.length < 10) {
-    return 'Message must be at least 10 characters long';
+  if (trimmedMessage.length < MESSAGE_MIN_LENGTH) {
+    return `Message must be at least ${MESSAGE_MIN_LENGTH} characters long`;
   }
 
-  if (trimmedMessage.length > 2000) {
-    return 'Message must be less than 2000 characters';
+  if (trimmedMessage.length > MESSAGE_MAX_LENGTH) {
+    return `Message must be less than ${MESSAGE_MAX_LENGTH} characters`;
   }
 
   return '';
@@ -153,50 +173,36 @@ export function validateContactFormSubmission(data: {
 }): ContactFormValidation {
   const errors: string[] = [];
 
-  // Check required fields
-  if (!data.name?.trim()) {
-    errors.push('Name is required');
-  }
+  // Required field validations (data-driven)
+  (
+    [
+      ['name', 'Name is required'],
+      ['email', 'Email is required'],
+      ['subject', 'Subject is required'],
+      ['message', 'Message is required'],
+      ['captchaToken', 'CAPTCHA verification is required'],
+    ] as const
+  ).forEach(([field, message]) => {
+    if (!data[field]?.trim()) {
+      errors.push(message);
+    }
+  });
 
-  if (!data.email?.trim()) {
-    errors.push('Email is required');
-  }
+  // Field format validations (data-driven)
+  (
+    [
+      ['name', validateName],
+      ['email', validateEmail],
+      ['subject', validateSubject],
+      ['message', validateMessage],
+    ] as const
+  ).forEach(([field, validator]) => {
+    const value = data[field];
+    if (typeof value === 'string' && value.trim()) {
+      const error = validator(value);
+      if (error) errors.push(error);
+    }
+  });
 
-  if (!data.subject?.trim()) {
-    errors.push('Subject is required');
-  }
-
-  if (!data.message?.trim()) {
-    errors.push('Message is required');
-  }
-
-  if (!data.captchaToken?.trim()) {
-    errors.push('CAPTCHA verification is required');
-  }
-
-  // Validate field formats if present
-  if (data.name?.trim()) {
-    const nameError = validateName(data.name);
-    if (nameError) errors.push(nameError);
-  }
-
-  if (data.email?.trim()) {
-    const emailError = validateEmail(data.email);
-    if (emailError) errors.push(emailError);
-  }
-
-  if (data.subject?.trim()) {
-    const subjectError = validateSubject(data.subject);
-    if (subjectError) errors.push(subjectError);
-  }
-
-  if (data.message?.trim()) {
-    const messageError = validateMessage(data.message);
-    if (messageError) errors.push(messageError);
-  }
-
-  return {
-    isValid: errors.length === 0,
-    errors,
-  };
+  return { isValid: errors.length === 0, errors };
 }
