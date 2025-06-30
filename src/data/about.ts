@@ -1,8 +1,9 @@
-// About page data - centralized for easy management and security
+// About page data – centralized for easy management and security
 import type { Certificate } from '@/types';
 
 export interface AboutData {
   hero: {
+    greeting: string;
     name: string;
     title: string;
     description: string;
@@ -77,12 +78,16 @@ export interface AboutData {
 }
 
 export const aboutData: AboutData = {
+  // ────────────────────────────────────────────
+  // HERO
+  // ────────────────────────────────────────────
   hero: {
+    greeting: "Hello, I'm Aditya",
     name: 'Aditya Gambhir',
     title:
-      'Full-Stack Developer & AI Enthusiast bridging data science and software engineering.',
+      'M.S. Computational Data Science • Full-Stack Developer & AI Enthusiast',
     description:
-      'M.S. Computational Data Science graduate transforming cutting-edge ML, computer vision and real-time sensor fusion into scalable, user-centric software.',
+      'Software & ML engineer turning sensor, geospatial, and text data into real-time, cloud-native products. Experienced across MERN, Spring Boot, and distributed ML pipelines for computer vision, sensor fusion, and analytics.',
     image: {
       src: '/headshot1.webp',
       alt: 'Aditya Gambhir',
@@ -92,116 +97,230 @@ export const aboutData: AboutData = {
       sde: '/Aditya_Gambhir_SDE.pdf',
     },
   },
+
+  // ────────────────────────────────────────────
+  // QUICK STATS
+  // ────────────────────────────────────────────
   stats: {
     experience: '1.5+',
     projects: '10+',
     gpa: '3.67',
     publications: '1',
   },
+
+  // ────────────────────────────────────────────
+  // PROFESSIONAL SUMMARY
+  // ────────────────────────────────────────────
   professionalSummary: {
     description:
-      'Software engineer and data scientist with experience in machine learning, computer vision, and full-stack development. Specialized in transforming research concepts into practical applications through modern development practices. Passionate about building scalable solutions that bridge academic research with real-world implementation.',
-    quote: "Let's build the future of technology together.",
+      'Data-driven software engineer and ML researcher with an M.S. in Computational Data Science (UC Riverside). I specialise in building scalable back-end services and machine-learning pipelines that transform raw data into actionable insights, with proven results in computer vision, real-time sensor fusion, and geospatial analytics.',
+    quote: 'Turning data into dynamic products.',
   },
+
+  // ────────────────────────────────────────────
+  // DUAL EXPERTISE
+  // ────────────────────────────────────────────
   dualExpertise: {
     dataScientist: {
       title: 'Data Scientist / ML Engineer',
       achievements: [
-        'Implemented sensor fusion algorithms for autonomous vehicle applications',
-        'Developed NLP chatbot models with improved performance metrics',
-        'Conducted computer vision research with practical applications',
+        'Fused LiDAR, RADAR & camera data with UKF, achieving < 0.5 m RMSE in highway simulation',
+        'Developed transformer-based crowd-localisation model with 12 % accuracy lift across 5 datasets',
+        'Designed time-series pipelines for financial KPI forecasting and anomaly detection',
       ],
       technologies: [
         'PyTorch',
-        'Vision-Transformers',
-        'Kalman Filter',
+        'TensorFlow',
         'OpenCV',
+        'Kalman Filter',
+        'Spark',
       ],
     },
     softwareEngineer: {
       title: 'Software Engineer (Backend & Full-Stack)',
       achievements: [
-        'Built scalable mock-server platform serving development teams',
-        'Contributed to development process optimization and quality improvements',
-        'Gained experience in full-stack development and API design',
+        'Architected MERN mock-server platform with 15 + endpoints, cutting feature cycle time by 35 %',
+        'Built Auth0-secured microservices & dashboards serving 500 + daily users',
+        'Containerised and deployed full-stack apps via Docker & GitHub Actions, sustaining 99.9 % uptime',
       ],
-      technologies: ['Node.js', 'Spring Boot', 'AWS', 'CI/CD'],
+      technologies: [
+        'Node.js',
+        'React',
+        'Spring Boot',
+        'FastAPI',
+        'Docker',
+        'AWS',
+      ],
     },
   },
+
+  // ────────────────────────────────────────────
+  // SKILLS MATRIX
+  // ────────────────────────────────────────────
   skillsMatrix: [
     {
       category: 'Languages',
-      items: ['C++', 'Java', 'JavaScript', 'TypeScript', 'Python'],
+      items: [
+        'C', // scripting & systems
+        'C++',
+        'Java',
+        'Python',
+        'JavaScript',
+        'TypeScript',
+        'SQL',
+        'Bash',
+        'R',
+      ],
     },
     {
-      category: 'Frameworks',
-      items: ['React', 'Node.js', 'Spring Boot', 'FastAPI'],
+      category: 'Frontend & UI',
+      items: [
+        'React',
+        'Next.js',
+        'Angular (basic)',
+        'Tailwind CSS',
+        'HTML5 / CSS3',
+        'D3.js',
+        'Streamlit',
+      ],
     },
     {
-      category: 'Data / AI',
-      items: ['Pandas', 'NumPy', 'TensorFlow', 'Keras', 'OpenCV'],
+      category: 'Backend & APIs',
+      items: [
+        'Node.js',
+        'Express.js',
+        'Spring Boot',
+        'FastAPI',
+        'GraphQL',
+        'REST',
+        'Microservices',
+      ],
+    },
+    {
+      category: 'Data / AI Libraries',
+      items: [
+        'Pandas',
+        'NumPy',
+        'TensorFlow',
+        'PyTorch',
+        'Scikit-learn',
+        'Keras',
+        'OpenCV',
+        'Transformers',
+        'Seaborn',
+        'Matplotlib',
+        'SpaCy',
+      ],
+    },
+    {
+      category: 'Big Data & Analytics',
+      items: ['Apache Spark', 'Hadoop', 'Kafka', 'Snowflake', 'BigQuery'],
     },
     {
       category: 'Cloud & DevOps',
-      items: ['AWS (EC2, S3, Lambda)', 'Docker', 'Kubernetes'],
+      items: [
+        'AWS (EC2, S3, Lambda)',
+        'GCP',
+        'Azure',
+        'Docker',
+        'Kubernetes',
+        'GitLab CI/CD',
+        'GitHub Actions',
+        'Jenkins',
+        'Linux (Ubuntu)',
+        'Monitoring & Observability',
+      ],
     },
     {
-      category: 'Databases',
-      items: ['PostgreSQL', 'MongoDB', 'MySQL'],
+      category: 'Databases & Storage',
+      items: ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite'],
     },
     {
-      category: 'Tooling',
-      items: ['Git', 'GitHub Actions', 'Jenkins', 'Jira'],
+      category: 'Tooling & Productivity',
+      items: [
+        'Git',
+        'Jira',
+        'VS Code',
+        'IntelliJ IDEA',
+        'Jupyter Notebook',
+        'Postman',
+        'Excel',
+        'Tableau',
+        'Power BI',
+        'Pytest',
+      ],
     },
   ],
+
+  // ────────────────────────────────────────────
+  // EXPERIENCE
+  // ────────────────────────────────────────────
   experience: [
     {
       company: 'Tech Mahindra',
-      role: 'Student Intern',
+      role: 'Software Development Intern',
       period: 'Jan 2023 → May 2023',
       bullets: [
-        'Built comprehensive MERN stack mock-server platform with multiple API endpoints',
-        'Developed a robust mock server service application delivering a fully functional solution that simulated over 15 API endpoints within 3 months',
-        'Designed and implemented secure user login, registration, and authentication modules that boosted system efficiency by 35% and reduced error rates by 20%',
-        'Followed agile development methodologies, contributing to a 25% faster feature delivery cycle by participating in daily stand-ups and sprint ceremonies',
-        'Collaborated with a team of 5 developers through code reviews, unit testing and debugging sessions which decreased critical bugs by 40%',
-        'Leveraged MongoDB, Express.js, React and Node.js to build a reliable, scalable application, enhancing overall performance by 30%',
-        'Integrated industry-standard security protocols into application components, ensuring robust data protection and improved user trust',
-        'Contributed to brainstorming that led to 3 innovative features, significantly enhancing functionality and user experience',
+        'Delivered a MERN mock-server platform simulating 15 + endpoints, boosting developer productivity',
+        'Implemented secure auth modules that cut error rates by 20 % and improved efficiency by 35 %',
+        'Collaborated in Agile rituals, accelerating feature delivery by 25 %',
+        'Performed code reviews and unit testing that reduced critical bugs by 40 %',
+        'Optimised performance by 30 % using MongoDB, Express.js, React & Node.js',
       ],
     },
     {
       company: 'Tech Mahindra',
-      role: 'Student Intern',
+      role: 'Software Development Intern',
       period: 'Jul 2022 → Dec 2022',
       bullets: [
-        'Integrated backend systems using Node.js and Auth0 to implement robust user authentication, securing access for over 500 daily users',
-        'Developed an Admin Dashboard consolidating data sources and delivering real-time analytics, improving decision-making efficiency by 30%',
-        'Designed and deployed dynamic micro-services to record and store form responses, processing 1,000+ submissions per day on a scalable cloud architecture',
+        'Integrated backend systems with Node.js & Auth0, securing 500 + daily users',
+        'Built an Admin Dashboard delivering real-time analytics, improving decisions by 30 %',
+        'Designed micro-services processing 1 000 + submissions per day on cloud-native infra',
       ],
     },
     {
-      company: 'C-DAC',
+      company: 'Centre for Development of Advanced Computing (C-DAC)',
       role: 'Research & Development Intern',
       period: 'Jan 2022 → Jun 2022',
       bullets: [
-        'Developed real-time brainwave processing web service using modern technologies',
-        'Led the front-end development with the PERN stack and integrated FastAPI for robust API connectivity with the P300 controller',
-        'Engineered a scalable service that processes real-time brainwave data, supporting over 500 active sessions daily',
-        'Implemented multi-level access controls ensuring secure and personalized experiences for diverse user roles',
-        'Collaborated with cross-functional teams to achieve 99.9% uptime and improved application reliability',
-        'Improved data processing efficiency by 30% through rigorous testing and optimization of front-end and back-end components',
+        'Led PERN-stack front-end and FastAPI backend for real-time brain-wave analysis',
+        'Scaled service to 500 + concurrent sessions with 99.9 % uptime',
+        'Implemented multi-level access control and improved processing efficiency by 30 %',
       ],
     },
   ],
+
+  // ────────────────────────────────────────────
+  // EDUCATION
+  // ────────────────────────────────────────────
   education: [
     {
       degree: 'M.S. Computational Data Science',
       school: 'University of California, Riverside',
-      gpa: '3.67',
-      courses: ['Big Data', 'AI', 'Spatial Computing', 'ML'],
+      gpa: '3.67/4',
+      courses: [
+        'Big Data Management',
+        'Spatial Computing',
+        'Machine Learning',
+        'Advanced Computer Vision',
+      ],
+    },
+    {
+      degree: 'B.Tech Computer Engineering',
+      school: 'Vishwakarma Institute of Information Technology',
+      gpa: '9.62/10',
+      courses: [
+        'Data Structures & Algorithms',
+        'Operating Systems',
+        'Database Management',
+        'Computer Networks',
+      ],
     },
   ],
+
+  // ────────────────────────────────────────────
+  // CERTIFICATIONS
+  // ────────────────────────────────────────────
   certifications: [
     {
       title: 'Sensor Fusion Nanodegree',
@@ -209,7 +328,7 @@ export const aboutData: AboutData = {
       year: '2024',
       month: 'Oct',
       filePath: '/certificates/Udacity Sensor Fusion Certificate.pdf',
-      description: 'Advanced sensor fusion techniques for autonomous systems',
+      description: 'Advanced sensor-fusion techniques for autonomous systems',
     },
     {
       title: 'Microservices with Java Spring Boot and Spring Cloud',
@@ -218,8 +337,7 @@ export const aboutData: AboutData = {
       month: 'Nov',
       filePath:
         '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
-      description:
-        'Comprehensive microservices architecture with Spring ecosystem',
+      description: 'Comprehensive microservices architecture with Spring',
     },
     {
       title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
@@ -228,7 +346,7 @@ export const aboutData: AboutData = {
       month: 'Apr',
       filePath:
         '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
-      description: 'Blockchain development and smart contract programming',
+      description: 'Blockchain development & smart-contract programming',
     },
     {
       title: 'Dell Artificial Intelligence Foundations',
@@ -236,23 +354,23 @@ export const aboutData: AboutData = {
       year: '2022',
       month: 'Feb',
       filePath: '/certificates/DELL_Certificate-ML.pdf',
-      description: 'Foundational AI concepts and machine learning principles',
+      description: 'Foundational AI concepts and ML principles',
     },
     {
-      title: 'Deep Learning and NLP A-Z: How to create a ChatBot',
+      title: 'Deep Learning and NLP A–Z: How to Create a Chatbot',
       provider: 'Udemy',
       year: '2021',
       month: 'Nov',
       filePath: '/certificates/DNLP A-z How to create a chatbot udemy.pdf',
-      description: 'Natural language processing and chatbot development',
+      description: 'Natural-language processing & chatbot development',
     },
     {
-      title: 'Machine Learning A-Z: Hands on Python & R In Data Science',
+      title: 'Machine Learning A–Z: Hands-On Python & R in Data Science',
       provider: 'Udemy',
       year: '2021',
       month: 'Sep',
       filePath: '/certificates/Machine learning Basics-Udemy.pdf',
-      description: 'Comprehensive machine learning with Python and R',
+      description: 'Comprehensive ML with Python and R',
     },
     {
       title: 'Fundamentals of Deep Learning',
@@ -261,8 +379,7 @@ export const aboutData: AboutData = {
       month: 'Aug',
       filePath:
         '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
-      description:
-        'Deep learning fundamentals and neural network architectures',
+      description: 'Neural-network fundamentals & GPU acceleration',
     },
     {
       title: 'CCNAv7: Introduction to Networks',
@@ -270,15 +387,15 @@ export const aboutData: AboutData = {
       year: '2021',
       month: 'May',
       filePath: '/certificates/AdityaGambhir-CCNA v7 module 1-certificate.pdf',
-      description: 'Network fundamentals and Cisco networking technologies',
+      description: 'Networking fundamentals & Cisco technologies',
     },
     {
-      title: 'Javascript Course 2021: From Zero to Expert',
+      title: 'JavaScript Course 2021: From Zero to Expert',
       provider: 'Udemy',
       year: '2021',
       month: 'Mar',
       filePath: '/certificates/JavaScriptBasic-Udemy.pdf',
-      description: 'Modern JavaScript development and ES6+ features',
+      description: 'Modern JavaScript development & ES6 + features',
     },
     {
       title: 'Object-Oriented Data Structures in C++',
@@ -287,7 +404,7 @@ export const aboutData: AboutData = {
       month: 'Oct',
       filePath:
         '/certificates/Object Oriented Data Structures of C++ - Coursera.pdf',
-      description: 'Advanced C++ programming and data structures',
+      description: 'Advanced C++ programming & data structures',
     },
     {
       title: 'Programming for Everybody (Getting Started with Python)',
@@ -295,34 +412,44 @@ export const aboutData: AboutData = {
       year: '2020',
       month: 'Aug',
       filePath: '/certificates/Python-Coursera.pdf',
-      description: 'Python programming fundamentals and best practices',
+      description: 'Python programming fundamentals',
     },
-  ],
+  ] as const,
+
+  // ────────────────────────────────────────────
+  // PUBLICATIONS
+  // ────────────────────────────────────────────
   publications: [
     {
       id: '1',
-      title: 'A Comprehensive Survey of Multiple Object Tracking Techniques.',
-      journal: 'IJISAE',
+      title: 'A Comprehensive Survey of Multiple Object Tracking Techniques',
+      journal:
+        'International Journal of Intelligent Systems and Applications in Engineering',
       year: '2024',
       url: 'https://ijisae.org/index.php/IJISAE/article/view/5486',
       abstract:
         "Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored.The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions. Future MOT research aims to develop efficient algorithms for dynamic tracking, improve detection accuracy, and reduce real-time processing. The survey's proposed methods offer valuable references for tracking multiple objects in frame sequences.",
     },
   ],
+
+  // ────────────────────────────────────────────
+  // COMMUNITY & PERSONAL
+  // ────────────────────────────────────────────
   community: {
-    organization: 'ML Forum VIIT',
+    organization: 'ML Forum – VIIT',
     role: 'Core Committee Member',
-    period: '2021-2022',
+    period: '2021 – 2022',
     description:
-      'Led workshops on deep learning for 80+ students, fostering the next generation of AI practitioners.',
+      'Led workshops on deep learning for 80 + students, fostering the next generation of AI practitioners.',
   },
+
   personalTouch: {
     favoriteStack: 'MERN + AWS',
-    hobbies: [
-      '☕ Always brewing the perfect cup',
-      '🎸 Strumming in spare time',
-    ],
+    hobbies: ['☕ Perfect-cup coffee geek', '🎸 Guitarist in spare time'],
   },
-  // Contact location (used across site)
-  location: 'Los Angeles, CA',
+
+  // ────────────────────────────────────────────
+  // LOCATION
+  // ────────────────────────────────────────────
+  location: 'Riverside, CA',
 };
