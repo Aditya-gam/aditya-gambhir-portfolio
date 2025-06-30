@@ -5,6 +5,10 @@ import { useContext } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { siGithub } from 'simple-icons';
 import { ContactModalContext } from '@/app/ContactModalContext';
+import { aboutData } from '@/data/about';
+import { getSocialProfileByPlatform } from '@/data/socials';
+import { HEADER_FOOTER_CONTENT } from '@/data/content';
+import { SITE_CONFIG } from '@/data/metadata';
 
 // GitHub icon from simple-icons
 const GitHubIcon = ({ className }: { className?: string }) => (
@@ -38,6 +42,14 @@ const ContactIcon = ({ className }: { className?: string }) => (
 export default function Footer() {
   const { openContactModal } = useContext(ContactModalContext);
 
+  const authorName = aboutData.hero.name;
+  const githubProfile = getSocialProfileByPlatform('github');
+  const linkedinProfile = getSocialProfileByPlatform('linkedin');
+
+  const githubUrl = githubProfile?.profileUrl ?? SITE_CONFIG.author.github;
+  const linkedinUrl =
+    linkedinProfile?.profileUrl ?? SITE_CONFIG.author.linkedin;
+
   return (
     <footer className="bg-muted/30 py-8 mt-16">
       <div className="container mx-auto px-4">
@@ -45,20 +57,20 @@ export default function Footer() {
           {/* Social Links */}
           <div className="flex items-center space-x-6">
             <Link
-              href="https://github.com/aditya-gambhir"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Aditya on GitHub"
+              aria-label={HEADER_FOOTER_CONTENT.footer.socialLinks.github}
             >
               <GitHubIcon className="w-5 h-5" />
             </Link>
             <Link
-              href="https://linkedin.com/in/aditya-gambhir"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Aditya on LinkedIn"
+              aria-label={HEADER_FOOTER_CONTENT.footer.socialLinks.linkedin}
             >
               <LinkedInIcon className="w-5 h-5" />
             </Link>
@@ -66,7 +78,7 @@ export default function Footer() {
             <button
               onClick={openContactModal}
               className="lg:hidden inline-flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Contact Aditya"
+              aria-label={HEADER_FOOTER_CONTENT.footer.socialLinks.contact}
             >
               <ContactIcon className="w-5 h-5" />
             </button>
@@ -74,7 +86,10 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} Aditya Gambhir. All rights reserved.
+            {HEADER_FOOTER_CONTENT.footer.copyright(
+              new Date().getFullYear(),
+              authorName,
+            )}
           </p>
         </div>
       </div>
