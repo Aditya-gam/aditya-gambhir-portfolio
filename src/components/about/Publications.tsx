@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import PublicationModal from '@/components/PublicationModal';
+import { UI_COPY } from '@/data/ui';
 
 interface Publication {
   readonly id: string;
@@ -55,7 +56,9 @@ export default function Publications({ publications }: PublicationsProps) {
         viewport={{ once: true }}
         variants={fadeInUp}
       >
-        <h2 className="text-2xl font-bold mb-8 text-center">Publications</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center">
+          {UI_COPY.publications.heading}
+        </h2>
         <div className="space-y-4">
           {publications.map((publication, index) => (
             <motion.div
@@ -89,7 +92,7 @@ export default function Publications({ publications }: PublicationsProps) {
                       </p>
                     </div>
                     <p className="text-indigo-400 text-sm italic">
-                      Click to view abstract and read full paper
+                      {UI_COPY.publications.callout}
                     </p>
                   </CardContent>
                 </Card>
