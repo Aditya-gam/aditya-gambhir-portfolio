@@ -44,10 +44,10 @@ export default function ResumeModal({
   const resumes = getAllResumes();
 
   // Debug: Log state
-  console.log('Modal opened with:');
-  console.log('- selectedResume:', selectedResume);
-  console.log('- resumes.length:', resumes.length);
-  console.log('- Will show switching UI:', resumes.length > 1);
+  // console.log('Modal opened with:');
+  // console.log('- selectedResume:', selectedResume);
+  // console.log('- resumes.length:', resumes.length);
+  // console.log('- Will show switching UI:', resumes.length > 1);
 
   // Internal state to allow switching between different resumes while the modal is open
   const [displayResume, setDisplayResume] = useState<ResumeData>(
