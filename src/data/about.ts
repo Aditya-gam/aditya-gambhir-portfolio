@@ -85,7 +85,7 @@ export const aboutData: AboutData = {
     greeting: "Hello, I'm Aditya",
     name: 'Aditya Gambhir',
     title:
-      'M.S. Computational Data Science • Full-Stack Developer & AI Enthusiast',
+      'M.S. Computational Data Science • Full-Stack Developer & Applied ML Engineer',
     description:
       'Software & ML engineer turning sensor, geospatial, and text data into real-time, cloud-native products. Experienced across MERN, Spring Boot, and distributed ML pipelines for computer vision, sensor fusion, and analytics.',
     image: {
@@ -113,7 +113,7 @@ export const aboutData: AboutData = {
   // ────────────────────────────────────────────
   professionalSummary: {
     description:
-      'Data-driven software engineer and ML researcher with an M.S. in Computational Data Science (UC Riverside). I specialise in building scalable back-end services and machine-learning pipelines that transform raw data into actionable insights, with proven results in computer vision, real-time sensor fusion, and geospatial analytics.',
+      'I hold an M.S. in Computational Data Science from the University of California, Riverside (GPA 3.67), where I focused on applying machine-learning and advanced computer-vision techniques to real-world problems. My work brings together LiDAR, RADAR, and camera streams through modern sensor-fusion and object-detection pipelines, enabling reliable perception for autonomous and real-time systems. In industry, I have built cloud-native software at scale: at Tech Mahindra I streamlined development workflows and delivered production APIs with Node.js, React, and MongoDB, while at C-DAC I designed web services that combine deep-learning models with live EEG signal analysis. Operating at the intersection of software engineering, machine learning, and computer vision, I enjoy translating research into dependable products and look forward to collaborating on self-driving, streaming-analytics, and AI-driven initiatives.',
     quote: 'Turning data into dynamic products.',
   },
 

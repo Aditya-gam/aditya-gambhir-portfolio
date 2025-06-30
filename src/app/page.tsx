@@ -53,7 +53,7 @@ export default function HomePage() {
         <AboutGrid
           name={aboutData.hero.name}
           title="AI/ML Engineer"
-          description={aboutData.hero.description}
+          description={aboutData.professionalSummary.description}
           image={aboutData.hero.image}
           imageVariant="rounded-square" // Use rounded-square crop for headshot
           className="mb-12"
