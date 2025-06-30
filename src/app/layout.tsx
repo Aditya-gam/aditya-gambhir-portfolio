@@ -3,6 +3,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 import dynamic from 'next/dynamic';
 import { ClientLayout } from '@/app/ClientLayout';
+import {
+  SEO_METADATA,
+  STRUCTURED_DATA,
+  HTML_META,
+  SITE_CONFIG,
+} from '@/data/metadata';
+import { NAVIGATION_CONTENT } from '@/data/content';
 
 // Lazy load Footer since it's below the fold (SSR enabled for SEO)
 const Footer = dynamic(() => import('@/components/Footer'), {
@@ -10,92 +17,19 @@ const Footer = dynamic(() => import('@/components/Footer'), {
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://aditya-gambhir-portfolio.vercel.app/'),
-  title: {
-    default: 'Aditya Gambhir | Software Engineer & Data Scientist',
-    template: '%s | Aditya Gambhir',
-  },
-  description:
-    'Software Engineer and Data Scientist with 1.5+ years experience in full-stack development and machine learning. M.S. Computational Data Science from UC Riverside.',
-  keywords: [
-    'Aditya Gambhir',
-    'Software Engineer',
-    'Data Scientist',
-    'MERN Stack',
-    'Python',
-    'Machine Learning',
-    'Full Stack Developer',
-    'Portfolio',
-  ],
-  authors: [{ name: 'Aditya Gambhir' }],
-  creator: 'Aditya Gambhir',
+  metadataBase: new URL(SITE_CONFIG.url),
+  title: SEO_METADATA.title,
+  description: SEO_METADATA.description,
+  keywords: SEO_METADATA.keywords,
+  authors: [{ name: SITE_CONFIG.author.name }],
+  creator: SITE_CONFIG.author.name,
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://aditya-gambhir-portfolio.vercel.app/',
-    siteName: 'Aditya Gambhir Portfolio',
-    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
-    description:
-      'Software Engineer and Data Scientist with 1.5+ years experience in full-stack development and machine learning.',
-    images: [
-      {
-        url: '/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'Aditya Gambhir - Software Engineer & Data Scientist',
-      },
-    ],
+    ...SEO_METADATA.openGraph,
+    url: SITE_CONFIG.url,
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Aditya Gambhir | Software Engineer & Data Scientist',
-    description:
-      'Software Engineer and Data Scientist with 1.5+ years experience in MERN stack and Python.',
-    images: ['/og-default.png'],
-    creator: '@adityagambhir',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code', // Replace with actual verification code
-  },
-};
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Aditya Gambhir',
-  jobTitle: 'Software Engineer & Data Scientist',
-  headline: 'Software Engineer & Data Scientist',
-  url: 'https://aditya-gambhir-portfolio.vercel.app/',
-  image: 'https://aditya-gambhir-portfolio.vercel.app/headshot.webp',
-  sameAs: [
-    'https://www.linkedin.com/in/aditya-gambhir',
-    'https://github.com/Aditya-gam',
-  ],
-  knowsAbout: [
-    'Software Engineering',
-    'Data Science',
-    'Machine Learning',
-    'MERN Stack',
-    'Python',
-    'JavaScript',
-    'React',
-    'Node.js',
-  ],
-  alumniOf: {
-    '@type': 'Organization',
-    name: 'University of California, Riverside',
-  },
+  twitter: SEO_METADATA.twitter,
+  robots: SEO_METADATA.robots,
+  verification: SITE_CONFIG.verification,
 };
 
 export default function RootLayout({
@@ -108,18 +42,15 @@ export default function RootLayout({
       {/* Ensure DOCTYPE html is set (Next.js should handle this, but being explicit) */}
       <html lang="en" suppressHydrationWarning>
         <head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link
-            rel="canonical"
-            href="https://aditya-gambhir-portfolio.vercel.app/"
-          />
-          <meta name="theme-color" content="#0A66C2" />
-          <meta name="color-scheme" content="light dark" />
+          <meta charSet={HTML_META.charset} />
+          <meta name="viewport" content={HTML_META.viewport} />
+          <link rel="canonical" href={HTML_META.canonical} />
+          <meta name="theme-color" content={HTML_META.themeColor} />
+          <meta name="color-scheme" content={HTML_META.colorScheme} />
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(jsonLd),
+              __html: JSON.stringify(STRUCTURED_DATA.person),
             }}
           />
         </head>
@@ -127,11 +58,11 @@ export default function RootLayout({
           className="font-sans flex flex-col min-h-screen bg-background text-foreground antialiased"
           suppressHydrationWarning={true}
         >
-          <a href="#main-content" className="skip-link">
-            Skip to main content
+          <a href={`#${NAVIGATION_CONTENT.mainContent}`} className="skip-link">
+            {NAVIGATION_CONTENT.skipToMain}
           </a>
           <ClientLayout>
-            <main id="main-content" className="flex-grow">
+            <main id={NAVIGATION_CONTENT.mainContent} className="flex-grow">
               {children}
             </main>
             <Footer />
