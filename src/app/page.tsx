@@ -12,6 +12,7 @@ import {
 } from '@/components/about';
 import { getFeaturedProjects } from '@/data/projects';
 import { aboutData } from '@/data/about';
+import { HOMEPAGE_COPY } from '@/data/ui';
 import Link from 'next/link';
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 import { getFeaturedSocialProfiles } from '@/data/socials';
@@ -22,52 +23,14 @@ export default function HomePage() {
   const featuredProjects = getFeaturedProjects();
   const socialProfiles = getFeaturedSocialProfiles();
 
-  // Stats for the counter cards
-  const stats = [
-    { value: '2+', label: 'Years Experience' },
-    { value: '10+', label: 'Projects Delivered' },
-    { value: 'MERN & DS', label: 'Technology Expertise' },
-    { value: '3.67', label: 'M.S. GPA' },
-    { value: '1', label: 'Peer-reviewed Publications' },
-  ];
-
-  // Macro-skills data for card grid
-  const macroSkills = [
-    {
-      icon: '💻',
-      title: 'Full Stack Development',
-      description:
-        'Building scalable applications with modern technologies across the stack.',
-    },
-    {
-      icon: '🤖',
-      title: 'AI/ML Engineering',
-      description:
-        'Developing intelligent systems and fine-tuning large language models.',
-    },
-    {
-      icon: '☁️',
-      title: 'Cloud Architecture',
-      description:
-        'Designing and implementing scalable cloud solutions on AWS.',
-    },
-    {
-      icon: '⚡',
-      title: 'Performance',
-      description: 'Optimizing systems for high performance and efficiency.',
-    },
-    {
-      icon: '🤝',
-      title: 'Collaboration',
-      description:
-        'Thriving in fast-paced environments and cross-functional teams.',
-    },
-    {
-      icon: '🎯',
-      title: 'Problem Solving',
-      description: 'Bridging real-world problems with cutting-edge technology.',
-    },
-  ];
+  const {
+    stats,
+    macroSkills,
+    aboutSectionTitle,
+    skillsSectionTitle,
+    projectsSection,
+    contactSection,
+  } = HOMEPAGE_COPY;
 
   return (
     <main className="page-layout">
@@ -82,7 +45,7 @@ export default function HomePage() {
       >
         <div className="text-center mb-12">
           <h2 id="about-heading" className="heading-section mb-4">
-            About Me
+            {aboutSectionTitle}
           </h2>
         </div>
 
@@ -129,7 +92,13 @@ export default function HomePage() {
         className="content-section-lg"
         aria-labelledby="skills-heading"
       >
-        <SkillsMatrix skillsMatrix={aboutData.skillsMatrix} />
+        <h2 id="skills-heading" className="heading-section mb-4 sr-only">
+          {skillsSectionTitle}
+        </h2>
+        <SkillsMatrix
+          skillsMatrix={aboutData.skillsMatrix}
+          heading={skillsSectionTitle}
+        />
       </section>
 
       {/* Featured Projects Section */}
@@ -140,15 +109,14 @@ export default function HomePage() {
       >
         <div className="text-center mb-8">
           <h2 id="projects-heading" className="heading-section mb-4">
-            Featured Projects
+            {projectsSection.title}
           </h2>
           <Link
             href="/projects"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-            aria-label="View all projects"
+            aria-label={projectsSection.allProjectsLabel}
           >
-            Explore all projects
-            <ArrowRight className="w-4 h-4" />
+            {projectsSection.cta}
           </Link>
         </div>
         <ProjectCarousel projects={featuredProjects} />
@@ -165,11 +133,10 @@ export default function HomePage() {
       >
         <div className="text-center mb-12">
           <h2 id="contact-heading" className="heading-section mb-4">
-            Get In Touch
+            {contactSection.title}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Ready to collaborate on your next project? Let&apos;s discuss how I
-            can help bring your ideas to life.
+            {contactSection.description}
           </p>
         </div>
 
@@ -178,14 +145,16 @@ export default function HomePage() {
           {/* Left column - Contact info + social */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-6">Let&apos;s Connect</h3>
+              <h3 className="text-xl font-semibold mb-6">
+                {contactSection.connectHeading}
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary" aria-hidden="true" />
                   <a
                     href="mailto:gambhir.aditya19@gmail.com"
                     className="text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-                    aria-label="Send email to Aditya Gambhir"
+                    aria-label={contactSection.emailAriaLabel}
                   >
                     gambhir.aditya19@gmail.com
                   </a>
@@ -207,7 +176,9 @@ export default function HomePage() {
 
             {/* Social Profiles - GitHub and LinkedIn only */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Find me on</h3>
+              <h3 className="text-lg font-semibold mb-4">
+                {contactSection.socialHeading}
+              </h3>
               <SocialProfiles profiles={socialProfiles} title="" iconOnly />
             </div>
           </div>
