@@ -11,12 +11,14 @@ import {
   Award,
   Briefcase,
   GraduationCap,
+  Brain,
+  Code,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
-import { getAllResumes } from '@/data/resume';
-import { aboutData } from '@/data/about';
+import { getAllResumes, getResumeModalContent } from '@/data/resume';
+import { SITE_CONFIG } from '@/data/metadata';
 import type { ResumeData } from '@/data/resume';
 
 interface ResumeModalProps {
@@ -26,11 +28,8 @@ interface ResumeModalProps {
 }
 
 /**
- * Enhanced ResumeModal component with condensed resume content sections
- * Maps JSON data to header, skills, experience, and education sections
- * @param isOpen - Whether the modal is open
- * @param onClose - Function to close the modal
- * @param selectedResume - Optional specific resume to display
+ * Enhanced ResumeModal component with fully dynamic content based on resume type
+ * All sections adapt to show DS-focused or SDE-focused content
  */
 export default function ResumeModal({
   isOpen,
@@ -43,18 +42,12 @@ export default function ResumeModal({
   );
   const resumes = getAllResumes();
 
-  // Debug: Log state
-  // console.log('Modal opened with:');
-  // console.log('- selectedResume:', selectedResume);
-  // console.log('- resumes.length:', resumes.length);
-  // console.log('- Will show switching UI:', resumes.length > 1);
-
   // Internal state to allow switching between different resumes while the modal is open
   const [displayResume, setDisplayResume] = useState<ResumeData>(
     selectedResume || resumes[0],
   );
 
-  // Sync internal state when parent selectedResume prop changes (e.g., when opening modal with a specific resume)
+  // Sync internal state when parent selectedResume prop changes
   useEffect(() => {
     if (selectedResume && selectedResume.id !== displayResume.id) {
       setDisplayResume(selectedResume);
@@ -130,24 +123,6 @@ export default function ResumeModal({
     window.print();
   };
 
-  // Show only the first 2 education records to keep resume concise
-  const topEducation = aboutData.education.slice(0, 2);
-
-  // Get skills relevant to selected resume type
-  const getRelevantSkills = () => {
-    if (displayResume.type === 'ds') {
-      return aboutData.skillsMatrix.filter((category) =>
-        ['Languages', 'Data / AI', 'Tooling'].includes(category.category),
-      );
-    } else {
-      return aboutData.skillsMatrix.filter((category) =>
-        ['Languages', 'Frameworks', 'Cloud & DevOps', 'Databases'].includes(
-          category.category,
-        ),
-      );
-    }
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'long',
@@ -157,6 +132,13 @@ export default function ResumeModal({
   };
 
   if (!isOpen) return null;
+
+  const dynamicContent = getResumeModalContent(displayResume);
+
+  // Fallbacks to ensure backward compatibility with mocks/tests that may not include
+  // the newly added `name` and `location` fields
+  const candidateName = displayResume.name ?? SITE_CONFIG.name;
+  const candidateLocation = displayResume.location ?? 'Riverside, CA';
 
   return (
     <AnimatePresence>
@@ -179,18 +161,21 @@ export default function ResumeModal({
           {/* Modal Header */}
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b no-print">
             <div className="flex items-center gap-4">
-              <div>
-                <CardTitle className="text-2xl font-bold">
-                  Resume Portfolio
-                </CardTitle>
-                {resumes.length > 1 && (
+              <div className="flex items-center gap-3">
+                <dynamicContent.primaryIcon
+                  className={`h-8 w-8 ${dynamicContent.iconColor}`}
+                />
+                <div>
+                  <CardTitle className="text-2xl font-bold">
+                    Resume Portfolio
+                  </CardTitle>
                   <p className="text-sm text-muted-foreground mt-1">
                     Currently viewing:{' '}
                     <span className="font-medium text-primary">
-                      {displayResume.title}
+                      {dynamicContent.title}
                     </span>
                   </p>
-                )}
+                </div>
               </div>
               <div className="flex gap-2">
                 <Button
@@ -239,21 +224,19 @@ export default function ResumeModal({
                   {/* Header Section */}
                   <section className="text-center border-b pb-6">
                     <h1 className="text-3xl font-bold text-primary mb-2">
-                      {aboutData.hero.name}
+                      {candidateName}
                     </h1>
                     <h2 className="text-xl text-muted-foreground mb-4">
-                      {displayResume.type === 'ds'
-                        ? aboutData.dualExpertise.dataScientist.title
-                        : aboutData.dualExpertise.softwareEngineer.title}
+                      {dynamicContent.title}
                     </h2>
                     <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <MapPin className="h-4 w-4" />
-                        Riverside, CA
+                        {candidateLocation}
                       </div>
                       <div className="flex items-center gap-1">
                         <Mail className="h-4 w-4" />
-                        gambhir.aditya19@gmail.com
+                        {SITE_CONFIG.email}
                       </div>
                       <div className="flex items-center gap-1">
                         <Globe className="h-4 w-4" />
@@ -271,24 +254,36 @@ export default function ResumeModal({
                       </h3>
                     </div>
                     <p className="text-muted-foreground leading-relaxed">
-                      {aboutData.professionalSummary.description}
+                      {dynamicContent.professionalSummary}
                     </p>
+                    <div
+                      className={`mt-3 p-3 ${dynamicContent.accentClasses.bg} rounded-lg border-l-4 ${dynamicContent.accentClasses.border}`}
+                    >
+                      <p
+                        className={`text-sm font-medium ${dynamicContent.accentClasses.text}`}
+                      >
+                        &ldquo;{dynamicContent.quote}&rdquo;
+                      </p>
+                    </div>
                   </section>
 
-                  {/* Skills Matrix */}
+                  {/* Core Skills Matrix */}
                   <section>
                     <div className="flex items-center gap-2 mb-4">
                       <Award className="h-5 w-5 text-primary" />
                       <h3 className="text-lg font-semibold">Core Skills</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {getRelevantSkills().map((skillCategory) => (
+                      {dynamicContent.relevantSkills.map((skillCategory) => (
                         <Card key={skillCategory.category} className="p-4">
-                          <h4 className="font-medium mb-3">
+                          <h4 className="font-medium mb-3 flex items-center gap-2">
+                            <span
+                              className={`h-2 w-2 ${dynamicContent.accentClasses.dot} rounded-full`}
+                            />
                             {skillCategory.category}
                           </h4>
                           <div className="flex flex-wrap gap-2">
-                            {skillCategory.items.map((skill) => (
+                            {skillCategory.items.slice(0, 8).map((skill) => (
                               <Chip
                                 key={skill}
                                 label={skill}
@@ -296,79 +291,65 @@ export default function ResumeModal({
                                 size="sm"
                               />
                             ))}
+                            {skillCategory.items.length > 8 && (
+                              <Chip
+                                label={`+${skillCategory.items.length - 8} more`}
+                                variant="outline"
+                                size="sm"
+                              />
+                            )}
                           </div>
                         </Card>
                       ))}
                     </div>
                   </section>
 
-                  {/* Experience Highlights sourced from the selected resume */}
-                  <section>
-                    <div className="flex items-center gap-2 mb-4">
-                      <Briefcase className="h-5 w-5 text-primary" />
-                      <h3 className="text-lg font-semibold">
-                        Experience Highlights
-                      </h3>
-                    </div>
-                    <Card className="p-4">
-                      <ul className="space-y-2">
-                        {displayResume.highlights.map((highlight) => (
-                          <li
-                            key={highlight}
-                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                  {/* Relevant Experience */}
+                  {dynamicContent.relevantExperience.length > 0 && (
+                    <section>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Briefcase className="h-5 w-5 text-primary" />
+                        <h3 className="text-lg font-semibold">
+                          Experience Highlights
+                        </h3>
+                      </div>
+                      <div className="space-y-4">
+                        {dynamicContent.relevantExperience.map((exp, index) => (
+                          <Card
+                            key={`${exp.company}-${exp.role}-${exp.period}`}
+                            className={`p-4 border-l-4 ${dynamicContent.accentClasses.border}`}
                           >
-                            <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
-                    </Card>
-                  </section>
-
-                  {/* Education */}
-                  <section>
-                    <div className="flex items-center gap-2 mb-4">
-                      <GraduationCap className="h-5 w-5 text-primary" />
-                      <h3 className="text-lg font-semibold">Education</h3>
-                    </div>
-                    <div className="space-y-4">
-                      {topEducation.map((edu) => (
-                        <Card
-                          key={`${edu.degree}-${edu.school}`}
-                          className="p-4 border-l-4 border-l-primary"
-                        >
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-                            <div>
-                              <h4 className="font-semibold">{edu.degree}</h4>
-                              <p className="text-primary font-medium">
-                                {edu.school}
-                              </p>
-                            </div>
-                            <div className="text-right">
-                              <div className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
-                                GPA: {edu.gpa}
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                              <div>
+                                <h4 className="font-semibold">{exp.role}</h4>
+                                <p className="text-primary font-medium">
+                                  {exp.company}
+                                </p>
+                              </div>
+                              <div
+                                className={`text-right ${dynamicContent.accentClasses.badge} px-2 py-1 rounded text-sm font-medium`}
+                              >
+                                {exp.period}
                               </div>
                             </div>
-                          </div>
-                          <div>
-                            <h5 className="text-sm font-medium mb-2">
-                              Relevant Coursework
-                            </h5>
-                            <div className="flex flex-wrap gap-2">
-                              {edu.courses.map((course) => (
-                                <Chip
-                                  key={course}
-                                  label={course}
-                                  variant="outline"
-                                  size="sm"
-                                />
+                            <ul className="space-y-2">
+                              {exp.bullets.map((bullet, bulletIndex) => (
+                                <li
+                                  key={bullet}
+                                  className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                                >
+                                  <span
+                                    className={`h-1.5 w-1.5 ${dynamicContent.accentClasses.dot} rounded-full mt-2 flex-shrink-0`}
+                                  />
+                                  {bullet}
+                                </li>
                               ))}
-                            </div>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  </section>
+                            </ul>
+                          </Card>
+                        ))}
+                      </div>
+                    </section>
+                  )}
 
                   {/* Key Achievements */}
                   <section>
@@ -380,63 +361,159 @@ export default function ResumeModal({
                     </div>
                     <Card className="p-4">
                       <ul className="space-y-2">
-                        {(displayResume.type === 'ds'
-                          ? aboutData.dualExpertise.dataScientist.achievements
-                          : aboutData.dualExpertise.softwareEngineer
-                              .achievements
-                        ).map((achievement) => (
-                          <li
-                            key={achievement.substring(0, 100)}
-                            className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
-                          >
-                            <span className="h-1.5 w-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            {achievement}
-                          </li>
-                        ))}
+                        {dynamicContent.achievements.map(
+                          (achievement, index) => (
+                            <li
+                              key={achievement}
+                              className="text-sm text-muted-foreground leading-relaxed flex items-start gap-2"
+                            >
+                              <span
+                                className={`h-1.5 w-1.5 ${dynamicContent.accentClasses.dot} rounded-full mt-2 flex-shrink-0`}
+                              />
+                              {achievement}
+                            </li>
+                          ),
+                        )}
                       </ul>
                     </Card>
                   </section>
 
-                  {/* Resume Type Selection */}
+                  {/* Education */}
+                  <section>
+                    <div className="flex items-center gap-2 mb-4">
+                      <GraduationCap className="h-5 w-5 text-primary" />
+                      <h3 className="text-lg font-semibold">Education</h3>
+                    </div>
+                    <div className="space-y-4">
+                      {dynamicContent.relevantEducation.map((edu, index) => (
+                        <Card
+                          key={`${edu.degree}-${edu.school}`}
+                          className={`p-4 border-l-4 ${dynamicContent.accentClasses.border}`}
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div>
+                              <h4 className="font-semibold">{edu.degree}</h4>
+                              <p className="text-primary font-medium">
+                                {edu.school}
+                              </p>
+                            </div>
+                            <div
+                              className={`text-right ${dynamicContent.accentClasses.badge} px-2 py-1 rounded text-sm font-medium`}
+                            >
+                              GPA: {edu.gpa}
+                            </div>
+                          </div>
+                          {edu.courses.length > 0 && (
+                            <div>
+                              <h5 className="text-sm font-medium mb-2">
+                                Relevant Coursework
+                              </h5>
+                              <div className="flex flex-wrap gap-2">
+                                {edu.courses.map((course) => (
+                                  <Chip
+                                    key={course}
+                                    label={course}
+                                    variant="outline"
+                                    size="sm"
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </Card>
+                      ))}
+                    </div>
+                  </section>
+
+                  {/* Relevant Certifications */}
+                  {dynamicContent.certifications.length > 0 && (
+                    <section>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Award className="h-5 w-5 text-primary" />
+                        <h3 className="text-lg font-semibold">
+                          Relevant Certifications
+                        </h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {dynamicContent.certifications
+                          .slice(0, 6)
+                          .map((cert, index) => (
+                            <Card key={cert.title} className="p-3">
+                              <div className="flex justify-between items-start mb-2">
+                                <h4 className="font-medium text-sm leading-tight">
+                                  {cert.title}
+                                </h4>
+                                <span className="text-xs text-muted-foreground flex-shrink-0 ml-2">
+                                  {cert.year}
+                                </span>
+                              </div>
+                              <p className="text-xs text-primary font-medium mb-1">
+                                {cert.provider}
+                              </p>
+                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                {cert.description ??
+                                  'Professional certification'}
+                              </p>
+                            </Card>
+                          ))}
+                      </div>
+                    </section>
+                  )}
+
+                  {/* Resume Switching */}
                   {resumes.length > 1 && (
                     <div className="mt-8 space-y-3">
                       <h4 className="text-sm font-medium">
                         Switch Resume Type
                       </h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {resumes.map((resume) => (
-                          <Card
-                            key={resume.id}
-                            className={`cursor-pointer transition-all duration-200 border ${displayResume.id === resume.id ? 'border-primary bg-primary/5 shadow-md' : 'border-transparent'} hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
-                            onClick={() => setDisplayResume(resume)}
-                            onKeyDown={(e) => {
-                              if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                setDisplayResume(resume);
-                              }
-                            }}
-                            tabIndex={0}
-                            aria-label={`Switch to ${resume.title}`}
-                          >
-                            <CardContent className="p-3">
-                              <div className="flex items-center justify-between">
-                                <div>
-                                  <h5 className="font-medium text-sm">
-                                    {resume.title}
-                                  </h5>
-                                  <p className="text-xs text-muted-foreground">
-                                    {resume.type === 'ds'
-                                      ? 'Data Science Focus'
-                                      : 'Software Engineering Focus'}
-                                  </p>
+                        {resumes.map((resume) => {
+                          const isActive = displayResume.id === resume.id;
+                          const conditionalClasses = isActive
+                            ? `${dynamicContent.accentClasses.borderFull} ${dynamicContent.accentClasses.bg} shadow-md`
+                            : 'border-transparent';
+
+                          return (
+                            <Card
+                              key={resume.id}
+                              className={`cursor-pointer transition-all duration-200 border ${conditionalClasses} hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2`}
+                              onClick={() => setDisplayResume(resume)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault();
+                                  setDisplayResume(resume);
+                                }
+                              }}
+                              tabIndex={0}
+                              aria-label={`Switch to ${resume.title}`}
+                            >
+                              <CardContent className="p-3">
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-2">
+                                    {resume.type === 'ds' ? (
+                                      <Brain className="h-4 w-4 text-emerald-600" />
+                                    ) : (
+                                      <Code className="h-4 w-4 text-blue-600" />
+                                    )}
+                                    <div>
+                                      <h5 className="font-medium text-sm">
+                                        {resume.title}
+                                      </h5>
+                                      <p className="text-xs text-muted-foreground">
+                                        {resume.type === 'ds'
+                                          ? 'ML & Data Science Focus'
+                                          : 'Full-Stack Development Focus'}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="text-xs text-muted-foreground">
+                                    {resume.fileSize}
+                                  </div>
                                 </div>
-                                <div className="text-xs text-muted-foreground">
-                                  {resume.fileSize}
-                                </div>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        ))}
+                              </CardContent>
+                            </Card>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
