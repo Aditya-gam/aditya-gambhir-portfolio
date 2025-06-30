@@ -1,25 +1,15 @@
 // Application constants
 
+// Import centralized content
+import { FORM_VALIDATION, CONTACT_FORM_CONTENT } from '@/data/forms';
+import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/data/content';
+import { SEO_METADATA, SITE_CONFIG } from '@/data/metadata';
+
 // Contact Form Constants
-export const FORM_VALIDATION = {
-  MIN_MESSAGE_LENGTH: 10,
-  EMAIL_REGEX: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  MIN_SUBJECT_LENGTH: 3,
-} as const;
+export { FORM_VALIDATION } from '@/data/forms';
 
 // Navigation Constants - Smooth scroll navigation for single-page homepage
-export const NAVIGATION_ITEMS = [
-  { label: 'Home', href: '#hero' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
-] as const;
-
-// External navigation items (pages)
-export const EXTERNAL_NAVIGATION = [
-  // Removed 'All Projects' button from header navigation
-] as const;
+export { NAVIGATION_ITEMS, EXTERNAL_NAVIGATION } from '@/data/navigation';
 
 // Homepage Section IDs for smooth scrolling
 export const HOMEPAGE_SECTIONS = [
@@ -34,8 +24,8 @@ export const HOMEPAGE_SECTIONS = [
 
 // Social Links
 export const SOCIAL_LINKS = {
-  LINKEDIN: 'https://www.linkedin.com/in/aditya-gambhir',
-  GITHUB: 'https://github.com/Aditya-gam',
+  LINKEDIN: SITE_CONFIG.author.linkedin,
+  GITHUB: SITE_CONFIG.author.github,
 } as const;
 
 // API Routes
@@ -43,36 +33,30 @@ export const API_ROUTES = {
   CONTACT: '/api/contact',
 } as const;
 
-// Error Messages
-export const ERROR_MESSAGES = {
-  REQUIRED_FIELD: 'This field is required.',
-  INVALID_EMAIL: 'Please enter a valid email address.',
-  MESSAGE_TOO_SHORT: `Message must be at least ${FORM_VALIDATION.MIN_MESSAGE_LENGTH} characters long.`,
-  SUBJECT_TOO_SHORT: `Subject must be at least ${FORM_VALIDATION.MIN_SUBJECT_LENGTH} characters long.`,
-  CAPTCHA_REQUIRED: 'Please complete the reCAPTCHA verification.',
-  GENERIC_ERROR: 'An unexpected error occurred. Please try again.',
-  NETWORK_ERROR: 'Failed to send message. Please try again.',
+// Error Messages - Re-export from centralized content
+export const ERROR_MESSAGES_LEGACY = {
+  REQUIRED_FIELD: ERROR_MESSAGES.required,
+  INVALID_EMAIL: ERROR_MESSAGES.invalidEmail,
+  MESSAGE_TOO_SHORT: ERROR_MESSAGES.messageTooShort(
+    FORM_VALIDATION.MIN_MESSAGE_LENGTH,
+  ),
+  SUBJECT_TOO_SHORT: ERROR_MESSAGES.subjectTooShort(
+    FORM_VALIDATION.MIN_SUBJECT_LENGTH,
+  ),
+  CAPTCHA_REQUIRED: ERROR_MESSAGES.captchaRequired,
+  GENERIC_ERROR: ERROR_MESSAGES.genericError,
+  NETWORK_ERROR: ERROR_MESSAGES.networkError,
 } as const;
 
-// Success Messages
-export const SUCCESS_MESSAGES = {
-  CONTACT_SENT: "Message sent successfully! I'll get back to you soon.",
+// Success Messages - Re-export from centralized content
+export const SUCCESS_MESSAGES_LEGACY = {
+  CONTACT_SENT: SUCCESS_MESSAGES.contactSent,
 } as const;
 
-// Application Metadata
+// Application Metadata - Re-export from centralized metadata
 export const APP_METADATA = {
-  TITLE: 'Aditya Gambhir | Software Engineer & Data Scientist',
-  DESCRIPTION:
-    'Software Engineer and Data Scientist with 2+ years of experience in full-stack development and machine learning.',
-  KEYWORDS: [
-    'Aditya Gambhir',
-    'Software Engineer',
-    'Data Scientist',
-    'MERN Stack',
-    'Python',
-    'Machine Learning',
-    'Full Stack Developer',
-    'Portfolio',
-  ],
-  SITE_URL: 'https://aditya-gambhir-portfolio.vercel.app/',
+  TITLE: SEO_METADATA.title.default,
+  DESCRIPTION: SEO_METADATA.description,
+  KEYWORDS: SEO_METADATA.keywords,
+  SITE_URL: SITE_CONFIG.url,
 } as const;
