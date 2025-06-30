@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { ContactForm } from './ContactForm';
 import { Button } from './ui/button';
+import { UI_COPY } from '@/data/ui';
 
 interface ContactModalProps {
   readonly isOpen: boolean;
@@ -132,13 +133,13 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   id="contact-modal-title"
                   className="text-xl font-semibold text-foreground"
                 >
-                  Contact Me
+                  {UI_COPY.contactModal.title}
                 </h2>
                 <p
                   id="contact-modal-description"
                   className="text-sm text-muted-foreground mt-1"
                 >
-                  Let&apos;s start a conversation
+                  {UI_COPY.contactModal.description}
                 </p>
               </div>
               <Button
