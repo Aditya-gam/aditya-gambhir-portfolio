@@ -13,6 +13,8 @@ import {
   EXTERNAL_NAVIGATION,
 } from '@/constants';
 import { cn } from '@/lib/utils';
+import { aboutData } from '@/data/about';
+import { NAVIGATION_CONTENT, HEADER_FOOTER_CONTENT } from '@/data/content';
 
 interface HeaderProps {
   readonly onContactClick?: () => void;
@@ -112,9 +114,9 @@ export default function Header({ onContactClick }: HeaderProps) {
             'flex items-center space-x-2 font-bold transition-all duration-200 hover:text-foreground/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-3 py-2 -mx-1 -my-1',
             isScrolled && 'text-sm',
           )}
-          aria-label="Go to homepage"
+          aria-label={NAVIGATION_CONTENT.goToHomepage}
         >
-          Aditya Gambhir
+          {HEADER_FOOTER_CONTENT.header.brand}
         </Link>
 
         {/* Desktop Navigation - Center Aligned */}
@@ -136,7 +138,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                       : 'text-foreground/70',
                     isScrolled && 'text-sm py-1',
                   )}
-                  aria-label={`Go to ${label} section`}
+                  aria-label={NAVIGATION_CONTENT.goToSection(label)}
                 >
                   {label}
                 </button>
@@ -155,7 +157,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                   : 'text-foreground/70',
                 isScrolled && 'text-sm py-1',
               )}
-              aria-label={`Go to ${label} page`}
+              aria-label={NAVIGATION_CONTENT.goToPage(label)}
             >
               {label}
             </Link>
