@@ -2,6 +2,7 @@ import React from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { env } from '@/config/env';
 import { logger } from '@/lib/logger';
+import { CONTACT_FORM_CONTENT } from '@/data/forms';
 
 interface CaptchaFieldProps {
   readonly recaptchaRef: React.RefObject<ReCAPTCHA | null>;
@@ -25,7 +26,7 @@ export function CaptchaField({
     return (
       <div className="form-captcha">
         <p className="text-sm text-destructive">
-          reCAPTCHA configuration error: Site key not found
+          {CONTACT_FORM_CONTENT.captcha.errorText}
         </p>
       </div>
     );
@@ -45,7 +46,7 @@ export function CaptchaField({
   return (
     <div className="form-captcha" role="group" aria-labelledby="captcha-label">
       <div id="captcha-label" className="sr-only">
-        Security verification required to submit form
+        {CONTACT_FORM_CONTENT.captcha.securityLabel}
       </div>
       <div className="flex justify-center">
         <ReCAPTCHA
@@ -55,12 +56,10 @@ export function CaptchaField({
           onExpired={onExpired}
           onError={handleError}
           theme="light"
-          aria-label="Complete the reCAPTCHA to verify you are human"
+          aria-label={CONTACT_FORM_CONTENT.captcha.ariaLabel}
         />
       </div>
-      <p className="form-helper">
-        Complete the verification above to send your message
-      </p>
+      <p className="form-helper">{CONTACT_FORM_CONTENT.captcha.helpText}</p>
     </div>
   );
 }
