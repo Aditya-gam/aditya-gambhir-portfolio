@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FileText, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { UI_COPY } from '@/data/ui';
 
 interface HeroCTAGroupProps {
   readonly onContactClick: () => void;
@@ -32,7 +33,7 @@ export default function HeroCTAGroup({
         size="lg"
       >
         <FileText className="w-4 h-4 mr-2" />
-        Download Resume
+        {UI_COPY.heroCTA.resumeButton}
       </Button>
 
       <Button
@@ -42,7 +43,7 @@ export default function HeroCTAGroup({
         size="lg"
       >
         <MessageSquare className="w-4 h-4 mr-2" />
-        Let&apos;s Talk
+        {UI_COPY.heroCTA.contactButton}
       </Button>
     </motion.div>
   );
