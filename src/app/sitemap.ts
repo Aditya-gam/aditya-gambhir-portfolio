@@ -1,38 +1,11 @@
 import { MetadataRoute } from 'next';
+import { SITEMAP_CONFIG } from '@/data/metadata';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://aditya-gambhir-portfolio.vercel.app';
-
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/projects`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/resume`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-  ];
+  return SITEMAP_CONFIG.pages.map((page) => ({
+    url: `${SITEMAP_CONFIG.baseUrl}${page.path}`,
+    lastModified: new Date(),
+    changeFrequency: page.changeFrequency,
+    priority: page.priority,
+  }));
 }
