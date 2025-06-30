@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { OpportunityBadge, HeroCTAGroup, ScrollCue } from '@/components/hero';
 import SocialProfiles from '@/components/SocialProfiles';
 import { getAllSocialProfiles } from '@/data/socials';
+import { aboutData } from '@/data/about';
 import { useResumeModal } from '@/contexts/ResumeModalContext';
 import { useContext } from 'react';
 import { ContactModalContext } from '@/app/ContactModalContext';
@@ -18,6 +19,8 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
   const socialProfiles = getAllSocialProfiles();
   const { openModal } = useResumeModal();
   const { openContactModal } = useContext(ContactModalContext);
+
+  const { greeting, title, description } = aboutData.hero;
 
   const handleResumeClick = () => {
     openModal(); // Opens the resume modal
@@ -51,7 +54,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Hello, I&apos;m Aditya
+          {greeting}
         </motion.h1>
 
         {/* Static Subtitle */}
@@ -61,7 +64,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          Software Engineer & Data Scientist
+          {title}
         </motion.h2>
 
         {/* Meta Copy Slot */}
@@ -71,9 +74,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          M.S. Computational Data Science graduate transforming cutting-edge ML,
-          computer vision and real-time sensor fusion into scalable,
-          user-centric software.
+          {description}
         </motion.p>
 
         {/* CTA Group */}
