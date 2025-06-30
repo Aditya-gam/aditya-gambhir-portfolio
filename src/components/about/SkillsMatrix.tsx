@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Chip } from '@/components/ui/chip';
-import { getSkillColors, getSkillIcon, SkillCategory } from '@/data/skills';
+import { getSkillIcon } from '@/data/skills';
 import type { VariantProps } from 'class-variance-authority';
 
 interface SkillsMatrixProps {

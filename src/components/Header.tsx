@@ -13,7 +13,6 @@ import {
   EXTERNAL_NAVIGATION,
 } from '@/constants';
 import { cn } from '@/lib/utils';
-import { aboutData } from '@/data/about';
 import { NAVIGATION_CONTENT, HEADER_FOOTER_CONTENT } from '@/data/content';
 
 interface HeaderProps {

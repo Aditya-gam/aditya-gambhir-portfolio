@@ -14,7 +14,7 @@ import { getFeaturedProjects } from '@/data/projects';
 import { aboutData } from '@/data/about';
 import { HOMEPAGE_COPY } from '@/data/ui';
 import Link from 'next/link';
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { getFeaturedSocialProfiles } from '@/data/socials';
 import SocialProfiles from '@/components/SocialProfiles';
 import ExperienceSection from '@/components/about/ExperienceSection';

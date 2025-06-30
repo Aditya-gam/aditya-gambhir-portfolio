@@ -1,7 +1,7 @@
 // Application constants
 
 // Import centralized content
-import { FORM_VALIDATION, CONTACT_FORM_CONTENT } from '@/data/forms';
+import { FORM_VALIDATION } from '@/data/forms';
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '@/data/content';
 import { SEO_METADATA, SITE_CONFIG } from '@/data/metadata';
 

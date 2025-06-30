@@ -6,11 +6,6 @@ import {
   EXPERIENCE_CONTENT,
   PROJECTS_CONTENT,
   CONTACT_CONTENT,
-  SOCIAL_CONTENT,
-  HEADER_FOOTER_CONTENT,
-  MODAL_CONTENT,
-  ERROR_MESSAGES,
-  SUCCESS_MESSAGES,
 } from './content';
 
 // Re-export content from centralized content files for backward compatibility

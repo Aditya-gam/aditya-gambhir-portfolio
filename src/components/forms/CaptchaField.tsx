@@ -44,10 +44,10 @@ export function CaptchaField({
   };
 
   return (
-    <div className="form-captcha" role="group" aria-labelledby="captcha-label">
-      <div id="captcha-label" className="sr-only">
+    <fieldset className="form-captcha" aria-labelledby="captcha-label">
+      <legend id="captcha-label" className="sr-only">
         {CONTACT_FORM_CONTENT.captcha.securityLabel}
-      </div>
+      </legend>
       <div className="flex justify-center">
         <ReCAPTCHA
           ref={recaptchaRef}
@@ -60,6 +60,6 @@ export function CaptchaField({
         />
       </div>
       <p className="form-helper">{CONTACT_FORM_CONTENT.captcha.helpText}</p>
-    </div>
+    </fieldset>
   );
 }

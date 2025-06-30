@@ -37,7 +37,6 @@ export function SubmitButton({
           <Loader2
             className="w-4 h-4 animate-spin"
             aria-hidden="true"
-            role="progressbar"
             aria-label="Submitting form"
           />
           <span>{loadingText}</span>

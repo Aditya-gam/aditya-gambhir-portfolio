@@ -51,27 +51,63 @@ const chipVariants = cva(
   },
 );
 
-export interface ChipProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof chipVariants> {
-  readonly icon?: React.ReactNode;
-  readonly label: string;
-  readonly interactive?: boolean;
-}
+// Overload for interactive Chip (button)
+type InteractiveChipProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'label'
+> &
+  VariantProps<typeof chipVariants> & {
+    icon?: React.ReactNode;
+    label: string;
+    interactive: true;
+  };
+
+// Overload for non-interactive Chip (div)
+type NonInteractiveChipProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'label'
+> &
+  VariantProps<typeof chipVariants> & {
+    icon?: React.ReactNode;
+    label: string;
+    interactive?: false;
+  };
+
+export type ChipProps = InteractiveChipProps | NonInteractiveChipProps;
 
 /**
  * Chip component for displaying skills, tags, and other labeled content
  * Supports icons, themes, and accessibility features
  */
-const Chip = forwardRef<HTMLDivElement, ChipProps>(
-  ({ className, variant, size, interactive, icon, label, ...props }, ref) => {
+const Chip = forwardRef<HTMLDivElement | HTMLButtonElement, ChipProps>(
+  (props, ref) => {
+    const { className, variant, size, interactive, icon, label, ...rest } =
+      props;
+    if (interactive) {
+      return (
+        <button
+          ref={ref as React.Ref<HTMLButtonElement>}
+          type="button"
+          className={cn(
+            chipVariants({ variant, size, interactive }),
+            className,
+          )}
+          {...(rest as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        >
+          {icon && (
+            <span className="flex-shrink-0" aria-hidden="true">
+              {icon}
+            </span>
+          )}
+          <span>{label}</span>
+        </button>
+      );
+    }
     return (
       <div
-        ref={ref}
+        ref={ref as React.Ref<HTMLDivElement>}
         className={cn(chipVariants({ variant, size, interactive }), className)}
-        role={interactive ? 'button' : undefined}
-        tabIndex={interactive ? 0 : undefined}
-        {...props}
+        {...(rest as React.HTMLAttributes<HTMLDivElement>)}
       >
         {icon && (
           <span className="flex-shrink-0" aria-hidden="true">

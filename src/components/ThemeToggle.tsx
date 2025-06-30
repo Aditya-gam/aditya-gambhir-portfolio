@@ -7,9 +7,9 @@ import { cn } from '@/lib/utils';
 import { THEME_CONTENT } from '@/data/content';
 
 interface ThemeToggleProps {
-  className?: string;
-  variant?: 'default' | 'ghost' | 'outline';
-  size?: 'default' | 'sm' | 'lg' | 'icon';
+  readonly className?: string;
+  readonly variant?: 'default' | 'ghost' | 'outline';
+  readonly size?: 'default' | 'sm' | 'lg' | 'icon';
 }
 
 export function ThemeToggle({

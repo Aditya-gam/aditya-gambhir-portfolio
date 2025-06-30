@@ -38,6 +38,14 @@ export function FormField({
     'aria-required': required,
   };
 
+  // Determine the appropriate autocomplete attribute (linter: no-nested-ternary)
+  let autoCompleteAttr: string | undefined;
+  if (id === 'contact-name') {
+    autoCompleteAttr = 'name';
+  } else if (id === 'contact-email') {
+    autoCompleteAttr = 'email';
+  }
+
   return (
     <div className="form-field">
       <label htmlFor={id} className="form-label">
@@ -71,13 +79,7 @@ export function FormField({
           className={baseInputClass}
           placeholder={placeholder}
           disabled={disabled}
-          autoComplete={
-            id === 'contact-name'
-              ? 'name'
-              : id === 'contact-email'
-                ? 'email'
-                : undefined
-          }
+          autoComplete={autoCompleteAttr}
           {...inputAriaProps}
         />
       )}
