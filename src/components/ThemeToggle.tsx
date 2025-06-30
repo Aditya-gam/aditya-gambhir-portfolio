@@ -4,6 +4,7 @@ import { Moon, Sun, Monitor } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { THEME_CONTENT } from '@/data/content';
 
 interface ThemeToggleProps {
   className?: string;
@@ -45,13 +46,13 @@ export function ThemeToggle({
   const getAriaLabel = () => {
     switch (theme) {
       case 'light':
-        return 'Switch to dark mode';
+        return THEME_CONTENT.switchToDark;
       case 'dark':
-        return 'Switch to system theme';
+        return THEME_CONTENT.switchToSystem;
       case 'system':
-        return 'Switch to light mode';
+        return THEME_CONTENT.switchToLight;
       default:
-        return 'Toggle theme';
+        return THEME_CONTENT.toggleTheme;
     }
   };
 
@@ -72,7 +73,7 @@ export function ThemeToggle({
       {/* Debug info in development */}
       {process.env.NODE_ENV === 'development' && (
         <span className="sr-only">
-          Theme: {theme}, Resolved: {resolvedTheme}
+          {THEME_CONTENT.currentTheme(theme, resolvedTheme)}
         </span>
       )}
     </Button>
