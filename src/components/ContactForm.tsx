@@ -5,6 +5,7 @@ import { useContactForm } from '@/hooks/useContactForm';
 import { FormField } from './forms/FormField';
 import { CaptchaField } from './forms/CaptchaField';
 import { SubmitButton } from './forms/SubmitButton';
+import { CONTACT_FORM_CONTENT } from '@/data/forms';
 
 export function ContactForm({ className = '' }: Readonly<ContactFormProps>) {
   const {
@@ -28,26 +29,26 @@ export function ContactForm({ className = '' }: Readonly<ContactFormProps>) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             id="contact-name"
-            label="Name"
+            label={CONTACT_FORM_CONTENT.labels.name}
             type="text"
             value={formData.name}
             onChange={(value) => handleInputChange('name', value)}
             onBlur={() => handleInputBlur('name')}
             error={errors.name}
-            placeholder="Your full name"
+            placeholder={CONTACT_FORM_CONTENT.placeholders.name}
             required
             disabled={submitting}
           />
 
           <FormField
             id="contact-email"
-            label="Email"
+            label={CONTACT_FORM_CONTENT.labels.email}
             type="email"
             value={formData.email}
             onChange={(value) => handleInputChange('email', value)}
             onBlur={() => handleInputBlur('email')}
             error={errors.email}
-            placeholder="your.email@example.com"
+            placeholder={CONTACT_FORM_CONTENT.placeholders.email}
             required
             disabled={submitting}
           />
@@ -55,26 +56,26 @@ export function ContactForm({ className = '' }: Readonly<ContactFormProps>) {
 
         <FormField
           id="contact-subject"
-          label="Subject"
+          label={CONTACT_FORM_CONTENT.labels.subject}
           type="text"
           value={formData.subject}
           onChange={(value) => handleInputChange('subject', value)}
           onBlur={() => handleInputBlur('subject')}
           error={errors.subject}
-          placeholder="Subject of your message"
+          placeholder={CONTACT_FORM_CONTENT.placeholders.subject}
           required
           disabled={submitting}
         />
 
         <FormField
           id="contact-message"
-          label="Message"
+          label={CONTACT_FORM_CONTENT.labels.message}
           type="textarea"
           value={formData.message}
           onChange={(value) => handleInputChange('message', value)}
           onBlur={() => handleInputBlur('message')}
           error={errors.message}
-          placeholder="Tell me about your project, question, or how I can help you..."
+          placeholder={CONTACT_FORM_CONTENT.placeholders.message}
           required
           disabled={submitting}
           rows={5}
@@ -90,9 +91,9 @@ export function ContactForm({ className = '' }: Readonly<ContactFormProps>) {
         <SubmitButton
           isSubmitting={submitting}
           disabled={!captchaToken}
-          loadingText="Sending..."
+          loadingText={CONTACT_FORM_CONTENT.buttons.submitting}
         >
-          Send Message
+          {CONTACT_FORM_CONTENT.buttons.submit}
         </SubmitButton>
       </form>
     </div>
