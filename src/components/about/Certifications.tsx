@@ -5,6 +5,7 @@ import { useCertificateModal } from '@/hooks/useCertificateModal';
 import type { Certificate } from '@/types';
 import { Calendar, Link } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { UI_COPY } from '@/data/ui';
 
 interface CertificationsProps {
   readonly certifications: readonly Certificate[];
@@ -109,7 +110,7 @@ export default function Certifications({
         id="certifications-heading"
         className="text-2xl font-bold mb-8 text-center"
       >
-        Certifications
+        {UI_COPY.certifications.heading}
       </h2>
 
       <section
