@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
+import { UI_COPY } from '@/data/ui';
 
 interface CommunityLeadershipProps {
   readonly community: {
@@ -28,7 +29,7 @@ export default function CommunityLeadership({
       variants={fadeInUp}
     >
       <h2 className="text-2xl font-bold mb-8 text-center">
-        Community & Leadership
+        {UI_COPY.communityLeadership.heading}
       </h2>
       <Card className="p-6 shadow-sm max-w-2xl mx-auto">
         <CardContent className="p-0">
