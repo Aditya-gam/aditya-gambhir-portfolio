@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { useEffect, useRef, useState } from 'react';
+import { EXPERIENCE_PAGE_COPY, UI_COPY } from '@/data/ui';
 
 interface ExperienceTimelineProps {
   readonly experience: readonly {
@@ -142,7 +143,7 @@ const ExperienceCard = ({
               <button
                 type="button"
                 onClick={() => setShowAllBullets(!showAllBullets)}
-                className={`mt-3 text-primary text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${isAlternate ? '' : ''}`}
+                className="mt-3 text-primary text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 aria-expanded={showAllBullets}
               >
                 {showAllBullets
@@ -203,7 +204,7 @@ export default function ExperienceTimeline({
         id="experience-timeline-heading"
         className="text-2xl font-bold mb-8 text-center"
       >
-        Experience Timeline
+        {UI_COPY.experienceTimeline.heading}
       </h2>
 
       <ul className="space-y-8" aria-label="Work experience timeline">
@@ -220,9 +221,9 @@ export default function ExperienceTimeline({
       </ul>
 
       <div className="text-center mt-6">
-        {/* <p className="text-sm text-muted-foreground">
-          Use arrow keys to navigate through experience items
-        </p> */}
+        <p className="text-sm text-muted-foreground">
+          {EXPERIENCE_PAGE_COPY.timelineNavigationInstruction}
+        </p>
       </div>
     </motion.section>
   );
