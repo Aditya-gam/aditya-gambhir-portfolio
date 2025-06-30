@@ -10,7 +10,7 @@ interface StatItem {
 }
 
 interface StatsCounterProps {
-  readonly stats: StatItem[];
+  readonly stats: readonly StatItem[];
   readonly className?: string;
 }
 
