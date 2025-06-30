@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Sparkles } from 'lucide-react';
+import { UI_COPY } from '@/data/ui';
 
 interface OpportunityBadgeProps {
   readonly isAvailable?: boolean;
@@ -29,7 +30,9 @@ export default function OpportunityBadge({
         <Sparkles className="w-4 h-4" />
       </motion.div>
       <span>
-        {isAvailable ? 'Open to Opportunities' : 'Currently Unavailable'}
+        {isAvailable
+          ? UI_COPY.opportunityBadge.open
+          : UI_COPY.opportunityBadge.closed}
       </span>
       {isAvailable && (
         <motion.div
