@@ -8,6 +8,7 @@ interface SkillsMatrixProps {
     readonly category: string;
     readonly items: readonly string[];
   }[];
+  readonly heading?: string;
 }
 
 const fadeInUp = {
@@ -50,7 +51,10 @@ function getCategoryVariant(category: string): ChipVariant {
  * SkillsMatrix component with icon grid layout and color-coded categories
  * Features 4 rows on desktop, auto 2 on mobile with proper accessibility
  */
-export default function SkillsMatrix({ skillsMatrix }: SkillsMatrixProps) {
+export default function SkillsMatrix({
+  skillsMatrix,
+  heading = 'Skills Matrix',
+}: SkillsMatrixProps) {
   return (
     <motion.section
       className="mb-16"
@@ -59,7 +63,7 @@ export default function SkillsMatrix({ skillsMatrix }: SkillsMatrixProps) {
       viewport={{ once: true }}
       variants={staggerContainer}
     >
-      <h2 className="text-2xl font-bold mb-8 text-center">Skills Matrix</h2>
+      <h2 className="text-2xl font-bold mb-8 text-center">{heading}</h2>
 
       {/* Icon Grid Layout - 4 rows on desktop, auto 2 on mobile */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
