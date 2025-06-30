@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { GraduationCap, Award } from 'lucide-react';
+import { UI_COPY } from '@/data/ui';
 
 interface EducationRecord {
   readonly degree: string;
@@ -47,7 +48,7 @@ export default function Education({ education }: EducationProps) {
         id="education-heading"
         className="text-2xl font-bold mb-8 text-center"
       >
-        Education
+        {UI_COPY.education.heading}
       </h2>
 
       <div className="space-y-6">
@@ -105,7 +106,7 @@ export default function Education({ education }: EducationProps) {
                       {/* Relevant Coursework */}
                       <div>
                         <h4 className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wide">
-                          Relevant Coursework
+                          {UI_COPY.education.relevantCoursework}
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {edu.courses.map((course) => (
