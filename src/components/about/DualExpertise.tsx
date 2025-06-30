@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
+import { UI_COPY } from '@/data/ui';
 
 interface DualExpertiseProps {
   readonly dualExpertise: {
@@ -39,7 +40,9 @@ export default function DualExpertise({ dualExpertise }: DualExpertiseProps) {
       viewport={{ once: true }}
       variants={staggerContainer}
     >
-      <h2 className="text-2xl font-bold mb-8 text-center">Dual Expertise</h2>
+      <h2 className="text-2xl font-bold mb-8 text-center">
+        {UI_COPY.dualExpertise.heading}
+      </h2>
       <div className="grid md:grid-cols-2 gap-8">
         {/* Data Scientist Card */}
         <motion.div variants={fadeInUp}>
