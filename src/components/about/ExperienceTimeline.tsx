@@ -220,11 +220,11 @@ export default function ExperienceTimeline({
         ))}
       </ul>
 
-      <div className="text-center mt-6">
+      {/* <div className="text-center mt-6">
         <p className="text-sm text-muted-foreground">
           {EXPERIENCE_PAGE_COPY.timelineNavigationInstruction}
         </p>
-      </div>
+      </div> */}
     </motion.section>
   );
 }

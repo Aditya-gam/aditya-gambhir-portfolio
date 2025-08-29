@@ -81,6 +81,8 @@ export const skillIcons: Record<string, string> = {
   JavaScript: '🟨',
   TypeScript: '🔷',
   Python: '🐍',
+  'C#': '🔷',
+  C: '🔷',
 
   // Frameworks
   React: '⚛️',

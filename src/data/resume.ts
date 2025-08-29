@@ -31,11 +31,11 @@ export const resumeData: readonly ResumeData[] = [
     filename: 'Aditya_Gambhir_SDE.pdf',
     downloadName: 'Aditya_Gambhir_Software_Engineer_Resume.pdf',
     description:
-      'Results-oriented software-engineering CV spotlighting full-stack delivery (MERN, Spring Boot), cloud-native deployment, and DevOps leadership in Agile environments.',
+      'Backend-focused CV highlighting API platforms, auth, and delivery: FastAPI/Node/Spring Boot services, PostgreSQL with Redis caching, Docker/Kubernetes on AWS, OpenAPI-first development, and CI/CD. Includes select data work tied to product impact, with ongoing learning in agentic AI',
     summary:
-      'Data-driven software engineer (M.S. Computational Data Science, UC Riverside) who designs and ships resilient backend services, real-time dashboards, and micro-service architectures. Adept with Node.js, Java/Spring, React, and containerised AWS/GCP stacks that sustain 99.9 % uptime and accelerate feature throughput by >25 %.',
+      'Software engineer (M.S., UC Riverside) who ships reliable backends and internal tools that move metrics. Mock API service adopted by 500+ developers, contract intake that cut processing time by ~35%, and analytics dashboards that reduced time-to-insight by ~30%. Skilled with FastAPI, Node, React/TypeScript, PostgreSQL/Redis, Docker/Kubernetes, and AWS. Currently learning agentic AI and building projects with RAG and tool-using agents',
     highlights: [
-      'Full-Stack Development • MERN & Spring Boot',
+      'Full-Stack Development • FastAPI & Spring Boot',
       'Cloud-Native Deployment • AWS / Docker / Kubernetes',
       'CI/CD Automation • GitHub Actions, Jenkins',
       'System Design & Performance Optimisation',
@@ -60,9 +60,10 @@ export const resumeData: readonly ResumeData[] = [
     filename: 'Aditya_Gambhir_DS.pdf',
     downloadName: 'Aditya_Gambhir_Data_Science_Resume.pdf',
     description:
-      'Specialised ML/AI résumé showcasing computer-vision research, real-time sensor-fusion pipelines, and big-data analytics expertise.',
+      'Applied ML/AI résumé highlighting Transformers-driven computer vision and NLP, data analytics at scale (Spark), and MLOps/CI/CD. Emphasizes measurable impact in reliability and security, with only a light touch on sensor fusion.',
     summary:
-      'Machine-learning researcher and engineer (M.S. Computational Data Science, UC R) skilled in building ETL pipelines, deep-learning models, and analytics dashboards that turn multimodal data (LiDAR, RADAR, imagery, text) into actionable insights. Proven impact on autonomous-systems safety, crowd-analytics accuracy (+12 %), and KPI forecasting.',
+      'Machine learning engineer (M.S., UC Riverside) who ships models and analytics that move metrics: +12% crowd-localization lift with a PyTorch Transformer; a chatbot at BLEU 25.67 (+35% vs. LSTM); and anomaly detection that flagged 5 critical issues (+20% reliability). Built real-time analytics on FastAPI/PostgreSQL with sub-500 ms latency. Currently exploring agentic-AI patterns (e.g., RAG, tool-using agents) and applying software-engineering rigor end-to-end.',
+
     highlights: [
       'Deep Learning • TensorFlow & PyTorch',
       'Computer Vision & Sensor Fusion (LiDAR/RADAR/Camera)',

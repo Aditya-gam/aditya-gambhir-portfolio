@@ -68,7 +68,7 @@ export const HOMEPAGE_COPY = {
     },
   ],
   stats: [
-    { value: '2+', label: 'Years Experience' },
+    { value: '1.5+', label: 'Years Experience' },
     { value: '10+', label: 'Projects Delivered' },
     { value: 'MERN & DS', label: 'Technology Expertise' },
     { value: '3.67', label: 'M.S. GPA' },

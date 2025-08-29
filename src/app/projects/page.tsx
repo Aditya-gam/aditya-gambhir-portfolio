@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'MERN stack',
     'Python',
   ],
+  alternates: {
+    canonical: '/projects',
+  },
   openGraph: {
     title: 'Projects | Aditya Gambhir',
     description:

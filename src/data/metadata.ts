@@ -7,13 +7,13 @@ export const SITE_CONFIG = {
   author: {
     name: 'Aditya Gambhir',
     email: 'gambhir.aditya19@gmail.com',
-    twitter: '@adityagambhir',
+    twitter: '@CasualIdiot21',
     linkedin: 'https://www.linkedin.com/in/aditya-gambhir',
     github: 'https://github.com/Aditya-gam',
-    location: 'Los Angeles, CA',
+    location: 'Riverside, CA',
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with actual verification code
+    google: 'llEa_cvIojPazFPkcKIPQRVs06TYY19mCcA7tx96cJc',
   },
 } as const;
 
@@ -38,6 +38,25 @@ export const SEO_METADATA = {
     'Node.js',
     'JavaScript',
     'TypeScript',
+    'FastAPI',
+    'Spring Boot',
+    'PostgreSQL',
+    'Docker',
+    'Kubernetes',
+    'GitHub Actions',
+    'Jenkins',
+    'GitLab CI/CD',
+    'Linux',
+    'Big Data',
+    'Data Mining',
+    'Statistical Data Analysis',
+    'Geospatial',
+    'Sensor Fusion',
+    'Computer Vision',
+    'LLM',
+    'RAG',
+    'Tool-using Agents',
+    'Agentic AI',
     'AWS',
     'Data Science',
     'AI/ML Engineer',
@@ -64,7 +83,7 @@ export const SEO_METADATA = {
     description:
       'Software Engineer and Data Scientist with 1.5+ years experience in MERN stack and Python.',
     images: ['/og-default.png'],
-    creator: '@adityagambhir',
+    creator: '@CasualIdiot21',
   },
   robots: {
     index: true,
@@ -88,7 +107,7 @@ export const STRUCTURED_DATA = {
     jobTitle: 'Software Engineer & Data Scientist',
     headline: 'Software Engineer & Data Scientist',
     url: SITE_CONFIG.url,
-    image: `${SITE_CONFIG.url}/headshot.webp`,
+    image: `${SITE_CONFIG.url}/headshot1.webp`,
     email: SITE_CONFIG.author.email,
     sameAs: [SITE_CONFIG.author.linkedin, SITE_CONFIG.author.github],
     knowsAbout: [
@@ -109,7 +128,7 @@ export const STRUCTURED_DATA = {
     },
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Los Angeles',
+      addressLocality: 'Riverside',
       addressRegion: 'CA',
       addressCountry: 'US',
     },
@@ -121,7 +140,7 @@ export const ROBOTS_CONFIG = {
   rules: {
     userAgent: '*',
     allow: '/',
-    disallow: ['/api/', '/_next/', '/admin/', '/.well-known/appspecific/'],
+    disallow: ['/api/', '/admin/', '/.well-known/appspecific/'],
   },
   sitemap: `${SITE_CONFIG.url}/sitemap.xml`,
   host: SITE_CONFIG.url,
@@ -137,24 +156,9 @@ export const SITEMAP_CONFIG = {
       priority: 1,
     },
     {
-      path: '/about',
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
-    {
       path: '/projects',
       changeFrequency: 'monthly' as const,
       priority: 0.8,
-    },
-    {
-      path: '/resume',
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      path: '/contact',
-      changeFrequency: 'yearly' as const,
-      priority: 0.5,
     },
   ],
 } as const;

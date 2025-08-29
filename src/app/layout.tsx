@@ -44,7 +44,7 @@ export default function RootLayout({
         <head>
           <meta charSet={HTML_META.charset} />
           <meta name="viewport" content={HTML_META.viewport} />
-          <link rel="canonical" href={HTML_META.canonical} />
+          {/* <link rel="canonical" href={HTML_META.canonical} /> */}
           <meta name="theme-color" content={HTML_META.themeColor} />
           <meta name="color-scheme" content={HTML_META.colorScheme} />
           <script
