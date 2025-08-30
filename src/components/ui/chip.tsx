@@ -19,19 +19,19 @@ const chipVariants = cva(
           'bg-transparent text-foreground border border-border hover:bg-accent hover:text-accent-foreground',
         ghost:
           'bg-transparent text-muted-foreground hover:bg-accent hover:text-accent-foreground',
-        // Skill category variants
+        // Skill category variants using theme variables (HSL triplets)
         languages:
-          'bg-blue-100 dark:bg-blue-950/30 text-black dark:text-blue-300 border-blue-300 dark:border-blue-800 hover:bg-blue-200 dark:hover:bg-blue-950/50',
+          'bg-[hsl(var(--chip-languages)/0.10)] text-[hsl(var(--chip-languages))] border border-[hsl(var(--chip-languages)/0.25)] hover:bg-[hsl(var(--chip-languages)/0.15)]',
         frameworks:
-          'bg-purple-100 dark:bg-purple-950/30 text-black dark:text-purple-300 border-purple-300 dark:border-purple-800 hover:bg-purple-200 dark:hover:bg-purple-950/50',
+          'bg-[hsl(var(--chip-frameworks)/0.10)] text-[hsl(var(--chip-frameworks))] border border-[hsl(var(--chip-frameworks)/0.25)] hover:bg-[hsl(var(--chip-frameworks)/0.15)]',
         dataAi:
-          'bg-emerald-100 dark:bg-emerald-950/30 text-black dark:text-emerald-300 border-emerald-300 dark:border-emerald-800 hover:bg-emerald-200 dark:hover:bg-emerald-950/50',
+          'bg-[hsl(var(--chip-data-ai)/0.10)] text-[hsl(var(--chip-data-ai))] border border-[hsl(var(--chip-data-ai)/0.25)] hover:bg-[hsl(var(--chip-data-ai)/0.15)]',
         cloudDevops:
-          'bg-orange-100 dark:bg-orange-950/30 text-black dark:text-orange-300 border-orange-300 dark:border-orange-800 hover:bg-orange-200 dark:hover:bg-orange-950/50',
+          'bg-[hsl(var(--chip-cloud-devops)/0.10)] text-[hsl(var(--chip-cloud-devops))] border border-[hsl(var(--chip-cloud-devops)/0.25)] hover:bg-[hsl(var(--chip-cloud-devops)/0.15)]',
         databases:
-          'bg-indigo-100 dark:bg-indigo-950/30 text-black dark:text-indigo-300 border-indigo-300 dark:border-indigo-800 hover:bg-indigo-200 dark:hover:bg-indigo-950/50',
+          'bg-[hsl(var(--chip-databases)/0.10)] text-[hsl(var(--chip-databases))] border border-[hsl(var(--chip-databases)/0.25)] hover:bg-[hsl(var(--chip-databases)/0.15)]',
         tooling:
-          'bg-slate-100 dark:bg-slate-950/30 text-black dark:text-slate-300 border-slate-300 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-950/50',
+          'bg-[hsl(var(--chip-tooling)/0.10)] text-[hsl(var(--chip-tooling))] border border-[hsl(var(--chip-tooling)/0.25)] hover:bg-[hsl(var(--chip-tooling)/0.15)]',
       },
       size: {
         sm: 'px-2 py-1 text-xs gap-1.5',
