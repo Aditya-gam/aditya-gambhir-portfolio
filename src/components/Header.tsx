@@ -1,10 +1,15 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import type { MouseEvent } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { MobileNav } from '@/components/MobileNav';
+const MobileNav = dynamic(
+  () => import('@/components/MobileNav').then((mod) => mod.MobileNav),
+  { ssr: false },
+);
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { useSectionHighlight } from '@/hooks/useSectionHighlight';
 import {
@@ -51,7 +56,7 @@ export default function Header({ onContactClick }: HeaderProps) {
   );
 
   useEffect(() => {
-    const unsubscribe = scrollY.on('change', (latest) => {
+    const unsubscribe = scrollY.on('change', (latest: number) => {
       setIsScrolled(latest > 10); // Earlier trigger for better UX
     });
 
@@ -74,7 +79,7 @@ export default function Header({ onContactClick }: HeaderProps) {
     }
   };
 
-  const handleNavClick = (href: string, event?: React.MouseEvent) => {
+  const handleNavClick = (href: string, event?: MouseEvent) => {
     if (href.startsWith('#')) {
       // Smooth scroll to section
       event?.preventDefault();
