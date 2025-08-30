@@ -167,7 +167,7 @@ export const SITEMAP_CONFIG = {
 export const HTML_META = {
   charset: 'utf-8',
   viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#0A66C2',
+  themeColor: '#374151', // Change to your new primary color
   colorScheme: 'light dark',
   canonical: SITE_CONFIG.url,
 } as const;
