@@ -291,6 +291,17 @@ export const aboutData: AboutData = {
   // ────────────────────────────────────────────
   experience: [
     {
+      company: 'One Community Global',
+      role: 'Software Developer',
+      period: 'Sept 2025 → Ongoing',
+      bullets: [
+        'Onboarded to the Highest Good Network; analyzed React/Node/MongoDB architecture and ran structured PR reviews using GitHub, ESLint, and Jest, clarifying docs and reducing post-merge fixes ~20% across eight merged changes.',
+        'Developed role-based safeguards and client-side validation for time-log entries across React UI and Express REST endpoints; prevented duplicates and unauthorized edits, lowering 4xx errors from 7% to 4% in QA and boosting reliability.',
+        'Shipped UI refinements and accessible form patterns in React/TypeScript with Axios integrations; improved task and project workflows, increasing successful form submissions 25% and reducing average user steps per update from five to three.',
+        'Enhanced CI/CD by adding GitHub Actions checks and Jest/Postman smoke tests; accelerated feedback loops and reduced regressions, cutting PR cycle time from three days to thirty-six hours and raising first-pass build success to 90%.',
+      ],
+    },
+    {
       company: 'Tech Mahindra',
       role: 'Software Development Intern',
       period: 'Jan 2023 → May 2023',
