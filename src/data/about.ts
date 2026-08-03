@@ -84,10 +84,9 @@ export const aboutData: AboutData = {
   hero: {
     greeting: "Hello, I'm Aditya",
     name: 'Aditya Gambhir',
-    title:
-      'M.S. Computational Data Science • Full-Stack Developer • AI Applications Engineer',
+    title: 'Software Engineer • Applied AI & LLM Systems • Full-Stack',
     description:
-      'Software & ML engineer turning sensor, geospatial, and text data into real-time, cloud-native products. Experienced across MERN, Spring Boot, and distributed ML pipelines for computer vision, sensor fusion, and analytics.',
+      'Software engineer building and measuring LLM systems and multi-tenant platforms in regulated healthcare. At Healthcare Support I own four systems end to end — from schema and model pipeline to the on-premises servers they run on.',
     image: {
       src: '/headshot1.webp',
       alt: 'Aditya Gambhir',
@@ -102,7 +101,7 @@ export const aboutData: AboutData = {
   // QUICK STATS
   // ────────────────────────────────────────────
   stats: {
-    experience: '1.5+',
+    experience: '2.5+',
     projects: '10+',
     gpa: '3.67',
     publications: '1',
@@ -113,8 +112,9 @@ export const aboutData: AboutData = {
   // ────────────────────────────────────────────
   professionalSummary: {
     description:
-      'I hold an M.S. in Computational Data Science from UC Riverside and build production-grade software end-to-end. My focus is backend and platform work, FastAPI/Node REST services, PostgreSQL/Redis, Docker/Kubernetes, and CI/CD paired with React/TypeScript UIs when needed. In industry, I delivered contract automation and analytics apps, hardened auth (OAuth2/OIDC), and shipped an internal mock-API service adopted by 500+ developers. I also work with data pipelines (Spark/Hadoop, PostGIS) for geospatial use cases. I’m currently learning and developing projects using agentic AI, exploring LLM apps, RAG, and tool-using agents, and applying software-engineering rigor to ship reliable products.',
-    quote: 'Shipping reliable AI-powered software.',
+      'I build and own software end to end at a medical-evaluation company — schema to deploy — where the compliance constraints are architecture rather than paperwork. In my first four months I shipped four systems: a ground-up rewrite of a seven-year-old clinical scheduling platform, an LLM pipeline that turns hundreds of pages of scanned medical records into a physician-ready review, a self-hosted telehealth video service, and the company public site. Three run on dedicated on-premises servers I provisioned. The work I would most want to be judged on is the measurement: a five-method model bake-off against ground truth I hand-labelled, a published ceiling on that ground truth rather than a score quoted against a perfect 1.0, and four candidate improvements rejected on evidence — one of them against an accuracy bar declared before the experiment ran.',
+    quote:
+      'Knowing which parts of a number are recoverable matters more than the number.',
   },
 
   // ────────────────────────────────────────────
@@ -122,166 +122,125 @@ export const aboutData: AboutData = {
   // ────────────────────────────────────────────
   dualExpertise: {
     dataScientist: {
-      title: 'Data Scientist / ML Engineer',
+      title: 'AI / ML Engineer',
       achievements: [
-        'Built a transformer-based crowd-localization model in PyTorch with a 12% accuracy lift and fewer ambiguous detections, validated across five datasets',
-        'Developed an NLP chatbot using Transformer, achieving BLEU 25.67, 35% higher than LSTM while optimizing cloud compute costs by 15%',
-        'Implemented statistical anomaly detection in backend services via Jenkins CI/CD, flagging 5 critical issues and improving overall reliability by ~20%',
+        'Ran a five-method bake-off for medical-record page-stream segmentation against hand-labelled ground truth; the winning method beat the rest on accuracy, recall, and cost at once',
+        'Proved document segmentation is a vision task rather than a text task by replicating a published OCR approach and measuring recall collapse from 0.92 to 0.66',
+        'Built a three-tier classification cascade — ordered regex, a local embedding model, then a constrained-enum LLM call — where two independent signals must agree before a document is auto-classified',
       ],
       technologies: [
+        'Gemini / Vertex AI',
+        'Python',
+        'FastAPI',
         'PyTorch',
-        'Transformers',
-        'Scikit-Learn',
-        'Pandas/NumPy',
-        'Spark',
+        'sentence-transformers',
+        'pgvector',
       ],
     },
     softwareEngineer: {
       title: 'Software Engineer (Backend & Full-Stack)',
       achievements: [
-        'Delivered a Mock API service for 500+ developers to simulate 15+ REST endpoints, speeding integration tests by ~15%',
-        'Automated contract intake with React 18 + TypeScript on Spring Boot REST (SQS + PostgreSQL), cutting processing time by 35%',
-        'Hardened OAuth2/OIDC across microservices resolved 5 critical vulnerabilities and reduced PR review time by 20%',
-        'Containerized and deployed services with Docker & Kubernetes + GitHub Actions; health checks + OpenAPI sustained 99.99% uptime',
+        'Migrated a multi-tenant clinical platform to one physical database per clinic office, proving isolation with a harness that disables the framework tenant filter',
+        'Built two transactional outboxes with SHA-256 idempotency keys and atomic database-lease claiming so concurrent workers never double-send',
+        'Rebuilt a 7-year-old platform on .NET 10 and Angular 20 and deployed it to an on-premises Ubuntu server I provisioned',
+        'Delivered a mock API service adopted by 500+ developers to simulate 15+ REST endpoints, cutting integration-testing time ~15%',
       ],
       technologies: [
-        'Node.js',
-        'React/TypeScript',
-        'Spring Boot',
+        '.NET 10',
+        'Angular 20',
+        'Next.js',
         'FastAPI',
         'PostgreSQL',
+        'SQL Server',
         'Docker',
-        'GitHub Actions',
-        'AWS',
       ],
     },
   },
 
   // ────────────────────────────────────────────
-  // SKILLS MATRIX
+  // SKILLS MATRIX (categories aligned to SkillCategory enum in skills.ts)
   // ────────────────────────────────────────────
   skillsMatrix: [
     {
       category: 'Languages',
-      items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'],
-    },
-    {
-      category: 'Frontend & UI',
       items: [
-        'React',
-        'React Hook Form',
-        'Recharts',
-        'React Hooks',
-        'React Redux',
-        'Next.js',
-        'Tailwind CSS',
-        'HTML5 / CSS3',
-        'D3.js',
-        'TanStack Table',
-        'Leaflet.js',
-        'Streamlit',
+        'Python',
+        'TypeScript',
+        'JavaScript',
+        'C#',
+        'SQL',
+        'Bash',
+        'Java',
       ],
     },
     {
-      category: 'Backend & APIs',
+      category: 'Frameworks',
       items: [
+        'FastAPI',
+        '.NET 10 / ASP.NET Core',
+        'Angular 20',
+        'Next.js',
+        'React',
         'Node.js',
         'Express.js',
-        'FastAPI',
-        'Django',
         'Flask',
-        'REST',
-        'Auth (OAuth2/OIDC, JWT)',
-        'Prisma ORM',
-        'Microservices',
-        'GraphQL',
+        'Spring Boot',
+        'Tailwind CSS',
       ],
     },
     {
-      category: 'Data / AI Libraries',
+      category: 'Data / AI',
       items: [
+        'Large Language Models',
+        'Prompt Engineering',
+        'Model Evaluation',
+        'Vertex AI (Gemini)',
+        'PyTorch',
+        'sentence-transformers',
+        'OpenCV',
         'Pandas',
         'NumPy',
-        'TensorFlow',
-        'Geopandas',
-        'Shapely',
-        'GDAL',
-        'PyTorch',
         'Scikit-learn',
-        'Keras',
-        'OpenCV',
-        'Transformers',
-        'Seaborn',
-        'Matplotlib',
-        'SpaCy',
-      ],
-    },
-    {
-      category: 'Big Data & Analytics',
-      items: [
-        'Apache Spark',
-        'Hadoop',
-        'Kafka',
-        'Snowflake',
-        'BigQuery',
-        'A/B Testing',
-        'Data Mining',
-        'Statistical Data Analysis',
       ],
     },
     {
       category: 'Cloud & DevOps',
       items: [
-        'AWS (EC2, S3, Lambda)',
-        'GCP',
-        'Azure',
         'Docker',
-        'Kubernetes',
-        'Nginx',
-        'Prometheus',
-        'Grafana',
-        'Sentry',
-        'GitLab CI/CD',
+        'nginx',
+        'Linux',
+        'AWS (EC2/S3/Lambda)',
+        'GCP',
         'GitHub Actions',
-        'Jenkins',
-        'Linux (Ubuntu)',
-        'Monitoring & Observability',
+        'CI/CD',
+        'SonarCloud',
+        'CodeQL',
       ],
     },
     {
-      category: 'Databases & Storage',
+      category: 'Databases',
       items: [
         'PostgreSQL',
-        'MySQL',
+        'SQL Server',
         'MongoDB',
-        'SQLite',
         'Redis',
-        'TimeScaleDB',
-        'ChromaDB',
-        'PostGIS',
-        'AWS Redshift',
-        'AWS S3',
+        'SQLite',
+        'pgvector',
+        'Entity Framework Core',
+        'SQLAlchemy',
       ],
     },
     {
-      category: 'Tooling & Productivity',
+      category: 'Tooling',
       items: [
         'Git',
-        'Jira',
-        'VS Code',
-        'IntelliJ IDEA',
-        'Jupyter Notebook',
-        'Postman',
-        'Prisma',
-        'Swagger',
-        'OpenAPI',
-        'Excel',
-        'Tableau',
-        'Power BI',
-        'Pytest',
         'Jest',
+        'Pytest',
+        'xUnit',
+        'Postman',
+        'Swagger / OpenAPI',
         'Vercel',
-        'Render',
+        'Jira',
       ],
     },
   ],
@@ -291,14 +250,26 @@ export const aboutData: AboutData = {
   // ────────────────────────────────────────────
   experience: [
     {
-      company: 'One Community Global',
+      company: 'Healthcare Support, LLC',
       role: 'Software Developer',
-      period: 'Sept 2025 → Ongoing',
+      period: 'Mar 2026 → Present',
       bullets: [
-        'Onboarded to the Highest Good Network; analyzed React/Node/MongoDB architecture and ran structured PR reviews using GitHub, ESLint, and Jest, clarifying docs and reducing post-merge fixes ~20% across eight merged changes.',
-        'Developed role-based safeguards and client-side validation for time-log entries across React UI and Express REST endpoints; prevented duplicates and unauthorized edits, lowering 4xx errors from 7% to 4% in QA and boosting reliability.',
-        'Shipped UI refinements and accessible form patterns in React/TypeScript with Axios integrations; improved task and project workflows, increasing successful form submissions 25% and reducing average user steps per update from five to three.',
-        'Enhanced CI/CD by adding GitHub Actions checks and Jest/Postman smoke tests; accelerated feedback loops and reduced regressions, cutting PR cycle time from three days to thirty-six hours and raising first-pass build success to 90%.',
+        'Rebuilt a 7-year-old medical-evaluation scheduling platform on .NET 10, ABP Commercial, and Angular 20; deployed it to an on-premises Ubuntu server I provisioned. Shipped 846 commits, 390 PRs, and 17 architecture decision records.',
+        'Migrated the platform from shared-database row filtering to one physical database per clinic office. Proved the isolation with a harness that disables the tenant filter and asserts cross-office records stay invisible.',
+        'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs that isolate errors per office, so concurrent workers never lose or double-send a notification.',
+        'Ran a five-method bake-off for medical-record page-stream segmentation against ground truth I hand-labelled; the winning sliding-window method beat the rest on accuracy, recall, and cost, using 2 API calls versus 226.',
+        'Proved document segmentation is a vision task, not a text task, by replicating a published OCR approach and watching recall drop from 0.92 to 0.66. Rejected four improvements on measured evidence.',
+        'Root-caused a silent pipeline hang — no exception, so retry never fired — to an OpenMP/Tesseract deadlock. Proved it in isolation (0/60 tasks versus 60/60) and bounded all four thread pools.',
+      ],
+    },
+    {
+      company: 'One Community Global',
+      role: 'Software Engineer (Volunteer)',
+      period: 'Sept 2025 → Mar 2026',
+      bullets: [
+        'Built 15+ REST endpoints and MongoDB aggregation pipelines powering a building-management analytics dashboard in Node.js and Express, covering cost correlation, labor cost, issue breakdown, and tool utilization.',
+        'Fixed 5 data-integrity bugs in volunteer statistics by rewriting aggregation pipelines, eliminating double-counting, misclassified hourly buckets, and stale summary counts across 1,000+ volunteer records.',
+        'Built 12+ React/TypeScript components with Recharts and Chart.js, shipped WCAG AA-compliant dark mode across 20+ components, and wrote 500+ Jest unit and integration tests.',
       ],
     },
     {
@@ -382,22 +353,13 @@ export const aboutData: AboutData = {
       description: 'Advanced sensor-fusion techniques for autonomous systems',
     },
     {
-      title: 'Microservices with Java Spring Boot and Spring Cloud',
-      provider: 'Udemy',
-      year: '2022',
-      month: 'Nov',
+      title: 'Fundamentals of Deep Learning',
+      provider: 'NVIDIA',
+      year: '2021',
+      month: 'Aug',
       filePath:
-        '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
-      description: 'Comprehensive microservices architecture with Spring',
-    },
-    {
-      title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
-      provider: 'Infosys',
-      year: '2022',
-      month: 'Apr',
-      filePath:
-        '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
-      description: 'Blockchain development & smart-contract programming',
+        '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
+      description: 'Neural-network fundamentals & GPU acceleration',
     },
     {
       title: 'Dell Artificial Intelligence Foundations',
@@ -408,29 +370,21 @@ export const aboutData: AboutData = {
       description: 'Foundational AI concepts and ML principles',
     },
     {
+      title: 'Microservices with Java Spring Boot and Spring Cloud',
+      provider: 'Udemy',
+      year: '2022',
+      month: 'Nov',
+      filePath:
+        '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
+      description: 'Comprehensive microservices architecture with Spring',
+    },
+    {
       title: 'Deep Learning and NLP A–Z: How to Create a Chatbot',
       provider: 'Udemy',
       year: '2021',
       month: 'Nov',
       filePath: '/certificates/DNLP A-z How to create a chatbot udemy.pdf',
       description: 'Natural-language processing & chatbot development',
-    },
-    {
-      title: 'Machine Learning A–Z: Hands-On Python & R in Data Science',
-      provider: 'Udemy',
-      year: '2021',
-      month: 'Sep',
-      filePath: '/certificates/Machine learning Basics-Udemy.pdf',
-      description: 'Comprehensive ML with Python and R',
-    },
-    {
-      title: 'Fundamentals of Deep Learning',
-      provider: 'NVIDIA',
-      year: '2021',
-      month: 'Aug',
-      filePath:
-        '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
-      description: 'Neural-network fundamentals & GPU acceleration',
     },
     {
       title: 'CCNAv7: Introduction to Networks',
@@ -441,12 +395,21 @@ export const aboutData: AboutData = {
       description: 'Networking fundamentals & Cisco technologies',
     },
     {
-      title: 'JavaScript Course 2021: From Zero to Expert',
+      title: 'Machine Learning A–Z: Hands-On Python & R in Data Science',
       provider: 'Udemy',
       year: '2021',
-      month: 'Mar',
-      filePath: '/certificates/JavaScriptBasic-Udemy.pdf',
-      description: 'Modern JavaScript development & ES6 + features',
+      month: 'Sep',
+      filePath: '/certificates/Machine learning Basics-Udemy.pdf',
+      description: 'Comprehensive ML with Python and R',
+    },
+    {
+      title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
+      provider: 'Infosys',
+      year: '2022',
+      month: 'Apr',
+      filePath:
+        '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
+      description: 'Blockchain development & smart-contract programming',
     },
     {
       title: 'Object-Oriented Data Structures in C++',
@@ -479,7 +442,7 @@ export const aboutData: AboutData = {
       year: '2024',
       url: 'https://ijisae.org/index.php/IJISAE/article/view/5486',
       abstract:
-        "Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored.The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions. Future MOT research aims to develop efficient algorithms for dynamic tracking, improve detection accuracy, and reduce real-time processing. The survey's proposed methods offer valuable references for tracking multiple objects in frame sequences.",
+        'Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored. The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions.',
     },
   ],
 
@@ -491,16 +454,16 @@ export const aboutData: AboutData = {
     role: 'Core Committee Member',
     period: '2021 – 2022',
     description:
-      'Led workshops on deep learning for 80 + students, fostering the next generation of AI practitioners.',
+      'Led workshops on deep learning for 80+ students, fostering the next generation of AI practitioners.',
   },
 
   personalTouch: {
-    favoriteStack: 'MERN + AWS',
+    favoriteStack: 'FastAPI + Next.js + Postgres',
     hobbies: ['☕ Perfect-cup coffee geek', '🎸 Guitarist in spare time'],
   },
 
   // ────────────────────────────────────────────
   // LOCATION
   // ────────────────────────────────────────────
-  location: 'Riverside, CA',
+  location: 'Los Angeles, CA',
 };

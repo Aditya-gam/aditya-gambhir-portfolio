@@ -31,6 +31,10 @@ export interface ProjectData {
   githubUrl?: string;
   liveUrl?: string;
   technologies?: string[];
+  /** Hue (0–360) driving the card's gradient header */
+  hue?: number;
+  /** Short mono "// tag" label shown on the card header */
+  tag?: string;
 }
 
 // Social Profile Types
@@ -57,7 +61,7 @@ export interface SocialProfileStat {
 
 // API Response Types
 export interface ContactAPIResponse {
-  success: boolean;
+  success?: boolean;
   message?: string;
   error?: string;
 }
@@ -91,38 +95,4 @@ export interface Certificate {
   readonly filePath?: string;
   readonly linkedinUrl?: string;
   readonly description?: string;
-}
-
-export interface CertificateModalProps {
-  readonly isOpen: boolean;
-  readonly onClose: () => void;
-  readonly certificate: Certificate | null;
-  readonly certificates: readonly Certificate[];
-  readonly currentIndex: number;
-
-  readonly onNavigate: (_direction: 'prev' | 'next') => void;
-}
-
-export interface CertificateViewerProps {
-  readonly certificate: Certificate;
-  readonly onLinkedIn?: () => void;
-}
-
-// Resume Types
-export interface ResumeData {
-  readonly id: string;
-  readonly title: string;
-  readonly filename: string;
-  readonly downloadName: string;
-  readonly description: string;
-  readonly highlights: readonly string[];
-  readonly targetAudience: string;
-  readonly lastUpdated: string;
-  readonly fileSize: string;
-  readonly type: 'sde' | 'ds';
-}
-
-export interface ResumePreviewCardProps {
-  readonly resume: ResumeData;
-  readonly className?: string;
 }
