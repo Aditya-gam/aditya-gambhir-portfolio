@@ -41,8 +41,8 @@ export const resumeData: readonly ResumeData[] = [
     ],
     targetAudience:
       'Backend / Full-Stack / Platform Engineering and Applied-AI roles',
-    lastUpdated: '2026-07-28',
-    fileSize: '35 KB',
+    lastUpdated: 'Aug 2026',
+    fileSize: '89 KB',
     type: 'sde',
     roleTitle: 'Software Engineer',
     name: 'Aditya Gambhir',
