@@ -1,228 +1,78 @@
-# 🚀 Aditya Gambhir Portfolio
+# Aditya Gambhir — Portfolio
 
 <div align="center">
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.4-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1.10-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-**A cutting-edge, professional portfolio showcasing dual expertise in Software Engineering and Data Science**
+**A bold, modern single-page portfolio — Software Engineer & Applied AI.**
 
-[🌐 **Live Portfolio**](https://aditya-gambhir-portfolio.vercel.app/) • [📚 **Documentation**](./docs/) • [🚀 **Quick Start**](#-quick-start)
+[🌐 Live](https://aditya-gambhir-portfolio.vercel.app/)
 
 </div>
 
 ---
 
-## ✨ **Features**
+## Overview
 
-### 🎯 **Professional Showcase**
+A single-page portfolio (`/`) with a dedicated projects page (`/projects`). Sections: **Hero → About → Skills → Projects → Experience → Contact**. Electric-violet→indigo identity in OKLCH, full light/dark themes (no flash), Geist typography, an animated gradient-mesh background, glassmorphism, cursor-spotlight cards, an animated nav pill, count-up stats, a scroll-driven timeline, a résumé modal, and a contact form (shown once Resend is configured). All motion is `prefers-reduced-motion` aware, and content is visible without JS.
 
-- **Dual Expertise** - Software Engineering & Data Science portfolios
-- **Interactive Projects** - 10+ featured projects with live demos
-- **Certifications Gallery** - 12+ professional certifications with PDF viewer
-- **Publications** - Research papers with interactive abstracts
-- **Resume System** - Dual resume previews with download analytics
+## Tech stack
 
-### 🎨 **Modern Design**
+| Area      | Choice                                                                      |
+| --------- | --------------------------------------------------------------------------- |
+| Framework | **Next.js 16** (App Router, Turbopack, **React Compiler**)                  |
+| UI        | **React 19**, TypeScript (strict)                                           |
+| Styling   | **Tailwind CSS v4** (OKLCH tokens via `@theme inline`), Geist (Sans + Mono) |
+| Theming   | **next-themes** (class-based, blocking anti-flash script)                   |
+| Contact   | **Resend** email API + honeypot spam trap                                   |
+| Deploy    | Vercel                                                                      |
 
-- **Purple Theme** - Creative design system with dark/light mode
-- **Responsive Design** - Mobile-first approach with smooth animations
-- **Accessibility** - WCAG 2.1 AA compliant with keyboard navigation
-- **Performance** - Optimized images, lazy loading, and code splitting
+## Getting started
 
-### 🔒 **Secure & Robust**
-
-- **Contact Form** - Google reCAPTCHA v2 integration
-- **Email System** - MongoDB storage with Nodemailer
-- **Form Validation** - Real-time validation with error handling
-- **Security Headers** - Comprehensive CSP and security measures
-
----
-
-## 🛠️ **Tech Stack**
-
-| Category          | Technology                              | Purpose                            |
-| ----------------- | --------------------------------------- | ---------------------------------- |
-| **Frontend**      | Next.js 15, React 19, TypeScript 5      | App Router, SSR, Type Safety       |
-| **Styling**       | Tailwind CSS 4.0, CSS Custom Properties | Design System, Responsive UI       |
-| **UI Components** | Radix UI, shadcn/ui, Framer Motion      | Accessible Components, Animations  |
-| **Backend**       | Next.js API Routes, MongoDB             | Serverless Functions, Data Storage |
-| **Deployment**    | Vercel                                  | Hosting, CI/CD, Edge Network       |
-| **Security**      | Google reCAPTCHA v2                     | Spam Protection, Form Security     |
-
----
-
-## 🚀 **Quick Start**
-
-### **Prerequisites**
+Requires **Node ≥ 20.9**.
 
 ```bash
-node --version    # v18.17.0+
-npm --version     # v9.0.0+
-```
-
-### **Installation**
-
-```bash
-# Clone the repository
-git clone https://github.com/Aditya-gam/aditya-gambhir-portfolio.git
-cd aditya-gambhir-portfolio
-
-# Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env.local
+cp .env.example .env.local   # add your RESEND_API_KEY
+npm run dev                  # http://localhost:3000
 ```
 
-### **Environment Setup**
-
-Create `.env.local` with:
+### Environment
 
 ```env
-# Database & Email
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio_messages
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-specific-password
-
-# Google reCAPTCHA
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key_here
-RECAPTCHA_SECRET_KEY=your_secret_key_here
-
-# Site Configuration
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+RESEND_API_KEY=re_...                              # required for the contact form
+CONTACT_FROM=Portfolio Contact <you@yourdomain>    # verified Resend sender
+CONTACT_TO=gambhir.aditya19@gmail.com              # where messages are delivered
 ```
 
-### **Development**
+Without `RESEND_API_KEY`, the contact section shows direct email and résumé CTAs instead of the form, and the contact API returns a graceful `503`. The key is read at build time, so after adding it in Vercel, redeploy to switch the form on.
 
-```bash
-# Start development server
-npm run dev
+## Scripts
 
-# Build for production
-npm run build
+| Script                        | Purpose                  |
+| ----------------------------- | ------------------------ |
+| `npm run dev`                 | Dev server (Turbopack)   |
+| `npm run build` / `npm start` | Production build / serve |
+| `npm run type-check`          | `tsc --noEmit`           |
+| `npm run lint`                | ESLint                   |
+| `npm run format`              | Prettier                 |
 
-# Code quality
-npm run lint
-npm run format
-```
-
-> **📚 Need detailed setup instructions?** Check the [Documentation](./docs/) for comprehensive guides.
-
----
-
-## 📁 **Project Structure**
+## Structure
 
 ```
-aditya-gambhir-portfolio/
-├── src/
-│   ├── app/                    # Next.js 15 App Router
-│   │   ├── about/             # Professional profile & skills
-│   │   ├── projects/          # Portfolio showcase
-│   │   ├── resume/            # Resume previews & downloads
-│   │   ├── api/               # Backend API routes
-│   │   └── globals.css        # Tailwind CSS 4.0 theme
-│   ├── components/            # React components
-│   │   ├── ui/               # Design system components
-│   │   ├── forms/            # Form components
-│   │   └── shared/           # Shared utilities
-│   ├── data/                 # Content data files
-│   ├── hooks/                # Custom React hooks
-│   ├── lib/                  # Utility functions
-│   ├── styles/               # CSS modules
-│   └── types/                # TypeScript definitions
-├── public/                   # Static assets
-├── docs/                     # Comprehensive documentation
-└── [config files]           # Build & development configs
+src/
+├── app/                  # App Router (layout, page, /projects, api/contact, robots, sitemap)
+├── components/           # PortfolioClient (the page), ProjectsGrid, theme-provider
+├── data/                 # All content: about, projects, resume, socials, metadata
+├── lib/                  # logger, validation (contact API)
+└── app/globals.css       # design tokens + animations
 ```
 
----
+Content lives in `src/data/*` — editing copy is a data change, not a component hunt.
 
-## 🎯 **Key Pages**
+## License
 
-### **🏠 Homepage** (`/`)
-
-Modern landing page with hero section, featured projects carousel, publications gallery, and call-to-action buttons.
-
-### **📋 About Page** (`/about`)
-
-Comprehensive professional profile with:
-
-- Interactive hero section with animated profile
-- Dual expertise cards (Software Engineering & Data Science)
-- Skills matrix organized by technology categories
-- Experience timeline with work history
-- Interactive certifications with modal viewer
-- Publications with research abstracts
-
-### **🎯 Projects Page** (`/projects`)
-
-Portfolio showcase featuring 10+ projects:
-
-- **Navigate LA28** - Geospatial platform for LA 2028 Olympics
-- **Dockership** - Freight ship management with optimization algorithms
-- **Sensor Fusion** - Autonomous vehicle data processing
-- **Transformer Models** - Crowd localization research
-- **Image Deblurring** - Autoencoder implementation
-
-### **📄 Resume Page** (`/resume`)
-
-Professional resume showcase with:
-
-- **Software Engineer Resume** - MERN stack, enterprise solutions
-- **Data Science Resume** - ML/AI, computer vision, analytics
-- Interactive PDF previews with fullscreen viewing
-- Download analytics and file metadata
-
----
-
-## 📜 **Available Scripts**
-
-| Script                  | Purpose           | Description                          |
-| ----------------------- | ----------------- | ------------------------------------ |
-| `npm run dev`           | Development       | Start dev server with Turbopack      |
-| `npm run build`         | Production Build  | Optimize for deployment              |
-| `npm run build:analyze` | Bundle Analysis   | Analyze bundle size and dependencies |
-| `npm start`             | Production Server | Run production build locally         |
-| `npm run lint`          | Code Quality      | ESLint with accessibility rules      |
-| `npm run format`        | Code Formatting   | Prettier formatting                  |
-| `npm run format:check`  | Format Check      | Verify code formatting               |
-
----
-
-## 📚 **Documentation**
-
-Comprehensive documentation is available in the [`docs/`](./docs/) directory:
-
-- **[Getting Started](./docs/getting-started/)** - Setup, development, and deployment guides
-- **[Technical Docs](./docs/technical/)** - API, components, and CSS architecture
-- **[Content Management](./docs/content/)** - Updating portfolio content
-
----
-
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-<div align="center">
-
-**Built with ❤️ using Next.js 15, React 19, and Tailwind CSS 4.0**
-
-[🌐 **Visit Portfolio**](https://aditya-gambhir-portfolio.vercel.app/) • [📧 **Contact**](mailto:gambhir.aditya19@gmail.com) • [💼 **LinkedIn**](https://www.linkedin.com/in/aditya-gambhir/)
-
-</div>
+MIT.

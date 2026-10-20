@@ -1,69 +1,61 @@
 import type { NextConfig } from 'next';
 
-// Conditional bundle analyzer import
 const withBundleAnalyzer =
   process.env.ANALYZE === 'true'
     ? // eslint-disable-next-line @typescript-eslint/no-require-imports
       require('@next/bundle-analyzer')({ enabled: true })
     : (config: NextConfig) => config;
 
-const nextConfig: NextConfig = {
-  // Enable static exports for better performance
-  // output: 'export', // Uncomment if you want static export
+// Dev/Turbopack needs 'unsafe-eval'; keep it out of production.
+const scriptSrc =
+  process.env.NODE_ENV === 'development'
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+    : "script-src 'self' 'unsafe-inline'";
 
-  // Image optimization configuration
+const ContentSecurityPolicy = [
+  "default-src 'self'",
+  scriptSrc,
+  // Google Fonts stylesheet + inline styles
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "img-src 'self' data: blob: https://media.licdn.com",
+  "connect-src 'self'",
+  "frame-ancestors 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
+const nextConfig: NextConfig = {
+  // React Compiler is stable in Next 16 — auto-memoizes components.
+  reactCompiler: true,
+
   images: {
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
-  // Enable compression
   compress: true,
 
-  // Headers for CSP - allow LinkedIn scripts, Google Fonts, and Google reCAPTCHA
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          { key: 'Content-Security-Policy', value: ContentSecurityPolicy },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           {
-            key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://platform.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com https://www.googletagmanager.com",
-              "connect-src 'self' https://platform.linkedin.com https://www.linkedin.com https://badges.linkedin.com https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com https://www.googletagmanager.com",
-              "frame-src 'self' https://www.google.com https://www.gstatic.com https://www.recaptcha.net https://recaptcha.google.com",
-              "child-src 'self' https://www.google.com https://www.recaptcha.net https://recaptcha.google.com",
-              "img-src 'self' data: https://media.licdn.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com https://www.recaptcha.net",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.google.com https://www.gstatic.com",
-              "font-src 'self' data: https://fonts.gstatic.com",
-            ].join('; '),
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
         ],
       },
     ];
   },
 
-  // Rewrites for better SEO and well-known URI handling
   async rewrites() {
     return [
       {

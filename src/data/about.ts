@@ -52,6 +52,8 @@ export interface AboutData {
     degree: string;
     school: string;
     gpa: string;
+    /** Graduation month, e.g. "Mar 2025" */
+    graduated?: string;
     courses: string[];
   }[];
   certifications: readonly Certificate[];
@@ -84,10 +86,9 @@ export const aboutData: AboutData = {
   hero: {
     greeting: "Hello, I'm Aditya",
     name: 'Aditya Gambhir',
-    title:
-      'M.S. Computational Data Science • Full-Stack Developer • AI Applications Engineer',
+    title: 'Software Engineer • Backend & Distributed Systems • Generative AI',
     description:
-      'Software & ML engineer turning sensor, geospatial, and text data into real-time, cloud-native products. Experienced across MERN, Spring Boot, and distributed ML pipelines for computer vision, sensor fusion, and analytics.',
+      'Software engineer with 3+ years building production-grade microservices and event-driven backend systems, bridging generative AI with distributed architecture to deliver secure, reliable software.',
     image: {
       src: '/headshot1.webp',
       alt: 'Aditya Gambhir',
@@ -102,239 +103,193 @@ export const aboutData: AboutData = {
   // QUICK STATS
   // ────────────────────────────────────────────
   stats: {
-    experience: '1.5+',
+    experience: '3+',
     projects: '10+',
     gpa: '3.67',
     publications: '1',
   },
 
   // ────────────────────────────────────────────
-  // PROFESSIONAL SUMMARY
+  // PROFESSIONAL SUMMARY (from the Oct 2026 CV)
   // ────────────────────────────────────────────
   professionalSummary: {
     description:
-      'I hold an M.S. in Computational Data Science from UC Riverside and build production-grade software end-to-end. My focus is backend and platform work, FastAPI/Node REST services, PostgreSQL/Redis, Docker/Kubernetes, and CI/CD paired with React/TypeScript UIs when needed. In industry, I delivered contract automation and analytics apps, hardened auth (OAuth2/OIDC), and shipped an internal mock-API service adopted by 500+ developers. I also work with data pipelines (Spark/Hadoop, PostGIS) for geospatial use cases. I’m currently learning and developing projects using agentic AI, exploring LLM apps, RAG, and tool-using agents, and applying software-engineering rigor to ship reliable products.',
-    quote: 'Shipping reliable AI-powered software.',
+      'Software Engineer with 3+ years building production-grade microservices and event-driven backend systems processing enterprise-scale transaction volumes. Reduced release cycles from weeks to days through disciplined CI/CD, rigorous test-driven engineering, and 85% code coverage standards. Committed to bridging generative AI capabilities with distributed architecture to deliver secure, reliable, and high-performance systems.',
+    quote:
+      'Knowing which parts of a number are recoverable matters more than the number.',
   },
 
   // ────────────────────────────────────────────
-  // DUAL EXPERTISE
+  // DUAL EXPERTISE (key `dataScientist` kept for compatibility)
   // ────────────────────────────────────────────
   dualExpertise: {
     dataScientist: {
-      title: 'Data Scientist / ML Engineer',
+      title: 'AI / LLM Engineer',
       achievements: [
-        'Built a transformer-based crowd-localization model in PyTorch with a 12% accuracy lift and fewer ambiguous detections, validated across five datasets',
-        'Developed an NLP chatbot using Transformer, achieving BLEU 25.67, 35% higher than LSTM while optimizing cloud compute costs by 15%',
-        'Implemented statistical anomaly detection in backend services via Jenkins CI/CD, flagging 5 critical issues and improving overall reliability by ~20%',
+        'Built an AI-powered member-support chatbot with Spring Boot, Azure AI, and LLM-based knowledge search, cutting agent response time by 22% and documentation search time by 35%',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost',
+        'Architected a multi-agent literature-review system with Microsoft AutoGen and an LLM provider layer that falls back across Together AI, Gemini, Perplexity, and OpenAI',
       ],
       technologies: [
-        'PyTorch',
-        'Transformers',
-        'Scikit-Learn',
-        'Pandas/NumPy',
-        'Spark',
+        'LangChain',
+        'LangGraph',
+        'RAG',
+        'Azure OpenAI',
+        'AutoGen',
+        'Python',
+        'FastAPI',
       ],
     },
     softwareEngineer: {
-      title: 'Software Engineer (Backend & Full-Stack)',
+      title: 'Software Engineer (Backend & Distributed Systems)',
       achievements: [
-        'Delivered a Mock API service for 500+ developers to simulate 15+ REST endpoints, speeding integration tests by ~15%',
-        'Automated contract intake with React 18 + TypeScript on Spring Boot REST (SQS + PostgreSQL), cutting processing time by 35%',
-        'Hardened OAuth2/OIDC across microservices resolved 5 critical vulnerabilities and reduced PR review time by 20%',
-        'Containerized and deployed services with Docker & Kubernetes + GitHub Actions; health checks + OpenAPI sustained 99.99% uptime',
+        'Engineered a Kafka-based event streaming pipeline syncing member eligibility and claims data in real time, processing over 100,000 events daily with zero data loss',
+        'Migrated a multi-tenant clinical platform to one physical database per clinic office, validating isolation with a harness that disables tenant filtering',
+        'Cut payment processing time by 40% for a system handling over 500,000 daily transactions by rewriting joins and adding indexes',
+        'Built deployment pipelines with Docker, Jenkins, and Kubernetes, cutting release time from 2 weeks to 3 days',
       ],
       technologies: [
-        'Node.js',
-        'React/TypeScript',
+        'Java',
         'Spring Boot',
-        'FastAPI',
+        'Kafka',
         'PostgreSQL',
         'Docker',
-        'GitHub Actions',
+        'Kubernetes',
         'AWS',
       ],
     },
   },
 
   // ────────────────────────────────────────────
-  // SKILLS MATRIX
+  // SKILLS MATRIX (categories aligned to SkillCategory enum in skills.ts)
   // ────────────────────────────────────────────
   skillsMatrix: [
     {
       category: 'Languages',
-      items: ['Java', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'],
-    },
-    {
-      category: 'Frontend & UI',
       items: [
-        'React',
-        'React Hook Form',
-        'Recharts',
-        'React Hooks',
-        'React Redux',
-        'Next.js',
-        'Tailwind CSS',
-        'HTML5 / CSS3',
-        'D3.js',
-        'TanStack Table',
-        'Leaflet.js',
-        'Streamlit',
+        'Python',
+        'Java',
+        'TypeScript',
+        'JavaScript',
+        'C#',
+        'SQL',
+        'Bash',
       ],
     },
     {
-      category: 'Backend & APIs',
+      category: 'Frameworks',
       items: [
+        'Spring Boot',
+        'Spring MVC',
+        'Spring Security',
+        'Hibernate',
+        '.NET',
+        'FastAPI',
         'Node.js',
         'Express.js',
-        'FastAPI',
-        'Django',
-        'Flask',
-        'REST',
-        'Auth (OAuth2/OIDC, JWT)',
-        'Prisma ORM',
-        'Microservices',
-        'GraphQL',
+        'React',
+        'Angular',
+        'Redux',
+        'HTML5',
+        'CSS3',
+        'Bootstrap',
+        'jQuery',
       ],
     },
     {
-      category: 'Data / AI Libraries',
+      category: 'Data / AI',
       items: [
-        'Pandas',
-        'NumPy',
-        'TensorFlow',
-        'Geopandas',
-        'Shapely',
-        'GDAL',
-        'PyTorch',
-        'Scikit-learn',
-        'Keras',
-        'OpenCV',
-        'Transformers',
-        'Seaborn',
-        'Matplotlib',
-        'SpaCy',
-      ],
-    },
-    {
-      category: 'Big Data & Analytics',
-      items: [
-        'Apache Spark',
-        'Hadoop',
-        'Kafka',
-        'Snowflake',
-        'BigQuery',
-        'A/B Testing',
-        'Data Mining',
-        'Statistical Data Analysis',
+        'LangChain',
+        'LangGraph',
+        'RAG',
+        'Prompt Engineering',
+        'OpenAI API',
+        'Azure OpenAI',
+        'AWS Bedrock',
+        'Embeddings',
+        'Pinecone',
+        'Chroma',
+        'Hugging Face',
+        'CrewAI',
+        'AutoGen',
       ],
     },
     {
       category: 'Cloud & DevOps',
       items: [
-        'AWS (EC2, S3, Lambda)',
-        'GCP',
+        'AWS (EC2, S3, Lambda, RDS)',
         'Azure',
         'Docker',
         'Kubernetes',
-        'Nginx',
-        'Prometheus',
-        'Grafana',
-        'Sentry',
-        'GitLab CI/CD',
-        'GitHub Actions',
+        'Terraform',
+        'CI/CD',
         'Jenkins',
-        'Linux (Ubuntu)',
-        'Monitoring & Observability',
+        'GitHub Actions',
       ],
     },
     {
-      category: 'Databases & Storage',
-      items: [
-        'PostgreSQL',
-        'MySQL',
-        'MongoDB',
-        'SQLite',
-        'Redis',
-        'TimeScaleDB',
-        'ChromaDB',
-        'PostGIS',
-        'AWS Redshift',
-        'AWS S3',
-      ],
+      category: 'Databases',
+      items: ['PostgreSQL', 'MySQL', 'MongoDB', 'DynamoDB', 'Kafka'],
     },
     {
-      category: 'Tooling & Productivity',
+      category: 'Tooling',
       items: [
-        'Git',
-        'Jira',
-        'VS Code',
-        'IntelliJ IDEA',
-        'Jupyter Notebook',
-        'Postman',
-        'Prisma',
+        'RESTful APIs',
+        'GraphQL',
         'Swagger',
-        'OpenAPI',
-        'Excel',
-        'Tableau',
-        'Power BI',
-        'Pytest',
+        'API Design',
+        'JUnit',
+        'Mockito',
         'Jest',
-        'Vercel',
-        'Render',
+        'Cypress',
+        'Maven',
+        'Git',
+        'GitHub',
+        'Microservices Architecture',
+        'Agile (Scrum)',
+        'SDLC',
+        'Waterfall',
       ],
     },
   ],
 
   // ────────────────────────────────────────────
-  // EXPERIENCE
+  // EXPERIENCE (mirrors the Oct 2026 CV)
   // ────────────────────────────────────────────
   experience: [
     {
-      company: 'One Community Global',
-      role: 'Software Developer',
-      period: 'Sept 2025 → Ongoing',
+      company: 'Healthcare Support, LLC',
+      role: 'Software Engineer',
+      period: 'Mar 2026 → Sep 2026',
       bullets: [
-        'Onboarded to the Highest Good Network; analyzed React/Node/MongoDB architecture and ran structured PR reviews using GitHub, ESLint, and Jest, clarifying docs and reducing post-merge fixes ~20% across eight merged changes.',
-        'Developed role-based safeguards and client-side validation for time-log entries across React UI and Express REST endpoints; prevented duplicates and unauthorized edits, lowering 4xx errors from 7% to 4% in QA and boosting reliability.',
-        'Shipped UI refinements and accessible form patterns in React/TypeScript with Axios integrations; improved task and project workflows, increasing successful form submissions 25% and reducing average user steps per update from five to three.',
-        'Enhanced CI/CD by adding GitHub Actions checks and Jest/Postman smoke tests; accelerated feedback loops and reduced regressions, cutting PR cycle time from three days to thirty-six hours and raising first-pass build success to 90%.',
+        'Rebuilt a 7-year-old medical scheduling platform on .NET 10, ABP Commercial, and Angular 20, deploying to a self-hosted Ubuntu server, producing 846 commits, 390 pull requests, and 17 ADRs total.',
+        'Migrated the platform from shared-database row filtering to one physical database per clinic office, validating isolation with a test harness that disables tenant filtering and confirms cross-office records stay invisible.',
+        'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs with per-office error isolation, ensuring notifications are never lost or duplicated under concurrent worker processes.',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost, rejecting four alternative methods including text-based OCR consistently using fewer API calls.',
       ],
     },
     {
-      company: 'Tech Mahindra',
-      role: 'Software Development Intern',
-      period: 'Jan 2023 → May 2023',
+      company: 'Centene',
+      role: 'Software Engineer',
+      period: 'Jan 2025 → Mar 2026',
       bullets: [
-        'Built an internal Mock API service so teams could simulate 15–20 endpoints and test earlier, cutting integration test time by ~15%.',
-        'Kept the service fast under load, with ~220 ms response times at 60–120 requests/second by adding server-side caching, sensible rate limits, and performance dashboards.',
-        'Standardized sign-in and API security with OAuth2/OIDC via Okta, resolving 5 critical issues and strengthening our security posture.',
-        'Reduced breaking changes by enforcing OpenAPI contracts in CI, blocking merges when code and spec didn’t match and auto-generating typed clients.',
-        'Lifted team throughput ~25% (24→30 pts/sprint) and sped up PR reviews ~20% by introducing a clear Definition of Done, a concise PR template, and a 75% test-coverage gate.',
+        'Built an AI-powered chatbot using Spring Boot, Azure AI, and LLM-based knowledge search to automate member support inquiries, cutting agent response time by 22% and documentation search time by 35%.',
+        'Developed REST APIs with OAuth2 authentication for internal and external member-facing systems, maintaining strict HIPAA compliance and 99.9% uptime across critical production healthcare environments and backend services daily.',
+        'Engineered a Kafka-based event streaming pipeline syncing member eligibility and claims data in real time across multiple internal healthcare systems, processing over 100,000 events daily with zero data loss.',
+        'Wrote unit and integration tests using JUnit and Mockito for backend services, maintaining approximately 85% code coverage and catching defects before they reached the production release pipeline each week.',
+        'Collaborated in Agile Scrum teams with Product, QA, and DevOps engineers, delivering new features in two-week sprints while conducting peer code reviews to maintain team engineering standards throughout each release.',
       ],
     },
     {
-      company: 'Tech Mahindra',
-      role: 'Software Development Intern',
-      period: 'Jul 2022 → Dec 2022',
+      company: 'CRED',
+      role: 'Software Engineer',
+      period: 'Jan 2022 → Aug 2023',
       bullets: [
-        'Replaced PDF forms with a web intake, cutting contract processing time by ~35%; built a React front end with Spring Boot APIs and automated PDF/email notifications.',
-        'Improved reliability and lowered typical API response from 1.3s to 0.85s by indexing PostgreSQL and moving email to background jobs; raised automated test coverage to ~80% backend / ~75% frontend.',
-        'Launched a sales analytics dashboard that reduced time-to-insight by ~30%; delivered with React and a Node API, then sped up charts via query tuning and caching.',
-        'Added role-based access (employees/managers/admins) with single sign-on via Auth0, reducing authentication errors by ~40%.',
-        'Containerized services and set up Docker-based CI/CD to AWS, trimming manual deployment steps by ~25% and preventing spec-breaking changes.',
-      ],
-    },
-    {
-      company: 'Centre for Development of Advanced Computing (C-DAC)',
-      role: 'Research & Development Intern',
-      period: 'Jan 2022 → Jun 2022',
-      bullets: [
-        'Built a real-time EEG research platform that cut setup time by ~40% and increased daily recording throughput by 25-30%.',
-        'Delivered smooth live charts with ~320 ms end-to-end latency while streaming ~240 messages per second over WebSockets.',
-        'Maintained 99.9% service uptime (May-June) by adding proactive health checks and clear monitoring/alerts.',
-        'Secured a multi-user lab with single sign-on and role-based permissions; every endpoint was authenticated and fully audited.',
-        'Reduced infrastructure and storage costs by ~52% and sped up releases through automated build/deploy pipelines.',
+        'Developed 15+ REST APIs using Java and Spring Boot, writing automated JUnit tests to catch bugs early and reduce production issues before code changes reached the live payment processing system.',
+        'Optimized slow-running SQL queries by rewriting joins and adding database indexes across services, cutting payment processing time by 40% for a system handling over 500,000 financial transactions each day.',
+        'Configured AWS auto-scaling and access controls for backend services supporting real-time transaction processing, improving system uptime to 99.5% while reducing overall monthly cloud hosting infrastructure costs by 25%.',
+        'Refactored key ReactJS components by introducing Redux state management and removing unnecessary repeated API calls, cutting page load time for 50,000 monthly active users on the app.',
+        'Built 2 deployable microservices with automated unit tests in Mockito and created automated deployment pipelines using Docker, Jenkins, and Kubernetes, cutting release time from 2 weeks to 3 days.',
       ],
     },
   ],
@@ -347,6 +302,7 @@ export const aboutData: AboutData = {
       degree: 'M.S. Computational Data Science',
       school: 'University of California, Riverside',
       gpa: '3.67/4',
+      graduated: 'Mar 2025',
       courses: [
         'Data Mining',
         'Big Data Management',
@@ -359,6 +315,7 @@ export const aboutData: AboutData = {
       degree: 'B.Tech Computer Engineering',
       school: 'Vishwakarma Institute of Information Technology',
       gpa: '9.62/10',
+      graduated: 'May 2023',
       courses: [
         'Data Structures & Algorithms',
         'Operating Systems',
@@ -382,22 +339,13 @@ export const aboutData: AboutData = {
       description: 'Advanced sensor-fusion techniques for autonomous systems',
     },
     {
-      title: 'Microservices with Java Spring Boot and Spring Cloud',
-      provider: 'Udemy',
-      year: '2022',
-      month: 'Nov',
+      title: 'Fundamentals of Deep Learning',
+      provider: 'NVIDIA',
+      year: '2021',
+      month: 'Aug',
       filePath:
-        '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
-      description: 'Comprehensive microservices architecture with Spring',
-    },
-    {
-      title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
-      provider: 'Infosys',
-      year: '2022',
-      month: 'Apr',
-      filePath:
-        '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
-      description: 'Blockchain development & smart-contract programming',
+        '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
+      description: 'Neural-network fundamentals & GPU acceleration',
     },
     {
       title: 'Dell Artificial Intelligence Foundations',
@@ -408,29 +356,21 @@ export const aboutData: AboutData = {
       description: 'Foundational AI concepts and ML principles',
     },
     {
+      title: 'Microservices with Java Spring Boot and Spring Cloud',
+      provider: 'Udemy',
+      year: '2022',
+      month: 'Nov',
+      filePath:
+        '/certificates/Microservices with Java Spring Boot  and Spring Cloud - udemy.pdf',
+      description: 'Comprehensive microservices architecture with Spring',
+    },
+    {
       title: 'Deep Learning and NLP A–Z: How to Create a Chatbot',
       provider: 'Udemy',
       year: '2021',
       month: 'Nov',
       filePath: '/certificates/DNLP A-z How to create a chatbot udemy.pdf',
       description: 'Natural-language processing & chatbot development',
-    },
-    {
-      title: 'Machine Learning A–Z: Hands-On Python & R in Data Science',
-      provider: 'Udemy',
-      year: '2021',
-      month: 'Sep',
-      filePath: '/certificates/Machine learning Basics-Udemy.pdf',
-      description: 'Comprehensive ML with Python and R',
-    },
-    {
-      title: 'Fundamentals of Deep Learning',
-      provider: 'NVIDIA',
-      year: '2021',
-      month: 'Aug',
-      filePath:
-        '/certificates/Fundamentals Of Deep Learning DLI C-FX-01 Certificate _ Deep Learning Institute.pdf',
-      description: 'Neural-network fundamentals & GPU acceleration',
     },
     {
       title: 'CCNAv7: Introduction to Networks',
@@ -441,12 +381,21 @@ export const aboutData: AboutData = {
       description: 'Networking fundamentals & Cisco technologies',
     },
     {
-      title: 'JavaScript Course 2021: From Zero to Expert',
+      title: 'Machine Learning A–Z: Hands-On Python & R in Data Science',
       provider: 'Udemy',
       year: '2021',
-      month: 'Mar',
-      filePath: '/certificates/JavaScriptBasic-Udemy.pdf',
-      description: 'Modern JavaScript development & ES6 + features',
+      month: 'Sep',
+      filePath: '/certificates/Machine learning Basics-Udemy.pdf',
+      description: 'Comprehensive ML with Python and R',
+    },
+    {
+      title: 'Solidity Smart Contract Programming for Ethereum Blockchain',
+      provider: 'Infosys',
+      year: '2022',
+      month: 'Apr',
+      filePath:
+        '/certificates/Solidity Smart Contract Programming for Ethereum Blockchain.pdf',
+      description: 'Blockchain development & smart-contract programming',
     },
     {
       title: 'Object-Oriented Data Structures in C++',
@@ -479,7 +428,7 @@ export const aboutData: AboutData = {
       year: '2024',
       url: 'https://ijisae.org/index.php/IJISAE/article/view/5486',
       abstract:
-        "Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored.The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions. Future MOT research aims to develop efficient algorithms for dynamic tracking, improve detection accuracy, and reduce real-time processing. The survey's proposed methods offer valuable references for tracking multiple objects in frame sequences.",
+        'Multiple Object Tracking (MOT) is crucial in computer vision and surveillance, especially for automating traffic control in challenging traffic environments. This review surveys advancements in object detection, tracking algorithms, lane departure warnings, and semantic segmentation, with a specific focus on traffic law enforcement. It covers issues like wrong-way, clearway, and one-way traffic violations, as well as challenges including occlusion and splits. Various methods, such as background subtraction and deep learning, are explored. The review stresses the significance of analyzing recent literature for researchers to bridge gaps, overcome limitations, and create new algorithms. It also touches on hardware, datasets, metrics, and research directions.',
     },
   ],
 
@@ -491,16 +440,16 @@ export const aboutData: AboutData = {
     role: 'Core Committee Member',
     period: '2021 – 2022',
     description:
-      'Led workshops on deep learning for 80 + students, fostering the next generation of AI practitioners.',
+      'Led workshops on deep learning for 80+ students, fostering the next generation of AI practitioners.',
   },
 
   personalTouch: {
-    favoriteStack: 'MERN + AWS',
+    favoriteStack: 'Spring Boot + FastAPI + Next.js + Postgres',
     hobbies: ['☕ Perfect-cup coffee geek', '🎸 Guitarist in spare time'],
   },
 
   // ────────────────────────────────────────────
   // LOCATION
   // ────────────────────────────────────────────
-  location: 'Riverside, CA',
+  location: 'Los Angeles, CA',
 };

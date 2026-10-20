@@ -1,240 +1,59 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import mongoClientPromise from '@/lib/mongodb';
+import { Resend } from 'resend';
 import { logger } from '@/lib/logger';
+import { sanitizeHtml, validateContactFormSubmission } from '@/lib/validation';
 
-// TypeScript interfaces for better type safety
-interface ContactFormData {
+interface ContactPayload {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+  company?: string; // honeypot
+  elapsedMs?: number; // time-trap
+}
+
+const CONTACT_TO = process.env.CONTACT_TO ?? 'gambhir.aditya19@gmail.com';
+// Use a verified domain sender for live sends; resend.dev works for testing.
+const CONTACT_FROM =
+  process.env.CONTACT_FROM ?? 'Portfolio Contact <onboarding@resend.dev>';
+const MIN_ELAPSED_MS = 1500;
+
+function renderEmailHtml(data: {
   name: string;
   email: string;
   subject: string;
   message: string;
-  captchaToken: string;
-}
-
-interface ContactMessage {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  timestamp: Date;
-  ipAddress?: string;
-}
-
-// Database configuration
-const DB_NAME = 'portfolio_messages';
-const COLLECTION_NAME = 'contacts';
-
-// Validation constants
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MIN_SUBJECT_LENGTH = 3;
-const MIN_MESSAGE_LENGTH = 10;
-const MAX_MESSAGE_LENGTH = 2000;
-
-/**
- * Validates environment variables required for the contact API
- */
-function validateEnvironmentVariables(): void {
-  const requiredVars = [
-    'MONGODB_URI',
-    'RECAPTCHA_SECRET_KEY',
-    'EMAIL_USER',
-    'EMAIL_PASS',
-  ];
-
-  const missingVars = requiredVars.filter((varName) => !process.env[varName]);
-
-  if (missingVars.length > 0) {
-    throw new Error(
-      `Missing required environment variables: ${missingVars.join(', ')}`,
-    );
-  }
-}
-
-/**
- * Validates the contact form data
- */
-function validateContactForm(data: Partial<ContactFormData>): {
-  isValid: boolean;
-  errors: string[];
-} {
-  const errors: string[] = [];
-
-  if (!data.name?.trim()) {
-    errors.push('Name is required');
-  } else if (data.name.trim().length < 2) {
-    errors.push('Name must be at least 2 characters long');
-  }
-
-  if (!data.email?.trim()) {
-    errors.push('Email is required');
-  } else if (!EMAIL_REGEX.test(data.email.trim())) {
-    errors.push('Invalid email format');
-  }
-
-  if (!data.subject?.trim()) {
-    errors.push('Subject is required');
-  } else if (data.subject.trim().length < MIN_SUBJECT_LENGTH) {
-    errors.push('Subject must be at least 3 characters long');
-  }
-
-  if (!data.message?.trim()) {
-    errors.push('Message is required');
-  } else if (data.message.trim().length < MIN_MESSAGE_LENGTH) {
-    errors.push(
-      `Message must be at least ${MIN_MESSAGE_LENGTH} characters long`,
-    );
-  } else if (data.message.trim().length > MAX_MESSAGE_LENGTH) {
-    errors.push(`Message must not exceed ${MAX_MESSAGE_LENGTH} characters`);
-  }
-
-  if (!data.captchaToken) {
-    errors.push('reCAPTCHA verification is required');
-  }
-
-  return {
-    isValid: errors.length === 0,
-    errors,
-  };
-}
-
-/**
- * Verifies reCAPTCHA token with Google's API
- */
-async function verifyRecaptcha(token: string): Promise<boolean> {
-  try {
-    const secretKey = process.env.RECAPTCHA_SECRET_KEY!;
-    const response = await fetch(
-      'https://www.google.com/recaptcha/api/siteverify',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`,
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error('Failed to verify reCAPTCHA');
-    }
-
-    const result = await response.json();
-    return result.success === true;
-  } catch (error) {
-    logger.error('reCAPTCHA verification failed', {
-      error: error instanceof Error ? error.message : String(error),
-    });
-    return false;
-  }
-}
-
-/**
- * Sanitizes HTML content to prevent XSS attacks
- */
-function sanitizeHtml(input: string): string {
-  return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
-}
-
-/**
- * Sends email using nodemailer
- */
-async function sendEmail(data: ContactFormData): Promise<void> {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER!,
-      pass: process.env.EMAIL_PASS!,
-    },
-  });
-
-  const sanitizedName = sanitizeHtml(data.name.trim());
-  const sanitizedEmail = sanitizeHtml(data.email.trim());
-  const sanitizedSubject = sanitizeHtml(data.subject.trim());
-  const sanitizedMessage = sanitizeHtml(data.message.trim());
-
-  const recipient = 'gambhir.aditya19@gmail.com';
-  const senderAddress =
-    process.env.EMAIL_USER === recipient
-      ? 'adityajune196@gmail.com'
-      : process.env.EMAIL_USER!;
-
-  await transporter.sendMail({
-    from: senderAddress,
-    to: recipient,
-    subject: sanitizedSubject,
-    replyTo: sanitizedEmail,
-    text: `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\nSubject: ${data.subject.trim()}\n\nMessage:\n${data.message.trim()}`,
-    html: `
-      <div style="font-family: 'Poppins', system-ui, sans-serif; max-width: 600px; margin: 0 auto; color: hsl(var(--foreground, 14% 0 0)); background-color: hsl(var(--background, 100% 0 0));">
-        <h2 style="color: hsl(var(--foreground, 14% 0 0)); border-bottom: 2px solid hsl(var(--primary, 45% 0.18 145)); padding-bottom: 10px;">
-          New Contact Form Submission
-        </h2>
-        <div style="background-color: hsl(var(--muted, 97% 0 0)); padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid hsl(var(--border, 89% 0 0));">
-          <p><strong>Name:</strong> ${sanitizedName}</p>
-          <p><strong>Email:</strong> <a href="mailto:${sanitizedEmail}" style="color: hsl(var(--primary, 45% 0.18 145));">${sanitizedEmail}</a></p>
-          <p><strong>Subject:</strong> ${sanitizedSubject}</p>
-        </div>
-        <div style="margin: 20px 0;">
-          <h3 style="color: hsl(var(--foreground, 14% 0 0));">Message:</h3>
-          <div style="background-color: hsl(var(--card, 100% 0 0)); padding: 15px; border-left: 4px solid hsl(var(--primary, 45% 0.18 145)); border-radius: 6px; border: 1px solid hsl(var(--border, 89% 0 0));">
-            ${sanitizedMessage.replace(/\n/g, '<br>')}
-          </div>
-        </div>
-        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid hsl(var(--border, 89% 0 0)); color: hsl(var(--muted-foreground, 45% 0 0)); font-size: 12px;">
-          <p>This message was sent from your portfolio contact form.</p>
-        </div>
+}): string {
+  const { name, email, subject, message } = data;
+  return `
+  <div style="font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;max-width:600px;margin:0 auto;color:#1c1830;">
+    <div style="background:linear-gradient(115deg,#8b5cf6,#d94690,#6366f1);padding:20px 24px;border-radius:14px 14px 0 0;">
+      <h2 style="margin:0;color:#fff;font-size:18px;">New portfolio message</h2>
+    </div>
+    <div style="border:1px solid #ece9f5;border-top:none;border-radius:0 0 14px 14px;padding:24px;">
+      <p style="margin:0 0 6px;"><strong>Name:</strong> ${name}</p>
+      <p style="margin:0 0 6px;"><strong>Email:</strong>
+        <a href="mailto:${email}" style="color:#6d28d9;">${email}</a></p>
+      <p style="margin:0 0 16px;"><strong>Subject:</strong> ${subject}</p>
+      <div style="background:#faf9ff;border-left:4px solid #8b5cf6;border-radius:8px;padding:14px 16px;line-height:1.6;">
+        ${message.replace(/\n/g, '<br>')}
       </div>
-    `,
-  });
+      <p style="margin:20px 0 0;color:#8a86a0;font-size:12px;">Sent from your portfolio contact form.</p>
+    </div>
+  </div>`;
 }
 
-/**
- * Saves contact message to MongoDB
- */
-async function saveContactMessage(
-  data: ContactFormData,
-  ipAddress?: string,
-): Promise<void> {
-  const client = await mongoClientPromise;
-  const db = client.db(DB_NAME);
-  const collection = db.collection<ContactMessage>(COLLECTION_NAME);
-
-  const contactMessage: ContactMessage = {
-    name: data.name.trim(),
-    email: data.email.trim().toLowerCase(),
-    subject: data.subject.trim(),
-    message: data.message.trim(),
-    timestamp: new Date(),
-    ...(ipAddress && { ipAddress }),
-  };
-
-  await collection.insertOne(contactMessage);
-}
-
-/**
- * GET handler - returns method not allowed
- */
-export async function GET() {
-  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-}
-
-/**
- * POST handler for contact form submissions
- */
 export async function POST(request: NextRequest) {
   try {
-    // Validate environment variables
-    validateEnvironmentVariables();
+    if (!process.env.RESEND_API_KEY) {
+      logger.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email service is not configured.' },
+        { status: 503 },
+      );
+    }
 
-    // Parse request body
-    let body: Partial<ContactFormData>;
+    let body: ContactPayload;
     try {
       body = await request.json();
     } catch {
@@ -244,54 +63,57 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate form data
-    const validation = validateContactForm(body);
+    // Spam traps — respond 200 so bots don't learn they were caught.
+    if (body.company && body.company.trim().length > 0) {
+      logger.warn('Contact honeypot triggered');
+      return NextResponse.json({ message: 'Message sent successfully' });
+    }
+    if (typeof body.elapsedMs === 'number' && body.elapsedMs < MIN_ELAPSED_MS) {
+      logger.warn('Contact time-trap triggered', { elapsedMs: body.elapsedMs });
+      return NextResponse.json({ message: 'Message sent successfully' });
+    }
+
+    const validation = validateContactFormSubmission(body);
     if (!validation.isValid) {
       return NextResponse.json(
-        {
-          error: 'Validation failed',
-          details: validation.errors,
-        },
+        { error: 'Validation failed', details: validation.errors },
         { status: 400 },
       );
     }
 
-    const formData = body as ContactFormData;
+    const name = body.name!.trim();
+    const email = body.email!.trim();
+    const subject = body.subject!.trim();
+    const message = body.message!.trim();
 
-    // Verify reCAPTCHA
-    const isRecaptchaValid = await verifyRecaptcha(formData.captchaToken);
-    if (!isRecaptchaValid) {
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const { error } = await resend.emails.send({
+      from: CONTACT_FROM,
+      to: [CONTACT_TO],
+      replyTo: email,
+      subject: `[Portfolio] ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${message}`,
+      html: renderEmailHtml({
+        name: sanitizeHtml(name),
+        email: sanitizeHtml(email),
+        subject: sanitizeHtml(subject),
+        message: sanitizeHtml(message),
+      }),
+    });
+
+    if (error) {
+      logger.error('Resend send failed', { error: error.message });
       return NextResponse.json(
-        { error: 'reCAPTCHA verification failed' },
-        { status: 403 },
+        { error: 'Failed to send message. Please try again later.' },
+        { status: 502 },
       );
     }
 
-    // Get client IP address for logging
-    const ipAddress =
-      request.headers.get('x-forwarded-for') ??
-      request.headers.get('x-real-ip') ??
-      'unknown';
-
-    // Send email and save to database concurrently
-    await Promise.all([
-      sendEmail(formData),
-      saveContactMessage(formData, ipAddress),
-    ]);
-
-    return NextResponse.json(
-      {
-        message: 'Message sent successfully',
-        timestamp: new Date().toISOString(),
-      },
-      { status: 200 },
-    );
+    return NextResponse.json({ message: 'Message sent successfully' });
   } catch (error) {
     logger.error('Contact API request failed', {
       error: error instanceof Error ? error.message : String(error),
     });
-
-    // Don't expose internal error details to clients
     return NextResponse.json(
       { error: 'Internal server error. Please try again later.' },
       { status: 500 },
@@ -299,17 +121,10 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Handle other HTTP methods
- */
-export async function PUT() {
-  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-}
+const methodNotAllowed = () =>
+  NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
 
-export async function DELETE() {
-  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-}
-
-export async function PATCH() {
-  return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
-}
+export const GET = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const DELETE = methodNotAllowed;
+export const PATCH = methodNotAllowed;

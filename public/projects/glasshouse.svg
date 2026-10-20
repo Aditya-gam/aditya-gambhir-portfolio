@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="Glasshouse — LLM privacy self-audit">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="0.55" stop-color="#a24bd9"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.7" cy="0.25" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#ffffff" opacity="0.14"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="url(#g)"/>
+  <rect width="600" height="400" fill="url(#dots)"/>
+  <rect width="600" height="400" fill="url(#glow)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity="0.95">
+    <path d="M300 96 L392 136 V206 C392 268 352 300 300 320 C248 300 208 268 208 206 V136 Z"/>
+    <circle cx="300" cy="196" r="30"/>
+    <path d="M300 226 v34"/>
+  </g>
+  <text x="300" y="366" text-anchor="middle" font-family="'Geist Mono', ui-monospace, monospace" font-size="22" fill="#ffffff" opacity="0.92">// glasshouse</text>
+</svg>

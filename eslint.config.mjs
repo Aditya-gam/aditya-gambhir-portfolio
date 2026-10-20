@@ -1,52 +1,56 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import nextPlugin from '@next/eslint-plugin-next';
+import reactHooks from 'eslint-plugin-react-hooks';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
+// Native flat config — avoids the FlatCompat + eslint-plugin-react circular
+// crash that eslint-config-next triggers under ESLint 9.
 const eslintConfig = [
-  ...compat.extends(
-    'next/core-web-vitals',
-    'next/typescript',
-    'plugin:jsx-a11y/recommended',
-    'prettier',
-  ),
   {
     ignores: [
+      '.next/**',
+      'node_modules/**',
+      'build/**',
+      'dist/**',
+      'out/**',
+      'cypress/**',
+      'coverage/**',
       '**/*.cjs',
-      'jest.config.cjs',
-      'jest.setup.cjs',
-      '.next/**/*',
-      'node_modules/**/*',
-      'build/**/*',
-      'dist/**/*',
+      'next-env.d.ts',
     ],
-    plugins: {
-      'jsx-a11y': (await import('eslint-plugin-jsx-a11y')).default,
-      prettier: (await import('eslint-plugin-prettier')).default,
-    },
-    rules: {
-      'prettier/prettier': ['error'],
-      'no-unused-vars': 'off',
-      'no-console': 'warn',
-      'prefer-const': 'error',
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'jsx-a11y/anchor-is-valid': 'off',
-    },
   },
   {
-    // Allow img elements in test files for mocking purposes
-    files: ['**/__tests__/**/*', '**/*.test.*', '**/*.spec.*'],
+    files: ['**/*.{js,mjs,ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      '@next/next': nextPlugin,
+      'react-hooks': reactHooks,
+      'jsx-a11y': jsxA11y,
+      prettier: prettierPlugin,
+    },
     rules: {
-      '@next/next/no-img-element': 'off',
+      ...tsPlugin.configs.recommended.rules,
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      ...reactHooks.configs.recommended.rules,
+      ...jsxA11y.flatConfigs.recommended.rules,
+      ...prettierConfig.rules,
+      'prettier/prettier': 'error',
+      'no-console': 'warn',
+      'prefer-const': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      'jsx-a11y/anchor-is-valid': 'off',
     },
   },
 ];
