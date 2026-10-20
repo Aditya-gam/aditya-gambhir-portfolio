@@ -17,7 +17,7 @@
 
 ## Overview
 
-A single-page portfolio (`/`) with a dedicated projects page (`/projects`). Sections: **Hero → About → Skills → Projects → Experience → Contact**. Electric-violet→indigo identity in OKLCH, full light/dark themes (no flash), Geist typography, an animated gradient-mesh background, glassmorphism, cursor-spotlight cards, an animated nav pill, count-up stats, a scroll-driven timeline, a résumé modal, and a working contact form. All motion is `prefers-reduced-motion` aware, and content is visible without JS.
+A single-page portfolio (`/`) with a dedicated projects page (`/projects`). Sections: **Hero → About → Skills → Projects → Experience → Contact**. Electric-violet→indigo identity in OKLCH, full light/dark themes (no flash), Geist typography, an animated gradient-mesh background, glassmorphism, cursor-spotlight cards, an animated nav pill, count-up stats, a scroll-driven timeline, a résumé modal, and a contact form (shown once Resend is configured). All motion is `prefers-reduced-motion` aware, and content is visible without JS.
 
 ## Tech stack
 
@@ -48,7 +48,7 @@ CONTACT_FROM=Portfolio Contact <you@yourdomain>    # verified Resend sender
 CONTACT_TO=gambhir.aditya19@gmail.com              # where messages are delivered
 ```
 
-Without `RESEND_API_KEY`, the contact API returns a graceful `503` and the rest of the site works.
+Without `RESEND_API_KEY`, the contact section shows direct email and résumé CTAs instead of the form, and the contact API returns a graceful `503`. The key is read at build time, so after adding it in Vercel, redeploy to switch the form on.
 
 ## Scripts
 

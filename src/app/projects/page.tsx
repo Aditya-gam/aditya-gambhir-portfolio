@@ -4,12 +4,12 @@ import ProjectsGrid from '@/components/ProjectsGrid';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Software, applied-AI and data-science projects by Aditya Gambhir — multi-tenant platforms, LLM pipelines, geospatial big-data, and transformer research.',
+    'Software, generative-AI and data-science projects by Aditya Gambhir — multi-agent LLM systems, geospatial big-data, privacy tooling, and transformer research.',
   keywords: [
     'projects',
     'portfolio',
     'software engineering',
-    'applied AI',
+    'generative AI',
     'LLM',
     'machine learning',
     'FastAPI',
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects | Aditya Gambhir',
     description:
-      'Software, applied-AI and data-science projects — platforms, LLM pipelines, geospatial big-data, and transformer research.',
+      'Software, generative-AI and data-science projects — multi-agent LLM systems, geospatial big-data, privacy tooling, and transformer research.',
     url: 'https://aditya-gambhir-portfolio.vercel.app/projects',
     siteName: 'Aditya Gambhir Portfolio',
     images: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Projects | Aditya Gambhir',
     description:
-      'Software, applied-AI and data-science projects by Aditya Gambhir.',
+      'Software, generative-AI and data-science projects by Aditya Gambhir.',
     images: ['/og-default.png'],
   },
 };

@@ -26,10 +26,10 @@ const NAV = [
   { id: 'contact', label: 'Contact' },
 ];
 const ROLES = [
-  'Full-Stack Engineer',
-  'AI Applications Engineer',
+  'Software Engineer',
   'Backend & Platform Engineer',
-  'ML & Data Engineer',
+  'AI Applications Engineer',
+  'Full-Stack Engineer',
 ];
 const SOCIALS = {
   linkedin:
@@ -376,7 +376,82 @@ function ProjectCard({
   );
 }
 
-export default function PortfolioClient() {
+// Shown in place of the contact form until the email service is configured
+// (page.tsx enables the form only when RESEND_API_KEY is set).
+function ContactFallback({ onResume }: { readonly onResume: () => void }) {
+  return (
+    <div style={{ padding: '6px 2px' }}>
+      <h3
+        style={{
+          margin: '0 0 10px',
+          font: '700 22px Geist',
+          color: 'var(--fg)',
+          letterSpacing: '-.02em',
+        }}
+      >
+        Have a role in mind?
+      </h3>
+      <p
+        style={{
+          margin: '0 0 22px',
+          maxWidth: '44ch',
+          font: '400 15px Geist',
+          lineHeight: 1.6,
+          color: 'var(--fg-soft)',
+        }}
+      >
+        Send me the details — a short note with the role and the team is plenty.
+        I usually reply within a day.
+      </p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+        <a
+          href={`mailto:${EMAIL}`}
+          className="ag-hov-btn"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 9,
+            padding: '13px 22px',
+            borderRadius: 12,
+            font: '600 15px Geist',
+            textDecoration: 'none',
+            color: '#fff',
+            background: 'var(--grad)',
+            backgroundSize: '170% auto',
+            boxShadow: '0 12px 30px -10px hsl(286 80% 55% / .75)',
+          }}
+        >
+          Email me <ChevronIcon />
+        </a>
+        <button
+          type="button"
+          onClick={onResume}
+          className="ag-hov-lift"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 9,
+            padding: '13px 22px',
+            borderRadius: 12,
+            cursor: 'pointer',
+            font: '600 15px Geist',
+            color: 'var(--fg)',
+            background: 'var(--card-bg)',
+            border: '1px solid var(--border-strong)',
+          }}
+        >
+          <DownloadIcon /> Download Résumé
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function PortfolioClient({
+  contactFormEnabled = false,
+}: {
+  readonly contactFormEnabled?: boolean;
+}) {
   const { resolvedTheme, setTheme } = useTheme();
   const [active, setActive] = useState('hero');
   const [role, setRole] = useState(0);
@@ -1428,16 +1503,16 @@ export default function PortfolioClient() {
                       $ stack --core
                     </div>
                     <div style={{ color: 'var(--brand-ink)' }}>
-                      → .NET · Angular · FastAPI · Node
+                      → Java · Spring Boot · Python · FastAPI
                     </div>
                     <div style={{ color: 'var(--brand-ink)' }}>
-                      → Postgres · Redis · Docker · CI/CD
+                      → Kafka · PostgreSQL · Docker · Kubernetes
                     </div>
                     <div style={{ color: 'var(--muted)', marginTop: 8 }}>
                       $ focus --now
                     </div>
                     <div style={{ color: 'var(--fg)' }}>
-                      → LLM systems · evaluation · agents
+                      → GenAI · RAG · agentic systems
                       <span
                         style={
                           {
@@ -1485,7 +1560,7 @@ export default function PortfolioClient() {
                     boxShadow: '0 0 0 3px hsl(150 65% 48% / .2)',
                   }}
                 />
-                99.99% uptime
+                99.9% uptime
               </div>
               <div
                 style={
@@ -1515,7 +1590,7 @@ export default function PortfolioClient() {
                 >
                   ▲
                 </span>{' '}
-                500+ devs served
+                100k+ events/day
               </div>
             </div>
           </div>
@@ -2315,6 +2390,7 @@ export default function PortfolioClient() {
                     }}
                   >
                     {d.school}
+                    {d.graduated && ` · ${d.graduated}`}
                   </p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                     {d.courses.map((c) => (
@@ -2774,7 +2850,9 @@ export default function PortfolioClient() {
               })}
             >
               <div style={{ position: 'relative', zIndex: 1 }}>
-                {!sent ? (
+                {!contactFormEnabled ? (
+                  <ContactFallback onResume={() => setResumeOpen(true)} />
+                ) : !sent ? (
                   <form onSubmit={onSubmit} noValidate>
                     <div
                       style={{

@@ -52,6 +52,8 @@ export interface AboutData {
     degree: string;
     school: string;
     gpa: string;
+    /** Graduation month, e.g. "Mar 2025" */
+    graduated?: string;
     courses: string[];
   }[];
   certifications: readonly Certificate[];
@@ -84,9 +86,9 @@ export const aboutData: AboutData = {
   hero: {
     greeting: "Hello, I'm Aditya",
     name: 'Aditya Gambhir',
-    title: 'Software Engineer • Applied AI & LLM Systems • Full-Stack',
+    title: 'Software Engineer • Backend & Distributed Systems • Generative AI',
     description:
-      'Software engineer building and measuring LLM systems and multi-tenant platforms in regulated healthcare. At Healthcare Support I own four systems end to end — from schema and model pipeline to the on-premises servers they run on.',
+      'Software engineer with 3+ years building production-grade microservices and event-driven backend systems, bridging generative AI with distributed architecture to deliver secure, reliable software.',
     image: {
       src: '/headshot1.webp',
       alt: 'Aditya Gambhir',
@@ -101,58 +103,59 @@ export const aboutData: AboutData = {
   // QUICK STATS
   // ────────────────────────────────────────────
   stats: {
-    experience: '2.5+',
+    experience: '3+',
     projects: '10+',
     gpa: '3.67',
     publications: '1',
   },
 
   // ────────────────────────────────────────────
-  // PROFESSIONAL SUMMARY
+  // PROFESSIONAL SUMMARY (from the Oct 2026 CV)
   // ────────────────────────────────────────────
   professionalSummary: {
     description:
-      'I build and own software end to end at a medical-evaluation company — schema to deploy — where the compliance constraints are architecture rather than paperwork. In my first four months I shipped four systems: a ground-up rewrite of a seven-year-old clinical scheduling platform, an LLM pipeline that turns hundreds of pages of scanned medical records into a physician-ready review, a self-hosted telehealth video service, and the company public site. Three run on dedicated on-premises servers I provisioned. The work I would most want to be judged on is the measurement: a five-method model bake-off against ground truth I hand-labelled, a published ceiling on that ground truth rather than a score quoted against a perfect 1.0, and four candidate improvements rejected on evidence — one of them against an accuracy bar declared before the experiment ran.',
+      'Software Engineer with 3+ years building production-grade microservices and event-driven backend systems processing enterprise-scale transaction volumes. Reduced release cycles from weeks to days through disciplined CI/CD, rigorous test-driven engineering, and 85% code coverage standards. Committed to bridging generative AI capabilities with distributed architecture to deliver secure, reliable, and high-performance systems.',
     quote:
       'Knowing which parts of a number are recoverable matters more than the number.',
   },
 
   // ────────────────────────────────────────────
-  // DUAL EXPERTISE
+  // DUAL EXPERTISE (key `dataScientist` kept for compatibility)
   // ────────────────────────────────────────────
   dualExpertise: {
     dataScientist: {
-      title: 'AI / ML Engineer',
+      title: 'AI / LLM Engineer',
       achievements: [
-        'Ran a five-method bake-off for medical-record page-stream segmentation against hand-labelled ground truth; the winning method beat the rest on accuracy, recall, and cost at once',
-        'Proved document segmentation is a vision task rather than a text task by replicating a published OCR approach and measuring recall collapse from 0.92 to 0.66',
-        'Built a three-tier classification cascade — ordered regex, a local embedding model, then a constrained-enum LLM call — where two independent signals must agree before a document is auto-classified',
+        'Built an AI-powered member-support chatbot with Spring Boot, Azure AI, and LLM-based knowledge search, cutting agent response time by 22% and documentation search time by 35%',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost',
+        'Architected a multi-agent literature-review system with Microsoft AutoGen and an LLM provider layer that falls back across Together AI, Gemini, Perplexity, and OpenAI',
       ],
       technologies: [
-        'Gemini / Vertex AI',
+        'LangChain',
+        'LangGraph',
+        'RAG',
+        'Azure OpenAI',
+        'AutoGen',
         'Python',
         'FastAPI',
-        'PyTorch',
-        'sentence-transformers',
-        'pgvector',
       ],
     },
     softwareEngineer: {
-      title: 'Software Engineer (Backend & Full-Stack)',
+      title: 'Software Engineer (Backend & Distributed Systems)',
       achievements: [
-        'Migrated a multi-tenant clinical platform to one physical database per clinic office, proving isolation with a harness that disables the framework tenant filter',
-        'Built two transactional outboxes with SHA-256 idempotency keys and atomic database-lease claiming so concurrent workers never double-send',
-        'Rebuilt a 7-year-old platform on .NET 10 and Angular 20 and deployed it to an on-premises Ubuntu server I provisioned',
-        'Delivered a mock API service adopted by 500+ developers to simulate 15+ REST endpoints, cutting integration-testing time ~15%',
+        'Engineered a Kafka-based event streaming pipeline syncing member eligibility and claims data in real time, processing over 100,000 events daily with zero data loss',
+        'Migrated a multi-tenant clinical platform to one physical database per clinic office, validating isolation with a harness that disables tenant filtering',
+        'Cut payment processing time by 40% for a system handling over 500,000 daily transactions by rewriting joins and adding indexes',
+        'Built deployment pipelines with Docker, Jenkins, and Kubernetes, cutting release time from 2 weeks to 3 days',
       ],
       technologies: [
-        '.NET 10',
-        'Angular 20',
-        'Next.js',
-        'FastAPI',
+        'Java',
+        'Spring Boot',
+        'Kafka',
         'PostgreSQL',
-        'SQL Server',
         'Docker',
+        'Kubernetes',
+        'AWS',
       ],
     },
   },
@@ -165,147 +168,128 @@ export const aboutData: AboutData = {
       category: 'Languages',
       items: [
         'Python',
+        'Java',
         'TypeScript',
         'JavaScript',
         'C#',
         'SQL',
         'Bash',
-        'Java',
       ],
     },
     {
       category: 'Frameworks',
       items: [
+        'Spring Boot',
+        'Spring MVC',
+        'Spring Security',
+        'Hibernate',
+        '.NET',
         'FastAPI',
-        '.NET 10 / ASP.NET Core',
-        'Angular 20',
-        'Next.js',
-        'React',
         'Node.js',
         'Express.js',
-        'Flask',
-        'Spring Boot',
-        'Tailwind CSS',
+        'React',
+        'Angular',
+        'Redux',
+        'HTML5',
+        'CSS3',
+        'Bootstrap',
+        'jQuery',
       ],
     },
     {
       category: 'Data / AI',
       items: [
-        'Large Language Models',
+        'LangChain',
+        'LangGraph',
+        'RAG',
         'Prompt Engineering',
-        'Model Evaluation',
-        'Vertex AI (Gemini)',
-        'PyTorch',
-        'sentence-transformers',
-        'OpenCV',
-        'Pandas',
-        'NumPy',
-        'Scikit-learn',
+        'OpenAI API',
+        'Azure OpenAI',
+        'AWS Bedrock',
+        'Embeddings',
+        'Pinecone',
+        'Chroma',
+        'Hugging Face',
+        'CrewAI',
+        'AutoGen',
       ],
     },
     {
       category: 'Cloud & DevOps',
       items: [
+        'AWS (EC2, S3, Lambda, RDS)',
+        'Azure',
         'Docker',
-        'nginx',
-        'Linux',
-        'AWS (EC2/S3/Lambda)',
-        'GCP',
-        'GitHub Actions',
+        'Kubernetes',
+        'Terraform',
         'CI/CD',
-        'SonarCloud',
-        'CodeQL',
+        'Jenkins',
+        'GitHub Actions',
       ],
     },
     {
       category: 'Databases',
-      items: [
-        'PostgreSQL',
-        'SQL Server',
-        'MongoDB',
-        'Redis',
-        'SQLite',
-        'pgvector',
-        'Entity Framework Core',
-        'SQLAlchemy',
-      ],
+      items: ['PostgreSQL', 'MySQL', 'MongoDB', 'DynamoDB', 'Kafka'],
     },
     {
       category: 'Tooling',
       items: [
-        'Git',
+        'RESTful APIs',
+        'GraphQL',
+        'Swagger',
+        'API Design',
+        'JUnit',
+        'Mockito',
         'Jest',
-        'Pytest',
-        'xUnit',
-        'Postman',
-        'Swagger / OpenAPI',
-        'Vercel',
-        'Jira',
+        'Cypress',
+        'Maven',
+        'Git',
+        'GitHub',
+        'Microservices Architecture',
+        'Agile (Scrum)',
+        'SDLC',
+        'Waterfall',
       ],
     },
   ],
 
   // ────────────────────────────────────────────
-  // EXPERIENCE
+  // EXPERIENCE (mirrors the Oct 2026 CV)
   // ────────────────────────────────────────────
   experience: [
     {
       company: 'Healthcare Support, LLC',
-      role: 'Software Developer',
-      period: 'Mar 2026 → Present',
+      role: 'Software Engineer',
+      period: 'Mar 2026 → Sep 2026',
       bullets: [
-        'Rebuilt a 7-year-old medical-evaluation scheduling platform on .NET 10, ABP Commercial, and Angular 20; deployed it to an on-premises Ubuntu server I provisioned. Shipped 846 commits, 390 PRs, and 17 architecture decision records.',
-        'Migrated the platform from shared-database row filtering to one physical database per clinic office. Proved the isolation with a harness that disables the tenant filter and asserts cross-office records stay invisible.',
-        'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs that isolate errors per office, so concurrent workers never lose or double-send a notification.',
-        'Ran a five-method bake-off for medical-record page-stream segmentation against ground truth I hand-labelled; the winning sliding-window method beat the rest on accuracy, recall, and cost, using 2 API calls versus 226.',
-        'Proved document segmentation is a vision task, not a text task, by replicating a published OCR approach and watching recall drop from 0.92 to 0.66. Rejected four improvements on measured evidence.',
-        'Root-caused a silent pipeline hang — no exception, so retry never fired — to an OpenMP/Tesseract deadlock. Proved it in isolation (0/60 tasks versus 60/60) and bounded all four thread pools.',
+        'Rebuilt a 7-year-old medical scheduling platform on .NET 10, ABP Commercial, and Angular 20, deploying to a self-hosted Ubuntu server, producing 846 commits, 390 pull requests, and 17 ADRs total.',
+        'Migrated the platform from shared-database row filtering to one physical database per clinic office, validating isolation with a test harness that disables tenant filtering and confirms cross-office records stay invisible.',
+        'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs with per-office error isolation, ensuring notifications are never lost or duplicated under concurrent worker processes.',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost, rejecting four alternative methods including text-based OCR consistently using fewer API calls.',
       ],
     },
     {
-      company: 'One Community Global',
-      role: 'Software Engineer (Volunteer)',
-      period: 'Sept 2025 → Mar 2026',
+      company: 'Centene',
+      role: 'Software Engineer',
+      period: 'Jan 2025 → Mar 2026',
       bullets: [
-        'Built 15+ REST endpoints and MongoDB aggregation pipelines powering a building-management analytics dashboard in Node.js and Express, covering cost correlation, labor cost, issue breakdown, and tool utilization.',
-        'Fixed 5 data-integrity bugs in volunteer statistics by rewriting aggregation pipelines, eliminating double-counting, misclassified hourly buckets, and stale summary counts across 1,000+ volunteer records.',
-        'Built 12+ React/TypeScript components with Recharts and Chart.js, shipped WCAG AA-compliant dark mode across 20+ components, and wrote 500+ Jest unit and integration tests.',
+        'Built an AI-powered chatbot using Spring Boot, Azure AI, and LLM-based knowledge search to automate member support inquiries, cutting agent response time by 22% and documentation search time by 35%.',
+        'Developed REST APIs with OAuth2 authentication for internal and external member-facing systems, maintaining strict HIPAA compliance and 99.9% uptime across critical production healthcare environments and backend services daily.',
+        'Engineered a Kafka-based event streaming pipeline syncing member eligibility and claims data in real time across multiple internal healthcare systems, processing over 100,000 events daily with zero data loss.',
+        'Wrote unit and integration tests using JUnit and Mockito for backend services, maintaining approximately 85% code coverage and catching defects before they reached the production release pipeline each week.',
+        'Collaborated in Agile Scrum teams with Product, QA, and DevOps engineers, delivering new features in two-week sprints while conducting peer code reviews to maintain team engineering standards throughout each release.',
       ],
     },
     {
-      company: 'Tech Mahindra',
-      role: 'Software Development Intern',
-      period: 'Jan 2023 → May 2023',
+      company: 'CRED',
+      role: 'Software Engineer',
+      period: 'Jan 2022 → Aug 2023',
       bullets: [
-        'Built an internal Mock API service so teams could simulate 15–20 endpoints and test earlier, cutting integration test time by ~15%.',
-        'Kept the service fast under load, with ~220 ms response times at 60–120 requests/second by adding server-side caching, sensible rate limits, and performance dashboards.',
-        'Standardized sign-in and API security with OAuth2/OIDC via Okta, resolving 5 critical issues and strengthening our security posture.',
-        'Reduced breaking changes by enforcing OpenAPI contracts in CI, blocking merges when code and spec didn’t match and auto-generating typed clients.',
-        'Lifted team throughput ~25% (24→30 pts/sprint) and sped up PR reviews ~20% by introducing a clear Definition of Done, a concise PR template, and a 75% test-coverage gate.',
-      ],
-    },
-    {
-      company: 'Tech Mahindra',
-      role: 'Software Development Intern',
-      period: 'Jul 2022 → Dec 2022',
-      bullets: [
-        'Replaced PDF forms with a web intake, cutting contract processing time by ~35%; built a React front end with Spring Boot APIs and automated PDF/email notifications.',
-        'Improved reliability and lowered typical API response from 1.3s to 0.85s by indexing PostgreSQL and moving email to background jobs; raised automated test coverage to ~80% backend / ~75% frontend.',
-        'Launched a sales analytics dashboard that reduced time-to-insight by ~30%; delivered with React and a Node API, then sped up charts via query tuning and caching.',
-        'Added role-based access (employees/managers/admins) with single sign-on via Auth0, reducing authentication errors by ~40%.',
-        'Containerized services and set up Docker-based CI/CD to AWS, trimming manual deployment steps by ~25% and preventing spec-breaking changes.',
-      ],
-    },
-    {
-      company: 'Centre for Development of Advanced Computing (C-DAC)',
-      role: 'Research & Development Intern',
-      period: 'Jan 2022 → Jun 2022',
-      bullets: [
-        'Built a real-time EEG research platform that cut setup time by ~40% and increased daily recording throughput by 25-30%.',
-        'Delivered smooth live charts with ~320 ms end-to-end latency while streaming ~240 messages per second over WebSockets.',
-        'Maintained 99.9% service uptime (May-June) by adding proactive health checks and clear monitoring/alerts.',
-        'Secured a multi-user lab with single sign-on and role-based permissions; every endpoint was authenticated and fully audited.',
-        'Reduced infrastructure and storage costs by ~52% and sped up releases through automated build/deploy pipelines.',
+        'Developed 15+ REST APIs using Java and Spring Boot, writing automated JUnit tests to catch bugs early and reduce production issues before code changes reached the live payment processing system.',
+        'Optimized slow-running SQL queries by rewriting joins and adding database indexes across services, cutting payment processing time by 40% for a system handling over 500,000 financial transactions each day.',
+        'Configured AWS auto-scaling and access controls for backend services supporting real-time transaction processing, improving system uptime to 99.5% while reducing overall monthly cloud hosting infrastructure costs by 25%.',
+        'Refactored key ReactJS components by introducing Redux state management and removing unnecessary repeated API calls, cutting page load time for 50,000 monthly active users on the app.',
+        'Built 2 deployable microservices with automated unit tests in Mockito and created automated deployment pipelines using Docker, Jenkins, and Kubernetes, cutting release time from 2 weeks to 3 days.',
       ],
     },
   ],
@@ -318,6 +302,7 @@ export const aboutData: AboutData = {
       degree: 'M.S. Computational Data Science',
       school: 'University of California, Riverside',
       gpa: '3.67/4',
+      graduated: 'Mar 2025',
       courses: [
         'Data Mining',
         'Big Data Management',
@@ -330,6 +315,7 @@ export const aboutData: AboutData = {
       degree: 'B.Tech Computer Engineering',
       school: 'Vishwakarma Institute of Information Technology',
       gpa: '9.62/10',
+      graduated: 'May 2023',
       courses: [
         'Data Structures & Algorithms',
         'Operating Systems',
@@ -458,7 +444,7 @@ export const aboutData: AboutData = {
   },
 
   personalTouch: {
-    favoriteStack: 'FastAPI + Next.js + Postgres',
+    favoriteStack: 'Spring Boot + FastAPI + Next.js + Postgres',
     hobbies: ['☕ Perfect-cup coffee geek', '🎸 Guitarist in spare time'],
   },
 

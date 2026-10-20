@@ -7,6 +7,59 @@ import { ProjectData } from '@/types';
 
 export const featuredProjects: ProjectData[] = [
   {
+    title: 'Navigate LA28',
+    description:
+      'Full-stack geospatial navigation platform with real-time interactive mapping, multi-modal route planning, and live transit tracking for Olympic venue navigation, backed by a Spark/Hadoop pipeline processing 1M+ records a minute. Built with a 4-person team.',
+    bullets: [
+      'React 18 + Redux, FastAPI, PostGIS',
+      'Spark + Hadoop/HDFS, 1M+ records/min',
+      'JWT, CORS, Bandit/Safety hardening',
+    ],
+    imageSrc: '/projects/navigate-la28.svg',
+    imageAlt: 'Navigate LA28 interactive map UI',
+    priority: true,
+    featured: true,
+    hue: 286,
+    tag: 'geospatial',
+    technologies: [
+      'React',
+      'Redux',
+      'FastAPI',
+      'PostgreSQL / PostGIS',
+      'Apache Spark',
+      'Hadoop',
+      'Docker',
+      'Nginx',
+    ],
+    githubUrl: 'https://github.com/Aditya-gam/Navigate-LA-28',
+  },
+  {
+    title: 'Survey Studio — AI Literature Review',
+    description:
+      'Multi-agent literature-review system: AutoGen search and summarizer agents automate arXiv retrieval, analysis, and structured review generation, behind an LLM provider layer with fallback across Together AI, Gemini, Perplexity, and OpenAI.',
+    bullets: [
+      'Microsoft AutoGen multi-agent',
+      'LLM provider fallback + cost control',
+      'Poetry, Ruff, Pyright, CI',
+    ],
+    imageSrc: '/projects/survey-studio.svg',
+    imageAlt: 'Survey Studio literature-review interface',
+    priority: true,
+    featured: true,
+    hue: 190,
+    tag: 'multi-agent',
+    technologies: [
+      'Python',
+      'AutoGen',
+      'FastAPI',
+      'Pydantic',
+      'OpenAI',
+      'Gemini',
+      'Poetry',
+    ],
+    githubUrl: 'https://github.com/Aditya-gam/survey-studio',
+  },
+  {
     title: 'Glasshouse — LLM Privacy Self-Audit',
     description:
       'A privacy tool that shows you what an LLM can infer about you from your own posts — then helps you break the inference. In active development.',
@@ -33,27 +86,13 @@ export const featuredProjects: ProjectData[] = [
     ],
     githubUrl: 'https://github.com/Aditya-gam/glasshouse',
   },
-  {
-    title: 'Navigate LA28',
-    description:
-      'Real-time geospatial navigation and urban-planning analytics built for the LA 2028 Olympics.',
-    bullets: ['Spark + PostGIS', 'Leaflet.js maps', 'Docker microservices'],
-    imageSrc: '/projects/navigate-la28.svg',
-    imageAlt: 'Navigate LA28 interactive map UI',
-    priority: true,
-    featured: true,
-    hue: 286,
-    tag: 'geospatial',
-    technologies: [
-      'React',
-      'Leaflet.js',
-      'FastAPI',
-      'Apache Spark',
-      'PostGIS',
-      'Docker',
-    ],
-    githubUrl: 'https://github.com/Aditya-gam/Navigate-LA-28',
-  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Additional projects (smaller cards)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export const moreProjects: ProjectData[] = [
   {
     title: 'Dockership',
     description:
@@ -65,20 +104,12 @@ export const featuredProjects: ProjectData[] = [
     ],
     imageSrc: '/projects/dockership.svg',
     imageAlt: 'Dockership freight-ship management UI',
-    priority: true,
-    featured: true,
+    featured: false,
     hue: 330,
     tag: 'logistics',
     technologies: ['Python', 'Streamlit', 'Docker', 'MongoDB Atlas', 'Pytest'],
     githubUrl: 'https://github.com/Aditya-gam/Dockership',
   },
-];
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Additional projects (smaller cards)
-// ─────────────────────────────────────────────────────────────────────────────
-
-export const moreProjects: ProjectData[] = [
   {
     title: 'Sensor Fusion for Self-Driving',
     description:
