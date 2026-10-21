@@ -9,7 +9,7 @@ export const featuredProjects: ProjectData[] = [
   {
     title: 'Navigate LA28',
     description:
-      'Full-stack geospatial navigation platform with real-time interactive mapping, multi-modal route planning, and live transit tracking for Olympic venue navigation, backed by a Spark/Hadoop pipeline processing 1M+ records a minute. Built with a 4-person team.',
+      'Full-stack geospatial platform for Olympic venue navigation: interactive mapping, nearest bus-stop and amenity search, and direct bus-route and attraction planning, backed by a Spark/Hadoop pipeline processing 1M+ records a minute. Built with a 4-person team.',
     bullets: [
       'React 18 + Redux, FastAPI, PostGIS',
       'Spark + Hadoop/HDFS, 1M+ records/min',
@@ -133,7 +133,7 @@ export const moreProjects: ProjectData[] = [
     featured: false,
     hue: 200,
     tag: 'vision',
-    technologies: ['PyTorch', 'Transformers', 'CLIP'],
+    technologies: ['PyTorch', 'DETR-style Transformer'],
     githubUrl:
       'https://github.com/Aditya-gam/Transformer-Model-for-Crowd-Localization',
   },
@@ -151,12 +151,12 @@ export const moreProjects: ProjectData[] = [
     githubUrl: 'https://github.com/Aditya-gam/Deblurring-Autoencoders',
   },
   {
-    title: 'Transformer vs LSTM Chatbot',
+    title: 'Transformer Chatbot',
     description:
-      'Comparative seq2seq chatbot study on the Cornell Movie Corpus with BLEU evaluation.',
+      'Transformer seq2seq chatbot trained on the Cornell Movie-Dialogs Corpus across several hyperparameter configurations.',
     bullets: [
       'Transformer encoder-decoder',
-      'Performance analysis',
+      'Hyperparameter comparisons',
       'Cornell corpus',
     ],
     imageSrc: '/projects/chatbot-transformer.svg',
@@ -164,7 +164,7 @@ export const moreProjects: ProjectData[] = [
     featured: false,
     hue: 266,
     tag: 'nlp',
-    technologies: ['PyTorch', 'Transformers', 'Python'],
+    technologies: ['TensorFlow', 'Keras', 'Python'],
     githubUrl: 'https://github.com/Aditya-gam/DNLP-Chatbot',
   },
   {
