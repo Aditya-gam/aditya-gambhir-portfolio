@@ -12,7 +12,6 @@ export interface AboutData {
       alt: string;
     };
     resumes: {
-      ds: string;
       sde: string;
     };
   };
@@ -94,7 +93,6 @@ export const aboutData: AboutData = {
       alt: 'Aditya Gambhir',
     },
     resumes: {
-      ds: '/Aditya_Gambhir_DS.pdf',
       sde: '/Aditya_Gambhir_SDE.pdf',
     },
   },
@@ -127,7 +125,7 @@ export const aboutData: AboutData = {
       title: 'AI / LLM Engineer',
       achievements: [
         'Built an AI-powered member-support chatbot with Spring Boot, Azure AI, and LLM-based knowledge search, cutting agent response time by 22% and documentation search time by 35%',
-        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1 and cost with perfect recall',
         'Architected a multi-agent literature-review system with Microsoft AutoGen and an LLM provider layer that falls back across Together AI, Gemini, Perplexity, and OpenAI',
       ],
       technologies: [
@@ -259,13 +257,13 @@ export const aboutData: AboutData = {
   experience: [
     {
       company: 'Healthcare Support, LLC',
-      role: 'Software Engineer',
+      role: 'Software Developer',
       period: 'Mar 2026 → Sep 2026',
       bullets: [
         'Rebuilt a 7-year-old medical scheduling platform on .NET 10, ABP Commercial, and Angular 20, deploying to a self-hosted Ubuntu server, producing 846 commits, 390 pull requests, and 17 ADRs total.',
         'Migrated the platform from shared-database row filtering to one physical database per clinic office, validating isolation with a test harness that disables tenant filtering and confirms cross-office records stay invisible.',
         'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs with per-office error isolation, ensuring notifications are never lost or duplicated under concurrent worker processes.',
-        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1, recall, and cost, rejecting four alternative methods including text-based OCR consistently using fewer API calls.',
+        'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1 and cost (2 API calls vs 226 for per-page methods) with perfect recall, and a separate OCR-text replication showed recall collapsing, confirming segmentation as a vision task.',
       ],
     },
     {
