@@ -260,7 +260,7 @@ export const aboutData: AboutData = {
       role: 'Software Developer',
       period: 'Mar 2026 → Sep 2026',
       bullets: [
-        'Rebuilt a 7-year-old medical scheduling platform on .NET 10, ABP Commercial, and Angular 20, deploying to a self-hosted Ubuntu server, producing 846 commits, 390 pull requests, and 17 ADRs total.',
+        'Rebuilt a 7-year-old medical scheduling platform on .NET 10, ABP Commercial, and Angular 20, deploying to a self-hosted Ubuntu server, producing 1,216 commits, 646 merged pull requests, and 17 ADRs.',
         'Migrated the platform from shared-database row filtering to one physical database per clinic office, validating isolation with a test harness that disables tenant filtering and confirms cross-office records stay invisible.',
         'Built two transactional outboxes using SHA-256 idempotency keys and atomic database-lease claiming, plus reconciliation jobs with per-office error isolation, ensuring notifications are never lost or duplicated under concurrent worker processes.',
         'Ran a five-method bake-off for medical-record segmentation against hand-labeled ground truth; sliding-window won on Document-F1 and cost (2 API calls vs 226 for per-page methods) with perfect recall, and a separate OCR-text replication showed recall collapsing, confirming segmentation as a vision task.',
